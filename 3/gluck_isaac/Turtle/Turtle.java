@@ -7,13 +7,11 @@ public class Turtle {
     private int age, speed;
 
     public Turtle() {
-	name = "default";
-	age = 0;
-	speed = 1;
+	initSetAll("default", 0, 1);
     }
 
     public Turtle(String n) {
-        setName(n);
+	initSetAll(n, 0, 1);
     }
 
     public Turtle(String n, int a, int s) {
