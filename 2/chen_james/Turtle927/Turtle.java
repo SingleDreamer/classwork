@@ -3,9 +3,10 @@ import java.util.*;
 
 public class Turtle {
    
-    private int speed;
-    private int age;
-    private String name;
+    public int speed;
+    public int age;
+    public String name;
+   
 
     public Turtle () {
 	name = "Mushroom";
@@ -44,6 +45,8 @@ public class Turtle {
 
     public int getSpeed() {
 	//	String sSpeed = String.valueOf(speed);
+
+	// String strSpeed =  String.valueOf(s);
 	return speed;
     }
 
@@ -51,5 +54,7 @@ public class Turtle {
 	//	String sAge = String.valueOf(age);
 	return age;
     }
+    
+
 }
 

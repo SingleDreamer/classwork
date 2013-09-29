@@ -10,6 +10,25 @@ public class Driver {
 	System.out.println(t3.getName());
 	System.out.println(t3.getSpeed());
 	System.out.println(t3.getAge());
+
+	System.out.println(t2.getName());
+	System.out.println(t2.getSpeed());
+	System.out.println(t2.getAge());
+
+	System.out.println(t.getName());
+	System.out.println(t.getSpeed());
+	System.out.println(t.getAge());
+	
+	// Person.java
+	Person x = new Person("James");
+	x.setTurtle(t2);
+	System.out.println(x.getTurtleSpeed());
+	System.out.println(x.getPet().getName());
+	
+
+	
+
     }
+
 
 }
