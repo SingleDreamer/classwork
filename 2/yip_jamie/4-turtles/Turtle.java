@@ -8,12 +8,19 @@ public class Turtle {
 
     /*Constructors:*/
     public Turtle (){
+	name = "Tim Tom";
+	age = 33;
+	speed = 2;
     }
-    public Turtle (String name) {
+    public Turtle (String tName) {
+	name = tName;
 	age=2;
 	speed=15;
     }
-    public Turtle (String name,int speed, int age) {
+    public Turtle (String tName,int tSpeed, int tAge) {
+	name = tName;
+	speed = tSpeed;
+	age = tAge;
     } 
 
     /*Set Methods:*/
