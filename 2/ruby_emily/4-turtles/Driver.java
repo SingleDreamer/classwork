@@ -7,7 +7,9 @@ public class Driver{
 	Turtle t;
 	t=new Turtle();
 	System.out.println(t.getName("Jamie"));
-	t.set
+	System.out.println(t.getSpeed(16));
+	System.out.println(t.getAge(9));
+	
     }
 }
 
