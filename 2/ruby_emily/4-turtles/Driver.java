@@ -4,11 +4,13 @@ import java.util.*;
 public class Driver{
 
     public static void main(String args[]){
-	Turtle t;
+	Turtle t,t2;
 	t=new Turtle();
-	System.out.println(t.getName("Jamie"));
-	System.out.println(t.getSpeed(16));
-	System.out.println(t.getAge(9));
+	System.out.println(t.getName());
+	t2=new Turtle("Emily");
+	System.out.println(t2.getName());
+       	System.out.println(t.getSpeed());
+	System.out.println(t.getAge());
 	
     }
 }
