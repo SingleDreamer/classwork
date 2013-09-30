@@ -6,15 +6,14 @@ public class Turtle {
     private String name;
     private int speed, age;
 
-
     /*Constructors:*/
     public Turtle (){
-	name = "Your Turtle's name is" + " "+"Tim Tom";
+	name = "Tim Tom";
 	age = 33;
 	speed = 2;
     }
     public Turtle (String tName) {
-	name ="Your Turtle's name is"+ " "+ tName;
+	name = tName;
 	age=2;
 	speed=15;
     }
@@ -37,13 +36,13 @@ public class Turtle {
 
 
     /*Get Methods:*/
-    public int getSpeed() {
+    public int getSpeed(int speed) {
 	return speed;
     }
-    public int getAge(){
+    public int getAge(int age){
 	return age;
     }
-    public String getName() {
+    public String getName(String name) {
 	return name;
     }
 
