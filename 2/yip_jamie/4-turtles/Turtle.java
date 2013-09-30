@@ -6,19 +6,20 @@ public class Turtle {
     private String name;
     private int speed, age;
 
+
     /*Constructors:*/
     public Turtle (){
-	name = "Tim Tom";
+	name = "Your Turtle's name is" + " "+"Tim Tom";
 	age = 33;
 	speed = 2;
     }
     public Turtle (String tName) {
-	name = tName;
+	name ="Your Turtle's name is"+ " "+ tName;
 	age=2;
 	speed=15;
     }
     public Turtle (String tName,int tSpeed, int tAge) {
-	name = tName;
+	name = "Your Turtle's name is"+ " "+ tName;
 	speed = tSpeed;
 	age = tAge;
     } 
@@ -36,13 +37,13 @@ public class Turtle {
 
 
     /*Get Methods:*/
-    public int getSpeed(int speed) {
+    public int getSpeed() {
 	return speed;
     }
-    public int getAge(int age){
+    public int getAge(){
 	return age;
     }
-    public String getName(String name) {
+    public String getName() {
 	return name;
     }
 
