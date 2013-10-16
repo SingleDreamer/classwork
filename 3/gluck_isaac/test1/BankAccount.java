@@ -17,9 +17,7 @@ public class BankAccount {
 
     public void withdraw(int amt) {
 	double damt = (double)(amt);
-	if (damt > balance)
-	    System.out.println("You dont got da cash");
-	else
+	if (damt < balance)
 	    balance = balance - damt;
     }
 
@@ -29,9 +27,7 @@ public class BankAccount {
 
     public void takeMoneyFrom(BankAccount other, int amt) {
 	double damt = (double)(amt);
-	if (damt > other.balance)
-	    System.out.println("they dont got da cash");
-	else {
+	if (damt < other.balance) {
 	    other.withdraw(amt);
 	    balance = balance + damt;
 	}
@@ -39,9 +35,7 @@ public class BankAccount {
 
     public void giveMoneyTo(BankAccount other, int amt) {
 	double damt = (double)(amt);
-	if (amt > balance)
-	    System.out.println("you dont got da cash");
-	else {
+	if (amt < balance) {
 	    balance = balance - damt;
 	    other.deposit(amt);
 	}
