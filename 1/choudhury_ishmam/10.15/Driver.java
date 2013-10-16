@@ -30,9 +30,23 @@ public class Driver {
 	
 	//given a string x = "hello" ; returns "olleh" then prints
 	
-	x = "hello";
+	String x = "hello";
 	
 	//for each character, append last charac to the end of the new string
 	// string = string + nextChar
 	
+	for (x = "hello" ;  x.length() == 0 ; 
+		 x = x.substring(x.length() - 1)) { 
+		String f = ""; 
+		String p = x.substring( x.length() - 1 , x.length());
+		f = f + p;
+		System.out.println("String = " + f);
+	}
+	
+	
+	
+}		
 }
+
+
+
