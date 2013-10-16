@@ -50,4 +50,15 @@ public class Loops{
 	}
 	return true;
     }
+    public String table(int n, int m){
+	String final = ""
+	for (int c= 0; c<(m+1) ; c++){
+	    for (int j = 1; j<(nm +1); j+c){
+		final = final + j + " "
+	    }
+	    return final
+	}
+	return "\n"
+	    }
+
 }
