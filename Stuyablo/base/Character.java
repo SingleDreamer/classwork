@@ -6,7 +6,7 @@ public class Character {
     protected int dexterity, strength, intelligence;
     protected int experience;
     protected int gold;
-    protected double x,y;
+    protected double x,y,distance;
     protected String name;
     protected String charClass;
  
@@ -22,9 +22,6 @@ public class Character {
 	   print out the attempt and the result and update
 	   all relavent variables
 	*/
-	return 0
-	   
-
     }
 
     // returns true if you succesfully flee, false otherwise
