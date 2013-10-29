@@ -8,7 +8,7 @@ public class Character {
     protected int gold;
     protected double x,y;
     protected String name;
-
+    protected String charClass;
  
     public int getHealth() {
 	return health;
