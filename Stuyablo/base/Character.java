@@ -42,7 +42,7 @@ public class Character {
       
       Otherwise, call attack on both sides:
       this.attack(other);
-      if (this.health>0) 
+      if (other.health>0) 
         other.attack(this);
 
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead.
