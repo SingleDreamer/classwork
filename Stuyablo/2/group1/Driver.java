@@ -1,7 +1,9 @@
 public class Driver {
     public static void main(String[] args) {
-	Wizard wi = new Wizard("Gym");
+	Character a,b;
+	a = new Character();
+	b = new Character();
+	a.attack(b);
 
-	System.out.println(wi);
     }
 }
