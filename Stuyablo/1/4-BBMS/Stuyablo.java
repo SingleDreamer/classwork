@@ -3,7 +3,7 @@ import java.util.*;
 public class Stuyablo {
 	public static boolean isInRange(int x, int a, int b) {return ((x >= a) && (x <= b));} //tests if a <= x <= b
 	
-	public static boolean isInRange_exclusive(int x, int a, int b) {return ((x > a) && (x < b));} //tests if a < x < b
+	public static boolean isInRangeExclusive(int x, int a, int b) {return ((x > a) && (x < b));} //tests if a < x < b
 		
 	public static void main(String[] args) {
 		System.out.println("Welcome to");
@@ -12,22 +12,26 @@ public class Stuyablo {
 		System.out.println(" \\_____  \\\\   __\\  |  <   |  |\\__  \\ | __ \\|  |  /  _ \\ ");
 		System.out.println(" /        \\|  | |  |  /\\___  | / __ \\| \\_\\ \\  |_(  <_> )");
 		System.out.println("/_______  /|__| |____/ / ____|(____  /___  /____/\\____/ ");
-		System.out.println("        \\/             \\/          \\/    \\/             ");
+		System.out.println("        \\/             \\/          \\/    \\/             "); //ASCII art doesn't exactly look right in code. Got to use "//" for every backslash (/) for the correct escape sequence
 		System.out.print("Press Enter or enter any character(s) to begin: ");
 		Scanner scanner = (new Scanner(System.in)).useDelimiter("");
 		while (!(scanner.hasNext())) {} //waits for input
 		
+		System.out.println("Press Ctrl + C to quit at any time.");
+		
+		Character player = new Character();
 		scanner = new Scanner(System.in); //intentional, to clear any input from the previous scanner instance
 		
 		//Name
 		System.out.print("Enter name: ");
-		boolean input = false; //method to check input here is slightly different when actually looking for a specific input, rather than simply any input at all. Is there a more efficient method to do this? Also, named !input 
+		boolean input = false; //method to check input here is slightly different when actually looking for a specific input, rather than simply any input at all. Is there a more efficient method to do this?
 		String name = "";
 		while (!input) {
 			name = (scanner.nextLine()).trim();
 			if (!(name.equals(""))) {input = true;}
 		}
-		System.out.println("Name: " + name + "\n");
+		player.setName(name);
+		System.out.println(player.getName() + "\n");
 		
 		//Class
 		System.out.print("Select a class (0 - Random, 1 - Class 1, 2 - Class 2, 3 - Class 3): ");
@@ -42,7 +46,8 @@ public class Stuyablo {
 		if (_class.equals("1")) {_class = "Class 1";}
 		if (_class.equals("2")) {_class = "Class 2";}
 		if (_class.equals("3")) {_class = "Class 3";}
-		System.out.println("Class: " + _class + "\n");
+		player.setCharacterClass(_class);
+		System.out.println(player.getCharacterClass() + "\n");
 		
 		//Stats (Not class-specific)
 		System.out.println("Stats:");
@@ -68,6 +73,12 @@ public class Stuyablo {
 			if (answer.equals("y")) {yes = true;}
 			System.out.println("");
 		}
+		player.setAttribute1(attribute1);
+		player.setAttribute2(attribute2);
+		player.setAttribute3(attribute3);
+		player.setAttribute4(attribute4);
+		
+		System.out.println(player);
 		
 		//
 		System.out.println("\nProgram terminated.");
