@@ -55,13 +55,13 @@ public class Stuyablo {
 		boolean yes = false;
 		int attribute1 = 0, attribute2 = 0, attribute3 = 0, attribute4 = 0;
 		while (!yes) {
-			attribute1 = random.nextInt(11) + 5;
+			attribute1 = random.nextInt(11) + 5; //each stat is between 5 and 15
 			System.out.println("Attribute 1: " + attribute1);
 			attribute2 = random.nextInt(11) + 5;
 			System.out.println("Attribute 2: " + attribute2);
-			while (!(isInRange(attribute1 + attribute2 + attribute3, 25, 39))) {attribute3 = random.nextInt(11) + 5;}
+			while (!(isInRange(attribute1 + attribute2 + attribute3, 25, 39))) {attribute3 = random.nextInt(11) + 5;} //if attribute 3 is too low, then attribute4 will be too high and if attribute 3 is too high, then attribute4 will be too low
 			System.out.println("Attribute 3: " + attribute3);
-			attribute4 = 40 - (attribute1 + attribute2 + attribute3);
+			attribute4 = 40 - (attribute1 + attribute2 + attribute3); //the stats need to add up to 40
 			System.out.println("Attribute 4: " + attribute4);
 			
 			System.out.print("Accept these stats (y/n)? ");
@@ -79,6 +79,17 @@ public class Stuyablo {
 		player.setAttribute4(attribute4);
 		
 		System.out.println(player);
+		
+		Character opponent = new Character();
+		opponent.setHealth(100);
+		opponent.setMaxhealth(100);
+		opponent.setAttribute1(10);
+		opponent.setAttribute2(10);
+		opponent.setAttribute3(10);
+		opponent.setAttribute4(10);
+		
+		player.attack(opponent);
+		System.out.println(opponent);
 		
 		//
 		System.out.println("\nProgram terminated.");

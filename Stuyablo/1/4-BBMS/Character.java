@@ -1,11 +1,15 @@
+import java.util.*;
+
 public class Character {
 	protected int health, maxhealth, attribute1, attribute2, attribute3, attribute4, experience, level;
 	protected String name, characterClass;
+	public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
 	
 	public Character() {
 		health = maxhealth = 1;
 		attribute1 = attribute2 = attribute3 = attribute4 = 0;
-		experience = level = 0;
+		experience = 0;
+		level = 1;
 		name = "No Name";
 		characterClass = "No class";
 	}
@@ -37,4 +41,14 @@ public class Character {
 		return name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
 			   "Attribute 1: " + attribute1 + ", Attribute 2: " + attribute2 + ", Attribute 3: " + attribute3 + ", Attribute 4: " + attribute4;
 	}
+	
+	public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
+		//Assume attribute1 is vitality, attribute2 is strength, attribute3 is magic and attribute4 is attribute4
+		int damage = attribute2; //equation subject to change
+		if ((attribute4 >= other.getAttribute4()) || ((attribute4 < other.getAttribute4()) && (random.nextDouble() > 0.5))) { //hit rate subject to change
+			other.setHealth(other.getHealth() - damage);
+			System.out.println("Hit! " + damage + " damage.");}
+		else {System.out.println("Miss!");}
+	}
+	
 }
