@@ -46,7 +46,31 @@ public class Character {
 
     */
     public int encounter(Character other) {
-	return 0;
+	Scanner sc = new Scanner(System.in);
+	if (other.flee(this)) {
+		return 0;
+	}
+	System.out.println("1 - attack \n2 - flee");
+	String option = sc.nextLine();
+	if (option.equals("2") {
+		if (this.flee(other)){
+			return 1;
+		}
+	}
+	else if (option.equals("1"){
+		this.attack(other);
+      		if (other.health>0) {
+        		other.attack(this);
+			if (this.health<=0) {
+				return 2;
+			}
+			
+		}
+		else {
+			return 3;
+		}
+		return 5;
+	}
     }
 
 
