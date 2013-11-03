@@ -3,10 +3,10 @@ Pd 1 Group 3
 
 Members
 
-*Vanessa Yan
-*Sappha O'Meara
-*Ishmam Choudhury
-*Tyler Wang
+* Vanessa Yan
+* Sappha O'Meara
+* Ishmam Choudhury
+* Tyler Wang
 
 Combat System
 -------------
