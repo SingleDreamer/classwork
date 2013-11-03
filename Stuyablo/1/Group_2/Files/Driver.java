@@ -1,10 +1,13 @@
 public class Driver {
     public static void main(String[] args) {
-	Character c1 = new Character("Name",3,3,2,8,8,false,false);
-	System.out.println(c1.name);
-	System.out.println(c1.intelligence);
-	System.out.println(c1.dexterity);
-	System.out.println(c1.strength);
+	Character c1 = new Character();
+	Character c2 = new Character("Bob");
+
+	c1.getInfo();
+	System.out.println("_________________");
+	c2.getInfo();
+	System.out.println("_________________");
+
 	Wizard wi = new Wizard("tom");
 	System.out.println(wi.strength);
 
