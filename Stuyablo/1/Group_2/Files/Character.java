@@ -44,14 +44,23 @@ public class Character {
     public String battle() {
 	return "Generic battle";
     }
+    //fight called in battle
+    public void fight(int weapon, double dist){
+
+    }
+    //flee called in battle
+    public boolean flee(Character other){
+	if ((r.nextInt(6)+1)*distance(other)>10){
+	    return true;
+	}
+	return false;
+    }
 
     public String talk(){
 	return "Generic talk";
     }
 
-    public String flee(){
-	return "Generic running";
-    }
+
 
     public String toString() {
 	return name;
