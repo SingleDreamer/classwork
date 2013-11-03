@@ -13,9 +13,9 @@ public class Warrior  extends Character {
     }	
 
     public String toString (){
-	return super.toString() + "the brave";
+	return super.toString();
     }
-    public int Attack (int type){
+    public int attack (int type){
 	if (type == 1)
 	    return 8;
 	else if (type == 2)
