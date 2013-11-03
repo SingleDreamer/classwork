@@ -18,7 +18,25 @@ public class Character {
 	this.characterClass = characterClass;
 	System.out.println ("You are a " + getCharacterClass() + "\n");
 	this.name = name;
-	this.strength = this.intelligence = this.dexterity = 8;
+
+	if (getCharacterClass().equals ("Warrior")) {
+	    this.strength = 12;
+	    this.intelligence = 4;
+	    this.dexterity = 8;
+	}
+
+	if (getCharacterClass().equals ("Wizard")) {
+	    this.strength = 4;
+	    this.intelligence = 12;
+	    this.dexterity = 8;
+	}
+
+	if (getCharacterClass().equals ("Thief")) {
+	    this.strength = 8;
+	    this.intelligence = 4;
+	    this.dexterity = 12;
+	}
+
 	Scanner scanner2 = new Scanner (System.in);
 	System.out.println ("\n" + "Now it's time to pick your attributes!" + "\n");
 	
@@ -80,9 +98,9 @@ public class Character {
 
 		if (attributer.equals("0")) {
 		    
-			strength = random.nextInt (9) + 8;
-			intelligence = random.nextInt (17 - strength) + 8;
-			dexterity = ( (24 - strength) - intelligence ) + 8;
+			strength = random.nextInt (9) + strength;
+			intelligence = random.nextInt (17 - strength) + intelligence;
+			dexterity = ( (24 - strength) - intelligence ) + dexterity;
 			n = 1; //You're subtracting 1 at the end so it will set n to 0.
 
 		}

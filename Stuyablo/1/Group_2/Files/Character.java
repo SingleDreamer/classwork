@@ -26,11 +26,11 @@ public class Character {
 	this.y = y;
     }
 
-    public Character(String name) {
+    public Character(String name, int limit) {
 	Random r = new Random();
-	int str = r.nextInt(9);
-	int dex = r.nextInt(9-str);
-	int inte = 8-str-dex;
+	int str = r.nextInt(limit + 1);
+	int dex = r.nextInt(limit + 1 -str);
+	int inte = limit-str-dex;
 	init(name,50,100,str,dex,inte,0,0.0,0.0);
     }
     
