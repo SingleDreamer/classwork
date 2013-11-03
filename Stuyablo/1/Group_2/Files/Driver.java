@@ -3,9 +3,10 @@ public class Driver {
 	Wizard wi = new Wizard("tom");
 	System.out.println(wi);
 
-	Wizard wi = new Wizard("Barry",20);
+	Wizard wi2 = new Wizard("Barry");
+	System.out.println(wi2);
 
-	System.out.println(wi);
+	System.out.println(wi.distance(wi2));
     }
 
 }
