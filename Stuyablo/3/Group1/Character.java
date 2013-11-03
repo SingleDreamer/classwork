@@ -9,7 +9,11 @@ public class Character {
     protected double x,y,distance;
     protected String name;
     protected String charClass;
- 
+
+    public Character(String name){
+        this.name = name;
+    }
+
     public int getHealth() {
 	return health;
     }
@@ -26,6 +30,7 @@ public class Character {
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+        return false;
     }
 
 
@@ -52,8 +57,8 @@ public class Character {
 
 
     public String getStatus() {
-	String attrib1=String.format("Str: %d Dex: %d Int: %d",
-				     strength, dexterity, intelligence);
+	String attrib1=String.format("Name:%s Str: %d Dex: %d Int: %d",
+				     name, strength, dexterity, intelligence);
 	String attrib2=String.format("Exp: %d Health: %d of %d",
 				     experience,health,maxhealth);
 	String locale = String.format("x: %5.2f y: %5.2f",x,y);
