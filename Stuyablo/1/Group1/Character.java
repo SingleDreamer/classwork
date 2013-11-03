@@ -9,6 +9,28 @@ public class Character {
     protected double x,y,distance;
     protected String name;
     protected String charClass;
+
+
+    public void setAttributes(){
+	int dex;
+	int stren;
+	int intell;
+	Random r=new Random();
+	try{
+	    dex=r.nextInt(8)+1;
+	    stren=r.nextInt(8-dex)+1;
+	    intell=8-dex-stren;
+	}
+	catch (Exception e){
+	    dex=3;
+	    stren=3;
+	    intell=2;
+	}
+	health=50;
+	dexterity=dex+8;
+	strength=stren+8;
+	intelligence=intell+8;
+    }
  
     public int getHealth() {
         return health;
@@ -26,6 +48,7 @@ public class Character {
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+	return false;
     }
 
 
@@ -66,5 +89,6 @@ public class Character {
     public String toString() {
         return name;
     }
+
     
 }
