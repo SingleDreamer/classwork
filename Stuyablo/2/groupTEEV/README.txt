@@ -15,7 +15,7 @@ Level- gain extra points in stats (Strength or Dexterity)
 
 Basic Player and Nonplayer Methods
 ==========================
-Attack() - players or ogres will attack one another using their respective attack skills
+Attack() - players or ogres will attack one another using their respective attack skills, this includes the roll for the accuracy part
 
 status() - Current health of both fighters, and other miscellaneous information. 
 
