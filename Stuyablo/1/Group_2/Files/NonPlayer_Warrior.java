@@ -16,7 +16,7 @@ public class NonPlayer_Warrior extends Warrior {
 		// Strength for a Warrior is alwas greater than or equal to it dexterity.
 	}
 
-	public Attack(){
+	public int Attack(){
 		int num = Math.random() * 10;
 		if (num < 4)
 			return super.Attack(1);
