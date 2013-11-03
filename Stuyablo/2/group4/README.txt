@@ -15,7 +15,7 @@ Basic Actions:
 
 Attack - How players are going to be either a warrior or an ogre, both of which are not
 ranged characters; therefore, we won't have a range system. The minimum damage a player
-can do is 5 below its strength and max is 5 above its strength. The damage the player does
+can do is 50 below its strength and max is 50 above its strength. The damage the player does
 each turn is randomly chosen from the range of damage of the player.
 
 Retreat - The ability to retreat/escape from an encouter is based on how much health the
