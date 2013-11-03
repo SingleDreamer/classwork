@@ -10,8 +10,20 @@ public class Character {
     protected String name;
     protected String charClass;
 
+    Random rand = new Random();
+
     public Character(String name){
         this.name = name;
+        dexterity = 8;
+        strength = 8;
+        intelligence = 8;
+    }
+
+    public int roll(){
+        int dice1 = 1 + rand.nextInt(6);
+        int dice2 = 1 + rand.nextInt(6);
+        int dice3 = 1 + rand.nextInt(6);
+        return dice1 + dice2 + dice3;
     }
 
     public int getHealth() {

@@ -9,5 +9,8 @@ public class Driver {
         System.out.println("Welcome " + name);
 	Character c = new Character(name);
 	System.out.println(c.getStatus());
+        for(int n=0;n<100;n++){
+        System.out.println(c.roll());
+        }
     }
 }
