@@ -11,17 +11,17 @@ public class Character {
     protected String charClass;
  
     public int getHealth() {
-	return health;
+        return health;
     }
 
     /* You have to provide other needed get/set methods */
 
 
     public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
+        /* do the attack:
+           print out the attempt and the result and update
+           all relavent variables
+        */
     }
 
     // returns true if you succesfully flee, false otherwise
@@ -46,25 +46,25 @@ public class Character {
 
     */
     public int encounter(Character other) {
-	return 0;
+        return 0;
     }
 
 
 
     public String getStatus() {
-	String attrib1=String.format("Str: %d Dex: %d Int: %d",
-				     strength, dexterity, intelligence);
-	String attrib2=String.format("Exp: %d Health: %d of %d",
-				     experience,health,maxhealth);
-	String locale = String.format("x: %5.2f y: %5.2f",x,y);
-	String whole=String.format("%s\n%s\n%s\n%s\n",
-				   name,attrib1,attrib2,locale);
-	return whole;
+        String attrib1=String.format("Str: %d Dex: %d Int: %d",
+                                     strength, dexterity, intelligence);
+        String attrib2=String.format("Exp: %d Health: %d of %d",
+                                     experience,health,maxhealth);
+        String locale = String.format("x: %5.2f y: %5.2f",x,y);
+        String whole=String.format("%s\n%s\n%s\n%s\n",
+                                   name,attrib1,attrib2,locale);
+        return whole;
     }
 
 
     public String toString() {
-	return name;
+        return name;
     }
     
 }
