@@ -3,10 +3,10 @@
 ##Basic Player Attributes
 
 **Class(charClass)**: states the class of the character.
-**Strength(str)**: determines how much damage the character does, if they are a melee character.
-**Intelligence(intel)**: similar to str, except it determines a magic user's damage. Also might determine the character's chance of fleeing.
-**Dexterity(dex)**: determines accuracy and dodge chance.
-**Experience(EXP)**: the current amount of EXP the character has.
+**Strength**: determines how much damage the character does, if they are a melee character.
+**Intelligence**: similar to str, except it determines a magic user's damage. Also might determine the character's chance of fleeing.
+**Dexterity**: determines accuracy and dodge chance.
+**Experience**: the current amount of EXP the character has.
 **Level(lvl)**: the character's level.
 **Health(health)**: the amount of health points the character currently has.
 **Max Health(maxhealth)**: the total amount of hp a character can have.
