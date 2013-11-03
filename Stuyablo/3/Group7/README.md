@@ -14,7 +14,9 @@ HIT/MISS will be determined by the character's DEXTERITY. Three six-sided die wi
 If the PC dexterity is greater/equal to the sum of the values, then the attack will be a hit.
 Otherwise, it will be a miss.
 
-DAMANGE will be determined by the character's weapon choice. Available weaponry is based on STRENGTH.
+DAMAGE will be determined by the character's weapon choice. Available weaponry is based on STRENGTH.
+
+STRENGTH will be determined by EXPERIENCE level (while increases by some # after fighting each enemy). <-- for PC
 
 
 
