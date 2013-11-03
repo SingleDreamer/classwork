@@ -97,8 +97,17 @@ public class Character {
 	return Math.sqrt(((other.x - x)*(other.x - x))+((other.y - y)*(other.y - y)));
     }
 
-    public String battle() {
-	return "Generic battle";
+    public void battle(Character other) {
+	if (this.dexterity >= other.dexterity) {
+	other.health = other.health - this.attack(other);
+	this.health = this.health - other.attack(this);
+	System.out.println(this.name + "'s hp: " + this.health);
+	System.out.println(other.name + "'s hp: " + other.health); }
+	else {
+	this.health = this.health - other.attack(this);
+	other.health = other.health - this.attack(other);
+	System.out.println(other.name + "'s hp: " + other.health);
+	System.out.println(this.name + "'s hp: " + this.health); }
     }
     //fight called in battle
     public void fight(int weapon, double dist){
@@ -122,4 +131,27 @@ public class Character {
 	return name;
     }
 
+    public int attack(Character other) {
+	System.out.println(this.name + " attacked " + other.name);
+	Random r = new Random();
+	int Rolls = ((1 + r.nextInt(6)) + (1 + r.nextInt(6)) + (1 + r.nextInt(6)));
+	if (Rolls >= 16) {
+	System.out.println(this.name + " missed terribly"); 
+	return 0; }
+	else if (Rolls >= this.dexterity && Rolls < 16) {
+	System.out.println(this.name + " missed");
+	return 0; }
+	else if (Rolls == 4) {
+	int damage = this.strength * 2;
+	System.out.println(this.name + " critically hit " + other.name + " for " + damage + " points of damage!"); 
+	return damage; }
+	else if (Rolls == 3) {
+	int damage = this.strength * 3;
+	System.out.println(this.name + " devastated " + other.name + " for " + damage + " points of damage!"); 
+	return damage; }
+	//Javac was acting weird because no return statement outside of these if statements, so the last case isn't in an else
+	int damage = this.strength;
+	System.out.println(this.name + " hit " + other.name + " for " + damage + " points of damage!"); 
+	return damage; 
+	}
 }

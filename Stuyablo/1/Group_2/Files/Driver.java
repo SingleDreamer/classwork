@@ -6,12 +6,13 @@ public class Driver {
 	System.out.println(c1.dexterity);
 	System.out.println(c1.strength);
 	Wizard wi = new Wizard("tom");
-	System.out.println(wi);
+	System.out.println(wi.strength);
 
 	Wizard wi2 = new Wizard("Barry");
 	System.out.println(wi2);
 
 	System.out.println(wi.distance(wi2));
+	c1.battle(wi);
     }
 
 }
