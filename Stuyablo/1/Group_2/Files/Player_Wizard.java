@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class NonPlayer_Wizard extends Wizard{
+public class Player_Wizard extends Wizard{
 
 	private int mana, health;
 
