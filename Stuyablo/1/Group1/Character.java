@@ -27,6 +27,7 @@ public class Character {
 	    intell=2;
 	}
 	health=50;
+	maxhealth=50;
 	dexterity=dex+8;
 	strength=stren+8;
 	intelligence=intell+8;
@@ -41,9 +42,9 @@ public class Character {
 
     public void talk(Character other){
 	/*not the real thing; just an outline*/
-	1="Say something charming";
-	2="Say something intimidating";
-	3="Say something funny";
+	//1="Say something charming";
+	//2="Say something intimidating";
+	//3="Say something funny";
 	/*so on and so forth*/
 	/*RESPONSES*/
 	/*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
@@ -85,6 +86,7 @@ public class Character {
 
 
     public String getStatus() {
+	setAttributes();
         String attrib1=String.format("Str: %d Dex: %d Int: %d",
                                      strength, dexterity, intelligence);
         String attrib2=String.format("Exp: %d Health: %d of %d",
