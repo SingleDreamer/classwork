@@ -4,10 +4,13 @@ public class Wizard extends Character{
     
     public Wizard(String name) {
 	super(name);
+	mana = 100;
+	health = 100;
     }
     public Wizard(String name, int mana) {
 	super(name);
 	this.mana = mana;
+	health = 100;
     }
 
     public Wizard(String name, int mana, int h){
