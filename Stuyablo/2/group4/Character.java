@@ -26,6 +26,13 @@ public class Character {
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+	int ans;
+	double r = Math.random();
+	if (r > .5) {
+	    ans = true}
+	else {
+	    ans = false}
+	return ans;
     }
 
 
