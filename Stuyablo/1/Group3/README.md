@@ -17,6 +17,7 @@ How a character is represented
 * There is no cap
 * Health starts at 50 if str is 8
 * Health scales with strength (4 health per extra point in str)
+* For a human, each attribute starts at 8 and you have 8 additional points to distribute
 * 4 attribute points per level
 
 Fighting
