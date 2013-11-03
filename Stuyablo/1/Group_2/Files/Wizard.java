@@ -1,7 +1,6 @@
-
 public class Wizard extends Character{
 
-    private int mana;
+    private int mana, health;
     
     public Wizard(String name) {
 	super(name);
@@ -9,6 +8,12 @@ public class Wizard extends Character{
     public Wizard(String name, int mana) {
 	super(name);
 	this.mana = mana;
+    }
+
+    public Wizard(String name, int mana, int h){
+	super(name);
+	this.mana = mana;
+	this.health = health;
     }
 
     public String toString() {
