@@ -9,31 +9,15 @@ public class Character {
     protected double x,y,distance;
     protected String name;
     protected String charClass;
-    protected int damage;//Richard added
-    public Character(){
-	experience = 0;
-	gold = 0;
-    }
+ 
     public int getHealth() {
 	return health;
-    }
-
-    public void loseHealth(Character other, int i){//Richard added
-	if (i > other.gethHealth()){//make it so that i will print appropriately
-	    i = other.gethHealth();
-	}
-	other.getHealth() = other.gethealth() - i;
-	System.out.println(other.getName()+ " has lost " + i + "health");
-	System.out.println(other.getName()+ " has " + other.getHealth() + " health left.");
-	System.out.println("---------------------------------------------------------------");
     }
 
     /* You have to provide other needed get/set methods */
 
 
     public void attack(Character other) {
-	System.out.println("A hit!");
-	loseHealth(other,damage);
 	/* do the attack:
 	   print out the attempt and the result and update
 	   all relavent variables
