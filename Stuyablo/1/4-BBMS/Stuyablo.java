@@ -52,8 +52,8 @@ public class Stuyablo {
 		   player = new Wizard (name);
 		}
 		if (_class.equals("3")) {
-		    _class = "Theif";
-		     player = new Theif (name);
+		    _class = "Thief";
+		     player = new Thief (name);
 		}
 
 
