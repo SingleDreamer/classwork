@@ -39,6 +39,16 @@ public class Character {
     /* You have to provide other needed get/set methods */
 
 
+    public void talk(Character other){
+	/*not the real thing; just an outline*/
+	1="Say something charming";
+	2="Say something intimidating";
+	3="Say something funny";
+	/*so on and so forth*/
+	/*RESPONSES*/
+	/*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
+    }
+
     public void attack(Character other) {
         /* do the attack:
            print out the attempt and the result and update
