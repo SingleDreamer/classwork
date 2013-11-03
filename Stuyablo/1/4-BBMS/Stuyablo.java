@@ -14,14 +14,14 @@ public class Stuyablo {
 		System.out.println("/_______  /|__| |____/ / ____|(____  /___  /____/\\____/ ");
 		System.out.println("        \\/             \\/          \\/    \\/             "); //ASCII art doesn't exactly look right in code. Got to use "//" for every backslash (/) for the correct escape sequence
 		System.out.print("Press Enter or enter any character(s) to begin: ");
-		Scanner scanner = (new Scanner(System.in)).useDelimiter("");
+		Scanner scanner = (new Scanner(System.in)).useDelimiter(" ");
 		while (!(scanner.hasNext())) {} //waits for input
 		
 		System.out.println("Press Ctrl + C to quit at any time.");
 		
-		Character player = new Character();
 		scanner = new Scanner(System.in); //intentional, to clear any input from the previous scanner instance
-		
+
+		Character player = new Character ();
 		//Name
 		System.out.print("Enter name: ");
 		boolean input = false; //method to check input here is slightly different when actually looking for a specific input, rather than simply any input at all. Is there a more efficient method to do this?
@@ -30,63 +30,46 @@ public class Stuyablo {
 			name = (scanner.nextLine()).trim();
 			if (!(name.equals(""))) {input = true;}
 		}
-		player.setName(name);
-		System.out.println(player.getName() + "\n");
+		System.out.println("" + name + "\n");
 		
 		//Class
-		System.out.print("Select a class (0 - Random, 1 - Class 1, 2 - Class 2, 3 - Class 3): ");
+		System.out.print("Select a class (0 - Random, 1 - Warrior, 2 - Wizard, 3 - Thief): ");
 		input = false;
-		String _class = ""; //lol, too lazy to think of any creative name
+		String _class = "";
 		while (!input) {
-			_class = (scanner.nextLine()).trim();
+		        _class = (scanner.nextLine()).trim();
 			if ((_class.equals("0")) || (_class.equals("1")) || (_class.equals("2")) || (_class.equals("3"))) {input = true;} //is there a more efficient method to do this line?
 		}
 		Random random = new Random();
 		if (_class.equals("0")) {_class = String.valueOf(random.nextInt(3) + 1);} //keep forgetting that it's equals() and not ==, as in Python
-		if (_class.equals("1")) {_class = "Class 1";}
-		if (_class.equals("2")) {_class = "Class 2";}
-		if (_class.equals("3")) {_class = "Class 3";}
-		player.setCharacterClass(_class);
-		System.out.println(player.getCharacterClass() + "\n");
-		
-		//Stats (Not class-specific)
-		System.out.println("Stats:");
-		String answer = "";
-		boolean yes = false;
-		int attribute1 = 0, attribute2 = 0, attribute3 = 0, attribute4 = 0;
-		while (!yes) {
-			attribute1 = random.nextInt(11) + 5; //each stat is between 5 and 15
-			System.out.println("Attribute 1: " + attribute1);
-			attribute2 = random.nextInt(11) + 5;
-			System.out.println("Attribute 2: " + attribute2);
-			while (!(isInRange(attribute1 + attribute2 + attribute3, 25, 39))) {attribute3 = random.nextInt(11) + 5;} //if attribute 3 is too low, then attribute4 will be too high and if attribute 3 is too high, then attribute4 will be too low
-			System.out.println("Attribute 3: " + attribute3);
-			attribute4 = 40 - (attribute1 + attribute2 + attribute3); //the stats need to add up to 40
-			System.out.println("Attribute 4: " + attribute4);
-			
-			System.out.print("Accept these stats (y/n)? ");
-			input = false;
-			while (!input) {
-				answer = (scanner.nextLine()).trim();
-				if ((answer.equals("y")) || (answer.equals("n"))) {input = true;}
-			}
-			if (answer.equals("y")) {yes = true;}
-			System.out.println("");
+
+		if (_class.equals("1")) {
+		    _class = "Warrior";
+		    player = new Warrior (name);
 		}
-		player.setAttribute1(attribute1);
-		player.setAttribute2(attribute2);
-		player.setAttribute3(attribute3);
-		player.setAttribute4(attribute4);
+		if (_class.equals("2")) {
+		    _class = "Wizard";
+		   player = new Wizard (name);
+		}
+		if (_class.equals("3")) {
+		    _class = "Theif";
+		     player = new Theif (name);
+		}
+
+
+		
+
+		
+	
 		
 		System.out.println(player);
 		
 		Character opponent = new Character();
 		opponent.setHealth(100);
 		opponent.setMaxhealth(100);
-		opponent.setAttribute1(10);
-		opponent.setAttribute2(10);
-		opponent.setAttribute3(10);
-		opponent.setAttribute4(10);
+		opponent.setStrength(10);
+		opponent.setIntelligence(10);
+		opponent.setDexterity(10);
 		
 		player.attack(opponent);
 		System.out.println(opponent);
