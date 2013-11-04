@@ -27,8 +27,8 @@ public class Character {
 	mp = strength;
     }
 
-    public Character(String name,int ST, int DX, int IQ) {
-	name = name;
+    public Character(String nm,int ST, int DX, int IQ) {
+	name = nm;
 	dexterity = DX;
 	strength = ST;
 	intellegence = IQ;
@@ -39,8 +39,8 @@ public class Character {
 
     }
 
-    public Character(String name) {
-	name = name;
+    public Character(String nm) {
+	name = nm;
 	dexterity = 8;
 	strength = 8;
 	intellegence = 8;
