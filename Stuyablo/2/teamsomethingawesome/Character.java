@@ -17,12 +17,17 @@ public class Character {
     public int getHealth() {
 	return health;
     }
-
+    public String getName() {
+	return name;
+    }
+    public void setHealth(int n) { 
+	health=n; 
+    }
     public void loseHealth(Character other, int i){//Richard added
-	if (i > other.gethHealth()){//make it so that i will print appropriately
-	    i = other.gethHealth();
+	if (i > other.getHealth()){//make it so that i will print appropriately
+	    i = other.getHealth();
 	}
-	other.getHealth() = other.gethealth() - i;
+	other.setHealth( other.getHealth() - i);
 	System.out.println(other.getName()+ " has lost " + i + "health");
 	System.out.println(other.getName()+ " has " + other.getHealth() + " health left.");
 	System.out.println("---------------------------------------------------------------");
@@ -32,16 +37,24 @@ public class Character {
 
 
     public void attack(Character other) {
-	System.out.println("A hit!");
-	loseHealth(other,damage);
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
+	Random r= new Random();
+	int roll=r.nextInt(18); /*three six-sided die roll implementation by Matthew*/
+	if (roll < dexterity) {
+	    System.out.println("A hit!");
+	    loseHealth(other,damage);
+	    /* do the attack:
+	       print out the attempt and the result and update
+	       all relavent variables
+	    */
+	}
+	else {
+	    System.out.println("A miss...");
+	}
     }
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+	return true;
     }
 
 
@@ -64,9 +77,7 @@ public class Character {
     public int encounter(Character other) {
 	return 0;
     }
-
-
-
+    
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);
@@ -77,10 +88,9 @@ public class Character {
 				   name,attrib1,attrib2,locale);
 	return whole;
     }
-
-
+    
     public String toString() {
-	return name;
+	return name + charClass;
     }
     
 }
