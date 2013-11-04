@@ -4,9 +4,7 @@
 Michelle Chen, Aaron Mortenson, Sarah Prutchenko, Elvin Shoyfer
 
 ## Characters
-====
 
 ## Combat 
-====
 
 
