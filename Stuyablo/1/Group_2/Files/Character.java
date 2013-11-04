@@ -130,8 +130,29 @@ public class Character {
     }
 
     public String talk(){
+	Scanner sc1;
+	System.out.println("Choices: /n 1. Say something nice /n 2. Say something evil /n 3. Say nothing");
+	sc1 = new Scanner(System.in);
+	respind(sc1);
+
 	return "Generic talk";
     }
+
+    public void respond(int i){
+	if (i == 1){
+	    health++;
+	    System.out.println("You have delighted your comrade and he awards you with extra health!");
+	}
+	else if (i == 2){
+	    System.out.println("You have made your enemy angry and are now being attacked!");
+	    attack(this.character); //how to!
+	}
+	else if (i == 3){
+	    System.out.println("Well, give nothing, get nothing!")
+		}
+    }
+	    
+	
 
     public String toString() {
 	return name;
@@ -264,5 +285,22 @@ public class Character {
 	if (fdmg == fdmg2)
 	input = i; }
 	return input;
+   }
+
+    public void turnHelper(int h){
+	if (h == 1){
+	    battle(other);
 	}
+	if (h == 2){
+	    talk(other);
+	}
+    }
+
+    public void turn(){
+	Scanner turnscan;
+	System.out.println("You have approached a character. Please choose whether to 1. Initiate battle or 2. Initiate conversation.");
+	turnscan = new Scanner(system.in);
+	turnHelper(turnscan());
+    }
+
 }
