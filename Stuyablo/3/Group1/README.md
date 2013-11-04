@@ -3,32 +3,34 @@ Period 3 Group 1
 Sungwoo, Barak, Lawrence, Jason
 
 #Characters
-
-- Characters have 3 attributes(intelligence,dexterity,strength)
-- Characters have 3 values dependent on each attribute:
-- maximum weapon weight is dependent on strength
-- magic damage is dependent on intelligence
-- accuracy is dependent on effective dexterity vs 3d6
-- Character's intial stat for each attribute is 8.
-- Player has an additional 8 points to raise specific stat that he/she wants to raise.
-- Player can choose weapons. Each weapon determines damage.
-- Player has a distance variable that tells the distance between the player and other player(or NPC)
-- Every player has a level. Level is raised through gaining experience from combat. After each level, 3 additional points are given to raise specific stat.
+- Characters have 3 basic attributes: Strength, Dexterity, Intelligence
+- Base stats are inherent to the character and are usually only changed when a character gains a level. Base stats can be modified by potions, wounds, and other effects to determine a character's effective stats.
+- Base strength determines what weapons a character can equip. Attack damage is determined by the weapon used. Effective strength acts as a character's health and is also used to cast spells. If effective strength reaches 0, the character dies.
+- Intelligence determines magic damage.
+- Dexterity determines the accuracy of attacks.
+- Characters start with 8 in each stat, and 8 additional points to distribute however the player wants.
+- Characters gain experience mainly by killing stuff. Once a character gains enough experience and is in a safe area, the character gains one point in any stat. The amount of exp required to gain the next stat point depends on the character's total stats:
+| stat total | exp needed          |
+| ---------- | ------------------- |
+| 36 or less | 125                 |
+| 37 to 40   | 250                 |
+| 41 to 45   | 1000                |
+| 46 to 50   | 3000                |
+| 51 to 55   | 5000                |
+| 56 to 60   | 10000               |
+| ...        | x2 of last 5 levels |
 
 
 #Combat System
-
-- When a player's encounter method is called, a battle is triggered between two characters
-- Player has multiple options while in a battle:
-
+- Combat encounters are divided into rounds. At the end of each round, if every character on one side of the fight is dead or incapacitated, the fight ends and the other side wins.
+- Before each round of combat, the player selects an action:
 1. Light attack(Less damage but more accurate)
 2. Heavy attack(More damage but less accurate)
-3. Use potion
-4. Flee
-
-- Effective stat is the overall stat (ex. effective strength = stat strength + weapon strength + potion bonus + spell bonus)
-- Effective St acts as hit points and is reduced by taking hits, 0 Eff St is death of character.
-- Effective dexterity is (stat dexterity) / (stat dexterity + level). If effective dexterity is higher than a randomized number, the opponent is hit with melee weapon. 
-- For distance or magic weapons, the dexterity is that of the melee weapon minus 1 * distance.
-
-- Player earns experience at the end of the battle
+3. Cast spell
+4. Use item
+5. Flee
+- Characters in combat with higher effective dexterity take their actions first in the round
+- When a character attacks, roll 3d6. If the roll is less than or equal to the attacker's effective dexterity, the attack is successful. Rolls 5 or less and rolls 16 or more are exceptions. 5 or less always hits, 4 is double damage, 3 is triple. 16 or higher always misses, 17 drops the attacker's weapon, 18 breaks it. If an unarmed character rolls 17 or 18, instead of dropping or breaking its fists, take 1d6 damage.
+- Effective dexterity is reduced by the distance to the target for ranged attacks
+- Characters earn 1 exp per point of damage dealt to an enemy, and for each point of strength used to cast a spell
+- When an enemy is killed, the character that landed the killing blow gains experience equal to the enemy's base dexterity
