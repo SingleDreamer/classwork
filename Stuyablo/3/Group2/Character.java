@@ -1,3 +1,6 @@
+import java.util*;
+
+
 public class Character {
     protected int hp, level, dexterity, strength;
     protected String name;
@@ -18,7 +21,17 @@ public class Character {
 	level = 1;
 	
     }
-    public int roll(){
+    public boolean roll(){
+	die1 = math.round(math.random()*5)+1;
+	die2 = math.round(math.random()*5)+1;
+	die3 = math.round(math.random()*5)+1;
+	total = die1+die2+die3;
+	if (dexterity>total){
+	    return true;
+	}
+	else{
+	    return false;
+	}
     }
 
     public String toString() {
