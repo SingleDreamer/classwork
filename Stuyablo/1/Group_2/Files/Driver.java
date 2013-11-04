@@ -1,21 +1,22 @@
 public class Driver {
     public static void main(String[] args) {
-	Character c1 = new Character();
-	Character c2 = new Character("Bob");
-
-	c1.getInfo();
+	Warrior wa1 = new Warrior();
+	Character c2 = new Character("Bob", 8);
+	wa1.battle(c2);
+	
+	wa1.getInfo();
 	System.out.println("_________________");
 	c2.getInfo();
 	System.out.println("_________________");
 
-	Wizard wi = new Wizard("tom");
-	System.out.println(wi.strength);
+	//Wizard wi = new Wizard("tom", 8);
+//	System.out.println(wi.strength);
 
-	Wizard wi2 = new Wizard("Barry");
-	System.out.println(wi2);
+//	Wizard wi2 = new Wizard("Barry", 8);
+//	System.out.println(wi2);
 
-	System.out.println(wi.distance(wi2));
-	c1.battle(wi);
+//	System.out.println(wi.distance(wi2));
+//	c1.battle(wi);
     }
 
 }
