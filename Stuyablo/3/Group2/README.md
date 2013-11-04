@@ -3,10 +3,10 @@
 #### Group 2
 Michelle Chen, Aaron Mortenson, Sarah Prutchenko, Elvin Shoyfer
 
-### Characters
+## Characters
 ====
 
-### Combat 
+## Combat 
 ====
 
 
