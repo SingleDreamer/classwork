@@ -4,6 +4,7 @@ public class Driver {
 	System.out.println(c);
 
         playerCharacter p = new playerCharacter("Zens");
+	System.out.println(" ");
 	System.out.println(p);
 	System.out.println(p.attack());
     }
