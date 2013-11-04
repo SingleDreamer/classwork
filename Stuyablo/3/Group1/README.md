@@ -10,15 +10,15 @@ Sungwoo, Barak, Lawrence, Jason
 - Dexterity determines the accuracy of attacks.
 - Characters start with 8 in each stat, and 8 additional points to distribute however the player wants.
 - Characters gain experience mainly by killing stuff. Once a character gains enough experience and is in a safe area, the character gains one point in any stat. The amount of exp required to gain the next stat point depends on the character's total stats:
-| stat total | exp needed          |
-| ---------- | ------------------- |
-| 36 or less | 125                 |
-| 37 to 40   | 250                 |
-| 41 to 45   | 1000                |
-| 46 to 50   | 3000                |
-| 51 to 55   | 5000                |
-| 56 to 60   | 10000               |
-| ...        | x2 of last 5 levels |
+    | stat total | exp needed          |
+    | ---------- | ------------------- |
+    | 36 or less | 125                 |
+    | 37 to 40   | 250                 |
+    | 41 to 45   | 1000                |
+    | 46 to 50   | 3000                |
+    | 51 to 55   | 5000                |
+    | 56 to 60   | 10000               |
+    | ...        | x2 of last 5 levels |
 
 
 #Combat System
