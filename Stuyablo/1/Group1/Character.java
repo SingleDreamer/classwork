@@ -10,7 +10,9 @@ public class Character {
     protected String name;
     protected String charClass;
 
-
+    public Character(String n){
+	name = n;
+    }
     public void setAttributes(){
 	int dex;
 	int stren;
@@ -71,11 +73,11 @@ public class Character {
 	gold = 0;
     }
     public void die(){
-	say( "you have died");
+	say( name + " has died");
     }
 
     public int  attack(Character other) {
-	while (this.health <= 0 || other.health <= 0){
+	while (this.health > 0 || other.health > 0){
 	    if (dexterity <= roll()){
 		other.takedamage(this.strength);
 		say (other + " has lost " + strength + " health points");
@@ -115,6 +117,7 @@ public class Character {
     public boolean flee(Character other) {
 	Random x = new Random();
 	if (x.nextInt(intelligence) >= intelligence/2){
+	    say(this + " has fled");
 	    other.takegold(this);
 	    loosegold();
 	    return true;
@@ -143,7 +146,7 @@ public class Character {
 	Scanner sc = new Scanner(System.in);
 	say("you have encountered " + other);
 	say("his status is");
-	other.getStatus();
+	say (other.getStatus());
 	say ("type 1 if you wish to talk");
 	say("type 2 if you wish to attempt to flee");
 	say("type 3 if you wish to fight");
