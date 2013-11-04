@@ -10,7 +10,9 @@ public class Character {
     protected String name;
     protected String charClass;
 
-
+    public Character(String n){
+	name = n;
+    }
     public void setAttributes(){
 	int dex;
 	int stren;
@@ -53,10 +55,10 @@ public class Character {
     public int roll(){
 	
 	Random x = new Random();
-	dice1 = x.nextInt(6) + 1;
-	dice2 = x.nextInt(6) + 1;
-	dice3 =  x.nextInt(6) + 1;
-        return dice1+dice2+dice2;
+	int dice1 = x.nextInt(6) + 1;
+	int dice2 = x.nextInt(6) + 1;
+	int dice3 =  x.nextInt(6) + 1;
+        return dice1+dice2+dice3;
     }
     public void takedamage(int k){
 	health = health - k;
@@ -67,12 +69,15 @@ public class Character {
     public void takegold( Character other){
 	gold = gold + other.gold;
     }
-    public void loosegold( Character other) {
+    public void loosegold() {
 	gold = 0;
     }
+    public void die(){
+	say( name + " has died");
+    }
 
-    public void attack(Character other) {
-	while (this.health > 5 || other.health > 5){
+    public int  attack(Character other) {
+	while (this.health > 0 || other.health > 0){
 	    if (dexterity <= roll()){
 		other.takedamage(this.strength);
 		say (other + " has lost " + strength + " health points");
@@ -81,22 +86,42 @@ public class Character {
 		this.takedamage(other.strength);
 		say(name + " has lost " + other.strength + " health points");
 	    }
+	    if (this.health <= 5){
+		if (this.flee(other)){
+		    return 0;
+		}
+	    }
+	    if (other.health <= 5){
+		if (other.flee(this)){
+		    return 1;
+		}
+	    }
+		
 	}
-	if (this.health <= 5)
-	    this.flee();
-	else
-	    other.flee();
+	if (this.health <= 0){
+	    this.die();
+	    return 3;
+	}
+	else{
+	    other.die();
+	    return 2;
+	}
     }
 	    
         /* do the attack:
            print out the attempt and the result and update
            all relavent variables
         */
-    }
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
-
+	Random x = new Random();
+	if (x.nextInt(intelligence) >= intelligence/2){
+	    say(this + " has fled");
+	    other.takegold(this);
+	    loosegold();
+	    return true;
+	}
 	return false;
     }
 
@@ -114,11 +139,40 @@ public class Character {
       if (other.health>0) 
         other.attack(this);
 
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
+      and then return 3 if this is dead, 2 if other is dead, 4 if both dead, 5 if none dead.
 
     */
     public int encounter(Character other) {
-        return 0;
+	Scanner sc = new Scanner(System.in);
+	say("you have encountered " + other);
+	say("his status is");
+	say (other.getStatus());
+	say ("type 1 if you wish to talk");
+	say("type 2 if you wish to attempt to flee");
+	say("type 3 if you wish to fight");
+	int answer = sc.nextInt();
+	if (answer == 1)
+	    talk(other);
+	if (answer == 2){
+	    if (this.flee(other))
+		return 1;
+	    else
+		answer = 3;
+	}
+	if (answer == 3){
+	    int i = attack(other);
+	    if (i == 0)
+		return 1;
+	    if (i == 1)
+		return 0;
+	    if (i == 2){
+		experience = experience + 1;
+		return 2;
+	    }
+	    else 
+		return i;
+	}
+	return 0;
     }
 
 
