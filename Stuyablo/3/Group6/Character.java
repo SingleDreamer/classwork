@@ -83,7 +83,7 @@ public class Character {
     }
 
     public void setCharClass(String s) {
-	charClass = i;
+	charClass = s;
     }
 
     public String getCharClass() {
