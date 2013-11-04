@@ -9,23 +9,37 @@ public class Character {
     protected double x,y,distance;
     protected String name;
     protected String charClass;
+    
+    //CONSTRUCTORS WILL BE FOUND ON THE SUBCLASSES!
+    
+    public initChar (int maxhealth1, int dexterity1, int  strength1, int  intelligence1, int  experience1, int gold1) {
+        maxhealth = maxhealth1;
+        dexterity = 8+ dexterity1;
+        strength = 8+ strength1;
+        intelligence = 8+ intelligence1;
+        experience = experience1;
+        gold = gold1;
+        health = maxhealth;
+    } //the dex1 str1 and int1 should add up to 8 in total!
  
     public int getHealth() {
 	return health;
     }
-
-    /* You have to provide other needed get/set methods */
+    
+    public int getDexterity(){
+    	return dexterity
+    }
 
 
     public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
+	Random r1 = new Random();
+	Random r2 = new Random();
+	Random r3 = new Random(); //3 die
+	
     }
 
-    // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+    	return (this.getDexterity()>other.getDexterity()) //you can flee if enemy has less dex than you
     }
 
 
@@ -46,9 +60,31 @@ public class Character {
 
     */
     public int encounter(Character other) {
-	return 0;
+    	System.out.println("Enter 1 to flee, 2 to fight")
+    	Scanner sc = new Scanner(System.in);
+    	int response = sc.nextInt();
+    	Random x = new Random();
+    	
+    	if (x.nextInt(100)>50 && other.flee()){ //randomizes if enemy tries to flee
+		return 0;}
+	else if (response==1 && this.flee()){
+		return 1;}
+	else{
+		this.attack(other);
+		if (other.getHealth()>0){
+			other.attack(this);
+			if (this.getHealth()<=0){
+				return 2;}
+			else{
+				return 5;}
+		}
+		else if (other.getHealth()<=0 && this.getHealth()<=0){
+			return 4;
+		} 
+		else{
+			return 3;}
+		}
     }
-
 
 
     public String getStatus() {
