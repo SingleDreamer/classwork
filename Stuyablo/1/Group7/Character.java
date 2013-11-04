@@ -2,52 +2,128 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int health, maxhealth;
-    protected int dexterity, strength, intelligence;
-    protected int experience;
-    protected int gold;
+    protected int health, maxhealth, dexterity, strength, intelligence, experience, gold;
     protected double x,y,distance;
-    protected String name;
-    protected String charClass;
+    protected String name,charClass;
+    Random r = new Random ();
+   
+
  
+    public Character (String name, String charClass) {
+	this.name = name1;
+	this.charClass = charClass1;
+	maxhealth = r.nextInt (2000) + 1000;
+	dexterity = r.nextInt (100);
+	strength = r.nextInt (100);
+	intelligence = r.nextInt (100);
+	experience = r.nextInt (100) + 1;
+	gold = r.nextInt (10000) + 10000;
+	
+    }
+
+    public initChar (int maxhealth,int dexterity, int  strength, int  intelligence, int  experience, int gold) {
+	this.maxhealth = maxhealth;
+	this.dexterity = dexterity;
+	this.strength = strength;
+	this.intelligence = intelligence;
+	this.experience = experience;
+	this.gold = gold;
+    }
+
     public int getHealth() {
 	return health;
     }
 
-    /* You have to provide other needed get/set methods */
+    public int getmaxHealth () {
+	return maxhealth;
+    }
+
+    public int getDexterity () {
+	return dexterity;
+    }
+
+    public int getStrength () {
+	return strength;
+    }
+    public int getIntelligence () {
+	return intelligence;
+    }
+    public int getExperience () {
+	return experience;
+    }
+    public int getGold () {
+	return gold;
+    }
+    public int getName () {
+	return name;
+    }
+
+    public void setHealth(int health) {
+	this.health = health;
+    }
+
+
 
 
     public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
+	System.out.println("-----------------");
+        System.out.println("1 to [], 2 to [], 3 to []");
+        while (health > 0 && other.getHealth() > 0)
+	    if(r.nextInt(100) >= dexterity) {
+		other.setHealth(other.getHealth() - (this.strength + 5  + r.nextInt(5) - r.nextInt(5)));
+ 
+		System.out.println("Your attack hit!");
+		System.out.println(other.getName + " has " + other.getHealth + " health left.");
+	    }
+	    else {
+		System.out.println("Your attack missed!");
+	    }
+
     }
 
-    // returns true if you succesfully flee, false otherwise
+
     public boolean flee(Character other) {
-    }
+	return (this.dexterity - other.dexterity + 100 > r.nextInt (1000))
+	    //low chance of flee if you are slower
+}
 
 
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
+    
 
     */
     public int encounter(Character other) {
-	return 0;
+	if (other.flee) {
+	    other.gold = other.gold / 2;
+	    other.experience = other.experience / 2;
+	    return 0;
+	}
+     
+	else if (this.flee) {
+	    return 1;
+	}
+	else {
+	          this.attack(other);
+		  if (other.health>0) {
+		      other.attack(this);
+		      if (this.health < 1 && other.health < 1) {
+			  return 4;
+		      }
+		      else if (other.health < 1) {
+			  return 3;
+		      }
+		      else if (this.health < 1) {
+			      return 2;
+			  }
+		      else {
+			  return 5
+		      }
+	       
+		  }
+
+	}
+
     }
+
 
 
 
