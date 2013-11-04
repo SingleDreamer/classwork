@@ -9,6 +9,10 @@ public class Character {
     protected void init(String name, int hp) {
 	this.name = name;
 	this.hp = hp;
+	str = 8;
+	dex = 8;
+	intl = 8;
+	def = 8;
     }
 
     public Character () {
@@ -30,9 +34,5 @@ public class Character {
     public String toString () {
 	return name;
     }
-
-    public void setName(String name) {
-	this.name = name;
-    } 
 
 }
