@@ -11,6 +11,8 @@ public class Character {
     protected String name;
     protected double x;
     protected double y;
+    protected int skills;
+
 
     private Random r = new Random();
 
@@ -24,6 +26,7 @@ public class Character {
 	experience = e;
 	this.x = x;
 	this.y = y;
+	skills = 0;
     }
 
     public Character(String name, int limit) {
@@ -88,7 +91,7 @@ public class Character {
 	}
 	    
 	System.out.println("Your Character " + name + " has been created!");
-	init(name,50,100,str,dex,inte,0,0.0,0.0);
+	init(name,50,100,str,dex,inte,0,0.0,3.0);
     }
 
     public double distance(Character other) {
@@ -101,11 +104,11 @@ public class Character {
 	    System.out.println("Choose an attack: ");
 	    sc = new Scanner(System.in);
 	    other.health = other.health - this.attack(sc.nextInt(),other);
-	    this.health = this.health - other.attack(0,this);
+	    this.health = this.health - other.attack(AIAttack(other),this);
 	    System.out.println(this.name + "'s hp: " + this.health);
 	    System.out.println(other.name + "'s hp: " + other.health); }
 	else {
-	    this.health = this.health - other.attack(0,this);
+	    this.health = this.health - other.attack(AIAttack(other),this);
 	    System.out.println("Choose an attack: ");
 	    sc = new Scanner(System.in);
 	    other.health = other.health - this.attack(sc.nextInt(),other);
@@ -144,6 +147,7 @@ public class Character {
 	System.out.println("Experience: " + experience);
 	System.out.println("Location: (" + x + "," + y + ")");
     }
+
     public int attack(Character other, int range, int weapon, String type) {
 	int damage = 0;
 	double d = distance(other);
@@ -188,13 +192,28 @@ public class Character {
 	    return damage;
 	}
     }
+
+    public int test(Character other, int range, int weapon, String type) {
+	int damage = 0;
+	double d = distance(other);
+	if (d  > range) {
+	    return damage; }
+	
+
+	if (type.equals("physical"))
+	damage = this.strength + weapon;
+	else if (type.equals("magic"))
+	damage = this.intelligence + weapon;
+	return damage;
+	}
+   
   
     public int attack(int type, Character other) {
 	int damage = 0;	
 	Random r = new Random();
 	double d = distance(other);
 
-	if (d > 1.5) {
+	if (d > 1) {
 	    System.out.println(other.name + " is too far away."); 
 	    return damage; }
 
@@ -224,4 +243,26 @@ public class Character {
 	    return damage;
 	}
     }
+
+    public int test(int type, Character other) {
+	int damage = 0;
+	double d = distance(other);
+
+	if (d > 1) {
+	    return damage; }
+
+	damage = this.strength;
+	return damage;
+	}
+
+   public int AIAttack(Character other) {
+	int input = 0;
+	int fdmg = 0;
+	for(int i = 0; i < this.skills; i++) {
+	int fdmg2 = this.test(i,other);
+	fdmg = Math.max(fdmg,fdmg2);
+	if (fdmg == fdmg2)
+	input = i; }
+	return input;
+	}
 }

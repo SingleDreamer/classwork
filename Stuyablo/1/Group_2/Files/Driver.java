@@ -1,12 +1,12 @@
 public class Driver {
     public static void main(String[] args) {
 	Warrior wa1 = new Warrior();
-	Character c2 = new Character("Bob", 8);
-	wa1.battle(c2);
+	Warrior wa2 = new Warrior("Bob", 8);
+	wa1.battle(wa2);
 	
 	wa1.getInfo();
 	System.out.println("_________________");
-	c2.getInfo();
+	wa2.getInfo();
 	System.out.println("_________________");
 
 	//Wizard wi = new Wizard("tom", 8);
