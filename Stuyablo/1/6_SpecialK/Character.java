@@ -60,7 +60,7 @@ public class Character {
 
     */
     public int encounter(Character other) {
-    	System.out.println("Enter 1 to flee, 2 to fight")
+    	System.out.println("Enter 1 to flee, any other number to fight")
     	Scanner sc = new Scanner(System.in);
     	int response = sc.nextInt();
     	Random x = new Random();
