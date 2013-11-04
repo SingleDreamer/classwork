@@ -10,18 +10,39 @@ public class Character {
     protected String name;
     protected String charClass;
  
-    public int getHealth() {
-        return health;
+    public String multStr(String str, int times){
+	for(int i = 0; i < times; i++) {
+	    System.out.println(str);
+	}
     }
 
-    /* You have to provide other needed get/set methods */
 
+    /* You have to provide other needed get/set methods */
+    //Get Methods
+    public int getHealth() {
+	return health;
+    }
+    public int getDex() {
+	return dexterity;
+    }
+    public int getStr() {
+	return strength;
+    }
+    public int getInt() {
+	return intelligence;
+    }
+    public int getEx() {
+	return experience;
+    }
 
     public void attack(Character other) {
         /* do the attack:
            print out the attempt and the result and update
            all relavent variables
         */
+
+	random r = new Random();
+	if r*10
     }
 
     // returns true if you succesfully flee, false otherwise
@@ -47,13 +68,41 @@ public class Character {
       Otherwise, call attack on both sides:
       this.attack(other);
       if (other.health>0) 
-        other.attack(this);
-
+      other.attack(this);
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
     */
+
+
     public int encounter(Character other) {
-        return 0;
+	Scanner sc = new Scanner(System.in);
+	if (other.flee(this)) { //this is your player, other is NPC
+	    return 0;
+	}
+	System.out.println("Choose your Move!"); //move chooser
+	System.out.println("a - attack \nr - run");
+	String choice = sc.nextLine();
+	if (choice.equals("2")) {
+	    if (this.flee(other)){
+		return 1;
+	    }
+	}
+
+
+	else if (choice.equals("1")){
+	    this.attack(other);
+
+	    if (other.health>0) {
+		other.attack(this);
+		if (this.health<=0) {
+		    return 2;
+		}	
+
+	    }
+	    else {
+		return 3;
+	    }
+		    return 5;
+	}
     }
 
 
