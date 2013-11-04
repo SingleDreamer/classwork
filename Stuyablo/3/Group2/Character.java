@@ -13,6 +13,16 @@ public class Character {
 	intellegence = 8;
 	level = 1;
 	ep = 0;
+	for (int i = 8; i > 0; i--) {
+	    Random r = new Random();
+	    int number = r.nextInt(2);
+	    if (number == 2)
+		dexterity++;
+	    else if (number == 1)
+		strength++;
+	    else
+		intellegence++;
+		}
 	hp = strength;
 	mp = strength;
     }
