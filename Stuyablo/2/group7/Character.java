@@ -29,6 +29,12 @@ public class Character {
 	return distance;
     }
 
+    public Character(Sting name, int dex, int str) {
+	this.name = name;
+	dexterity = dex;
+	strength = str;
+	health = str;
+    }
     public void attack(Character other) {
 	Random r = new Random();
 	//the dice rolls
@@ -45,11 +51,12 @@ public class Character {
     }
     
     public int damageDone(Character other){
-	
+	return 1;
     }
     
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+	return false;
     }
     
     public void loseHealth(int hp) {
@@ -97,6 +104,7 @@ public class Character {
 	    }
 	    return 5;
 	}
+	return -1;
     }
 	
     //actually runs game, calls on encounter multiple times
