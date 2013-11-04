@@ -2,42 +2,30 @@ import java.util.*;
 import java.io.*;
 
 public class Character {
-    protected int health;
+    protected int hp, maxhp, xp, str, dex, intl, def;
     protected String name;
     private Random r = new Random();
 
-    protected void init(String name, int health) {
+    protected void init(String name, int hp) {
 	this.name = name;
-	this.health=health;
+	this.hp=hp;
     }
-<<<<<<< HEAD
-    
-    public Character() {
-	init("",10);
 
-=======
-
-    public Character() {
+    public Character () {
 	init("No Name",50);
     }
     
-    public Character(String name) {
+    public Character (String name) {
 	init(name,50);
->>>>>>> e7d31dbe616147544220ab7190c4456c3540bace
-    }
-    public Character(String name) {
-	this.name = name;
-
-<<<<<<< HEAD
     }
 
+    public Character (String name, int hp) {
+	init(name,hp);
+    }
 
-=======
->>>>>>> e7d31dbe616147544220ab7190c4456c3540bace
     public String attack() {
 	return "Generic attack";
     }
-
 
     public String toString() {
 	return name;
