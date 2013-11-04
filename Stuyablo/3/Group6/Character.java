@@ -9,6 +9,18 @@ public class Character {
     protected double x,y,distance;
     protected String name;
     protected String charClass;
+
+    public Character() {
+	health = 8;
+	maxhealth = 20; // If you agree.
+	dexterity = 8;
+	strength = 8;
+	intelligence = 8;
+	experience = 0; 
+	gold = 0;
+	distance = 0;
+	name = "Unnamed Character";
+	charClass = "PC or NPC"; // I think.
  
     public void setHealth(int i) {
 	health = i;
@@ -83,7 +95,7 @@ public class Character {
     }
 
     public void setCharClass(String s) {
-	charClass = i;
+	charClass = s;
     }
 
     public String getCharClass() {
@@ -93,17 +105,38 @@ public class Character {
 
 
     public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
+	System.out.println(this.name + " tried to attack " + other.name + ".");
+	boolean hit;
+	Random r = new Random();
+	if (this.dexterity > other.dexerity)
+	    hit = true;
+	else {
+	    if (this.dexterity > (r.nextInt(10) - 5 + this.dexterity)) // not sure this works
+		hit = true;
+	    else
+		hit = false;
+	}
+	if (hit == false)
+	    System.out.println("Attack failed.");
+	if (hit == true) {
+	    System.out.println("Attack succeeded.");
+	    other.setHealth(other.health - this.strength/4); // this could use some work -- doesn't account for death of the opposing player
+	    System.out.println("Other's health has decreased to " + other.getHealth());
+	    // This whole method still needs work
     }
 
 
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+	// Only based on distance so far.  Want to incorporate dexterity?
+	if  (distance > (r.nextInt(10) - 5 + distance)) // not sure this works, either
+	    return true;
+	else
+	    return false;
     }
+
+
 
 
     /*

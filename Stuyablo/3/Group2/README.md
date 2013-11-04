@@ -1,4 +1,10 @@
-Readme file for Period 3 Group 2
+### Stuyablo / AP Computer Science - Mr. Zamansky Period 3
 
-Our Group is:
-Sarah Prutchenko, Elivin Shoyfer, Aaron Mortenson and Michelle Chen 
+#### Group 2
+**Members**: Michelle Chen, Aaron Mortenson, Sarah Prutchenko, Elvin Shoyfer
+
+## Characters
+
+## Combat 
+
+
