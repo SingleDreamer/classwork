@@ -9,6 +9,18 @@ public class Character {
     protected double x,y,distance;
     protected String name;
     protected String charClass;
+
+    public Character() {
+	health = 8;
+	maxhealth = 20; // If you agree.
+	dexterity = 8;
+	strength = 8;
+	intelligence = 8;
+	experience = 0; 
+	gold = 0;
+	distance = 0;
+	name = "Unnamed Character";
+	charClass = "PC or NPC"; // I think.
  
     public void setHealth(int i) {
 	health = i;
