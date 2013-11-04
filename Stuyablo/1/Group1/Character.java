@@ -81,10 +81,22 @@ public class Character {
 	    if (dexterity <= roll()){
 		other.takedamage(this.strength);
 		say (other + " has lost " + strength + " health points");
+		try {
+		    Thread.sleep(2000);
+		}
+		catch(Exception e){
+		
+		} 
 	    }
 	    if (other.dexterity <= other.roll()){
 		this.takedamage(other.strength);
 		say(name + " has lost " + other.strength + " health points");
+		try {
+		    Thread.sleep(2000);
+		}
+		catch(Exception e){
+		
+		} 
 	    }
 	    if (this.health <= 5){
 		if (this.flee(other)){
