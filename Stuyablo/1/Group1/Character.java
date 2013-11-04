@@ -38,6 +38,7 @@ public class Character {
     }
 
     /* You have to provide other needed get/set methods */
+    
 
 
     public void talk(Character other){
@@ -49,8 +50,44 @@ public class Character {
 	/*RESPONSES*/
 	/*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
     }
+    public int roll(){
+	
+	Random x = new Random();
+	dice1 = x.nextInt(6) + 1;
+	dice2 = x.nextInt(6) + 1;
+	dice3 =  x.nextInt(6) + 1;
+        return dice1+dice2+dice2;
+    }
+    public void takedamage(int k){
+	health = health - k;
+    }
+    public void say(String s){
+	System.out.println(s);
+    }
+    public void takegold( Character other){
+	gold = gold + other.gold;
+    }
+    public void loosegold( Character other) {
+	gold = 0;
+    }
 
     public void attack(Character other) {
+	while (this.health > 5 || other.health > 5){
+	    if (dexterity <= roll()){
+		other.takedamage(this.strength);
+		say (other + " has lost " + strength + " health points");
+	    }
+	    if (other.dexterity <= other.roll()){
+		this.takedamage(other.strength);
+		say(name + " has lost " + other.strength + " health points");
+	    }
+	}
+	if (this.health <= 5)
+	    this.flee();
+	else
+	    other.flee();
+    }
+	    
         /* do the attack:
            print out the attempt and the result and update
            all relavent variables
@@ -59,6 +96,7 @@ public class Character {
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+
 	return false;
     }
 
