@@ -8,7 +8,7 @@ public class Gargoyle extends Character {
 	int strengthAdd = r.nextInt(7);
 	int dexAdd = 8 - strengthAdd;
 	int strength = 8 + strengthAdd;
-	int dexAdd = 8 + dexAdd;
+	int dexterity = 8 + dexAdd;
     }
 
 }
