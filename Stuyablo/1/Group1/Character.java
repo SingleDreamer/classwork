@@ -71,7 +71,7 @@ public class Character {
 	gold = 0;
     }
 
-    public void attack(Character other) {
+    public boolean  attack(Character other) {
 	while (this.health > 5 || other.health > 5){
 	    if (dexterity <= roll()){
 		other.takedamage(this.strength);
@@ -96,7 +96,11 @@ public class Character {
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
-
+	Random x = new Random();
+	if (x.nextInt(intelligence) >= intelligence/2){
+	    other.takegold(this.gold);
+	    thiis.loosegold();
+	    return true;
 	return false;
     }
 
@@ -118,6 +122,22 @@ public class Character {
 
     */
     public int encounter(Character other) {
+	Scanner sc = new Scanner(Sytstem.in);
+	say("you have encountered " + other);
+	say("his status is");
+	other.getStatus();
+	say ("type 1 if you wish to talk");
+	say("type 2 if you wish to attempt to flee");
+	say("type 3 if you wish to fight");
+	int answer = sc.nextInt();
+	if (answer == 1)
+	    talk(other);
+	if (answer == 2){
+	    if (this.flee(other))
+		return 1;
+	if (answer == 3)
+	    attack(other);
+    }
         return 0;
     }
 
