@@ -151,7 +151,8 @@ public class Character {
 			   "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity;
 	}
 	
-	public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
+    /*
+      public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
 		//Assume attribute1 is vitality, attribute2 is strength, attribute3 is magic and attribute4 is attribute4
 		int damage = strength; //equation subject to change
 		if ((dexterity >= other.getDexterity()) || ((dexterity < other.getDexterity()) && (random.nextDouble() > 0.5))) { //hit rate subject to change
@@ -159,5 +160,103 @@ public class Character {
 			System.out.println("Hit! " + damage + " damage.");}
 		else {System.out.println("Miss!");}
 	}
+    */
+    
+    public void attack(Character other){
+	int damage = strength;
+	while (this.getHealth() > 0 && other.getHealth() > 0){ //the hits and battle continue until one character's health reaches zero
+	    if (this.getDexterity() > other.getDexterity()){ // I am allowing the player with the higher dexterity to attempt to hit first
+		int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled
+		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled
+		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled
+		int sum = one + two + three; // this represents the sum of the results of the three di
+		if (sum == 4){
+		    other.setHealth(other.getHealth() - (2 * damage)); // a roll of 4 is an auto hit with double the damage
+		    System.out.println(this.getName() + "hit" + other.getName());
+		}
+		else if (sum == 3){
+		    other.setHealth(other.getHealth() - (3 * damage)); // a roll of 3 is an auto hit with triple the damage
+		    System.out.println(this.getName() + "hit" + other.getName());
+		}
+		else if (sum <= 5){
+		    other.setHealth(other.getHealth() - damage); // a roll of 5 or less is an auto hit
+		    System.out.println(this.getName() + "hit" + other.getName());
+		}
+		else if (sum >= 16){
+		    System.out.println(this.getName() + "missed the hit"); // a roll of 16 or more is an auto miss
+		}
+		else if (sum <= this.dexterity){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		    int four = random.nextInt(2); // but because no auto hit I use a one half probablity to see if there will be a hit or not
+		    if (four == 1){
+			other.setHealth(other.getHealth() - damage); 
+			System.out.println(this.getName() + "hit" + other.getName());
+		    }
+		    else{ 
+			System.out.println(this.getName() + "missed the hit");
+		    }
+		}
+		else { //I'm not sure what happens because the rules don't specify, in the case where the role is greater than the dexterity but less than sixteen
+		    System.out.println("something");
+		}
+	    }
+	    else if (other.getDexterity() > this.getDexterity()){
+		int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled
+		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled
+		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled
+		int sum = one + two + three; // this represents the sum of the results of the three di
+		if (sum == 4){
+		    this.setHealth(this.getHealth() - (2 * damage)); // a roll of 4 is an auto hit with double the damage
+		    System.out.println(other.getName() + "hit" + this.getName());
+		}
+		else if (sum == 3){
+		    this.setHealth(other.this() - (3 * damage)); // a roll of 3 is an auto hit with triple the damage
+		    System.out.println(other.getName() + "hit" + this.getName());
+		}
+		else if (sum <= 5){
+		    this.setHealth(this.getHealth() - damage); // a roll of 5 or less is an auto hit
+		    System.out.println(other.getName() + "hit" + this.getName());
+		}
+		else if (sum >= 16){
+		    System.out.println(other.getName() + "missed the hit"); // a roll of 16 or more is an auto miss
+		}
+		else if (sum <= other.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		    int four = random.nextInt(2); // but because no auto hit uses a one half probablity to see if there will be a hit or not
+		    if (four == 1){
+			this.setHealth(other.getHealth() - damage); 
+			System.out.println(other.getName() + "hit" + this.getName());
+		    }
+		    else{ 
+			System.out.println(other.getName() + "missed the hit");
+		    }
+		}
+		else { //I'm not sure what happens because the rules don't specify, in the case where the role is greater than the dexterity but less than sixteen
+		    System.out.println("something");
+		}
+	    }
+	    else{ // in the case if the two dexterity's are the same this one half probability will determine who should have the greater dexterity
+		int five = random.nextInt(2);
+		if (five == 1){
+		    this.getDexterity() = this.getDexterity() + 1;
+		}
+		else{
+		    other.getDexterity() = other.getDexterity() + 1;
+		}
+	    }
+	}
+	if (this.getHealth() == 0){
+	    System.out.println(this.getName() + "has been defeated by" + other.getName()); // maybe you guys would rather have the winner's name first as opposed to the loser's name first
+	    other.setExperience(other.getExperience() + 10); // the experience points are subject to change
+	}
+	else{
+	    System.out.println(other.getName() + "has been defeated by" + this.getName());
+	    this.setExperience(this.getExperience() + 10); 
+	}
+    }
+
+    // I'm not sure how to code the leveling up based on the experience points
+    //Also the code rules mention that characters play with weapons and those determine the damage. I just left out weapons and dealth with strength because that seemed easier.
+    //Also I did not know how to use distance for fighting battles because even if each character has a coordinate for x and a coordinate for y 
+    //well it makes sense they the x and y values have to have a certain distance between them for attack to work and we can easily add that
+    //I just don't know as the character progresses throughout the game how the x and y coordinates are suppose to adjust to his/her position
 	
 }

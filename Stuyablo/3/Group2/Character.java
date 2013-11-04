@@ -1,31 +1,76 @@
-import java.util*;
-
+import java.util.*;
+import java.io.*;
+import java.math.*;
 
 public class Character {
-    protected int hp, level, dexterity, strength;
+    protected int hp, mp, ep, level, dexterity, strength, intellegence;
     protected String name;
 
     public Character() {
 	name = "Hans Gruber";
-	hp = 8;
 	dexterity = 8;
 	strength = 8;
+	intellegence = 8;
 	level = 1;
+	ep = 0;
+	for (int i = 8; i > 0; i--) {
+	    Random r = new Random();
+	    int number = r.nextInt(2);
+	    if (number == 2)
+		dexterity++;
+	    else if (number == 1)
+		strength++;
+	    else
+		intellegence++;
+		}
+	hp = strength;
+	mp = strength;
+    }
+
+    public Character(String name,int ST, int DX, int IQ) {
+	name = name;
+	dexterity = DX;
+	strength = ST;
+	intellegence = IQ;
+	level = 1;
+	ep = 0;
+	hp = strength;
+	mp = strength;
+
     }
 
     public Character(String name) {
-	this.name = name;
-	this.hp = 8;
+	name = name;
 	dexterity = 8;
 	strength = 8;
+	intellegence = 8;
 	level = 1;
-	
+	ep = 0;
+	for (int i = 8; i > 0; i--) {
+	    Random r = new Random();
+	    int number = r.nextInt(3);
+	    if (number == 2)
+		dexterity++;
+	    else if (number == 1)
+		strength++;
+	    else
+		intellegence++;
+		}
+	hp = strength;
+	mp = strength;		
+    }
+
+    public String getStats() {
+	return name+"'s Stats:\nLevel:"+level+"\nHealth:"+hp+"\nMana:"+mp+"\nExperience:"+ep+"\nDexterity:"+dexterity+"\nStrength:"+strength+"\nIntellegence:"+intellegence;
     }
     public boolean roll(){
-	die1 = math.round(math.random()*5)+1;
-	die2 = math.round(math.random()*5)+1;
-	die3 = math.round(math.random()*5)+1;
-	total = die1+die2+die3;
+	Random r1 = new Random();
+	Random r2 = new Random();
+	Random r3 = new Random();
+	int die1=r1.nextInt(5)+1;
+	int die2=r2.nextInt(5)+1;
+	int die3=r3.nextInt(5)+1;
+	int total = die1+die2+die3;
 	if (dexterity>total){
 	    return true;
 	}
