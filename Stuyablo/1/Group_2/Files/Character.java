@@ -14,7 +14,7 @@ public class Character {
 
     private Random r = new Random();
 
-    protected void init(String n, int h, int m, int i, int d, int s, int e, double x, double y) {
+    protected void init(String n, int h, int m, int s, int d, int i, int e, double x, double y) {
 	name = n;
 	health = h;
 	maxHealth = m;
@@ -96,14 +96,19 @@ public class Character {
     }
 
     public void battle(Character other) {
+	Scanner sc;
 	if (this.dexterity >= other.dexterity) {
-	    other.health = other.health - this.attack(other);
-	    this.health = this.health - other.attack(this);
+	    System.out.println("Choose an attack: ");
+	    sc = new Scanner(System.in);
+	    other.health = other.health - this.attack(sc.nextInt(),other);
+	    this.health = this.health - other.attack(0,this);
 	    System.out.println(this.name + "'s hp: " + this.health);
 	    System.out.println(other.name + "'s hp: " + other.health); }
 	else {
-	    this.health = this.health - other.attack(this);
-	    other.health = other.health - this.attack(other);
+	    this.health = this.health - other.attack(0,this);
+	    System.out.println("Choose an attack: ");
+	    sc = new Scanner(System.in);
+	    other.health = other.health - this.attack(sc.nextInt(),other);
 	    System.out.println(other.name + "'s hp: " + other.health);
 	    System.out.println(this.name + "'s hp: " + this.health); }
     }
@@ -139,32 +144,82 @@ public class Character {
 	System.out.println("Experience: " + experience);
 	System.out.println("Location: (" + x + "," + y + ")");
     }
-    public int attack(Character other) {
-	System.out.println(this.name + " attacked " + other.name);
+    public int attack(Character other, int range, int weapon, String type) {
+	int damage = 0;
+	double d = distance(other);
+	if (d  > range) {
+	    System.out.println(other.name + " is too far away."); 
+	    return damage; }
+	
 
 	Random r = new Random();
 	int rolls = ((1 + r.nextInt(6)) + (1 + r.nextInt(6)) + (1 + r.nextInt(6)));
 
 	if (rolls >= 16) {
 	    System.out.println(this.name + " missed terribly."); 
-	    return 0;
+	    return damage;
 	}
-	else if (rolls > this.dexterity) {
+	else if (rolls > (this.dexterity - (int)d + 1)) {
 	    System.out.println(this.name + " missed.");
-	    return 0;
+	    return damage;
 	}
 	else if (rolls == 4) {
-	    int damage = this.strength * 2;
+	    if (type.equals("physical"))
+	    damage = this.strength * 2;
+	    else if (type.equals("magic"))
+	    damage = this.intelligence * 2;
 	    System.out.println(this.name + " critically hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else if (rolls == 3) {
-	    int damage = this.strength * 3;
+	    if (type.equals("physical"))
+	    damage = (this.strength + weapon) * 3;
+	    else if (type.equals("magic"))
+	    damage = (this.intelligence + weapon) * 3;
 	    System.out.println(this.name + " devastated " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else {
-	    int damage = this.strength;
+	    if (type.equals("physical"))
+	    damage = this.strength + weapon;
+	    else if (type.equals("magic"))
+	    damage = this.intelligence + weapon;
+	    System.out.println(this.name + " hit " + other.name + " for " + damage + " points of damage!"); 
+	    return damage;
+	}
+    }
+  
+    public int attack(int type, Character other) {
+	int damage = 0;	
+	Random r = new Random();
+	double d = distance(other);
+
+	if (d > 1.5) {
+	    System.out.println(other.name + " is too far away."); 
+	    return damage; }
+
+	int rolls = ((1 + r.nextInt(6)) + (1 + r.nextInt(6)) + (1 + r.nextInt(6)));
+
+	if (rolls >= 16) {
+	    System.out.println(this.name + " missed terribly."); 
+	    return damage;
+	}
+	else if (rolls > this.dexterity) {
+	    System.out.println(this.name + " missed.");
+	    return damage;
+	}
+	else if (rolls == 4) {
+	    damage = this.strength * 2;
+	    System.out.println(this.name + " critically hit " + other.name + " for " + damage + " points of damage!"); 
+	    return damage;
+	}
+	else if (rolls == 3) {
+	    damage = this.strength * 3;
+	    System.out.println(this.name + " devastated " + other.name + " for " + damage + " points of damage!"); 
+	    return damage;
+	}
+	else {
+	    damage = this.strength;
 	    System.out.println(this.name + " hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
