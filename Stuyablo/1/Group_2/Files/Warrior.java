@@ -1,7 +1,5 @@
 public class Warrior  extends Character {
 
-    private int health;
-
     public Warrior(String name, int limit) {
 	super(name,limit);
 	health = 100;
@@ -11,9 +9,7 @@ public class Warrior  extends Character {
 	super();
 	skills = 3;
 	}
-    public String toString (){
-	return super.toString();
-    }
+
     public int attack (int type, Character other){
 	if (type == 1) {
 	    System.out.println(this.name + " slashes " + other.name + " with a sword");
@@ -38,6 +34,5 @@ public class Warrior  extends Character {
 	else
 		return super.test(0,other);
 	}
-
 
 }
