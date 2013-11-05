@@ -119,6 +119,18 @@ public class Character {
             if (this.getHealth() <= 0)
                 playerDied = true;
         }
+        if (command.equals("Heavy Attack")){
+            this.heavyAttack(other);
+            if (other.getHealth() <= 0)
+                opponentDied = true;
+            other.heavyAttack(this);
+            if (this.getHealth() <= 0)
+                playerDied = true;
+        }
+        if (command.equals("Flee")){
+            if (this.flee())
+                return 1;
+        }
         System.out.println("This Character's status: ");
         System.out.println(this.getStatus());
         System.out.println("Other Character's status: ");
