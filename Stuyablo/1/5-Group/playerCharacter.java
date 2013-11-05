@@ -3,8 +3,10 @@ import java.util.*;
 
 public class playerCharacter extends Character {
     protected String role; 
+    protected double x,y;
 
-    public playerCharacter (String name) {
+    public playerCharacter () {
+	String name;
 	Scanner s = new Scanner(System.in);
 
 	str = 8;
@@ -107,11 +109,35 @@ public class playerCharacter extends Character {
 	init(name, str);
     }
 
+    // TURN
+
     public void turn (String a) {
 	Random r = new Random();
 	
 	if (a.equals("Flee")) {
-	    
+	    if ((r.nextInt(6) + r.nextInt(6) + r.nextInt(6)) > 12) {
+		System.out.println("You have fleed from combat");
+	    }
+	}
+	else if (a.equals("Attack")) {
+	    if (role.equals("Warrior")) {
+		// Warrior Stuff
+	    }
+
+	    if (role.equals("Wizard")) {
+
+	        System.out.println("1. Basic Attack ");
+	        System.out.println("2. Flee ");
+	        System.out.println("3. Heal ");
+		System.out.println("4. Fireball ");
+		System.out.println("5. Lightning Strike ");
+	        System.out.println("What do you want to do? ");
+
+
+	    }
+	}
+	else {
+	    System.out.print("");
 	}
     }
     
@@ -127,6 +153,9 @@ public class playerCharacter extends Character {
     }
     public String getInt() {
 	return "Your Intelligence is " + intl;
+    }
+    public String getHP() {
+	return "Your current Health is " + hp;
     }
 
 }
