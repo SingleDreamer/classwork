@@ -89,7 +89,9 @@ public class Character {
 	protected int damageMultiplier(Character other) {
 		return 1;
 	}
-
+    public int damageDone(Character other, int multiplier){
+        return this.strength * multiplier;
+    }
     
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
