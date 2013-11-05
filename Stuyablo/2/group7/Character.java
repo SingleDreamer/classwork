@@ -47,6 +47,15 @@ public class Character {
 		this.maxhealth = this.strength;
 		this.health = this.maxhealth;
 	}
+	
+	public Character(String name, int baseStr, int baseDex, int baseInt, int addStr, int addDex, int addInt) {
+		this.name = name;
+		this.dexterity = baseDex + addDex;
+		this.strength = baseStr + addStr;
+		this.intelligence = baseInt + addInt;
+		this.maxhealth = this.strength;
+		this.health = this.maxhealth;
+	}
     /* THIS IS THE RANDOMIZED CONSTRUCTOR, COPY PASTE INTO THE SPECIFIC CLASS FILES AND TWEAK
     public Character(String name) {
             Random r = new Random();
