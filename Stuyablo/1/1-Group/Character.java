@@ -34,7 +34,6 @@ public class Character {
 	strength=stren+8;
 	intelligence=intell+8;
     }
-<<<<<<< HEAD
 
     public void chooseClass(){
 	Scanner sc=new Scanner(System.in);
@@ -59,7 +58,7 @@ public class Character {
 	    System.out.println("Press 2 to be a WIZARD");
 	    System.out.println("Press 3 to be an OGRE ");
 	    System.out.println("Press 4 to be a THEIF");
-
+	    //doesn't work b/c goes straight to the encounter
 	}
 	System.out.println("----------------------");
 
@@ -79,15 +78,6 @@ public class Character {
 
 
     }
-=======
-    
-    public String chooseClass(){
-    	System.out.println("Press 1 to be a WARRIOR");
-    	System.out.println("Press 2 to be a WIZARD");
-    	System.out.println("Press 3 to be an OGRE ");
-    	System.out.println("Press 4 to be a THEIF");
-    	}
->>>>>>> 764d8a1b580e25a274c772a74a5e6564249ad729
  
     public int getHealth() {
         return health;
@@ -106,7 +96,7 @@ public class Character {
 
 
     public void talk(Character other){
-<<<<<<< HEAD
+
 	Scanner sc = new Scanner(System.in);
 	say ("you have chosen to talk!");
 	delay (2000);
@@ -164,7 +154,6 @@ public class Character {
         /*so on and so forth*/
         /*RESPONSES*/
         /*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
-=======
     	Scanner sc = new Scanner(System.in);
     	say ("you have chosen to talk!");
     	delay (2000);
@@ -222,7 +211,6 @@ public class Character {
 	/*so on and so forth*/
 	/*RESPONSES*/
 	/*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
->>>>>>> 764d8a1b580e25a274c772a74a5e6564249ad729
     }
     public int roll(){
 	
@@ -336,9 +324,9 @@ public class Character {
 	
 	} 
 	say("his status is");
-<<<<<<< HEAD
+
 	say (other.getStatus2());
-=======
+
 	say (other.getStatus());
 	try {
 	    Thread.sleep(2000);
@@ -346,7 +334,7 @@ public class Character {
 	catch(Exception e){
 	
 	} 
->>>>>>> 764d8a1b580e25a274c772a74a5e6564249ad729
+
 	say ("type 1 if you wish to talk");
 	try {
 	    Thread.sleep(2000);
