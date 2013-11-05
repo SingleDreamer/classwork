@@ -17,11 +17,12 @@ public class Character {
 
     private Scanner sc = new Scanner(System.in);
     private Random r = new Random();
+    private int counter = 4;
 
     protected void init(String n, int h, int m, int s, int d, int i, int e, double x, double y, boolean playable) {
 	name = n;
 	health = h;
-	maxHealth = m;
+	maxHealth = (s+8)*10;
 	intelligence = i + 8;
 	dexterity = d + 8;
 	strength = s + 8;
@@ -101,30 +102,25 @@ public class Character {
     }
 
     public void battle(Character c2, Character c1) {
-	while (health > 0 && c2.health > 0) {
-		if (this.dexterity >= c2.dexterity) {
-		    this.action(c1, c2);
-		    c2.action(c2, c1);
-		    System.out.println(this.name + "'s hp: " + this.health);
-		    System.out.println(c2.name + "'s hp: " + c2.health);
-		}
-		else {
-		    c2.action(c2, c1);
-		    this.action(c1, c2);
-		    System.out.println(c2.name + "'s hp: " + c2.health);
-		    System.out.println(this.name + "'s hp: " + this.health);
-		}
+	while (c1.health > 0 && c2.health > 0) {
+	    if (c1.dexterity >= c2.dexterity) {
+		c1.action(c1, c2);
+		c2.action(c2, c1);
+		System.out.println(c1.name + "'s hp: " + c1.health);
+		System.out.println(c2.name + "'s hp: " + c2.health);
+	    }
+	    else {
+		c2.action(c2, c1);
+		this.action(c1, c2);
+		System.out.println(c2.name + "'s hp: " + c2.health);
+		System.out.println(c1.name + "'s hp: " + c1.health);
+	    }
 	}
-	if (health <= 0)
-	    System.out.println("You have died!");
+	if (c1.health <= 0)
+	    System.out.println(c1.name + " has died!");
 	else
-	    System.out.println("Your opponent has died!");
+	    System.out.println(c2.name + " has died!");
     }	
-
-    //fight called in battle
-    public void fight(int weapon, double dist){
-
-    }
 
     //flee called in battle
     public boolean flee(Character other){
@@ -149,7 +145,7 @@ public class Character {
 	}
 	else if (i == 2){
 	    System.out.println("You have made your enemy angry and are now being attacked!");
-	    //c.battle(this);
+	    c.battle(c, this);
 	}
 	else if (i == 3){
 	    System.out.println("Well, give nothing, get nothing!");
@@ -257,14 +253,13 @@ public class Character {
     public int command(Character c1, Character c2) {
 	int choice = 0;
 	if (c1.pc) {
-	    System.out.println("Enter 1 to attack, 2 to move, 3 to talk, or 4 to flee");
+	    System.out.println("Enter 1 to attack, 2 to move, or 3 to flee");
 	    choice = sc.nextInt();
 	    
-	    while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
-		System.out.println(choice);
-		System.out.println("Enter 1 to attack, 2 to move, 3 to talk, or 4 to flee");
+	    /*while (choice != 1 && choice != 2 && choice != 3) {
+		System.out.println("That is not a valid option.");
 		choice = sc.nextInt();
-	    }
+		}*/
 	    
 	}
 	else
@@ -276,7 +271,7 @@ public class Character {
     public void action(Character c1, Character c2) {  //c1's turn
 	int moved = c1.movement;
 	boolean turn = true;
-	boolean talked = false;
+	//boolean talked = false;
 
 	while (turn && moved > 0) {
 	    int command = command(c1,c2);
@@ -297,19 +292,21 @@ public class Character {
 		    int distance = -1;
 		    System.out.println("Choose a direction to move in. 1 for north, 2 for northeast, 3 for east, 4 for south east, 5 for south, 6 for southwest, 7 for west, and 8 for northwest");
 		    direction = sc.nextInt();
-		    String stringDirection = ""+direction;
-		    while (!("12345678".contains(stringDirection)))
+		    String directionS = ""+direction;
+		    while (directionS.length() != 1 || !("12345678".contains(directionS))) {
 			System.out.println("That is not a valid option");
+			direction = sc.nextInt();
+		    }
 		    
 		    String range = "";
 		    for (int i = 0; i <= moved; i++) {
 			range = range + i; }
-		    System.out.println("Move how far? You can move up to " + moved + "yards");
+		    System.out.println("Move how far? You can move up to " + moved + " yards");
 		    distance = sc.nextInt();
-		    String stringDistance = "" + distance;
 		    while (distance < 0 || distance > moved) {
-			while (range.indexOf(stringDistance) == -1) {
-			    System.out.println("Move how far? You can move up to " + moved + "yards");
+			while (range.indexOf(""+distance) == -1) {
+			    System.out.println("That is not a valid option. You can move up to " + moved + "yards");
+			    distance = sc.nextInt();
 			}
 			
 		    }
@@ -321,16 +318,16 @@ public class Character {
 		System.out.println(c1.name + "'s current location: " + c1.x + "," + c1.y);
 		break;
 
-	    case 3:
+		/*case 3:
 		if (talked)
 		    System.out.println(c1.name + " already tried talking");
 		else {
 		    talk(c2);
 		    talked = true;
 		}
-		break;
+		break;*/
 
-	    case 4:
+	    case 3:
 		if(flee(c2)){
 		    System.out.println(c1 + " was able to flee!");
 		    turn();
@@ -340,9 +337,6 @@ public class Character {
 		}
 		break;
 	    }
-
-	    if (turn && moved > 0)
-		command = command(c1, c2);
 	}
     }
 
@@ -492,41 +486,38 @@ public class Character {
 	else
 	    return 1 + r.nextInt(8);
     }
-    public void turnHelper(int h, Character c){
-	if (h == 1){
-	//    battle(c);
-	}
-	if (h == 2){
-	    talk(c);
-	}
-    }
 
     public void turn(){
-	boolean living = true;
-	while (living){
-	    //Character c = new Character();
-	    Character c = new Character("Enemy",8);
-	    System.out.println("You have approached a character. Please choose whether to 1. Initiate battle or 2. Initiate conversation.");
-	    int choice = sc.nextInt();
-	    turnHelper(choice,c);
-	    if (health <= 0){
-		living = false;
-	    }
-	}
-	if (!living){
-	    System.out.println("Oh no! You have died! The game is over. *cries*");
+	int x = 0;
+	Character c;
+
+	double enemyType = Math.random();
+	if (enemyType < .5)
+	    c = new Warrior("Enemy", counter);
+	else
+	    c = new Wizard("Enemy", counter);
+
+	System.out.println("You have approached a character. Please choose whether to 1. Initiate battle or 2. Initiate conversation.");
+	while (x != 1 && x != 2) {
+	    x = sc.nextInt();
+	    if (x == 1)
+		battle(c, this);
+	    else if (x == 2)
+		talk(c);
+	    else
+		System.out.println("That is not a valid option");
 	}
     }
 
     public void play(){
-	boolean l = true;
-	if (health <= 0){
-	    l = false;
-	}
-	while (l){
+	while (health > 0) {
+	    health = maxHealth;
+	    counter++;
 	    turn();
 	}
+	System.out.println("You have died. Game Over.");
     }
+
     public int AI(Character c1, Character c2) {
 	if (c1.test(AIAttack(c2),c2) > 0)
 	    return 1;

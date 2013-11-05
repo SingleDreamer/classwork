@@ -1,29 +1,43 @@
 import java.io.*;
 import java.util.*;
 
-public class Kracken extends Character {
-    private int scariness;
+public class Kracken extends NPC {
+    private int intim;
     private Random rand = new Random();
     
-    public Kracken (int scariness, int maxhealth,int dexterity, int  strength, int  intelligence, int  experience) {
-	super(maxhealth,dexterity,strength,intelligence,experience);
-`	scariness = this.scariness;
+    public Kracken (String name, int intim, int Pstr, int Pdex, int Pintl, int Pdef) {
+	super(name, Pstr, Pdex, Pintl, Pdef);
+	this.intim = intim;
     }
 
-    public void tailWhip(Character other){
+    public Kracken (String name, int lvl){
+	super(name, 0.5, 0.55, 0.6, 1.0);
+	this.intim = 8;
+    }
+
+    public void tentaSmack(playerCharacter other){
 	int x = 3 + rand.nextInt(6) + rand.nextInt(6) + rand.nextInt(6);
-	x = x - other.defense;
-	other.health = other.health -x;
-	System.out.print(name + "just used tailWhip" +  other.name + "'s health is now " + other.health + ".");
-    }
-	    
-
-    public void glare (Character other) {
-	int x = scariness;
-	x = x - other.dexterity;
-	other.dexterity = other.dexterity - x;
-	System.out.print(name + "just used glare." +  other.name + "'s dexterity is now " + other.dexterity + ".");
-
+	x = x - other.def;
+	other.hp = other.hp -x;
+	System.out.print(name + "just used tentaSmack" + "\n" + other.name + "'s health is now " + other.hp + ".");
     }
 
+    public void glare (playerCharacter other) {
+	int x = intim;
+	x = x - other.dex;
+	other.dex = other.dex - x;
+	System.out.print(name + "just used glare." +  other.name + "'s dex is now " + other.dex + ".");
+    }
+
+    public void turn(playerCharacter other){
+	if (r.nextDouble() < 0.5){
+	    attack(other,"melee");
+	}
+	else if (r.nextDouble() < 0.8){
+	    tentaSmack(other);
+	}
+	else {
+	    glare(other);
+	}
+    }
 }

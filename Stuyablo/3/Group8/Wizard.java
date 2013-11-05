@@ -15,7 +15,7 @@ public class Wizard extends Character {
 	Mana = 12;
     }
 
-    public attack () {
+    public void attack () {
 	int hit = Mana - 8;
 	//this hit should take into account weapon choice
 	boolean damage = true;
@@ -25,13 +25,7 @@ public class Wizard extends Character {
 	} else {
 	    damage = false;
 	}
-	if (damage==true) {
+	if (damage==true)
 	    enemy.Health = enemy.Health - hit;
-	}
 
-    public void encounter () {
-	Random r = new Random();
-	if (r.nextInt() > 0.5) {
-	    
-    }
 }
