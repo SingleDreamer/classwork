@@ -81,15 +81,4 @@ public class playerCharacter extends Character {
     public String attack() {
 	return "pCharac Attack";
     }
-
-    public String getStr() {
-	return "Your Strength is " + str;
-    }
-    public String getDex() {
-	return "Your Dexterity is " + dex;
-    }
-    public String getInt() {
-	return "Your Intelligence is " + intl;
-    }
-
 }
