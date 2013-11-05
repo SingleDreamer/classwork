@@ -2,7 +2,7 @@ public class Driver {
     public static void main(String[] args) {
 	Character ch1 = new Character();
 	Warrior wa2 = new Warrior("Bob", 8);
-	ch1.battle(wa2);
+	//ch1.battle(wa2);
 	
 	ch1.getInfo();
 	System.out.println("_________________");
