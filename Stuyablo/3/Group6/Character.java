@@ -107,7 +107,7 @@ public class Character {
 	System.out.println(this.name + " tried to attack " + other.name + ".");
 	boolean hit;
 	Random r = new Random();
-	if (this.dexterity > other.dexerity)
+	if (this.dexterity > other.dexterity)
 	    hit = true;
 	else {
 	    if (this.dexterity > (r.nextInt(10) - 5 + this.dexterity))
@@ -125,6 +125,7 @@ public class Character {
     }
 
     public boolean flee(Character other) {
+	Random r = new Random();
 	if  (distance > (r.nextInt(10) - 5 + distance))
 	    return true;
 	else
@@ -133,7 +134,7 @@ public class Character {
 
     public int encounter(Character other) {
 	if (0.5  > Math.random()) {
-	    boolean fleesuccess = other.flee();
+	    boolean fleesuccess = other.flee(this);
 	    if (fleesuccess == true) {
 		other.experience += 1;
 		return 0;
@@ -148,9 +149,9 @@ public class Character {
 	}
 	if (this.health == 0 && other.health <= 0)
 	    return 4;
-	elseif (this.health == 0)
+	else if (this.health == 0)
 	    return 2;
-	elseif (other.health == 0)
+	else if (other.health == 0)
 	    return 3;
 	else
 	    return 5;
