@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-
+/* WHAT STILL VERY URGENTLY NEEDS TO BE ADDED IS A METHOD DEFINING THE ENCOUNTER AS A WHOLE, WITH ATTACK, FLEE AND TALK AS OPTIONS, AND THE SUBCLASS CODES */
 public class Character2 {
     protected int health, maxhealth; // health will regenerate over time
     protected int defense; // effects ability to parry blows
