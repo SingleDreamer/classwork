@@ -61,7 +61,7 @@ public class Character {
     }
 
     public String getStats() {
-	return name+"'s Stats:\nLevel:"+level+"\nHealth:"+hp+"\nMana:"+mp+"\nExperience:"+ep+"\nDexterity:"+dexterity+"\nStrength:"+strength+"\nIntellegence:"+intellegence;
+	return name+"'s Stats:\nLevel:"+level+"\nHealth:"+hp+"\nMana:"+mp+"\nExperience:"+ep+"\nDexterity:"+dexterity+"\nStrength:"+strength+"\nIntellegence:"+intellegence+"\n";
     }
     public boolean roll(){
 	Random r1 = new Random();
@@ -82,7 +82,19 @@ public class Character {
     public String toString() {
 	return name;
     }
-    public String attack() {
+    
+    public void die() {
+	System.out.println("you are dead");
+    }
+
+    public void changeHP(int n) {
+	if (hp > n) {
+	    hp = hp - n;
+	}
+	else 
+	    die();
+    }
+    public String attack(Character other) {
 	return "Generic attack";
     }
 

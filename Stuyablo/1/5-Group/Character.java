@@ -6,16 +6,17 @@ public class Character {
     protected String name;
     private Random r = new Random();
 
-    protected void init(String name) {
+    protected void init(String name, int s) {
 	this.name = name;
+	this.hp = s;
     }
 
     public Character () {
-	init("No Name");
+	init("No Name", str);
     }
     
     public Character (String name) {
-	init(name);
+	init(name, str);
     }
 
     public String attack () {
@@ -25,12 +26,17 @@ public class Character {
     public String toString () {
 	return name;
     }
+    
+    public void subHealth (int x) {
+	hp = hp - x;
+    }
 
     public String levelUp(String stat) {
+	String result;
 	System.out.println("Congratulations, you've leveled up! Please input str, dex, intl, or def to level up a stat");
 	if (stat == "str") {
 	    str = str + 1;
-	    hp = hp + 1
+	    hp = hp + 1;
 	    result  = "Leveled up str and hp. str and hp = " + str;
 	}
 	else if (stat == "dex") {
@@ -49,7 +55,7 @@ public class Character {
 	    result = "Unable to level up a stat. Please input one of the following stats to level up: 'str', 'dex', 'intl', or 'def'."; }
 	return result;
     }
-
+    /*
     public String  equipWeapon(String weapon) {
 	String result = "";
 	if( weapon.equals("Hammer")){
@@ -73,5 +79,5 @@ public class Character {
 	}
 	return result;
     }
-
+    */
 }
