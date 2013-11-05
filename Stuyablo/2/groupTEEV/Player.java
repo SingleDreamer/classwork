@@ -26,7 +26,7 @@ public class Player extends Character {
 	maxhealth = maxhealth + 100;
 	health = maxhealth;
 	System.out.print("Congratulations! You have leveled up!" + "\n");
-	System.out.print("Here are three stat poitns to use. \n");
+	System.out.print("Here are three stat points to use. \n");
 	int points = 3;
 	points = setStrength (points);
 	System.out.print ("\n" + "There are " + points + " points left");
@@ -47,7 +47,22 @@ public class Player extends Character {
         Scanner n = new Scanner (System.in);
 	System.out.print("Enter your name: ");
 	name = n.nextLine();
-	System.out.print("Welcome, " + name);
+	System.out.print("Welcome to StuyabloII, " + name + "\n");
     }
 
+    public void setClass(){
+        Scanner s = new Scanner (System.in);
+	System.out.print ("Are you a Wizard or a Warrior? Please type 'Wizard' or 'Warrior'");
+	String c = s.nextLine();
+	if (c.equals("Wizard")){
+	    charClass = "Wizard";
+	}
+	else if (c.equals("Warrior")){
+	    charClass = "Warrior";
+	}
+	else {
+	    System.out.print ("Silly player. That's not a choice. \n");
+	    setClass();
+	}
+    }
 }

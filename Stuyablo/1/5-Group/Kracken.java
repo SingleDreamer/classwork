@@ -7,7 +7,7 @@ public class Kracken extends NPC {
     
     public Kracken (String name, int intim, int Pstr, int Pdex, int Pintl, int Pdef) {
 	super(name, Pstr, Pdex, Pintl, Pdef);
-`	this.intim = intim;
+	this.intim = intim;
     }
 
     public Kracken (String name, int lvl){
@@ -15,21 +15,21 @@ public class Kracken extends NPC {
 	this.intim = 8;
     }
 
-    public void tentaSmack(Character other){
+    public void tentaSmack(playerCharacter other){
 	int x = 3 + rand.nextInt(6) + rand.nextInt(6) + rand.nextInt(6);
 	x = x - other.def;
 	other.hp = other.hp -x;
 	System.out.print(name + "just used tentaSmack" + "\n" + other.name + "'s health is now " + other.hp + ".");
     }
 
-    public void glare (Character other) {
+    public void glare (playerCharacter other) {
 	int x = intim;
 	x = x - other.dex;
 	other.dex = other.dex - x;
 	System.out.print(name + "just used glare." +  other.name + "'s dex is now " + other.dex + ".");
     }
 
-    public void turn(Character other){
+    public void turn(playerCharacter other){
 	if (r.nextDouble() < 0.5){
 	    attack(other,"melee");
 	}
@@ -39,5 +39,5 @@ public class Kracken extends NPC {
 	else {
 	    glare(other);
 	}
-
+    }
 }
