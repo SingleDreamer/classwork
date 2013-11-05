@@ -98,22 +98,35 @@ public class Character {
 	return Math.sqrt(((other.x - x)*(other.x - x))+((other.y - y)*(other.y - y)));
     }
 
+    public void die(){
+	if (health <= 0)
+	    
+
     public void battle(Character other) {
-	Scanner sc;
-	if (this.dexterity >= other.dexterity) {
-	    System.out.println("Choose an attack: ");
-	    sc = new Scanner(System.in);
-	    other.health = other.health - this.attack(sc.nextInt(),other);
-	    this.health = this.health - other.attack(AIAttack(other),this);
-	    System.out.println(this.name + "'s hp: " + this.health);
-	    System.out.println(other.name + "'s hp: " + other.health); }
-	else {
-	    this.health = this.health - other.attack(AIAttack(other),this);
-	    System.out.println("Choose an attack: ");
-	    sc = new Scanner(System.in);
-	    other.health = other.health - this.attack(sc.nextInt(),other);
-	    System.out.println(other.name + "'s hp: " + other.health);
-	    System.out.println(this.name + "'s hp: " + this.health); }
+	boolean npcliving = true;
+	while (health >0){
+	    if (other.health <= 0){
+		npcliving = false;
+		system.out.println("Your opponent has died. Success!");
+	    }
+	    while (npcliving){
+		Scanner sc;
+		if (this.dexterity >= other.dexterity) {
+		    System.out.println("Choose an attack: ");
+		    sc = new Scanner(System.in);
+		    other.health = other.health - this.attack(sc.nextInt(),other);
+		    this.health = this.health - other.attack(AIAttack(other),this);
+		    System.out.println(this.name + "'s hp: " + this.health);
+		    System.out.println(other.name + "'s hp: " + other.health); }
+		else {
+		    this.health = this.health - other.attack(AIAttack(other),this);
+		    System.out.println("Choose an attack: ");
+		    sc = new Scanner(System.in);
+		    other.health = other.health - this.attack(sc.nextInt(),other);
+		    System.out.println(other.name + "'s hp: " + other.health);
+		    System.out.println(this.name + "'s hp: " + this.health); }
+	    }
+	}
     }
 
     //fight called in battle
@@ -228,8 +241,7 @@ public class Character {
 	damage = this.intelligence + weapon;
 	return damage;
 	}
-   
-  
+	
     public int attack(int type, Character other) {
 	int damage = 0;	
 	Random r = new Random();
@@ -298,12 +310,20 @@ public class Character {
     }
 
     public void turn(){
-	Scanner turnscan;
-	Character c = new Character();
-	System.out.println("You have approached a character. Please choose whether to 1. Initiate battle or 2. Initiate conversation.");
-	turnscan = new Scanner(System.in);
-	int choice = turnscan.nextInt();
-	turnHelper(choice,c);
+	boolean living = true;
+	while (living){
+	    Scanner turnscan;
+	    Character c = new Character();
+	    System.out.println("You have approached a character. Please choose whether to 1. Initiate battle or 2. Initiate conversation.");
+	    turnscan = new Scanner(System.in);
+	    int choice = turnscan.nextInt();
+	    turnHelper(choice,c);
+	    if (health =< 0){
+		living = false;
+	    }
+	}
+	if (!living){
+	    System.out.println("Oh no! You have died! The game is over. *cries*");
+	    }
     }
-
 }
