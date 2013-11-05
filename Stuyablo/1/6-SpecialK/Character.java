@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 /* WHAT STILL VERY URGENTLY NEEDS TO BE ADDED IS A METHOD DEFINING THE ENCOUNTER AS A WHOLE, WITH ATTACK, FLEE AND TALK AS OPTIONS, AND THE SUBCLASS CODES */
-public class Character2 {
+public class Character {
     protected int health, maxhealth; // health will regenerate over time
     protected int defense; // effects ability to parry blows
     protected int dexterity; // effects ability to run away
@@ -21,11 +21,11 @@ public class Character2 {
 	charm = ch;
     }
     
-    public Character2(){
+    public Character(){
 	init ("M Zams", "Moran", 12, 8, 12, 0);
     }
 
-    public Character2(String name, String charType){
+    public Character(String name, String charType){
 	int s = 0;
 	 int dex = 0;
 	 int def = 0;
@@ -190,7 +190,7 @@ public class Character2 {
 	dexterity = d;
     }
 
-    public boolean flee(Character2 other){
+    public boolean flee(Character other){
 	if (this.getDexterity() > other.getDexterity()){
 	    System.out.println("You have run away. Your dexterity will be upgraded due to this success");
 	    this.setDexterity(this.getDexterity()+1);
@@ -206,7 +206,7 @@ public class Character2 {
 	}
     }
 
-    public void attack(Character2 other){
+    public void attack(Character other){
 	int damage = (this.getStrength() - other.getDefense());
 	while ((this.getHealth() > 0) && (other.getHealth() > 0)){
 	    Random r = new Random();
@@ -254,7 +254,7 @@ public class Character2 {
 	    }
 	}
     }
-    public int encounter(Character2 other) {
+    public int encounter(Character other) {
 	System.out.println("Enter 1 to flee, any other number to fight");
             Scanner sc = new Scanner(System.in);
 	int response = sc.nextInt();
