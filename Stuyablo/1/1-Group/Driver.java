@@ -14,8 +14,23 @@ public class Driver {
 	Character c2 = new Character("Bob");
 
 	System.out.println("Choose your character's class:\n");
-
 	System.out.println(c.getStatus());
+
+	//don't know if this will work. Did'nt test yet:
+	
+	String a=c.getCharClass();
+	if (a.equals("Warrior")){
+	    Warrior war = new Warrior(name);
+	    c=war;
+	}
+	/*	if (a.equals("Wizard")){
+	    Wizard wiz = new Wizard(name);
+	    c=wiz;
+	}
+	*/
+	//up to here
+
+    
 	c.encounter(c2);
     }
 }
