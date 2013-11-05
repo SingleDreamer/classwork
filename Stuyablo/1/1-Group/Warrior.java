@@ -9,15 +9,14 @@ public class Warrior extends Character{
 
    
     
-    public int attack (Character other){
+    public void attack (Character other){
 	int[] dice1={1,2,3,4,5,6};
 	int[] dice2={1,2,3,4,5,6};
 	int[] dice3={1,2,3,4,5,6};
-	//will add complicated x and y coor stuff later
-	/*attacks include hitting with:
-	  hammer(close range)
-	  sword(med range)
-	  arrow(far range)*/
+	double xchange,ychange;
+	xchange = this.x-other.x;
+	ychange = this.y-other.y;
+	double d = Math.sqrt(xchange*xchange + ychange*ychange);
 
 	System.out.println("Choose your attack:");
 	System.out.println("Press 1 to use your hammer");
@@ -32,10 +31,10 @@ public class Warrior extends Character{
 	    int a=(dice1[new Random().nextInt(dice1.length)]);
 	    int b=(dice1[new Random().nextInt(dice1.length)]);
 	    int c=(dice1[new Random().nextInt(dice1.length)]);
-	    if ((a+b+c)<this.dexterity) {
-	    //if x,y coors are <2 or something (something small)
+	    if ((a+b+c)<this.dexterity && d<2) { 
 		System.out.println(this.name + " whacked " + other.name +" with a hammer!");
-	    return super.attack(other);
+		other.health = other.health - 1;
+		other.dexterity = other.dexterity - 1;
 	    }
 	    else {
 		System.out.println(this.name + "'s attack failed!");
@@ -48,8 +47,19 @@ public class Warrior extends Character{
 	    int b=(dice1[new Random().nextInt(dice1.length)]);
 	    int c=(dice1[new Random().nextInt(dice1.length)]);
 	    if ((a+b+c)<this.dexterity) {
-		System.out.println(this.name + " slashed " + other.name + " with a sword!");
-		return super.attack(other);
+		if (d<2) {
+		   System.out.println(other.name + " has been stabbed in the heart");
+		   other.health = other.health - 3;
+		}
+		else if (d<5) { 
+		    System.out.println(other.name + " has been stabbed in the arm");
+		    other.health = other.health - 2;
+		}
+		else {
+		    System.out.println(other.name + " has been slashed. He's angry and his adrenaline is pumping!");
+		    other.health = other.health - 2;
+		    other.strength = other.strength + 1;
+		}
 	    }
 	    else {
 	       System.out.println(this.name + "'s attack failed!");
@@ -62,10 +72,17 @@ public class Warrior extends Character{
 	    int b=(dice1[new Random().nextInt(dice1.length)]);
 	    int c=(dice1[new Random().nextInt(dice1.length)]);
 	    if ((a+b+c)<this.dexterity) {
-		System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
-		return super.attack(other);
+		if (d<3) { 
+		    System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
+		    this.dexterity = this.dexterity + 1;
+		    other.health = other.health - 1;
+		}
+		else {
+		    System.out.println(this.name + " missed!");
+		    this.dexterity = this.dexterity - 1;
+		}     
 	    }
-	    else {
+	    else { 
 		System.out.println(this.name + "'s attack failed!");
 	    }
 	}
@@ -74,6 +91,7 @@ public class Warrior extends Character{
 	}
     }
 }
+
 
 
 
