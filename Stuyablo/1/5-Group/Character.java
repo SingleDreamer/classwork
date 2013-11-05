@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int hp, maxhp, xp, str, dex, intl, def;
+    protected int hp, xp, str, dex, intl, def;
     protected String name;
     private Random r = new Random();
 
@@ -58,15 +58,22 @@ public class Character {
 	return result;
     }
 
-
     public String  equipWeapon(String weapon) {
 	String result = "";
-	if( weapon == "Hammer"){
+	if( weapon.equals("Hammer")){
 	    str = str + 5;
 	    result = name + " has sucessfully equipped a " + weapon + ".";
 	}
-	else if( weapon == "Sword:"){
+	else if( weapon.equals("Sword")){
 	    str = str + 20;
+	    result = name + " has sucessfully equipped a " + weapon + ".";
+	}
+	else if( weapon.equals("Wand")){
+	    intl = intl + 5;
+	    result = name + " has sucessfully equipped a " + weapon + ".";
+	}
+	else if( weapon.equals("Staff")){
+	    intl = intl + 20;
 	    result = name + " has sucessfully equipped a " + weapon + ".";
 	}
 	else {
@@ -75,5 +82,14 @@ public class Character {
 	return result;
     }
 
+    public String getStr() {
+	return "Your Strength is " + str;
+    }
+    public String getDex() {
+	return "Your Dexterity is " + dex;
+    }
+    public String getInt() {
+	return "Your Intelligence is " + intl;
+    }
 
 }

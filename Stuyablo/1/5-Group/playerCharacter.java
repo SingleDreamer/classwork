@@ -78,18 +78,7 @@ public class playerCharacter extends Character {
 	init(name, str);
     }
 
-    public String attack() {
-	return "pCharac Attack";
+    public void turn (String a) {
+	
     }
-
-    public String getStr() {
-	return "Your Strength is " + str;
-    }
-    public String getDex() {
-	return "Your Dexterity is " + dex;
-    }
-    public String getInt() {
-	return "Your Intelligence is " + intl;
-    }
-
 }
