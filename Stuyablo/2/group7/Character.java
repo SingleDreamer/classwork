@@ -29,34 +29,48 @@ public class Character {
 	return distance;
     }
 
-    public Character(Sting name, int dex, int str) {
-	this.name = name;
-	dexterity = dex;
-	strength = str;
-	health = str;
+    public Character(String name) {
+    	Random r = new Random();
+    	int str, dex, intel;
+		this.name = name;
+		str = r.nextInt(9);
+		dex = r.nextInt(9 - str);
+		intel = 8 - str - dex;
+		dexterity = 8 + dex;
+		strength = 8 + str;
+		intelligence = 8 + intel;
+		maxhealth = strength;
+		health = maxhealth;
     }
     public void attack(Character other) {
-	Random r = new Random();
-	//the dice rolls
-	int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
-	if (x+y+z >= dexterity) {
-	    //needs damage calculator!
-	    int dmg = damageDone(other);
-	    //other.loseHealth(dmg);
-	    System.out.println(name + " did " + dmg + " damage to " + other + "!");
-	}
-	else {
-	    System.out.println(name + " missed!");
-	}
+		Random r = new Random();
+		//the dice rolls
+		int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
+		if (x+y+z <= dexterity) {
+		    //needs damage calculator!
+		    int dmg = damageDone(other);
+		    other.loseHealth(dmg);
+		    System.out.println(name + " did " + dmg + " damage to " + other + "!");
+		}
+		else {
+		    System.out.println(name + " missed!");
+		}
     }
     
     public int damageDone(Character other){
-	return 1;
+    	return this.strength;
     }
     
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
-	return false;
+		Random r = new Random();
+		int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
+		int chance = this.intelligence - other.intelligence;
+		if (chance <= 0) {
+			//gives the character at least 1/18 chance of fleeing
+			chance = 3;
+		}
+		return x+y+z <= chance;
     }
     
     public void loseHealth(int hp) {
