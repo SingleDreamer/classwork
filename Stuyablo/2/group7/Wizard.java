@@ -6,4 +6,6 @@ public class Wizard extends Character{
 	public Wizard(String name, int addStr, int addDex, int addInt) {
 		super(String name, 8, 8, 8, int addStr, int addDex, int addInt);
 	}
+	
+	protected int damageMultiplier
 }
