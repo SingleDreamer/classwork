@@ -12,7 +12,7 @@ public class Character {
  
     public String multStr(String str, int times){
 	for(int i = 0; i < times; i++) {
-	    System.out.println(str);
+	    System.out.print(str);
 	}
     }
 
@@ -78,6 +78,22 @@ public class Character {
 	if (other.flee(this)) { //this is your player, other is NPC
 	    return 0;
 	}
+
+	System.out.println("YOUR STATS:");
+
+	//Player Stats
+	System.out.println("Health": player.getHealth); //Health
+	System.out.print(multstr('▓',((player.getHP/player.maxHP)*100)));  //Health Bar
+	System.out.println("(" + ((player.getHP/player.maxHP)*100) + "%)");
+	System.out.println("Health": player.getStr); //Strength
+	System.out.print(multstr('▓',((player.getStr/player.maxStr)*100)));  //Strength Bar
+	System.out.println("(" + ((player.getStr/player.maxStr)*100) + "%)");
+	System.out.println("Health": player.getDex); //Dexterity
+	System.out.print(multstr('▓',((player.getDex/player.maxDex)*100)));  //Health Bar
+	System.out.println("(" + ((player.getDex/player.maxDex)*100) + "%)");
+
+
+
 	System.out.println("Choose your Move!"); //move chooser
 	System.out.println("a - attack \nr - run");
 	String choice = sc.nextLine();
@@ -103,24 +119,6 @@ public class Character {
 	    }
 		    return 5;
 	}
-    }
-
-
-
-    public String getStatus() {
-        String attrib1=String.format("Str: %d Dex: %d Int: %d",
-                                     strength, dexterity, intelligence);
-        String attrib2=String.format("Exp: %d Health: %d of %d",
-                                     experience,health,maxhealth);
-        String locale = String.format("x: %5.2f y: %5.2f",x,y);
-        String whole=String.format("%s\n%s\n%s\n%s\n",
-                                   name,attrib1,attrib2,locale);
-        return whole;
-    }
-
-
-    public String toString() {
-        return name;
     }
     
 }
