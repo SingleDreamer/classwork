@@ -1,5 +1,4 @@
-Group Members: James Kong, James Chen, Jamie Yip, Dmitriy Kagno
-
+Group Members: James Kong, James Chen, Jamie Yip, Dmitriy Kagno, Victor Gaitour
 
 Instance Variables that we will have:
 protected String name;
