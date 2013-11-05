@@ -123,6 +123,7 @@ public class Character {
 	if (choice.equals("2")) {
 	    if (this.flee(other)){
 		return 1;
+		System.out.println("you have fleed");
 	    }
 	}
 
@@ -134,6 +135,7 @@ public class Character {
 		other.attack(this);
 		if (this.health<=0) {
 		    return 2;
+		    System.out.println("you have been attacked");
 		}	
 
 	    }
