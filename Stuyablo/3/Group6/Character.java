@@ -25,9 +25,9 @@ public class Character {
 	Random r1 = new Random();
 	Random r2 = new Random();
 	Random r3 = new Random();
-	int d1 = r1.nextInt(5) + 1;
-	int d2 = r2.nextInt(5) + 1;
-	int d3 = r3.nextInt(5) + 1;
+	int d1 = r1.nextInt(6) + 1;
+	int d2 = r2.nextInt(6) + 1;
+	int d3 = r3.nextInt(6) + 1;
 	return (dexterity > (d1+d2+d3));
     }
 
