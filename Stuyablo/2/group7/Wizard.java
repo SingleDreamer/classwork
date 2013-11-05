@@ -7,11 +7,7 @@ public class Wizard extends Character{
 		super(String name, 8, 8, 8, int addStr, int addDex, int addInt);
 	}
 	
-	protected int damageMulti(Character other) {
-		dist = getDistance(other);
-		tempDex = dexterity - Math.round(dist);
-		return 
-	}
+
 	
     public void attack(Character other) {
 				int cDex = 0, tempDex = 0, dist = 0;
