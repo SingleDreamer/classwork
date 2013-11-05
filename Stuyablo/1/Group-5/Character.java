@@ -31,4 +31,49 @@ public class Character {
 	return name;
     }
 
+    public String levelUp(String stat) {
+	String result = "Congratulations!";
+	if (stat == "maxhp") {
+	    maxhp = maxhp + 1;
+	    result = "Leveled up maxhp. maxhp = " + maxhp;
+	}
+	else if (stat == "str") {
+	    str = str + 1;
+	    result  = "Leveled up str. str = " + str;
+	}
+	else if (stat == "dex") {
+	    dex = dex + 1;
+	    result  = "Leveled up dex. dex= " + dex;
+	}
+	else if (stat == "intl"){
+	    intl = intl+ 1;
+	    result  = "Leveled up intl. intl = " + intl;
+	}
+	else if (stat == "def") {
+	    def = def + 1;
+	    result  = "Leveled up def. def = " + def;
+	}
+	else {
+	    result = "Unable to level up a stat. Please input one of the following stats to level up: 'maxhp','str', 'dex', 'intl', or 'def'."; }
+	return result;
+    }
+
+
+    public String  equipWeapon(String weapon) {
+	String result = "";
+	if( weapon == "Hammer"){
+	    str = str + 5;
+	    result = name + " has sucessfully equipped a " + weapon + ".";
+	}
+	else if( weapon == "Sword:"){
+	    str = str + 20;
+	    result = name + " has sucessfully equipped a " + weapon + ".";
+	}
+	else {
+	    result =  "Unable to equip weapon. Please select a weapon from the list.";
+	}
+	return result;
+    }
+
+
 }
