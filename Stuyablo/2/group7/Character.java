@@ -10,7 +10,7 @@ public class Character {
     protected String name;
     protected String charClass;
  
-    public int getHealth() {
+    public double getHealth() {
         return health;
     }
     public int getDex() {
@@ -36,28 +36,57 @@ public class Character {
         return distance;
     }
 
+	public Character(String name, int baseStr, int baseDex, int baseInt, int extra) {
+		Random r = new Random();
+		this.name = name;
+		eStr = r.nextInt(9);
+		eDex = r.nextInt(9- eStr);
+		eInt = 8 - eStr - eDex;
+		this.dexterity = baseDex + eDex;
+		this.strength = baseStr + eStr;
+		this.intelligence = baseInt + eInt;
+		this.maxhealth = this.strength;
+		this.health = this.maxhealth;
+	}
+	
+	public Character(String name, int baseStr, int baseDex, int baseInt, int addStr, int addDex, int addInt) {
+		this.name = name;
+		this.dexterity = baseDex + addDex;
+		this.strength = baseStr + addStr;
+		this.intelligence = baseInt + addInt;
+		this.maxhealth = this.strength;
+		this.health = this.maxhealth;
+	}
     /* THIS IS THE RANDOMIZED CONSTRUCTOR, COPY PASTE INTO THE SPECIFIC CLASS FILES AND TWEAK
     public Character(String name) {
+
             Random r = new Random();
-            int str, dex, intel;
-                this.name = name;
-                str = r.nextInt(9);
-                dex = r.nextInt(9 - str);
-                intel = 8 - str - dex;
-                dexterity = 8 + dex;
-                strength = 8 + str;
-                intelligence = 8 + intel;
-                maxhealth = strength;
-                health = maxhealth;
+            this.name = name;
+            eStr = r.nextInt(9);
+            eDex = r.nextInt(9- eStr);
+            eInt = 8 - eStr - eDex;
+            this.dexterity = baseDex + eDex;
+            this.strength = baseStr + eStr;
+            this.intelligence = baseInt + eInt;
+            this.maxhealth = this.strength;
+            this.health = this.maxhealth;
     }
     */
+    public Character(String name, int baseStr, int baseDex, int baseInt, int addStr, int addDex, int addInt) {
+            this.name = name;
+            this.dexterity = baseDex + addDex;
+            this.strength = baseStr + addStr;
+            this.intelligence = baseInt + addInt;
+            this.maxhealth = this.strength;
+            this.health = this.maxhealth;
+    }
     public void attack(Character other) {
                 Random r = new Random();
                 //the dice rolls
                 int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
                 if (x+y+z <= dexterity) {
                     //needs damage calculator!
-                    int dmg = damageDone(other);
+                    int dmg = this.strength * damageMulti(other);
                     other.loseHealth(dmg);
                     System.out.println("\n" + name + " did " + dmg + " damage to " + other + "!");
                 }
@@ -66,8 +95,11 @@ public class Character {
                 }
     }
     
-    public int damageDone(Character other){
-            return this.strength;
+	protected int damageMulti(Character other) {
+		return 1;
+	}
+    public int damageDone(Character other, int multiplier){
+        return this.strength * multiplier;
     }
     
     // returns true if you succesfully flee, false otherwise
@@ -88,22 +120,6 @@ public class Character {
             health = health - hp;
     } 
     
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead
-    */
-
     public int encounter(Character other) {
         Scanner sc = new Scanner(System.in);
         if (other.flee(this)) {
@@ -190,6 +206,29 @@ public class Character {
         } 
         catch (Exception e) {
                 // do nothing here - it should never get run 
+        }
+    }
+    public void distributeStats() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(name + ", choose your stats:\n\nStrength affects health and the damage done by melee characters.\nDexterity affects accuracy.\nIntelligence affects the chance of fleeing and the damage done by magic users.\n\nWarriors start off with 10 strength, 6 dexterity, and 8 intelligence.\nWizards start off with 6 strength, 8 dexterity, and 10 intelligence.\nThieves start off with 8 strength, 10 dexterity, and 6 intelligence.\n\nYou have 8 more points to allocate.");
+        System.out.println("\nHow many points do you want to add to strength?");
+        System.out.print(">");
+        int str = sc.nextInt();
+        System.out.println("\nHow many points do you want to add to dexterity?");
+        System.out.print(">");
+        int dex = sc.nextInt();
+        System.out.println("\nHow many points do you want to add to intelligence?");
+        System.out.print(">");
+        int intel = sc.nextInt();
+        this.name = name;
+        strength = 10 + str;
+        dexterity = 6 + dex;
+        intelligence = 8 + intel;
+        System.out.println(String.format("\nStr: %d Dex: %d Int: %d\n\n",
+                                    strength, dexterity, intelligence));
+        if (dexterity + strength + intelligence > 32) {
+            System.out.println("You have added too many points, please try again.\n\n");
+            distributeStats();
         }
     }
 }

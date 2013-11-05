@@ -2,12 +2,12 @@ import java.util.*;
 import java.io.*;
 
 public class Game{
-    Random rand = new Random();
-	Scanner input = new Scanner(System.in);
-    /*
-	public void createAdv(String name, String type){
-		
+    public int encounter(Player plr, Enemy foe) {
+	//swing first, mf
+	Fight f = new Fight(plr,foe);
+        f.swing();
     }
+<<<<<<< HEAD
 	*/
 	
 	/*
@@ -48,4 +48,6 @@ public class Game{
 			
 		}
 	}
+=======
+>>>>>>> 3dd18cbf5825fd2d64428ec7f7cec12402343f92
 }

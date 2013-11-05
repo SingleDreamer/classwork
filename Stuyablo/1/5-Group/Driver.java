@@ -4,14 +4,11 @@ import java.io.*;
 
 public class Driver {
     public static void main(String[] args) {
-	Wizard w = new Wizard();
         playerCharacter p1 = new playerCharacter();
-
-	w.setCharacter(p1);
 	
-	/*
-       	NPC A = new NPC("Inimicus");
-	NPC B = new NPC("Flib");
+	NPC A = new Kracken("Flib");
+	
+	//	NPC B = new Necromancer("Inimicus");
 	Boolean play = true;
 	Scanner s = new Scanner(System.in);
 	while (play){
@@ -19,33 +16,33 @@ public class Driver {
 		while (p1.hp >= 0 && A.hp >=0){
 		    if (p1.dex >= A.dex){
 			System.out.println("your turn");
-			p1.turn(s.next());
+			p1.turn(s.next(),A);
 			A.turn();
 		    }
 		    else {
 			A.turn();
 			System.out.println("your turn");
-			p1.turn(s.next());
+			p1.turn(s.next(),A);
 		    }
 		}
 	    }
-	    else if (s.hasnext()){
-		if (s.next().upper().equals("W") && p1.y<8){
+	    else if (s.hasNext()){
+		if (s.next().toUpperCase().equals("W") && p1.y<8){
 		    p1.y = p1.y + 1;
 		}
-		else if (s.next().upper().equals("A") && p1.x>0){
+		else if (s.next().toUpperCase().equals("A") && p1.x>0){
 		    p1.x = p1.x - 1;
 		}
-		else if (s.next().upper().equals("S") && p1.y>0){
+		else if (s.next().toUpperCase().equals("S") && p1.y>0){
 		    p1.y = p1.y - 1;
 		}
-		else if (s.next().upper().equals("D") && p1.x<8){
+		else if (s.next().toUpperCase().equals("D") && p1.x<8){
 		    p1.x = p1.x + 1;
 		}
-		else if (s.next().upper().equals("QUIT") && p1.x<8){
+		else if (s.next().toUpperCase().equals("QUIT") && p1.x<8){
 		    play = false;
 		}
-		else if (s.next().upper().equals("HELP") && p1.x<8){
+		else if (s.next().toUpperCase().equals("HELP") && p1.x<8){
 		    System.out.println("Press W to go up");
 		    System.out.println("Press A to go left");
 		    System.out.println("Press S to go down");
@@ -56,7 +53,7 @@ public class Driver {
 		}
 	    }
 	}
-	*/
+	/*
 
 	System.out.println(" ");
 
@@ -67,6 +64,7 @@ public class Driver {
 	System.out.println(p1.getInt());
 	System.out.println(p1.getRole());
 	System.out.println(p1.getHP());
+	*/
     }
 
 }
