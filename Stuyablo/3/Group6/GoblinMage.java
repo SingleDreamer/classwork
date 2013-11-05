@@ -4,7 +4,7 @@ import java.math.*;
 
 public class GoblinMage extends Character {
 
-    public GoblinMage) {
+    public GoblinMage() {
 	int rand1 = (int)(Math.random() * 4);
 	int leftover = 8-rand1;
 
@@ -39,7 +39,8 @@ public class GoblinMage extends Character {
 	else {
 	    //hit
 	    System.out.println("The " + name + "showered you in fireballs!");
-	    //other.health = other.health - ((SOME AMOUNT))
+	    int damage = (int)(intelligence/4 + (Math.random() * 3)) - 1;
+	    other.health = other.health - damage;
 	}
     }
 }
