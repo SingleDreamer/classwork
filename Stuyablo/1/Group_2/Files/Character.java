@@ -98,16 +98,14 @@ public class Character {
 	return Math.sqrt(((other.x - x)*(other.x - x))+((other.y - y)*(other.y - y)));
     }
 
-    public void die(){
-	if (health <= 0)
-	    
+
 
     public void battle(Character other) {
 	boolean npcliving = true;
 	while (health >0){
 	    if (other.health <= 0){
 		npcliving = false;
-		system.out.println("Your opponent has died. Success!");
+		System.out.println("Your opponent has died. Success!");
 	    }
 	    while (npcliving){
 		Scanner sc;
@@ -183,7 +181,7 @@ public class Character {
 	System.out.println("Location: (" + x + "," + y + ")");
     }
 
-    public int attack(Character other, int range, int weapon, String type) {
+    public int attack(Character other, int range, int weapon, int type) {
 	int damage = 0;
 	double d = distance(other);
 	if (d  > range) {
@@ -228,7 +226,7 @@ public class Character {
 	}
     }
 
-    public int test(Character other, int range, int weapon, String type) {
+    public int test(Character other, int range, int weapon, int type) {
 	int damage = 0;
 	double d = distance(other);
 	if (d  > range) {
@@ -318,7 +316,7 @@ public class Character {
 	    turnscan = new Scanner(System.in);
 	    int choice = turnscan.nextInt();
 	    turnHelper(choice,c);
-	    if (health =< 0){
+	    if (health <= 0){
 		living = false;
 	    }
 	}
@@ -335,4 +333,5 @@ public class Character {
 	while (l){
 	    turn();
 	}
+    }
 }
