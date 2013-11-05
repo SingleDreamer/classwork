@@ -200,7 +200,7 @@ public class Character2 {
 	}
 
 	else {
-	    System.out.println("Your enemy has outwiled you. No running away!. He has also uninflicted 1 damage upon you.");
+	    System.out.println("Your enemy has outwilled you. No running away!. He has also inflicted 1 damage upon you.");
 	    this.setHealth(this.getHealth()-1);
 	    return false;
 	}
@@ -254,4 +254,47 @@ public class Character2 {
 	    }
 	}
     }
+    public int encounter(Character2 other) {
+	System.out.println("Enter 1 to flee, any other number to fight");
+            Scanner sc = new Scanner(System.in);
+	int response = sc.nextInt();
+	Random x = new Random();
+            
+	if (x.nextInt(100)>50 && other.flee(this)){ //randomizes if enemy tries to flee
+	    return 0;}
+        else if (response==1 && this.flee(other)){
+	    return 1;}
+        else{
+	    this.attack(other);
+	    if (other.getHealth()>0){
+		other.attack(this);
+		if (this.getHealth()<=0){
+		    return 2;}
+		else{
+		    return 5;}
+	    }
+	    else if (other.getHealth()<=0 && this.getHealth()<=0){
+		return 4;
+	    } 
+	    else{
+		return 3;}
+	}
+    }
+
+
+    public String getStatus() {
+        String attrib1=String.format("Str: %d Dex: %d Def: %d Chr: %d",
+                                     strength, dexterity, defense, charm);
+        String attrib2=String.format("Health: %d of %d",
+                                     health,maxhealth);
+        String whole=String.format("%s\n%s\n%s\n",
+                                   name,attrib1,attrib2);
+        return whole;
+    }
+
+
+    public String toString() {
+        return name;
+    }
+
 }

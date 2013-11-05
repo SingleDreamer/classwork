@@ -101,24 +101,24 @@ public class Character {
     }
 
     public void battle(Character c2, Character c1) {
-	while (health > 0 && c2.health > 0) {
-		if (this.dexterity >= c2.dexterity) {
-		    this.action(c1, c2);
+	while (c1.health > 0 && c2.health > 0) {
+		if (c1.dexterity >= c2.dexterity) {
+		    c1.action(c1, c2);
 		    c2.action(c2, c1);
-		    System.out.println(this.name + "'s hp: " + this.health);
+		    System.out.println(c1.name + "'s hp: " + c1.health);
 		    System.out.println(c2.name + "'s hp: " + c2.health);
 		}
 		else {
 		    c2.action(c2, c1);
 		    this.action(c1, c2);
 		    System.out.println(c2.name + "'s hp: " + c2.health);
-		    System.out.println(this.name + "'s hp: " + this.health);
+		    System.out.println(c1.name + "'s hp: " + c1.health);
 		}
 	}
-	if (health <= 0)
-	    System.out.println("You have died!");
+	if (c1.health <= 0)
+	    System.out.println(c1.name + " has died!");
 	else
-	    System.out.println("Your opponent has died!");
+	    System.out.println(c2.name + " has died!");
     }	
 
     //fight called in battle
@@ -149,7 +149,7 @@ public class Character {
 	}
 	else if (i == 2){
 	    System.out.println("You have made your enemy angry and are now being attacked!");
-	    //c.battle(this);
+	    c.battle(c, this);
 	}
 	else if (i == 3){
 	    System.out.println("Well, give nothing, get nothing!");
@@ -257,10 +257,15 @@ public class Character {
     public int command(Character c1, Character c2) {
 	int choice = 0;
 	if (c1.pc) {
+	    System.out.println("Enter 1 to attack, 2 to move, or 3 to flee");
+	    choice = sc.nextInt();
+	    
 	    while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
-		System.out.println("Enter 1 to attack, 2 to move, 3 to talk, or 4 to flee");
+		System.out.println(choice);
+		System.out.println("Enter 1 to attack, 2 to move, or 3 to flee");
 		choice = sc.nextInt();
 	    }
+	    
 	}
 	else
 	    choice = AI(c1,c2);
@@ -271,7 +276,7 @@ public class Character {
     public void action(Character c1, Character c2) {  //c1's turn
 	int moved = c1.movement;
 	boolean turn = true;
-	boolean talked = false;
+	//boolean talked = false;
 
 	while (turn && moved > 0) {
 	    int command = command(c1,c2);
@@ -291,19 +296,22 @@ public class Character {
 		    int direction;
 		    int distance = -1;
 		    System.out.println("Choose a direction to move in. 1 for north, 2 for northeast, 3 for east, 4 for south east, 5 for south, 6 for southwest, 7 for west, and 8 for northwest");
-		    while (!"1234678".contains(sc.next()))
-			System.out.println("That is not a valid option");
 		    direction = sc.nextInt();
-
+		    while (!("12345678".contains(""+direction))) {
+			System.out.println("That is not a valid option");
+			direction = sc.nextInt();
+		    }
+		    
 		    String range = "";
 		    for (int i = 0; i <= moved; i++) {
 			range = range + i; }
 		    System.out.println("Move how far? You can move up to " + moved + "yards");
+		    distance = sc.nextInt();
 		    while (distance < 0 || distance > moved) {
-			while (range.indexOf(sc.next()) == -1) {
+			while (range.indexOf(""+distance) == -1) {
 			    System.out.println("Move how far? You can move up to " + moved + "yards");
 			}
-			distance = sc.nextInt();
+			
 		    }
 		    moved = moved - move(direction,distance);
 		}
@@ -313,17 +321,23 @@ public class Character {
 		System.out.println(c1.name + "'s current location: " + c1.x + "," + c1.y);
 		break;
 
-	    case 3:
+		/*case 3:
 		if (talked)
 		    System.out.println(c1.name + " already tried talking");
 		else {
 		    talk(c2);
 		    talked = true;
 		}
-		break;
+		break;*/
 
-	    case 4:
-		flee(c2);
+	    case 3:
+		if(flee(c2)){
+		    System.out.println(c1 + " was able to flee!");
+		    turn();
+		}
+		else{
+		    System.out.println(c1 + " was unable to flee!");
+		}
 		break;
 	    }
 

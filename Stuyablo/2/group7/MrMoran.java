@@ -1,22 +1,19 @@
 import java.io.*;
 import java.util.*;
 
-public class Ogre extends Character {
-
-    public Ogre(String name) {
+public class MrMoran extends Character {
+    public MrMoran(String name) {
 	this.name = name;
 	Random r = new Random();
 	int str, dex, intel;
-	str = r.nextInt(8);
-	dex = r.nextInt(8 - str);
-	intel = 7 - str - dex;
+	str = r.nextInt(5);
+	dex = r.nextInt(5-str);
+	intel = 10 - str - dex;
 	strength = 10 + str;
 	dexterity = 6 + dex;
 	intelligence = 4 + intel;
-	maxhealth = strength * 10;
+	maxhealth = strength*10;
 	health = maxhealth;
+	
     }
-
-
-
 }
