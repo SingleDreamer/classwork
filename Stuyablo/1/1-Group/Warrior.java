@@ -23,7 +23,6 @@ public class Warrior extends Character{
         System.out.println("Press 1 to use your hammer");
         System.out.println("Press 2 to use your sword");
         System.out.println("Press 3 to use your bow and arrow");
-		System.out.println("Press 4 to go back to your options");
 
         Scanner sc=new Scanner(System.in);
         int answer=sc.nextInt();
@@ -86,15 +85,12 @@ public class Warrior extends Character{
                 System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
                 return super.attack(other);
             }
-			
-		//on second thought...
-		else if (answer == 4){
-			return super.encounter(other);
-		}
+		      
             else {
                 System.out.println(this.name + "'s attack failed!");
             }
         }
+
         else {
             System.out.println(this.name + "you, made a typo!");
         }
