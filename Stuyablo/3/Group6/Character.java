@@ -21,6 +21,7 @@ public class Character {
 	distance = 0;
 	name = "Unnamed Character";
 	charClass = "PC or NPC"; // I think.
+    }
  
     public void setHealth(int i) {
 	health = i;
@@ -102,8 +103,6 @@ public class Character {
 	return charClass;
     }
 
-
-
     public void attack(Character other) {
 	System.out.println(this.name + " tried to attack " + other.name + ".");
 	boolean hit;
@@ -111,7 +110,7 @@ public class Character {
 	if (this.dexterity > other.dexerity)
 	    hit = true;
 	else {
-	    if (this.dexterity > (r.nextInt(10) - 5 + this.dexterity)) // not sure this works
+	    if (this.dexterity > (r.nextInt(10) - 5 + this.dexterity))
 		hit = true;
 	    else
 		hit = false;
@@ -120,43 +119,41 @@ public class Character {
 	    System.out.println("Attack failed.");
 	if (hit == true) {
 	    System.out.println("Attack succeeded.");
-	    other.setHealth(other.health - this.strength/4); // this could use some work -- doesn't account for death of the opposing player
+	    other.setHealth(other.health - this.strength/4);
 	    System.out.println("Other's health has decreased to " + other.getHealth());
-	    // This whole method still needs work
+	}
     }
 
-
-
-    // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
-	// Only based on distance so far.  Want to incorporate dexterity?
-	if  (distance > (r.nextInt(10) - 5 + distance)) // not sure this works, either
+	if  (distance > (r.nextInt(10) - 5 + distance))
 	    return true;
 	else
 	    return false;
     }
 
-
-
-
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
     public int encounter(Character other) {
-	return 0;
+	if (0.5  > Math.random()) {
+	    boolean fleesuccess = other.flee();
+	    if (fleesuccess == true) {
+		other.experience += 1;
+		return 0;
+	    }
+	    if (fleesuccess == false)
+		return 1;
+	}
+	else {
+	    this.attack(other);
+	    if (other.health > 0)
+		other.attack(this);
+	}
+	if (this.health == 0 && other.health <= 0)
+	    return 4;
+	elseif (this.health == 0)
+	    return 2;
+	elseif (other.health == 0)
+	    return 3;
+	else
+	    return 5;
     }
 
 
