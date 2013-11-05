@@ -68,9 +68,9 @@ public class Character {
 		int chance = this.intelligence - other.intelligence;
 		if (chance <= 0) {
 			//gives the character at least 1/18 chance of fleeing
-			chance = 3;
+			chance = 0;
 		}
-		return x+y+z <= chance;
+		return x+y+z <= chance + 3;
     }
     
     public void loseHealth(int hp) {
