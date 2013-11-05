@@ -6,6 +6,11 @@ public class Character {
     protected int dexterity, strength, intelligence;
     protected int effDex, effStr, effInt; //Effective stats
     protected int experience;
+	
+	//I thought these were needed.
+	protected int level;
+	protected int statpt;
+	
     protected int gold;
     protected double x,y,distance;
     protected String name;
@@ -77,7 +82,11 @@ public class Character {
     }
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
-        return false;
+		int success = false;
+		if (this.roll(2, dexterity*2) >= effDex/2) {
+			success = true;
+		}
+        return success;
     }
 
 
