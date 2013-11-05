@@ -39,7 +39,13 @@ public class Warrior extends Character {
 		//if the PC is weaker than NPC, PC can flee
 		}
 
-	public void flee(Character other){
+	public void flee(){
+	    System.out.println(n + " fled. Cowardly actions have decreased EXP.");
+	    experience = experience - 1;
+	}
+
+	public int encounter(Character other){
+	    
 	    
 
 	
