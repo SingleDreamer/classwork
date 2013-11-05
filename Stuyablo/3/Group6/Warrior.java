@@ -4,18 +4,26 @@ import java.util.*;
 public class Warrior extends Character {
 
     public Warrior() {
-	dexterity = 6;
-	strength = 11;
+	Random r = new Random();
+	int j = 14;
+	int d = r.nextInt(j);
+	j = j - d;
+	int s = r.nextInt(j);
+	j = j - s;
+	int i = j;
+	dexterity = 4 + d;
+	strength = 10 + s;
 	health = strength;
-	intelligence = 7;
+	intelligence = 4 + i;
 	name = "Warrior";
 	charClass = "PC";
+	System.out.println(getStatus());
     }
 
     // add and edit encounter method so that the player has the option to try to flee or to attack (using Scanner)
 
     public void attack(Character other) {
-	System.out.println(this.name + " tried to attack " + other.name + ".");
+	System.out.println(this + " tried to attack " + other + ".");
 	boolean hitsuccess = this.roll();
 	if (hitsuccess == false) {
 	    System.out.println("Attack failed.");
@@ -32,9 +40,9 @@ public class Warrior extends Character {
 	    }
 	    else
 		other.setHealth(other.health - damage);
-	    System.out.println("Opponent's health has decreased to " + other.getHealth());
+	    System.out.println(other + "'s health has decreased to " + other.getHealth());
 	    this.experience += 1;
-	    System.out.println("Experience increased by 1 point.");
+	    System.out.println("You experience increased by 1 point.");
 	    System.out.println();	    
 	}
     }

@@ -4,9 +4,9 @@ public class Ogre extends Character{
     int healing;
     public Ogre{
 	strength=11;
-	dexterity=5;
+	dexterity=6;
 	intelligence=3;
-
+    }
 	
 	
 
