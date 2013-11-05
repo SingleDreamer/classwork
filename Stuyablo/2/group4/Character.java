@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Character {
     protected int health, maxhealth;
-    protected int dexterity, strength, intelligence;
+    protected int dexterity, maxDex, strength, maxStr, intelligence, maxInt;
     protected int experience;
     protected int gold;
     protected double x,y,distance;
@@ -19,7 +19,7 @@ public class Character {
 
     /* You have to provide other needed get/set methods */
     //Get Methods
-    public int getHealth() {
+    public int getHP() {
 	return health;
     }
     public int getDex() {
@@ -31,9 +31,27 @@ public class Character {
     public int getInt() {
 	return intelligence;
     }
-    public int getEx() {
+    public int getExp() {
 	return experience;
     }
+
+    //Set Methods
+     public int settHP(x) {
+	this.health = x;
+    }
+    public int getDex(x) {
+	this.dexterity=x;
+    }
+    public int getStrx(x) {
+	this.strength =x;
+    }
+    public int getInt(x) {
+	this.intelligence=x;
+    }
+    public int getExpx(x) {
+	this.experience=x;
+    }
+
 
     public void attack(Character other) {
         /* do the attack:
@@ -41,8 +59,13 @@ public class Character {
            all relavent variables
         */
 
-	random r = new Random();
-	if r*10
+	random dice1 = new Random() * 6;
+	random dice2 = new Random() * 6;
+	random dice3 = new Random() * 6;
+
+	if (dice1 + dice2 + dice3 > this.getDex) {
+	    this.attack(other)
+		}
     }
 
     // returns true if you succesfully flee, false otherwise
