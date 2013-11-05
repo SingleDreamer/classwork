@@ -2,8 +2,6 @@
 
 Period 1 - Group 4
 
-## Team Members
-
 * Benjamin Rothman
 * Brian ???
 * Eugene Lee
