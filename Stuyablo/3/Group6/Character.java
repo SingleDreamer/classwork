@@ -8,6 +8,7 @@ public class Character {
     protected double x, y, distance;
     protected String name, charClass;
 
+
     public Character() {
 	dexterity = 8;
 	strength = 8;
@@ -21,6 +22,7 @@ public class Character {
 	charClass = "PC or NPC";
     }
  
+
     public boolean roll() {
 	Random r1 = new Random();
 	Random r2 = new Random();
@@ -31,17 +33,29 @@ public class Character {
 	return (dexterity > (d1+d2+d3));
     }
 
+
     public void attack(Character other) {
 	System.out.println(this.name + " tried to attack " + other.name + ".");
 	boolean hitsuccess = this.roll();
 	if (hitsuccess == false)
 	    System.out.println("Attack failed.");
 	if (hitsuccess == true) {
+	    int damage = strength / 2; // damage is half that of strength
 	    System.out.println("Attack succeeded.");
-	    other.setHealth(other.health - this.strength/4);
-	    System.out.println("Other's health has decreased to " + other.getHealth());
+	    if (other.health <= damage) {
+		other.health = 0;
+		this.experience += other.experience;
+		System.out.println("Opponent defeated.  Experience increased by " + other.experience + "points.");
+	    }
+	    else
+		other.setHealth(other.health - damage);
+	    System.out.println("Opponent's health has decreased to " + other.getHealth());
+	    this.experience += 1;
+	    System.out.println("Experience increased by 1 point.");
+	    System.out.println();	    
 	}
     }
+
 
     public boolean flee(Character other) {
 	Random r = new Random();
@@ -51,9 +65,10 @@ public class Character {
 	    return false;
     }
 
+
     public int encounter(Character other) {
 	if (0.5  > Math.random()) {
-	    boolean fleesuccess = other.flee(this);
+	    boolean fleesuccess = other.flee(other);
 	    if (fleesuccess == true) {
 		other.experience += 1;
 		return 0;
