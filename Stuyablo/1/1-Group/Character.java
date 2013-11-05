@@ -113,16 +113,17 @@ public class Character {
     }
 
     //TAKE OUT LATER
-    public void talk(Character other){
+    public void talk1(Character other){
 	System.out.println("herro there");
     }
 
     //Something wrong with talk. Commenting out for now
-    /*<- take out
+
 
     public void talk(Character other){
 
 	Scanner sc = new Scanner(System.in);
+	Random r = new Random(); 
 	say ("you have chosen to talk!");
 	delay (2000);
         say ("type the number corresponding to your choice");
@@ -136,12 +137,11 @@ public class Character {
 	     " I bet you'd fit right in!");
         delay (1000);
         int answer = sc.nextInt(); 
-        boolean x = new nextBoolean ();
+        boolean x = r.nextBoolean ();
         if (answer == 1) {
 	    if (x) {
 		delay (1000); 
 		say ("Sure");
-		//end turn
 	    }        
 	    else {
 		delay (1000);
@@ -165,7 +165,6 @@ public class Character {
 	    if (x) {
 		delay (1000); 
 		say ("...you're a riot, kid. and an idiot");
-		//end turn
 	    }
 	    else {
 		delay (1000);
@@ -173,77 +172,7 @@ public class Character {
 		this.attack(other);
 	    }
         }
-        //1="Say something charming";
-        //2="Say something intimidating";
-        //3="Say something funny";
-        /*so on and so forth*/
-        /*RESPONSES*/
-        /*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
-
-    /* <-take out
-
-    	Scanner sc = new Scanner(System.in);
-    	say ("you have chosen to talk!");
-    	delay (2000);
-	say ("type the number corresponding to your choice");
-	delay (2000); 
-	say ("1. Hey big guy, you wanna go out for some drinks instead?");
-	delay (1000); 
-	say ("2. Please, don't you know who I am? I am the greatest swordsman in the East! " + 
-	"I've been training since I was 3! You don't have any chance of defeating me!" );
-	delay (1000);
-	say ("3. Didn't you know that they're having a body building competition in the next town?" +
-	" I bet you'd fit right in!");
-	delay (1000);
-	int answer = sc.nextInt(); 
-	boolean x = new nextBoolean ();
-	if (answer == 1) {
-		if (x) {
-			delay (1000); 
-			say ("Sure");
-			//end turn
-		}	
-		else {
-			delay (1000);
-			say ("no way you freak!"); 
-			this.attack(other);
-		}
-	}
-	if (answer == 2) {
-		if (x) {
-			delay (1000); 
-			say ("sh*t");
-			other.flee(this);
-		}
-		else {
-			delay (1000); 
-			say ("bullsh*it"); 
-			this.attack(other);
-		}
-	}
-	if (answer == 3) {
-		if (x) {
-			delay (1000); 
-			say ("...you're a riot, kid. and an idiot");
-			//end turn
-		}
-		else {
-			delay (1000);
-			say ("are you serious?");
-			this.attack(other);
-		}
-	}
-	//1="Say something charming";
-	//2="Say something intimidating";
-	//3="Say something funny";
-	/*so on and so forth*/
-	/*RESPONSES*/
-	/*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
-    //<-take out }
-
-    /*
-END HERE
-*/
+    }
     public int roll(){
 	
 	Random x = new Random();
