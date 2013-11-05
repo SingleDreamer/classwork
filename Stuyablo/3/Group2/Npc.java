@@ -4,14 +4,14 @@ import java.math.*;
 
 public class Npc extends Character {
 
-public Npc(String nm) {
+    public Npc(String nm, int lv) {
 	name = nm;
 	dexterity = 8;
-	strength = 8;
-	intellegence = 8;
-	level = 1;
+	strength = 4;
+	intellegence = 4;
+	level = lv;
 	ep = 0;
-	for (int i = 8; i > 0; i--) {
+	for (int i = 3 + lv; i > 0; i--) {
 	    Random r = new Random();
 	    int number = r.nextInt(3);
 	    if (number == 2)
@@ -23,9 +23,5 @@ public Npc(String nm) {
 		}
 	hp = strength;
 	mp = strength;		
-    }
-
-    public void die() {
-	System.out.println(name + " is dead.");
     }
 }
