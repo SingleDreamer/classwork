@@ -44,17 +44,6 @@ Sungwoo, Barak, Lawrence, Jason
         <td>x2 of last 5 levels</td>
     </tr>
 </table>
-    +------------+---------------------+
-    | stat total | exp needed          |
-    + ---------- + ------------------- +
-    | 36 or less | 125                 |
-    | 37 to 40   | 250                 |
-    | 41 to 45   | 1000                |
-    | 46 to 50   | 3000                |
-    | 51 to 55   | 5000                |
-    | 56 to 60   | 10000               |
-    | ...        | x2 of last 5 levels |
-    +------------+---------------------+
 
 
 #Combat System
