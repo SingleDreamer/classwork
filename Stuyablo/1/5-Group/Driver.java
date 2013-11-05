@@ -8,6 +8,7 @@ public class Driver {
 	System.out.println(p.getStr());
 	System.out.println(p.getDex());
 	System.out.println(p.getInt());
+	System.out.println(p.getRole());
 
     }
 
