@@ -71,7 +71,9 @@ public class Warrior extends Character{
 	}
 	else {
 	    System.out.println(this.name + "you, made a typo!");
+	    return this.attack(other); 
 	}
+	return 5;
     }
 }
 
