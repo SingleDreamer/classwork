@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Wizard extends Character{
 
     protected int mana;
@@ -41,11 +43,13 @@ public class Wizard extends Character{
 		mana = mana - 25;
 		return super.attack(other,6,8,1);
 	    case 3:
-		System.out.println(this.name + " casts a spell on " other.name);
+		System.out.println(this.name + " casts a spell on " + other.name);
 		mana = mana - 50;
 		return super.attack(other,3,14,1);
 	    default:
 		System.out.println("That is not an option");
+		Scanner scan = new Scanner(System.in);
+		type = scan.nextInt();
 	    }
 	}
     }
