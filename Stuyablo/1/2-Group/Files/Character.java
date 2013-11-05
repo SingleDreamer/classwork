@@ -257,10 +257,15 @@ public class Character {
     public int command(Character c1, Character c2) {
 	int choice = 0;
 	if (c1.pc) {
+	    System.out.println("Enter 1 to attack, 2 to move, 3 to talk, or 4 to flee");
+	    choice = sc.nextInt();
+	    
 	    while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+		System.out.println(choice);
 		System.out.println("Enter 1 to attack, 2 to move, 3 to talk, or 4 to flee");
 		choice = sc.nextInt();
 	    }
+	    
 	}
 	else
 	    choice = AI(c1,c2);
@@ -291,19 +296,22 @@ public class Character {
 		    int direction;
 		    int distance = -1;
 		    System.out.println("Choose a direction to move in. 1 for north, 2 for northeast, 3 for east, 4 for south east, 5 for south, 6 for southwest, 7 for west, and 8 for northwest");
-		    while (!"1234678".contains(sc.next()))
-			System.out.println("That is not a valid option");
 		    direction = sc.nextInt();
-
+		    String stringDirection = ""+direction;
+		    while (!("12345678".contains(stringDirection)))
+			System.out.println("That is not a valid option");
+		    
 		    String range = "";
 		    for (int i = 0; i <= moved; i++) {
 			range = range + i; }
 		    System.out.println("Move how far? You can move up to " + moved + "yards");
+		    distance = sc.nextInt();
+		    String stringDistance = "" + distance;
 		    while (distance < 0 || distance > moved) {
-			while (range.indexOf(sc.next()) == -1) {
+			while (range.indexOf(stringDistance) == -1) {
 			    System.out.println("Move how far? You can move up to " + moved + "yards");
 			}
-			distance = sc.nextInt();
+			
 		    }
 		    moved = moved - move(direction,distance);
 		}
@@ -323,7 +331,13 @@ public class Character {
 		break;
 
 	    case 4:
-		flee(c2);
+		if(flee(c2)){
+		    System.out.println(c1 + " was able to flee!");
+		    turn();
+		}
+		else{
+		    System.out.println(c1 + " was unable to flee!");
+		}
 		break;
 	    }
 
