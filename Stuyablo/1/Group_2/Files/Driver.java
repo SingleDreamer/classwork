@@ -17,6 +17,8 @@ public class Driver {
 
 //	System.out.println(wi.distance(wi2));
 //	c1.battle(wi);
+	System.out.println("_________________");
+	wa1.turn();
     }
 
 }
