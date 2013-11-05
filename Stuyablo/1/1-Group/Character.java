@@ -87,9 +87,13 @@ public class Character {
 	return name;
     }
 
+    public String getCharClass(){
+	return charClass;
+    }
+
     /* You have to provide other needed get/set methods */
 
-    public void delay (x) {
+    public void delay (int x) {
     	try {
 	    Thread.sleep(x);
 	}
@@ -98,6 +102,13 @@ public class Character {
 	} 
     }
 
+    //TAKE OUT LATER
+    public void talk(Character other){
+	System.out.println("herro there");
+    }
+
+    //Something wrong with talk. Commenting out for now
+    /*<- take out
 
     public void talk(Character other){
 
@@ -158,6 +169,9 @@ public class Character {
         /*so on and so forth*/
         /*RESPONSES*/
         /*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
+
+    /* <-take out
+
     	Scanner sc = new Scanner(System.in);
     	say ("you have chosen to talk!");
     	delay (2000);
@@ -215,7 +229,11 @@ public class Character {
 	/*so on and so forth*/
 	/*RESPONSES*/
 	/*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
-    }
+    //<-take out }
+
+    /*
+END HERE
+*/
     public int roll(){
 	
 	Random x = new Random();
