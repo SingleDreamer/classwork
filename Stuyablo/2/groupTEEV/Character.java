@@ -7,7 +7,7 @@ public class Character {
     protected int experience = 0, level = 1;
     protected int gold = 100;
     protected String name;
-    protected String charClass;
+    protected String charClass = "undecided";
  
     public int getHealth() {
 	return health;
@@ -49,14 +49,15 @@ public class Character {
 
 
     public String getStatus() {
+	String cclass = "Character Class: " + charClass;
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);
 	String attrib2=String.format("Health: %d of %d",
 				     health,maxhealth);
 	String attrib3=String.format("Gold: %d   Exp: %d",
 				     gold, experience);
-	String whole=String.format("%s\n%s\n%s\n%s\n",
-				   name,attrib1,attrib2,attrib3);
+	String whole=String.format("%s\n%s\n%s\n%s\n%s\n",
+				   name,cclass,attrib1,attrib2,attrib3);
 	return whole;
     }
 
@@ -122,14 +123,18 @@ public class Character {
 	    System.out.print ("\n" + "There are " + points + " points left");
 	}
 	if (points > 0){
-	    System.out.print ("\n" + "Due to failure to use all your points, they are now gone. -poof-");
-    }
+	    System.out.print ("\n" + "Due to failure to use all your points, they are now gone. -poof-" + "\n");
+	}
     }
 
-	    
+    public int getExperience(){
+	return experience;
+    }
 
     public String toString() {
 	return name;
     }
     
+
+
 }
