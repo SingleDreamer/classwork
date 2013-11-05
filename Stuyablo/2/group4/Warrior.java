@@ -8,12 +8,10 @@ public class Warrior extends Character {
 
     public Warrior(String n){
 	name=n;
-	health = 8;
-	dexterity = 8;
-	strength = 8;
-	intelligence = 8;
-
-	
+	strength=toChance()+100;
+	dexterity=((int)((toChance()*.01)*5))+15;
+	health=((int)((toChance()/100)*1000))+5000;
+	maxhealth=health;
     }
 
 }

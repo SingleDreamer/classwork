@@ -80,7 +80,7 @@ public class Character {
 	while (this.health > 0 || other.health > 0){
 	    if (dexterity <= roll()){
 		other.takedamage(this.strength);
-		say (other + " has lost " + strength + " health points");
+		say (other + " has lost " + strength + " health points and has "+other.getHealth()+" health points left");
 		try {
 		    Thread.sleep(2000);
 		}
@@ -90,7 +90,7 @@ public class Character {
 	    }
 	    if (other.dexterity <= other.roll()){
 		this.takedamage(other.strength);
-		say(name + " has lost " + other.strength + " health points");
+		say(name + " has lost " + other.strength + " health points and has "+this.getHealth()+" health points left");
 		try {
 		    Thread.sleep(2000);
 		}

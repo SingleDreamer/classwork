@@ -1,15 +1,27 @@
 import java.util.*;
 import java.io.*;
 
-public class Gargoyle extends Character {
+public class Goblin extends Character {
+  
 
-    public Gargoyle(){
+
+    public Goblin(){
 	//this is a constructor that sets up stats for gargoyle, a NPC! (randomly, of course)
 	Random r = new Random();
-	int strengthAdd = r.nextInt(7);
-	int dexAdd = 8 - strengthAdd;
-	int strength = 8 + strengthAdd;
-	int dexterity = 8 + dexAdd;
+	int strengthAdd = r.nextInt(3);
+	int dexAdd = 4 - strengthAdd;
+	int strength = 4 + strengthAdd;
+	int dexterity = 4 + dexAdd;
     }
+
+    public boolean attack(){
+	Random rand = new Random();
+	int dexRoll = rand.nextInt(18);
+	if (dexterity < = dexRoll){
+	    System.out.println("Goblin"+ 
+
+
+
+
 
 }

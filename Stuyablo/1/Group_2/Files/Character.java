@@ -11,6 +11,8 @@ public class Character {
     protected String name;
     protected double x;
     protected double y;
+    protected int skills;
+
 
     private Random r = new Random();
 
@@ -24,6 +26,7 @@ public class Character {
 	experience = e;
 	this.x = x;
 	this.y = y;
+	skills = 0;
     }
 
     public Character(String name, int limit) {
@@ -88,29 +91,40 @@ public class Character {
 	}
 	    
 	System.out.println("Your Character " + name + " has been created!");
-	init(name,50,100,str,dex,inte,0,0.0,0.0);
+	init(name,50,100,str,dex,inte,0,0.0,3.0);
     }
 
     public double distance(Character other) {
 	return Math.sqrt(((other.x - x)*(other.x - x))+((other.y - y)*(other.y - y)));
     }
 
+
+
     public void battle(Character other) {
-	Scanner sc;
-	if (this.dexterity >= other.dexterity) {
-	    System.out.println("Choose an attack: ");
-	    sc = new Scanner(System.in);
-	    other.health = other.health - this.attack(sc.nextInt(),other);
-	    this.health = this.health - other.attack(0,this);
-	    System.out.println(this.name + "'s hp: " + this.health);
-	    System.out.println(other.name + "'s hp: " + other.health); }
-	else {
-	    this.health = this.health - other.attack(0,this);
-	    System.out.println("Choose an attack: ");
-	    sc = new Scanner(System.in);
-	    other.health = other.health - this.attack(sc.nextInt(),other);
-	    System.out.println(other.name + "'s hp: " + other.health);
-	    System.out.println(this.name + "'s hp: " + this.health); }
+	boolean npcliving = true;
+	while (health >0){
+	    if (other.health <= 0){
+		npcliving = false;
+		System.out.println("Your opponent has died. Success!");
+	    }
+	    while (npcliving){
+		Scanner sc;
+		if (this.dexterity >= other.dexterity) {
+		    System.out.println("Choose an attack: ");
+		    sc = new Scanner(System.in);
+		    other.health = other.health - this.attack(sc.nextInt(),other);
+		    this.health = this.health - other.attack(AIAttack(other),this);
+		    System.out.println(this.name + "'s hp: " + this.health);
+		    System.out.println(other.name + "'s hp: " + other.health); }
+		else {
+		    this.health = this.health - other.attack(AIAttack(other),this);
+		    System.out.println("Choose an attack: ");
+		    sc = new Scanner(System.in);
+		    other.health = other.health - this.attack(sc.nextInt(),other);
+		    System.out.println(other.name + "'s hp: " + other.health);
+		    System.out.println(this.name + "'s hp: " + this.health); }
+	    }
+	}
     }
 
     //fight called in battle
@@ -126,9 +140,31 @@ public class Character {
 	return false;
     }
 
-    public String talk(){
+    public String talk(Character c){
+	Scanner sc1;
+	System.out.println("Choices: /n 1. Say something nice /n 2. Say something evil /n 3. Say nothing");
+	sc1 = new Scanner(System.in);
+	int choice = sc1.nextInt();
+	respond(choice,c);
+
 	return "Generic talk";
     }
+
+    public void respond(int i,Character c){
+	if (i == 1){
+	    health++;
+	    System.out.println("You have delighted your comrade and he awards you with extra health!");
+	}
+	else if (i == 2){
+	    System.out.println("You have made your enemy angry and are now being attacked!");
+	    c.battle(this);
+	}
+	else if (i == 3){
+	    System.out.println("Well, give nothing, get nothing!");
+		}
+    }
+	    
+	
 
     public String toString() {
 	return name;
@@ -144,13 +180,14 @@ public class Character {
 	System.out.println("Experience: " + experience);
 	System.out.println("Location: (" + x + "," + y + ")");
     }
-    public int attack(Character other, int range, int weapon, String type) {
+
+    public int attack(Character other, int range, int weapon, int type) {
 	int damage = 0;
 	double d = distance(other);
 	if (d  > range) {
 	    System.out.println(other.name + " is too far away."); 
-	    return damage; }
-	
+	    return damage;
+	}
 
 	Random r = new Random();
 	int rolls = ((1 + r.nextInt(6)) + (1 + r.nextInt(6)) + (1 + r.nextInt(6)));
@@ -164,37 +201,51 @@ public class Character {
 	    return damage;
 	}
 	else if (rolls == 4) {
-	    if (type.equals("physical"))
-	    damage = this.strength * 2;
-	    else if (type.equals("magic"))
-	    damage = this.intelligence * 2;
+	    if (type == 0)
+		damage = this.strength * 2;
+	    else if (type == 1)
+		damage = this.intelligence * 2;
 	    System.out.println(this.name + " critically hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else if (rolls == 3) {
-	    if (type.equals("physical"))
-	    damage = (this.strength + weapon) * 3;
-	    else if (type.equals("magic"))
-	    damage = (this.intelligence + weapon) * 3;
+	    if (type == 0)
+		damage = (this.strength + weapon) * 3;
+	    else if (type == 1)
+		damage = (this.intelligence + weapon) * 3;
 	    System.out.println(this.name + " devastated " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else {
-	    if (type.equals("physical"))
-	    damage = this.strength + weapon;
-	    else if (type.equals("magic"))
-	    damage = this.intelligence + weapon;
+	    if (type == 0)
+		damage = this.strength + weapon;
+	    else if (type == 1)
+		damage = this.intelligence + weapon;
 	    System.out.println(this.name + " hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
     }
-  
+
+    public int test(Character other, int range, int weapon, int type) {
+	int damage = 0;
+	double d = distance(other);
+	if (d  > range) {
+	    return damage; }
+	
+
+	if (type == 0)
+	damage = this.strength + weapon;
+	else if (type == 1)
+	damage = this.intelligence + weapon;
+	return damage;
+	}
+	
     public int attack(int type, Character other) {
 	int damage = 0;	
 	Random r = new Random();
 	double d = distance(other);
 
-	if (d > 1.5) {
+	if (d > 1) {
 	    System.out.println(other.name + " is too far away."); 
 	    return damage; }
 
@@ -222,6 +273,66 @@ public class Character {
 	    damage = this.strength;
 	    System.out.println(this.name + " hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
+	}
+    }
+
+    public int test(int type, Character other) {
+	int damage = 0;
+	double d = distance(other);
+
+	if (d > 1) {
+	    return damage; }
+
+	damage = this.strength;
+	return damage;
+	}
+
+   public int AIAttack(Character other) {
+	int input = 0;
+	int fdmg = 0;
+	for(int i = 0; i < this.skills; i++) {
+	int fdmg2 = this.test(i,other);
+	fdmg = Math.max(fdmg,fdmg2);
+	if (fdmg == fdmg2)
+	input = i; }
+	return input;
+   }
+
+    public void turnHelper(int h, Character c){
+	if (h == 1){
+	    battle(c);
+	}
+	if (h == 2){
+	    talk(c);
+	}
+    }
+
+    public void turn(){
+	boolean living = true;
+	while (living){
+	    Scanner turnscan;
+	    //Character c = new Character();
+	    Character c = new Character("Enemy",8);
+	    System.out.println("You have approached a character. Please choose whether to 1. Initiate battle or 2. Initiate conversation.");
+	    turnscan = new Scanner(System.in);
+	    int choice = turnscan.nextInt();
+	    turnHelper(choice,c);
+	    if (health <= 0){
+		living = false;
+	    }
+	}
+	if (!living){
+	    System.out.println("Oh no! You have died! The game is over. *cries*");
+	    }
+    }
+
+    public void play(){
+	boolean l = true;
+	if (health <= 0){
+	    l = false;
+	}
+	while (l){
+	    turn();
 	}
     }
 }

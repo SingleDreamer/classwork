@@ -1,4 +1,4 @@
-public class NPC extends Character {
+public class Ogre extends Character {
 
     public Character(){
 	name="Ogre";
