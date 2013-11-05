@@ -7,6 +7,8 @@ public class Warrior extends Character{
 	super(name);
     }
 
+   
+    
     public int attack (Character other){
 	//will add complicated x and y coor stuff later
 	/*attacks include hitting with:
@@ -25,64 +27,27 @@ public class Warrior extends Character{
 	//Hammer time
 	if (answer == 1){    
 	    //if x,y coors are <2 or something (something small)
-	    while (this.health > 0 || other.health > 0){
-		if (dexterity <= roll()){
-		    other.takedamage(this.strength);
-		    say (other + " has lost " + strength + " health points and has "+other.getHealth()+" health points left");
-		    try {
-			Thread.sleep(2000);
-		    }
-		    catch(Exception e){
-                
-		    } 
-            }
-            if (other.dexterity <= other.roll()){
-                this.takedamage(other.strength);
-                say(name + " has lost " + other.strength + " health points and has "+this.getHealth()+" health points left");
-                try {
-                    Thread.sleep(2000);
-                }
-                catch(Exception e){
-                
-                } 
-            }
-            if (this.health <= 5){
-                if (this.flee(other)){
-                    return 0;
-                }
-            }
-            if (other.health <= 5){
-                if (other.flee(this)){
-                    return 1;
-                }
-            }
-                
-	    }
-	    if (this.health <= 0){
-		this.die();
-		return 3;
-	    }
-	    else{
-		other.die();
-		return 2;
-	    }
+	    System.out.println(this.name + " whacked " + other.name +" with a hammer!");
+	    return super.attack(other);
 	}
 	
 
 	//Swords at the ready!
-	if (answer == 2){
-
+	else if (answer == 2){
+	    System.out.println(this.name + " slashed " + other.name + " with a sword!");
+	    return super.attack(other);
 	}
 
 	//*pew pew*
-	if (answer == 3){
-
+	else if (answer == 3){
+	    System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
+	    return super.attack(other);
 	}
 
-	return 0;
+	    else 
+		return super.attack(other);
 
     }
-
 }
 
 
