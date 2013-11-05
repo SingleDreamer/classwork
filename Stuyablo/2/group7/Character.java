@@ -28,7 +28,7 @@ public class Character {
     public double getDistance() {
 	return distance;
     }
-
+    /* THIS IS THE RANDOMIZED CONSTRUCTOR, COPY PASTE INTO THE SPECIFIC CLASS FILES AND TWEAK
     public Character(String name) {
     	Random r = new Random();
     	int str, dex, intel;
@@ -42,6 +42,7 @@ public class Character {
 		maxhealth = strength;
 		health = maxhealth;
     }
+    */
     public void attack(Character other) {
 		Random r = new Random();
 		//the dice rolls
@@ -137,6 +138,7 @@ public class Character {
     public void game(Character other) {
 		int options = 5, turn = 1;
 		while (options == 5) {
+			pause();
 			pause();
 			System.out.println("\n~~~\nTurn: "+ turn+ "\n" + this + "'s health: " + this.getHealth());
 			System.out.println(other + "'s health: " + other.getHealth());
