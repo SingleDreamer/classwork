@@ -108,7 +108,11 @@ public class playerCharacter extends Character {
     }
 
     public void turn (String a) {
+	Random r = new Random();
 	
+	if (a.equals("Flee")) {
+	    
+	}
     }
     
     public String getRole () {
