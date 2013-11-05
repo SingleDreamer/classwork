@@ -2,13 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class Game{
-    public int encounter(Player plr, Enemy foe) {
-	//swing first, mf
-	Fight f = new Fight(plr,foe);
-        f.swing();
-    }
-<<<<<<< HEAD
-	*/
 	
 	/*
 	turn() signifies the player's turn.
@@ -48,6 +41,4 @@ public class Game{
 			
 		}
 	}
-=======
->>>>>>> 3dd18cbf5825fd2d64428ec7f7cec12402343f92
 }

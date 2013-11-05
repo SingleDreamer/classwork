@@ -4,7 +4,6 @@ import java.io.*;
 public class Driver {
     public static void main(String[] args) {
         Game g = new Game();
-<<<<<<< HEAD
         Character c = new Character("Character 1");   
         System.out.println(c.getStatus());
         Character c2 = new Character("Character 2");
@@ -24,11 +23,5 @@ public class Driver {
         System.out.println("Continue (Type Yes or No): ");
         cont = sc.nextLine();
         }*/
-=======
-        Player p1 = new Player("Player");   
-	Enemy e = new Enemy();
-
-	g.encounter(p1,e);
->>>>>>> 3dd18cbf5825fd2d64428ec7f7cec12402343f92
     }
 } 
