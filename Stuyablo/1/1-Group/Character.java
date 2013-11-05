@@ -304,11 +304,11 @@ END HERE
         }
         if (this.health <= 0){
             this.die();
-            return 3;
+            return 2;
         }
         else{
             other.die();
-            return 2;
+            return 3;
         }
     }
             
@@ -343,7 +343,7 @@ END HERE
       if (other.health>0) 
         other.attack(this);
 
-      and then return 3 if this is dead, 2 if other is dead, 4 if both dead, 5 if none dead.
+      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
 
     */
     public int encounter(Character other) {
@@ -398,13 +398,12 @@ END HERE
             if (i == 1)
                 return 0;
             if (i == 2){
-                experience = experience + 1;
                 return 2;
             }
             else 
-                return i;
+                return 3;
         }
-        return 0;
+        return 5;
            
     }
 
