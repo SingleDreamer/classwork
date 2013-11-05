@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Character {
+    private int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
     protected int health, maxhealth, strength, intelligence, dexterity, experience, level;
     protected String name, characterClass;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
@@ -8,32 +9,18 @@ public class Character {
     // Constructors
     // This constructor is barebones and doesn't do jack. Someone just put it here to method overload the inherent version. I've one-lined it to clean it.
     public Character() {health = maxhealth = 1;strength = intelligence = dexterity = 0;experience = 0;level = 1;name = "No Name";characterClass = "No class";}
-    //    public setAttributes(int strength,int intelligence,int dexterity) {}
     // Important constructor - includes scanner functions to prompt for configuration
     public Character (String name, String characterClass) {
 	this.characterClass = characterClass;
 	System.out.println ("You are a " + getCharacterClass() + "\n");
 	this.name = name;
-	if (getCharacterClass().equals ("Warrior")) {
-	    this.strength = 12;
-	    this.intelligence = 4;
-	    this.dexterity = 8;
-	}
-	if (getCharacterClass().equals ("Wizard")) {
-	    this.strength = 4;
-	    this.intelligence = 12;
-	    this.dexterity = 8;
-	}
-	if (getCharacterClass().equals ("Thief")) {
-	    this.strength = 8;
-	    this.intelligence = 4;
-	    this.dexterity = 12;
-	}
+	if (getCharacterClass().equals ("Warrior")) {this.setAttributes(12,4,8);}
+	if (getCharacterClass().equals ("Wizard")) {this.setAttributes(4,12,8);}
+	if (getCharacterClass().equals ("Thief")) {this.setAttributes(8,4,12);}
 	Scanner scanner2 = new Scanner (System.in);
 	System.out.println ("\n" + "Now it's time to pick your attributes!" + "\n");
-	
 	try {
-	    Thread.sleep (2000); //how many millisecond to pause
+	    Thread.sleep (waittime); //how many millisecond to pause
 	} catch (Exception e) {
 
 	    // do nothing here -nada. Did you hear me? NOTHING.
@@ -43,7 +30,7 @@ public class Character {
 	System.out.println ("You have 8 points to assign among your three attributes: Strength, Dexterity and Intelligence." + "\n");
 
 	try {
-	    Thread.sleep (3000); //how many millisecond to pause
+	    Thread.sleep (waittime); //how many millisecond to pause
 	} catch (Exception e) {
 	    
 	    // do nothing here -nada. Did you hear me? NOTHING.
@@ -53,7 +40,7 @@ public class Character {
         System.out.println ("Strength will be your warrior's and theives attack stat, while Intelligence defines your Wizard's prowess in battle." + "\n");
 	
 	try {
-	    Thread.sleep (3500); //how many millisecond to pause
+	    Thread.sleep (waittime); //how many millisecond to pause
 	} catch (Exception e) {
 	    
 	    // do nothing here -nada. Did you hear me? NOTHING.
@@ -137,7 +124,7 @@ public class Character {
     public void setLevel(int level) {this.level = level;}
     public void setName(String name) {this.name = name;}
     public void setCharacterClass(String characterClass) {this.characterClass = characterClass;}
-    
+    public void setAttributes(int strength,int intelligence,int dexterity) {this.strength = strength;this.intelligence = intelligence;this.dexterity = dexterity;}    
     public String toString() {
 	return name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
 	    "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity;
