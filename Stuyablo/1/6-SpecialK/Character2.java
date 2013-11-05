@@ -25,8 +25,6 @@ public class Character2 {
 	init ("M Zams", "Moran", 12, 8, 12, 0);
     }
 
-
-
     public Character2(String name, String charType){
 	int s = 0;
 	 int dex = 0;
@@ -54,7 +52,7 @@ public class Character2 {
 	     s = 11;
 	     dex = 8;
 	     def = 13;
-	     mh = 20;
+	     mh = s;
 	     ch = 2;
 	}
 
@@ -106,7 +104,7 @@ public class Character2 {
 	    System.out.println("\n Maximum Health: " + s);
 	    System.out.println("\n Charm: " + ch);
 	    
-	    System.out.println("Select one to increment: 0 - Strength, 1 - Dexterity, 2 - Defense, 3 - Charm");
+	    System.out.println("Select one to increment: 0 - Strength, 1 - Dexterity, 2 - Defense, 3 - Charm, 4 - Random");
 
 	    inputs = (scanner.nextLine());
 
@@ -127,8 +125,27 @@ public class Character2 {
 		    ch += 1;
 		}
 
-	     i = i - 1;
-	    
+	     if (inputs.equals("4")){
+		 Random r1 = new Random();
+		 int k = r1.nextInt(4);
+		 if (k==0){
+		     s += 1;
+		     mh += 1;
+		 }
+
+		 if (k == 1){
+		     dex += 1;
+		 }
+
+		 if (k==2){
+		     def += 2;
+		 }
+		 if (k == 3){
+		     ch += 1;
+		 }
+	     }
+	     
+	      i = i - 1;
 	}
 	init(name, charType, s, dex, def, ch);
     }
