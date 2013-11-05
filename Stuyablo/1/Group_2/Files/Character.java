@@ -311,7 +311,8 @@ public class Character {
 	boolean living = true;
 	while (living){
 	    Scanner turnscan;
-	    Character c = new Character();
+	    //Character c = new Character();
+	    Character c = new Character("Enemy",8);
 	    System.out.println("You have approached a character. Please choose whether to 1. Initiate battle or 2. Initiate conversation.");
 	    turnscan = new Scanner(System.in);
 	    int choice = turnscan.nextInt();
