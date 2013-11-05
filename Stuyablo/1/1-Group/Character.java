@@ -13,6 +13,7 @@ public class Character {
     public Character(String n){
         name = n;
     }
+
     public void setAttributes(){
         int dex;
         int stren;
@@ -44,7 +45,7 @@ public class Character {
         System.out.println("Press 1 to be a WARRIOR");
         System.out.println("Press 2 to be a WIZARD");
         System.out.println("Press 3 to be an OGRE ");
-        System.out.println("Press 4 to be a THEIF");
+        System.out.println("Press 4 to be a THIEF");
 
         int answer=sc.nextInt();
 
@@ -62,7 +63,7 @@ public class Character {
                 answerChoice=true;
             }
             else if (answer == 4){
-                charClass="Theif";
+                charClass="Thief";
                 answerChoice=true;
             }
             else {
