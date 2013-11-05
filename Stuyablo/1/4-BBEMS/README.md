@@ -1,7 +1,6 @@
 # Stuyablo
 
-Period 1
-Group 4
+Period 1 - Group 4
 
 ## Team Members
 
@@ -38,9 +37,10 @@ You will then be able to assign 8 extra attribute points to your attributes at t
 ### Experience, Leveling, and other gamplay
 
 Experience: You gain 50 Experience Points from each enemy you kill.
-Leveling Up: You level up each 100 Experience Points. Every time you level up you get another 1 Attribute Points to spend.
-Fighting: You encounter an enemy. It tells you your stats and your opponents stats including health. You type A to attack. It tells you the results of the battle as well both characters current health and asks you to type A to attack again. Repeat until 1 party has 0 health.
 
+Leveling Up: You level up each 100 Experience Points. Every time you level up you get another 1 Attribute Points to spend.
+
+Fighting: You encounter an enemy. It tells you your stats and your opponents stats including health. You type A to attack. It tells you the results of the battle as well both characters current health and asks you to type A to attack again. Repeat until 1 party has 0 health.
 
 Maximum Health = Strength/Intelligence;
 
