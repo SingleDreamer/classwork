@@ -3,11 +3,7 @@ import java.util.*;
 
 public class Warrior extends Character {
 	public Warrior(String name) {
-		this.name = name;
-		super(String name, 10, 6, 8);
-		distributeStats();
-		maxhealth = strength * 10;
-		health = maxhealth;
+		super(name, 10, 6, 8, true);
     }
     public void attack(Character other) {
         Random r = new Random();

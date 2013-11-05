@@ -43,9 +43,9 @@ public class Character {
             distributeStats(baseStr, baseDex, baseInt);
         }
         else {
-    		eStr = r.nextInt(9);
-    		eDex = r.nextInt(9- eStr);
-    		eInt = 8 - eStr - eDex;
+    		int eStr = r.nextInt(9);
+    		int eDex = r.nextInt(9 - eStr);
+    		int eInt = 8 - eStr - eDex;
     		this.dexterity = baseDex + eDex;
     		this.strength = baseStr + eStr;
     		this.intelligence = baseInt + eInt;
@@ -74,7 +74,7 @@ public class Character {
                                     strength, dexterity, intelligence));
         if (dexterity + strength + intelligence > 32) {
             System.out.println("You have added too many points, please try again.\n\n");
-            distributeStats();
+            distributeStats(baseStr, baseDex, baseInt);
         }
     }
 
