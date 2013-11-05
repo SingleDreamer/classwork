@@ -6,6 +6,18 @@ public class Character {
     protected int hp, mp, ep, level, dexterity, strength, intellegence;
     protected String name;
 
+    public int getLevel() {
+	return level;
+    }
+
+    public int getDexterity() {
+	return dexterity;
+    }
+    
+    public int getHp() {
+	return hp;
+    }
+
     public Character() {
 	name = "Hans Gruber";
 	dexterity = 8;
@@ -82,20 +94,41 @@ public class Character {
     public String toString() {
 	return name;
     }
-    
-    public void die() {
-	System.out.println("you are dead");
-    }
 
-    public void changeHP(int n) {
+    public boolean encounter(Character other) {
+	return attack(other);
+    }
+    
+    
+    public boolean die() {
+	System.out.println(name + " is dead.");
+	return false;
+    }
+    
+
+
+    public boolean changeHP(int n) {
 	if (hp > n) {
 	    hp = hp - n;
+	    return true;
 	}
 	else 
-	    die();
+	    return die();
     }
-    public String attack(Character other) {
-	return "Generic attack";
+    public boolean attack(Character other) {
+	try {
+	    Thread.sleep(1000);
+	} catch(InterruptedException ex) {
+	    Thread.currentThread().interrupt();
+	}
+	if (roll()) {
+	    System.out.println(name + " deals " + strength/3 + " damage!");
+	    return other.changeHP(strength / 3);
+	}
+	else {
+	    System.out.println(name + "'s attack misses!");
+	    return true;
+	}
     }
 
     

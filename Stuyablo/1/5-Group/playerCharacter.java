@@ -4,6 +4,7 @@ import java.util.*;
 public class playerCharacter extends Character {
     protected String role; 
     protected double x,y;
+    protected Character charac;
 
     public playerCharacter () {
 	String name;
@@ -112,8 +113,11 @@ public class playerCharacter extends Character {
     // TURN
 
     public void turn (String a) {
+	Scanner s = new Scanner(System.in);
 	Random r = new Random();
-	
+	Warrior w = new Warrior();
+	Wizard wi = new Wizard();
+
 	if (a.equals("Flee")) {
 	    if ((r.nextInt(6) + r.nextInt(6) + r.nextInt(6)) > 12) {
 		System.out.println("You have fleed from combat");
@@ -121,18 +125,47 @@ public class playerCharacter extends Character {
 	}
 	else if (a.equals("Attack")) {
 	    if (role.equals("Warrior")) {
-		// Warrior Stuff
+	        
+	        System.out.println("1. Basic Attack ");
+		System.out.println("2. Triple Strike ");
+		System.out.println("3. Critical Hit ");
+	        System.out.println("What do you want to do? ");
+		int t = s.nextInt();
+		
+		if (t==1) {
+		    w.basicAttack(charac);
+		}
+		else if (t==2) {
+		    w.tripleStrike(charac);
+		}
+		else if (t==3) {
+		    w.critHit(charac);
+		}
+		else {
+		    System.out.println("");
+		}
 	    }
 
 	    if (role.equals("Wizard")) {
 
 	        System.out.println("1. Basic Attack ");
-	        System.out.println("2. Flee ");
-	        System.out.println("3. Heal ");
-		System.out.println("4. Fireball ");
-		System.out.println("5. Lightning Strike ");
+		System.out.println("2. Fireball ");
+		System.out.println("3. Lightning Strike ");
 	        System.out.println("What do you want to do? ");
-
+		int t = s.nextInt();
+		
+		if (t==1) {
+		    wi.basicAttack(charac);
+		}
+		else if (t==2) {
+		    wi.Fireball(charac);
+		}
+		else if (t==3) {
+		    wi.Lightning(charac);
+		}
+		else {
+		    System.out.println("");
+		}
 
 	    }
 	}
@@ -156,6 +189,9 @@ public class playerCharacter extends Character {
     }
     public String getHP() {
 	return "Your current Health is " + hp;
+    }
+    public void setCharacter(Character c) {
+	charac = c;
     }
 
 }
