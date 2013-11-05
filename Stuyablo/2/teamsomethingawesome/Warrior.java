@@ -11,6 +11,13 @@ public class Warrior extends Character{
 	charClass = "Warrior";
 	damage = strength;
     }
+    public Warrior(String name, int strAdd, int intAdd, int dexAdd) {
+        experience=0;
+        gold=0;
+        strength=8+strAdd;
+        intelligence=8+intAdd;
+        dexterity=8+dexAdd;
+    }
     public void attack(Character other) {
 	Random r=new Random();
 	int roll=r.nextInt(18); /*three six-sided die roll implementation by Ma\
