@@ -1,0 +1,3 @@
+public Warrior extends Player{
+    
+}

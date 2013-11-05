@@ -3,15 +3,23 @@
 import java.io.*;
 import java.util.*;
 
-public class Player extends Character {
+public class Warrior extends Character {
 
 
-    public Player(String n){
+    public Warrior(String n){  //Constructor to set up crap
 	name=n;
-	strength=toChance()+100;
-	dexterity=((int)((toChance()*.01)*5))+15;
-	health=((int)((toChance()/100)*1000))+5000;
-	maxhealth=health;
+	setHP = 8;
+	setStr = 8;
+	setInt = 8;
+	setDex = 8;
     }
-
+    
+    public void attack(Character other) {
+        
+	    
+	    
+	    
+	}
+	
+    }
 }
