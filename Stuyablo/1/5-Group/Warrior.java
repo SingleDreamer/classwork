@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Warrior extends playerCharacter{
-    private random rand = new Random();
+    private Random rand = new Random();
 
     public void basicAttack (Character c){
 	int x = 3 + rand.nextint(6) + rand.nextint(6) + rand.nextint(6);
