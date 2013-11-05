@@ -1,7 +1,6 @@
-import java.io.*;
 import java.util.*;
 
-public class Wizard extends Player{
+public class Wizard extends Character {
     String name = new String();
     public Wizard ( String n ) {
 	name = n;
