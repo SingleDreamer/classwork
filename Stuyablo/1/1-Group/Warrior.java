@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Warrior extends Character{
- 
+    
     public Warrior(String name){
 	super(name);
     }
@@ -10,6 +10,9 @@ public class Warrior extends Character{
    
     
     public int attack (Character other){
+	int[] dice1={1,2,3,4,5,6};
+	int[] dice2={1,2,3,4,5,6};
+	int[] dice3={1,2,3,4,5,6};
 	//will add complicated x and y coor stuff later
 	/*attacks include hitting with:
 	  hammer(close range)
@@ -25,35 +28,52 @@ public class Warrior extends Character{
 	int answer=sc.nextInt();
 
 	//Hammer time
-	if (answer == 1){    
+	if (answer == 1) {
+	    int a=(dice1[new Random().nextInt(dice1.length)]);
+	    int b=(dice1[new Random().nextInt(dice1.length)]);
+	    int c=(dice1[new Random().nextInt(dice1.length)]);
+	    if ((a+b+c)<this.dexterity) {
 	    //if x,y coors are <2 or something (something small)
-	    System.out.println(this.name + " whacked " + other.name +" with a hammer!");
+		System.out.println(this.name + " whacked " + other.name +" with a hammer!");
 	    return super.attack(other);
+	    }
+	    else {
+		System.out.println(this.name + "'s attack failed!");
+	    }
 	}
-	
-
+     
 	//Swords at the ready!
 	else if (answer == 2){
-	    System.out.println(this.name + " slashed " + other.name + " with a sword!");
-	    return super.attack(other);
+	    int a=(dice1[new Random().nextInt(dice1.length)]);
+	    int b=(dice1[new Random().nextInt(dice1.length)]);
+	    int c=(dice1[new Random().nextInt(dice1.length)]);
+	    if ((a+b+c)<this.dexterity) {
+		System.out.println(this.name + " slashed " + other.name + " with a sword!");
+		return super.attack(other);
+	    }
+	    else {
+	       System.out.println(this.name + "'s attack failed!");
+	    }
 	}
 
 	//*pew pew*
 	else if (answer == 3){
-	    System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
-	    return super.attack(other);
-	}
-
-	    else 
+	    int a=(dice1[new Random().nextInt(dice1.length)]);
+	    int b=(dice1[new Random().nextInt(dice1.length)]);
+	    int c=(dice1[new Random().nextInt(dice1.length)]);
+	    if ((a+b+c)<this.dexterity) {
+		System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
 		return super.attack(other);
-
+	    }
+	    else {
+		System.out.println(this.name + "'s attack failed!");
+	    }
+	}
+	else {
+	    System.out.println(this.name + "you, made a typo!");
+	}
     }
 }
-
-
-
-
-
 
 
 
