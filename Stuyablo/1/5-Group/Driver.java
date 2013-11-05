@@ -4,14 +4,11 @@ import java.io.*;
 
 public class Driver {
     public static void main(String[] args) {
-	Wizard w = new Wizard();
         playerCharacter p1 = new playerCharacter();
-
-	w.setCharacter(p1);
 	
 	/*
-       	NPC A = new NPC("Inimicus");
-	NPC B = new NPC("Flib");
+       	NPC A = new Necromancer("Inimicus");
+	NPC B = new Kracken("Flib");
 	Boolean play = true;
 	Scanner s = new Scanner(System.in);
 	while (play){
