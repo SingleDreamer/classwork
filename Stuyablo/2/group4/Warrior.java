@@ -3,10 +3,10 @@
 import java.io.*;
 import java.util.*;
 
-public class Player extends Character {
+public class Warrior extends Character {
 
 
-    public Player(String n){
+    public Warrior(String n){
 	name=n;
 	strength=toChance()+100;
 	dexterity=((int)((toChance()*.01)*5))+15;
