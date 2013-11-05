@@ -34,6 +34,13 @@ public class Character {
 	strength=stren+8;
 	intelligence=intell+8;
     }
+    
+    public String chooseClass(){
+    	System.out.println("Press 1 to be a WARRIOR");
+    	System.out.println("Press 2 to be a WIZARD");
+    	System.out.println("Press 3 to be an OGRE ");
+    	System.out.println("Press 4 to be a THEIF");
+    	}
  
     public int getHealth() {
         return health;
@@ -280,7 +287,7 @@ public class Character {
                                      experience,health,maxhealth);
         String locale = String.format("x: %5.2f y: %5.2f",x,y);
         String whole=String.format("%s\n%s\n%s\n%s\n",
-                                   name,attrib1,attrib2,locale);
+                                   name,charClass,attrib1,attrib2,locale);
         return whole;
     }
 
