@@ -6,21 +6,22 @@ public class Driver {
     public static void main(String[] args) {
         playerCharacter p1 = new playerCharacter();
 	
-	NPC A = new Kracken("Flib");
+	Kracken A = new Kracken("Flib",p1.lvl);
 	
 	//	NPC B = new Necromancer("Inimicus");
 	Boolean play = true;
 	Scanner s = new Scanner(System.in);
 	while (play){
-	    if (math.abs(p1.x - A.x) == 1 || math.abs(p1.y - A.y) == 1){
+	    System.out.println(p1.x + ", " + p1.y);
+	    if (Math.abs(p1.x - A.x) == 1 || Math.abs(p1.y - A.y) == 1){
 		while (p1.hp >= 0 && A.hp >=0){
 		    if (p1.dex >= A.dex){
 			System.out.println("your turn");
 			p1.turn(s.next(),A);
-			A.turn();
+			A.turn(p1);
 		    }
 		    else {
-			A.turn();
+			A.turn(p1);
 			System.out.println("your turn");
 			p1.turn(s.next(),A);
 		    }

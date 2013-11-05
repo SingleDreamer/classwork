@@ -57,7 +57,7 @@ public class NPC extends Character{
 	def = 10;
     }
     
-    public void attack (Character other, String type){
+    public void attack (playerCharacter other, String type){
 	int x = 0;
 	if (type.equals("magic")){
 	    x = intl - other.def;

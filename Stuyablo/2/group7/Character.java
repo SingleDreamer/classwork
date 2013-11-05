@@ -53,7 +53,7 @@ public class Character {
     	this.maxhealth = this.strength * 10;
     	this.health = this.maxhealth;
 	}
-	
+
     public void distributeStats(int baseStr, int baseDex, int baseInt) {
         Scanner sc = new Scanner(System.in);
         System.out.println(name + ", choose your stats:\n\nStrength affects health and the damage done by melee characters.\nDexterity affects accuracy.\nIntelligence affects the chance of fleeing and the damage done by magic users.\n\nWarriors start off with 10 strength, 6 dexterity, and 8 intelligence.\nWizards start off with 6 strength, 8 dexterity, and 10 intelligence.\nThieves start off with 8 strength, 10 dexterity, and 6 intelligence.\n\nYou have 8 more points to allocate.");
@@ -77,6 +77,8 @@ public class Character {
             distributeStats();
         }
     }
+
+
     public void attack(Character other) {
                 Random r = new Random();
                 //the dice rolls
