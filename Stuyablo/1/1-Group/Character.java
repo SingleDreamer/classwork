@@ -83,6 +83,10 @@ public class Character {
         return health;
     }
 
+    public String getName(){
+	return name;
+    }
+
     /* You have to provide other needed get/set methods */
 
     public void delay (x) {
