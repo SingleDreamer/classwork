@@ -50,10 +50,10 @@ public class Character {
 		    //needs damage calculator!
 		    int dmg = damageDone(other);
 		    other.loseHealth(dmg);
-		    System.out.println(name + " did " + dmg + " damage to " + other + "!");
+		    System.out.println("\n" + name + " did " + dmg + " damage to " + other + "!");
 		}
 		else {
-		    System.out.println(name + " missed!");
+		    System.out.println("\n" + name + " missed!");
 		}
     }
     
@@ -64,13 +64,15 @@ public class Character {
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
 		Random r = new Random();
+		boolean flee = false;
 		int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
 		int chance = this.intelligence - other.intelligence;
 		if (chance <= 0) {
 			//gives the character at least 1/18 chance of fleeing
 			chance = 0;
 		}
-		return x+y+z <= chance + 3;
+		flee = x+y+z <= chance + 3;
+		return flee;
     }
     
     public void loseHealth(int hp) {
@@ -98,47 +100,61 @@ public class Character {
 	if (other.flee(this)) {
 	    return 0;
 	}
-	System.out.println("1 - attack \n2 - flee");
+	else {
+		System.out.println("\n" + other + " tried to flee, but failed.");
+	}
+	pause();
+	System.out.println("\n" + this + "\n1 - Attack \n2 - Flee");
+	System.out.print("Enter your choice: ");
 	String option = sc.nextLine();
+	pause();
 	if (option.equals("2")) {
 	    if (this.flee(other)){
 		    return 1;
 		}
+		else {
+			System.out.println("\n" + this + " tried to flee, but failed."); 
+		}
 	}
 	else if (option.equals("1")){
 	    this.attack(other);
+	    pause();
 	    if (other.health>0) {
-		other.attack(this);
-		if (this.health<=0) {
-		    return 2;
-		}	
+			other.attack(this);
+			if (this.health<=0) {
+			    return 2;
+			}	
 	    }
 	    else {
-		return 3;
+			return 3;
 	    }
 	    return 5;
 	}
-	return -1;
+	return 5;
     }
 	
     //actually runs game, calls on encounter multiple times
     public void game(Character other) {
-	int options = 5;
-	while (options == 5) {
-	    options = encounter(other);
-	}
-	if (options == 0) {
-	    System.out.println(other + " fled!");
-	}
-	else if (options == 1) {
-	    System.out.println(this + " fled!");
-	}
-	else if (options == 2) {
-	    System.out.println(other + " died!");
-	}
-	else if (options == 3) {
-	    System.out.println(this + " died!");
-	}
+		int options = 5, turn = 1;
+		while (options == 5) {
+			pause();
+			System.out.println("\n~~~\nTurn: "+ turn+ "\n" + this + "'s health: " + this.getHealth());
+			System.out.println(other + "'s health: " + other.getHealth());
+		    options = encounter(other);
+		    turn = turn + 1;
+		}
+		if (options == 0) {
+		    System.out.println("\n" + other + " fled!");
+		}
+		else if (options == 1) {
+		    System.out.println("\n" + this + " fled!");
+		}
+		else if (options == 2) {
+		    System.out.println("\n" + this + " died!");
+		}
+		else if (options == 3) {
+		    System.out.println("\n" + other + " died!");
+		}
     }
 	    
 	    
@@ -158,4 +174,12 @@ public class Character {
 	return name;
     }
 
+    public void pause() {
+    	try {
+            Thread.sleep(500); // pause for that many milliseconds
+        } 
+        catch (Exception e) {
+                // do nothing here - it should never get run 
+        }
+    }
 }
