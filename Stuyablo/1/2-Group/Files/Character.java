@@ -173,7 +173,7 @@ public class Character {
 	System.out.println("Location: (" + x + "," + y + ")");
     }
 
-    public int attack(Character other, int range, int weapon, String type) {
+    public int attack(Character other, int range, int weapon, int type) {
 	int damage = 0;
 	double d = distance(other);
 	if (d  > range) {
@@ -193,41 +193,43 @@ public class Character {
 	    return damage;
 	}
 	else if (rolls == 4) {
-	    if (type.equals("physical"))
+	    if (type == 0)
 		damage = this.strength * 2;
-	    else if (type.equals("magic"))
+	    else if (type == 1)
 		damage = this.intelligence * 2;
 	    System.out.println(this.name + " critically hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else if (rolls == 3) {
-	    if (type.equals("physical"))
+	    if (type == 0)
 		damage = (this.strength + weapon) * 3;
-	    else if (type.equals("magic"))
+	    else if (type == 1)
 		damage = (this.intelligence + weapon) * 3;
 	    System.out.println(this.name + " devastated " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else {
-	    if (type.equals("physical"))
+	    if (type == 0)
 		damage = this.strength + weapon;
-	    else if (type.equals("magic"))
+	    else if (type == 1)
 		damage = this.intelligence + weapon;
 	    System.out.println(this.name + " hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
     }
 
-    public int test(Character other, int range, int weapon, String type) {
+    public int attack(int a, Character b) {return 0;} //Will be overridden
+
+    public int test(Character other, int range, int weapon, int type) {
 	int damage = 0;
 	double d = distance(other);
 	if (d  > range) {
 	    return damage; }
 	
 
-	if (type.equals("physical"))
+	if (type == 0)
 	    damage = this.strength + weapon;
-	else if (type.equals("magic"))
+	else if (type == 1)
 	    damage = this.intelligence + weapon;
 	return damage;
     }
@@ -296,9 +298,8 @@ public class Character {
 		    int direction;
 		    int distance = -1;
 		    System.out.println("Choose a direction to move in. 1 for north, 2 for northeast, 3 for east, 4 for south east, 5 for south, 6 for southwest, 7 for west, and 8 for northwest");
-		    while (sc.nextLine() !in "12345678") {
-			System.out.println("Choose a direction to move in. 1 for north, 2 for northeast, 3 for east, 4 for south east, 5 for south, 6 for southwest, 7 for west, and 8 for northwest");
-		    } 
+		    while (!"1234678".contains(sc.nextLine()))
+			System.out.println("That is not a valid option");
 		    direction = sc.nextInt();
 
 		    String range = "";

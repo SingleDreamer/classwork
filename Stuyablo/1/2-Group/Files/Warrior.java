@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Warrior  extends Character {
 
     public Warrior(String name, int limit) {
@@ -26,6 +28,8 @@ public class Warrior  extends Character {
 	    }
 	    else
 		System.out.println("That is not an option");
+		Scanner scan = new Scanner(System.in);
+		type = scan.nextInt();
 	}
     }
 
