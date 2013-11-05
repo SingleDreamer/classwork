@@ -4,13 +4,13 @@ import java.util.*;
 public class Driver {
     public static void main(String[] args) {
     	Scanner sc = new Scanner(System.in);
-    	System.out.print("Enter your name: ");
+    	System.out.print("\nEnter your name: ");
     	String name = sc.nextLine();
     	System.out.println("\nChoose your class:\n\nWarrior\nWizard\nThief\n");
     	String pClass = sc.nextLine();
     	Character c1 = new Character();
     	if (pClass.equals("Warrior")) {
-    		System.out.println("You are now a warrior!");
+    		System.out.println("\nYou are now a warrior!\n");
     		c1 = new Warrior(name);
     	}
     	/* add in once we make these classes
@@ -23,8 +23,11 @@ public class Driver {
 			c1 = new Thief(name);
 		}
 		*/
-
-		Character c2 = new Ogre("An Ogre");
+		else {
+			System.out.println("\nInvalid class, defaulting to Warrior.\n");
+			c1 = new Warrior(name);
+		}
+		Character c2 = new Ogre("The ogre");
 		c1.game(c2);
     }
 }

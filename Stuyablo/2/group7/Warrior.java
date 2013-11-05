@@ -24,7 +24,7 @@ public class Warrior extends Character {
 		System.out.println(String.format("Str: %d Dex: %d Int: %d\n\n",
 				     				strength, dexterity, intelligence));
 		if (dexterity + strength + intelligence > 32) {
-			System.out.println("\nYou have added too many points, please try again.\n\n");
+			System.out.println("You have added too many points, please try again.\n\n");
 			distributeStats();
 		}
     }

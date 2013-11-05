@@ -26,7 +26,7 @@ public class Character {
 	experience = 0; 
 	gold = 0;
 	//distance = 0;
-	name = "Unnamed Character";
+	name = "Default Character";
 	charClass = "PC or NPC";
     }
 
@@ -100,7 +100,7 @@ public class Character {
 	    System.out.println(this + " tried to flee.");
 	    boolean fleesuccess = other.flee(other);
 	    if (fleesuccess == true) {
-		other.experience += 1;
+		this.experience += 1;
 		System.out.println("Fleed successfully.");
 		System.out.println();
 		return 0;
@@ -146,7 +146,7 @@ public class Character {
 	String attrib2=String.format("Exp: %d Health: %d of %d",
 				     experience,health,maxhealth);
 	//String locale = String.format("x: %5.2f y: %5.2f",x,y);
-	String whole=String.format("%s\n%s\n%s\n",
+	String whole=String.format("\t%s\n\t%s\n\t%s\n",
 				   name,attrib1,attrib2);//locale);
 	return whole;
     }

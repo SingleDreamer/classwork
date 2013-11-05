@@ -1,6 +1,6 @@
 public class Driver {
     public static void main(String[] args) {
-	Character c = new Character();
+	Character2 c = new Character2();
 	System.out.println(c.getStatus());
     }
 }
