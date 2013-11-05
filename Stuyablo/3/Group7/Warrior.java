@@ -2,16 +2,21 @@ import java.util.*;
 import java.io.*;
 
 public class Warrior extends Character {
+    String name = new String();
+    Scanner sc = new Scanner(System.in);
+    //is this right??
 
-    public Warrior(){
+    public Warrior(String n){
+	name = n;
 	dexterity = 8;
-	health = strength = 8;
-	experience = intelligence = 8;
-	maxhealth = 16;
-	gold = 8;
-	name = "Warrior";
-	charClass = "PC";
+	health = 10;
+	maxhealth = 50;
+	experience = 8;
+	//temporary values; might need to add new variables
     }
 
-    public void attack(Charater other){
+    public void attack(){
+        
+	
+
 	
