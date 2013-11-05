@@ -113,18 +113,30 @@ public class Character {
     }
 
     //TAKE OUT LATER
+<<<<<<< HEAD
     public void talk(Character other){
         System.out.println("herro there");
+=======
+    public void talk1(Character other){
+	System.out.println("herro there");
+>>>>>>> 0dae961b1c60fa8e12afe889dce31c7cd558eaf0
     }
 
     //Something wrong with talk. Commenting out for now
-    /*<- take out
+
 
     public void talk(Character other){
 
+<<<<<<< HEAD
         Scanner sc = new Scanner(System.in);
         say ("you have chosen to talk!");
         delay (2000);
+=======
+	Scanner sc = new Scanner(System.in);
+	Random r = new Random(); 
+	say ("you have chosen to talk!");
+	delay (2000);
+>>>>>>> 0dae961b1c60fa8e12afe889dce31c7cd558eaf0
         say ("type the number corresponding to your choice");
         delay (2000); 
         say ("1. Hey big guy, you wanna go out for some drinks instead?");
@@ -136,8 +148,9 @@ public class Character {
              " I bet you'd fit right in!");
         delay (1000);
         int answer = sc.nextInt(); 
-        boolean x = new nextBoolean ();
+        boolean x = r.nextBoolean ();
         if (answer == 1) {
+<<<<<<< HEAD
             if (x) {
                 delay (1000); 
                 say ("Sure");
@@ -148,6 +161,17 @@ public class Character {
                 say ("no way you freak!"); 
                 this.attack(other);
             }
+=======
+	    if (x) {
+		delay (1000); 
+		say ("Sure");
+	    }        
+	    else {
+		delay (1000);
+		say ("no way you freak!"); 
+		this.attack(other);
+	    }
+>>>>>>> 0dae961b1c60fa8e12afe889dce31c7cd558eaf0
         }
         if (answer == 2) {
             if (x) {
@@ -162,6 +186,7 @@ public class Character {
             }
         }
         if (answer == 3) {
+<<<<<<< HEAD
             if (x) {
                 delay (1000); 
                 say ("...you're a riot, kid. and an idiot");
@@ -244,6 +269,19 @@ public class Character {
     /*
 END HERE
 */
+=======
+	    if (x) {
+		delay (1000); 
+		say ("...you're a riot, kid. and an idiot");
+	    }
+	    else {
+		delay (1000);
+		say ("are you serious?");
+		this.attack(other);
+	    }
+        }
+    }
+>>>>>>> 0dae961b1c60fa8e12afe889dce31c7cd558eaf0
     public int roll(){
         
         Random x = new Random();
