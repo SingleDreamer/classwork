@@ -3,14 +3,21 @@ import java.io.*;
 
 public class Driver {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Stuyablo II\nWhat's your name?");
-        String name = scanner.nextLine();
-        System.out.println("Welcome " + name);
-	Character c = new Character(name);
-	System.out.println(c.getStatus());
-        for(int n=0;n<100;n++){
-        System.out.println(c.roll());
+        Scanner sc = new Scanner(System.in);
+
+        Game g = new Game();
+        Character c = new Character("Character 1");   
+        System.out.println(c.getStatus());
+        Character c2 = new Character("Character 2");
+        System.out.println(c2.getStatus());
+       
+        System.out.println("Encounter start attack");
+        int status = 5;
+        String cont = "Yes";
+        while (status == 5 && cont.equals("Yes")){
+        status = c.encounter(c2,"Light Attack");
+        System.out.println("Continue (Type Yes or No): ");
+        cont = sc.nextLine();
         }
     }
-}
+} 
