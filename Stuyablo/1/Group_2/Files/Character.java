@@ -222,9 +222,9 @@ public class Character {
 	    return damage; }
 	
 
-	if (type.equals("physical"))
+	if (type == 0)
 	damage = this.strength + weapon;
-	else if (type.equals("magic"))
+	else if (type == 1)
 	damage = this.intelligence + weapon;
 	return damage;
 	}
