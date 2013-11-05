@@ -21,7 +21,7 @@ public class Warrior extends Character {
 	int rollDie = r.nextInt(18)+1;
 	//rolling a die method
 
-	if (rollDie < dexterity){
+	if (rollDie <= dexterity){
 	    //might include weapons later
 	    //basically, the chacter will be able to attack
 	    System.out.println(n + " attacked and hit the enemy!");
@@ -35,17 +35,27 @@ public class Warrior extends Character {
 	    }
 	}
 	else {
-	    flee()
+	    System.out.println(n + " missed!");
+	    flee();
 		//if the PC is weaker than NPC, PC can flee
 		}
 
-	public void flee(){
+	public void flee(Character other){
 	    System.out.println(n + " fled. Cowardly actions have decreased EXP.");
 	    experience = experience - 1;
+	    maxhealth = maxhealth -1;
 	}
 
 	public int encounter(Character other){
-	    
-	    
+	    if (strength + dexterity > other.strength + other.dexterity){
+		if (flee(other)){
+		    System.out.println("Enemy fled!");
+		}
+		else {
+		    this.attack(other);
+		}
+	    }
+	    else {
+		flee();
 
 	

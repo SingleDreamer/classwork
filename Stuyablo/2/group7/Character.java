@@ -6,7 +6,7 @@ public class Character {
     protected int dexterity, strength, intelligence;
     protected int experience;
     protected int gold;
-    protected double x,y,distance;
+    protected double x,y;
     protected String name;
     protected String charClass;
  
@@ -25,9 +25,16 @@ public class Character {
     public int getEXP() {
 	return experience;
     }
-    public double getDistance() {
+    public double getDistance(Character other) {
+	// distance between two characters
+	double distance;
+	double differX, differY;
+	differX = this.x - other.x;
+	differY = this.y - other.y;
+	distance = Math.sqrt( (differX*differX) + (differY*differY) );
 	return distance;
     }
+
     /* THIS IS THE RANDOMIZED CONSTRUCTOR, COPY PASTE INTO THE SPECIFIC CLASS FILES AND TWEAK
     public Character(String name) {
     	Random r = new Random();
