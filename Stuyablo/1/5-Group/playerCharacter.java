@@ -78,7 +78,7 @@ public class playerCharacter extends Character {
 	init(name, str);
     }
 
-    public String attack() {
-	return "pCharac Attack";
+    public void turn (String a) {
+	
     }
 }
