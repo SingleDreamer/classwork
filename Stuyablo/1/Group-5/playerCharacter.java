@@ -41,7 +41,17 @@ public class playerCharacter extends Character {
 		    intl = intl + 1;
 		}
 		else {
+		    try {
+			Thread.sleep(1000);
+		    }
+		    catch (Exception e) {		
+		    }
 		    System.out.println("The game has ended because you were not smart enough to select the correct number");
+		    try {
+			Thread.sleep(2500);
+		    }
+		    catch (Exception e) {		
+		    }
 		    System.out.println("Just Kidding. Please Retry.");
 		    x = x + 1;
 		}
