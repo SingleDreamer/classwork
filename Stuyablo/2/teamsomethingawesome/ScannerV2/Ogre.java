@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+import java.io.*;
+import java.util.*;
+public class Ogre extends Character{
+    Random r = new Random();
+    public Ogre(){
+	maxhealth = 14 + (r.nextInt(4) - 2);
+	health = maxhealth;
+	strength = 8 + (r.nextInt(4) - 2);
+	dexterity = 10 + (r.nextInt(4) - 2);
+	intelligence = 5 + (r.nextInt(4) - 2);
+	damage = strength;
+	experience = 10;
+	gold = 10;
+	name = "Steve the Ogre";
+=======
 import java.util.*;
 import java.io.*;
 
@@ -41,6 +57,7 @@ public class Ogre extends Character{
 	    
 	
     
+>>>>>>> 1f956fa21a1c84e97c94406c7a9287c8b48f8f06
     }
 }
 

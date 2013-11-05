@@ -57,6 +57,26 @@ public class Warrior extends Character{
             }
         }
 
+<<<<<<< HEAD
+	//*pew pew*
+	else if (answer == 3){
+	    int a=(dice1[new Random().nextInt(dice1.length)]);
+	    int b=(dice1[new Random().nextInt(dice1.length)]);
+	    int c=(dice1[new Random().nextInt(dice1.length)]);
+	    if ((a+b+c)<this.dexterity) {
+		System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
+		return super.attack(other);
+	    }
+	    else {
+		System.out.println(this.name + "'s attack failed!");
+	    }
+	}
+	else {
+	    System.out.println(this.name + "you, made a typo!");
+	    return this.attack(other); 
+	}
+	return 5;
+=======
         //*pew pew*
         else if (answer == 3){
             int a=(dice1[new Random().nextInt(dice1.length)]);
@@ -78,5 +98,6 @@ public class Warrior extends Character{
         else {
             System.out.println(this.name + "you, made a typo!");
         }
+>>>>>>> e699fbfdaf5859f8ca54fbcdaf5cc65955619e81
     }
 }
