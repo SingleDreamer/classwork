@@ -326,4 +326,13 @@ public class Character {
 	    System.out.println("Oh no! You have died! The game is over. *cries*");
 	    }
     }
+
+    public void play(){
+	boolean l = true;
+	if (health <= 0){
+	    l = false;
+	}
+	while (l){
+	    turn();
+	}
 }
