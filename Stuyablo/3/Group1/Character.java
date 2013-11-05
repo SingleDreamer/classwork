@@ -65,6 +65,7 @@ public class Character {
         if (roll < this.effDex+1){ //Plus 1 is to make this attack more accurate
             other.setHealth(other.getHealth()-1);
             System.out.println("Attack successful");
+			System.out.println("*");
         }
         
     }
@@ -77,13 +78,14 @@ public class Character {
         if (roll < this.effDex-1){ //Minus 1 is to make this attack less accurate
             other.setHealth(other.getHealth()-2);
             System.out.println("Heavy attack successful");
+			System.out.println("*");
         }
         
     }
     // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
-		int success = false;
-		if (this.roll(2, effdex/2) >= dexterity/2) {
+    public boolean flee() { //I don't see why you need Character other in parameter
+		boolean success = false;
+		if (this.roll(2, effDex/2) >= dexterity/2) {
 			success = true;
 		}
         return success;
@@ -121,6 +123,7 @@ public class Character {
         System.out.println(this.getStatus());
         System.out.println("Other Character's status: ");
         System.out.println(other.getStatus());
+		
         if (playerDied && opponentDied)
             return 4;
         else if (playerDied)
