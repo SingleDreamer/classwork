@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int roll, health, maxhealth, dexterity, strength, intelligence, experience, gold;
+    protected int roll, health, maxhealth, dexterity, strength, intelligence,defense, experience, gold;
     protected double x,y,distance;
     protected String name,charClass;
     Random r = new Random ();
@@ -228,7 +228,50 @@ public class Character {
 	return ex;
     }
 
-    //Still needs a levelUp method
+ 
+    public String levelUp(String stat) {
+	String result = "Congratulations!";
+	if (stat == "maxhealth") {
+	    maxhealth = maxhealth + 1;
+	    result = "Leveled up maxhp. maxhp = " + maxhp;
+	}
+	else if (stat == "strength") {
+	    strength = strength + 1;
+	    result  = "Leveled up str. str = " + str;
+	}
+	else if (stat == "dexterity") {
+	    dexterity = dexterity + 1;
+	    result  = "Leveled up dex. dex= " + dex;
+	}
+	else if (stat == "intelligence"){
+	    intelligence = intelligence+ 1;
+	    result  = "Leveled up intl. intl = " + intl;
+	}
+	else if (stat == "defense") {
+	    defense = defense + 1;
+	    result  = "Leveled up def. def = " + def;
+	}
+	else {
+	    result = "Unable to level up a stat. Please input one of the following stats to level up: 'maxhp','str', 'dex', 'intl', or 'def'."; }
+	return result;
+    }
+
+    public String  equipWeapon(String weapon) {
+	String result = "";
+	if( weapon == "Hammer"){
+	    strength = strength + 2;
+	    result = name + " has sucessfully equipped a " + weapon + ".";
+	}
+	else if( weapon == "Sword:"){
+	    strength = strength + 6;
+	    result = name + " has sucessfully equipped a " + weapon + ".";
+	}
+	else {
+	    result =  "Unable to equip weapon. Please select a weapon from the list.";
+	}
+	return result;
+    }
+
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);
