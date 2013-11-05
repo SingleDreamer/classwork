@@ -35,7 +35,18 @@ public class Character {
         distance = Math.sqrt( (differX*differX) + (differY*differY) );
         return distance;
     }
-
+	public Character(String name, int baseStr, int baseDex, int baseInt, int extra) {
+		Random r = new Random();
+		this.name = name;
+		eStr = r.nextInt(9);
+		eDex = r.nextInt(9- eStr);
+		eInt = 8 - eStr - eDex;
+		this.dexterity = baseDex + eDex;
+		this.strength = baseStr + eStr;
+		this.intelligence = baseInt + eInt;
+		this.maxhealth = this.strength;
+		this.health = this.maxhealth;
+	}
     /* THIS IS THE RANDOMIZED CONSTRUCTOR, COPY PASTE INTO THE SPECIFIC CLASS FILES AND TWEAK
     public Character(String name) {
             Random r = new Random();
