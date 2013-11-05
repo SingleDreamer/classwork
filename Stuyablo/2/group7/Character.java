@@ -35,7 +35,31 @@ public class Character {
         distance = Math.sqrt( (differX*differX) + (differY*differY) );
         return distance;
     }
-    public Character(String name, int baseStr, int baseDex, int baseInt, int extra) {
+
+	public Character(String name, int baseStr, int baseDex, int baseInt, int extra) {
+		Random r = new Random();
+		this.name = name;
+		eStr = r.nextInt(9);
+		eDex = r.nextInt(9- eStr);
+		eInt = 8 - eStr - eDex;
+		this.dexterity = baseDex + eDex;
+		this.strength = baseStr + eStr;
+		this.intelligence = baseInt + eInt;
+		this.maxhealth = this.strength;
+		this.health = this.maxhealth;
+	}
+	
+	public Character(String name, int baseStr, int baseDex, int baseInt, int addStr, int addDex, int addInt) {
+		this.name = name;
+		this.dexterity = baseDex + addDex;
+		this.strength = baseStr + addStr;
+		this.intelligence = baseInt + addInt;
+		this.maxhealth = this.strength;
+		this.health = this.maxhealth;
+	}
+    /* THIS IS THE RANDOMIZED CONSTRUCTOR, COPY PASTE INTO THE SPECIFIC CLASS FILES AND TWEAK
+    public Character(String name) {
+
             Random r = new Random();
             this.name = name;
             eStr = r.nextInt(9);
@@ -47,7 +71,7 @@ public class Character {
             this.maxhealth = this.strength;
             this.health = this.maxhealth;
     }
-    
+    */
     public Character(String name, int baseStr, int baseDex, int baseInt, int addStr, int addDex, int addInt) {
             this.name = name;
             this.dexterity = baseDex + addDex;
@@ -62,7 +86,7 @@ public class Character {
                 int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
                 if (x+y+z <= dexterity) {
                     //needs damage calculator!
-                    int dmg = damageDone(other, 1);
+                    int dmg = this.strength * damageMulti(other);
                     other.loseHealth(dmg);
                     System.out.println("\n" + name + " did " + dmg + " damage to " + other + "!");
                 }
@@ -71,6 +95,9 @@ public class Character {
                 }
     }
     
+	protected int damageMulti(Character other) {
+		return 1;
+	}
     public int damageDone(Character other, int multiplier){
         return this.strength * multiplier;
     }

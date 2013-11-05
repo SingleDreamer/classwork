@@ -4,11 +4,12 @@ public class Warrior  extends Character {
 
     public Warrior(String name, int limit) {
 	super(name,limit);
-	health = 100;
+	health = strength * 10;
 	skills = 3;
     }
     public Warrior() {
 	super();
+	health = strength * 10;
 	skills = 3;
 	}
 

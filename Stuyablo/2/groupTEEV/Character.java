@@ -122,11 +122,13 @@ public class Character {
 	    System.out.print ("\n" + "There are " + points + " points left");
 	}
 	if (points > 0){
-	    System.out.print ("\n" + "Due to failure to use all your points, they are now gone. -poof-");
-    }
+	    System.out.print ("\n" + "Due to failure to use all your points, they are now gone. -poof-" + "\n");
+	}
     }
 
-	    
+    public int getExperience(){
+	return experience;
+    }
 
     public String toString() {
 	return name;

@@ -112,7 +112,7 @@ public class playerCharacter extends Character {
 
     // TURN
 
-    public void turn (String a) {
+    public void turn (String a, Character other) {
 	Scanner s = new Scanner(System.in);
 	Random r = new Random();
 	Warrior w = new Warrior();
@@ -133,13 +133,13 @@ public class playerCharacter extends Character {
 		int t = s.nextInt();
 		
 		if (t==1) {
-		    w.basicAttack(charac);
+		    w.basicAttack(other);
 		}
 		else if (t==2) {
-		    w.tripleStrike(charac);
+		    w.tripleStrike(other);
 		}
 		else if (t==3) {
-		    w.critHit(charac);
+		    w.critHit(other);
 		}
 		else {
 		    System.out.println("");
