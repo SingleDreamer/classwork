@@ -26,6 +26,7 @@ public class Character {
         return experience;
     }
     public double getDistance(Character other) {
+
         // distance between two characters
         double distance;
         double differX, differY;
@@ -33,6 +34,15 @@ public class Character {
         differY = this.y - other.y;
         distance = Math.sqrt( (differX*differX) + (differY*differY) );
         return distance;
+
+	// distance between two characters
+	double distance;
+	double differX, differY;
+	differX = this.x - other.x;
+	differY = this.y - other.y;
+	distance = Math.sqrt( (differX*differX) + (differY*differY) );
+	return distance;
+
     }
 
     /* THIS IS THE RANDOMIZED CONSTRUCTOR, COPY PASTE INTO THE SPECIFIC CLASS FILES AND TWEAK
