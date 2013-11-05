@@ -3,20 +3,12 @@ import java.util.*;
 
 public class Thief extends Character {/*added by Matthew*/
     public Thief() {
-	/*health=9;
-	maxhealth=9;*/
+	health=9;
+	maxhealth=9;
 	dexterity=14;
 	strength=9;
 	intelligence=8;
     }
-    public Thief(String name, int strAdd, int intAdd, int dexAdd) {
-        experience=0;
-        gold=0;
-        strength=8+strAdd;
-        intelligence=8+intAdd;
-        dexterity=8+dexAdd;
-    }
-
     public void attack(Character other) {
 	Random r= new Random();
 	int roll=r.nextInt(18); /*three six-sided die roll implementation by Matthew*/

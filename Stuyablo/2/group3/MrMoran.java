@@ -1,7 +1,6 @@
-import java.io.*;
 import java.util.*;
 
-public class MrMoran extends NonPlayer {
+public class MrMoran extends Character {
     public MrMoran() {
 	strength = 8;
 	dexterity = 16;
