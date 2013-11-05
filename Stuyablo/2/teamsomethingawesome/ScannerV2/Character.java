@@ -10,6 +10,7 @@ public class Character {
     protected String name;
     protected String charClass;
     protected int damage;//Richard added
+    Helper h = new Helper();
     public Character(){
 	experience = 0;
 	gold = 0;
@@ -38,7 +39,7 @@ public class Character {
 	    i = other.getHealth();
 	}
 	other.setHealth( other.getHealth() - i);
-	System.out.println(other.getName()+ " has lost " + i + "health");
+	System.out.println(other.getName()+ " has lost " + i + " health");
 	System.out.println(other.getName()+ " has " + other.getHealth() + " health left.");
 	System.out.println("---------------------------------------------------------------");
     }
@@ -51,6 +52,12 @@ public class Character {
     public int getInt(){
 	return intelligence;
     }
+    public int getGold(){
+	return gold;
+    }
+    public int getExp(){
+	return experience;
+    }
     public void setStr(int i){
 	strength = strength + i;
     }
@@ -60,10 +67,17 @@ public class Character {
     public void setInt(int i){
 	intelligence = intelligence + i;
     }
+    public void setGold(int i){
+	gold = gold + i;
+    }
+    public void setExp(int i){
+	experience = experience + i;
+    }
     /* You have to provide other needed get/set methods */
 
 
     public void attack(Character other) {
+	h.pause();
 	Random r= new Random();
 	int roll=r.nextInt(6) + r.nextInt(6)+ r.nextInt(6); /*three six-sided die roll implementation by Matthew*/
 	if (roll < this.getDex()) {
@@ -75,7 +89,7 @@ public class Character {
 	    */
 	}
 	else {
-	    System.out.println("A miss...");
+	    System.out.println("A miss...\n---------------------------------------------------------------");
 	}
     }
 

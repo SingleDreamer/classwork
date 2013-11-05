@@ -9,6 +9,7 @@ public class Warrior extends Character{
 	intelligence = 8;
 	name = "Arthur";
 	charClass = "Warrior";
+	damage = strength;
     }
     public void attack(Character other) {
 	Random r=new Random();

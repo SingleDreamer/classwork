@@ -8,10 +8,10 @@ public class Warrior extends Character {
 
     public Warrior(String n){
 	name=n;
-	health = 8;
-	dexterity = 8;
-	strength = 8;
-	intelligence = 8;
+	setHP = 8;
+	setStr = 8;
+	setInt = 8;
+	setDex = 8;
 
 	
     }
