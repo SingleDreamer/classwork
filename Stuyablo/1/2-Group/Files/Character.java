@@ -12,11 +12,12 @@ public class Character {
     protected double x;
     protected double y;
     protected int skills;
-
+    protected boolean pc;
+    protected int movement;
 
     private Random r = new Random();
 
-    protected void init(String n, int h, int m, int s, int d, int i, int e, double x, double y) {
+    protected void init(String n, int h, int m, int s, int d, int i, int e, double x, double y, boolean playable) {
 	name = n;
 	health = h;
 	maxHealth = m;
@@ -27,6 +28,8 @@ public class Character {
 	this.x = x;
 	this.y = y;
 	skills = 0;
+	pc = playable;
+	movement = 10;
     }
 
     public Character(String name, int limit) {
@@ -34,7 +37,7 @@ public class Character {
 	int str = r.nextInt(limit + 1);
 	int dex = r.nextInt(limit + 1 -str);
 	int inte = limit-str-dex;
-	init(name,50,100,str,dex,inte,0,0.0,0.0);
+	init(name,50,100,str,dex,inte,0,0.0,0.0,false);
     }
     
     public Character() {        //For player character
@@ -91,14 +94,12 @@ public class Character {
 	}
 	    
 	System.out.println("Your Character " + name + " has been created!");
-	init(name,50,100,str,dex,inte,0,0.0,3.0);
+	init(name,50,100,str,dex,inte,0,0.0,0.0,true);
     }
 
     public double distance(Character other) {
 	return Math.sqrt(((other.x - x)*(other.x - x))+((other.y - y)*(other.y - y)));
     }
-
-
 
     public void battle(Character other) {
 	boolean npcliving = true;
@@ -109,23 +110,20 @@ public class Character {
 	    }
 	    while (npcliving){
 		Scanner sc;
-		if (this.dexterity >= other.dexterity) {
-		    System.out.println("Choose an attack: ");
-		    sc = new Scanner(System.in);
-		    other.health = other.health - this.attack(sc.nextInt(),other);
-		    this.health = this.health - other.attack(AIAttack(other),this);
-		    System.out.println(this.name + "'s hp: " + this.health);
-		    System.out.println(other.name + "'s hp: " + other.health); }
-		else {
-		    this.health = this.health - other.attack(AIAttack(other),this);
-		    System.out.println("Choose an attack: ");
-		    sc = new Scanner(System.in);
-		    other.health = other.health - this.attack(sc.nextInt(),other);
-		    System.out.println(other.name + "'s hp: " + other.health);
-		    System.out.println(this.name + "'s hp: " + this.health); }
-	    }
+
+	if (this.dexterity >= other.dexterity) {
+	    this.action(other);
+	    other.action(this);
+	    System.out.println(this.name + "'s hp: " + this.health);
+	    System.out.println(other.name + "'s hp: " + other.health); }
+	else {
+	    other.action(this);
+	    this.action(other);
+	    System.out.println(other.name + "'s hp: " + other.health);
+	    System.out.println(this.name + "'s hp: " + this.health); }
+    		}
 	}
-    }
+    }	
 
     //fight called in battle
     public void fight(int weapon, double dist){
@@ -152,19 +150,17 @@ public class Character {
 
     public void respond(int i,Character c){
 	if (i == 1){
-	    health++;
+	    //health++;
 	    System.out.println("You have delighted your comrade and he awards you with extra health!");
 	}
 	else if (i == 2){
 	    System.out.println("You have made your enemy angry and are now being attacked!");
-	    c.battle(this);
+	    //c.battle(this);
 	}
 	else if (i == 3){
 	    System.out.println("Well, give nothing, get nothing!");
 		}
     }
-	    
-	
 
     public String toString() {
 	return name;
@@ -181,13 +177,13 @@ public class Character {
 	System.out.println("Location: (" + x + "," + y + ")");
     }
 
-    public int attack(Character other, int range, int weapon, int type) {
+    public int attack(Character other, int range, int weapon, String type) {
 	int damage = 0;
 	double d = distance(other);
 	if (d  > range) {
 	    System.out.println(other.name + " is too far away."); 
-	    return damage;
-	}
+	    return damage; }
+	
 
 	Random r = new Random();
 	int rolls = ((1 + r.nextInt(6)) + (1 + r.nextInt(6)) + (1 + r.nextInt(6)));
@@ -201,45 +197,46 @@ public class Character {
 	    return damage;
 	}
 	else if (rolls == 4) {
-	    if (type == 0)
-		damage = this.strength * 2;
-	    else if (type == 1)
-		damage = this.intelligence * 2;
+	    if (type.equals("physical"))
+	    damage = this.strength * 2;
+	    else if (type.equals("magic"))
+	    damage = this.intelligence * 2;
 	    System.out.println(this.name + " critically hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else if (rolls == 3) {
-	    if (type == 0)
-		damage = (this.strength + weapon) * 3;
-	    else if (type == 1)
-		damage = (this.intelligence + weapon) * 3;
+	    if (type.equals("physical"))
+	    damage = (this.strength + weapon) * 3;
+	    else if (type.equals("magic"))
+	    damage = (this.intelligence + weapon) * 3;
 	    System.out.println(this.name + " devastated " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else {
-	    if (type == 0)
-		damage = this.strength + weapon;
-	    else if (type == 1)
-		damage = this.intelligence + weapon;
+	    if (type.equals("physical"))
+	    damage = this.strength + weapon;
+	    else if (type.equals("magic"))
+	    damage = this.intelligence + weapon;
 	    System.out.println(this.name + " hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
     }
 
-    public int test(Character other, int range, int weapon, int type) {
+    public int test(Character other, int range, int weapon, String type) {
 	int damage = 0;
 	double d = distance(other);
 	if (d  > range) {
 	    return damage; }
 	
 
-	if (type == 0)
+	if (type.equals("physical"))
 	damage = this.strength + weapon;
-	else if (type == 1)
+	else if (type.equals("magic"))
 	damage = this.intelligence + weapon;
 	return damage;
 	}
-	
+   
+  
     public int attack(int type, Character other) {
 	int damage = 0;	
 	Random r = new Random();
@@ -296,9 +293,204 @@ public class Character {
 	if (fdmg == fdmg2)
 	input = i; }
 	return input;
-   }
+	}
 
-    public void turnHelper(int h, Character c){
+  public int command(Character other) {
+	int choice = 0;
+	if (this.pc) {
+	while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+	System.out.print("What will you do? Enter 1 to attack, 2 to move, 3 to talk, or 4 to flee");
+	Scanner	sc = new Scanner(System.in); 
+	choice = sc.nextInt();
+	return choice; }
+	}
+	
+	choice = AI(other);
+	return choice;
+	}
+   public void action(Character other) {
+	int moved = this.movement;
+	boolean turn = true;
+	boolean talked = false;
+	while (turn && moved > 0) {
+	int command = command(this);
+	if (command == 1) {
+	if (this.pc) {
+	System.out.println("Choose an attack: ");
+	Scanner sc = new Scanner(System.in);
+	other.health = other.health - this.attack(sc.nextInt(),other); }
+	else
+	other.health = other.health - this.attack(AIAttack(other),other);
+	turn = false;}
+	
+	else if (command == 4)
+	flee(other);
+
+	else if (command == 3) {
+	if (talked)
+	System.out.println(this.name + " already tried talking");
+	else {
+	talk(other);
+	talked = true; } }
+	    
+	else if (command == 2) {
+	if (this.pc) {
+	Scanner sc;
+	int direction;
+	int distance = -1;
+	System.out.println("Choose a direction to move in. 1 for north, 2 for northeast, 3 for east, 4 for south east, 5 for south, 6 for southwest, 7 for west, and 8 for northwest");
+	sc = new Scanner(System.in);
+	while (!sc.nextLine().equals("1") && !sc.nextLine().equals("2") && !sc.nextLine().equals("3") && !sc.nextLine().equals("4") && !sc.nextLine().equals("5") && !sc.nextLine().equals("6") && !sc.nextLine().equals("7") && !sc.nextLine().equals("8")) {
+	System.out.println("Choose a direction to move in. 1 for north, 2 for northeast, 3 for east, 4 for south east, 5 for south, 6 for southwest, 7 for west, and 8 for northwest");
+	sc = new Scanner(System.in); } 
+	direction = sc.nextInt();
+
+	String range = "";
+	for (int i = 0; i <= moved; i++) {
+	range = range + i; }
+	System.out.println("Move how far? You can move up to " + moved + "yards");
+	sc = new Scanner(System.in);
+	while (distance < 0 || distance > moved) {
+	while (range.indexOf(sc.nextLine()) == -1) {
+	System.out.println("Move how far? You can move up to " + moved + "yards");
+	sc = new Scanner(System.in);}
+	distance = sc.nextInt(); }
+	moved = moved - move(direction,distance); }
+	
+	else
+	moved = moved - AIMove(other,moved); 
+	System.out.println(this.name + "'s current location: " + this.x + "," + this.y); }
+	if (turn && moved > 0)
+	command = command(this); }
+	}
+
+
+    public int move(int direction, int distance) {
+	if (direction == 1)
+	this.y = this.y + distance;
+
+	if (direction == 2) {
+	this.y = this.y + (distance * Math.sqrt(.5));
+	this.x = this.x + (distance * Math.sqrt(.5)); }
+
+	else if (direction == 3)
+	this.x = this.x + distance;
+
+	if (direction == 4) {
+	this.y = this.y - (distance * Math.sqrt(.5));
+	this.x = this.x + (distance * Math.sqrt(.5)); }
+
+	if (direction == 5)
+	this.y = this.y - distance;
+
+	if (direction == 6) {
+	this.y = this.y - (distance * Math.sqrt(.5));
+	this.x = this.x - (distance * Math.sqrt(.5)); }
+
+	if (direction == 7)
+	this.x = this.x - distance;
+
+	if (direction == 8) {
+	this.y = this.y + (distance * Math.sqrt(.5));
+	this.x = this.x - (distance * Math.sqrt(.5)); }
+	return distance;	
+}
+
+    public int AIMove(Character other, int potential) {
+	Random r = new Random();
+	double chance = r.nextDouble();
+	if (this.health > this.maxHealth/2) {
+	if (distance(other) >= potential)
+	return move(face(other,1),potential);
+	else
+	return move(face(other,1),((int)(distance(other)/2)+r.nextInt((int)(distance(other)/2)))); }
+	
+	else if (this.health <= this.maxHealth/2 && this.health >= this.maxHealth/5) {
+	if (chance >= .25) {
+	if (distance(other) >= potential)
+	return move(face(other,1),potential);
+	else
+	return move(face(other,1),(((int)distance(other)/2)+r.nextInt(((int)distance(other)/2)))); }
+	else 
+	return move(face(other,0),((potential/2 + r.nextInt(potential/2)))); }
+
+	else {
+	if (chance >= .5)
+	return move(face(other,-1),((potential/2 + r.nextInt(potential/2)))); 
+	else if (chance	< .5 && chance >= .4)
+	return move(face(other,0),((potential/2 + r.nextInt(potential/2))));
+	else {
+	if (distance(other) >= potential)
+	return move(face(other,1),potential);
+	else
+	return move(face(other,1),(((int)distance(other)/2)+r.nextInt(((int)distance(other)/2)))); } }
+
+    }
+
+    public int face(Character other, int direction) { 
+	double xdiff = other.x - this.x;
+	double ydiff = other.y - this.y;
+	Random r = new Random();
+	if (xdiff > 0 && ydiff > 0) {
+		if (direction == 1)
+		return 2;
+		else
+		return 5 + r.nextInt(3); }		
+
+	else if (xdiff > 0 && ydiff == 0) {
+		if (direction == 1)
+		return 3;
+		else {
+		if (5 + r.nextInt(5) > 8)
+		return 1;
+		else
+		return 5 + r.nextInt(4); } }
+
+	else if (xdiff > 0 && ydiff < 0) {
+		if (direction == 1)
+		return 4;
+		else {
+		if (7 + r.nextInt(3) > 8)
+		return 1;
+		else
+		return 7 + r.nextInt(2); } }
+
+	else if (xdiff < 0 && ydiff > 0) {
+		if (direction == 1)
+		return 8;
+		else
+		return 3 + r.nextInt(3); }
+	
+	else if (xdiff < 0 && ydiff == 0) {
+		if (direction == 1)
+		return 7;
+		else
+		return 1 + r.nextInt(5); }
+
+	else if (xdiff < 0 && ydiff < 0) {
+		if (direction == 1)
+		return 6;
+		else
+		return 1 + r.nextInt(3); }
+
+	else if (xdiff == 0 && ydiff > 0) {
+		if (direction == 1)
+		return 1;
+		else
+		return 3 + r.nextInt(5); }
+
+	else if (xdiff == 0 && ydiff < 0) {
+		if (direction == 1)
+		return 5;
+		else {
+		if (7 + r.nextInt(5) > 8)
+		return 1 + r.nextInt(3);
+		else
+		return 7 + r.nextInt(1); } }
+	else
+		return 1 + r.nextInt(8);
+	}
+public void turnHelper(int h, Character c){
 	if (h == 1){
 	    battle(c);
 	}
@@ -335,4 +527,10 @@ public class Character {
 	    turn();
 	}
     }
+    public int AI(Character other) {
+	if (test(AIAttack(other),other) > 0)
+	return 1;
+	else
+	return 2;
+	}
 }
