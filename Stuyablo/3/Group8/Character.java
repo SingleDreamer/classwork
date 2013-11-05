@@ -17,7 +17,6 @@ public class Character {
 	Intelligence = 8;
 	Dexterity = 8;
 	Health = 20;
-    }
     
 }
 	

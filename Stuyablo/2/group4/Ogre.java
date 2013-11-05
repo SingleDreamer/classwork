@@ -1,11 +1,13 @@
 public class Ogre extends Character {
 
-    public Character(){
+    public Ogre(){
 	name="Ogre";
-	strength=toChance()+100;
-	dexterity=((int)((toChance()*.01)*5))+15;
-	health=((int)((toChance()*.01)*1000))+5000;
-	maxhealth=health;
+	double r1 = new random();
+	double r2 = new random();
+	double r3 = new random();
+	setStr=(r1*10)%1;
+        setDex=(r1*10)%1;
+        setInt=(r1*10)%1;
     }
 
 

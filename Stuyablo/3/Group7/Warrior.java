@@ -8,38 +8,54 @@ public class Warrior extends Character {
 
     public Warrior(String n){
 	name = n;
-	dexterity = 8;
-	strength = 10;
-	health = 10;
+	dexterity = 10;
+	strength = 15;
+	//health = 10;
 	maxhealth = 50;
-	experience = 8;
+	experience = 10;
 	//temporary values; might need to add new variables
     }
 
     public void attack(Character other){
 	Random r = new Random();
-	int rollDie = r.nextInt(18);
+	int rollDie = r.nextInt(18)+1;
 	//rolling a die method
 
-	if (rollDie < strength){
+	if (rollDie <= dexterity){
 	    //might include weapons later
 	    //basically, the chacter will be able to attack
 	    System.out.println(n + " attacked and hit the enemy!");
 	    experience = experience + 1;
-	    if (experience = 12){
-		health = health + 5;
-		experience = 0;
+	    if (experience = 15){
+		maxhealth = maxhealth + 5;
+		experience = 10;
 		//kind of like leveling up
 	    }
 	    else {
 	    }
 	}
 	else {
-	    flee()
+	    System.out.println(n + " missed!");
+	    flee();
 		//if the PC is weaker than NPC, PC can flee
 		}
 
 	public void flee(Character other){
-	    
+	    System.out.println(n + " fled. Cowardly actions have decreased EXP.");
+	    experience = experience - 1;
+	    maxhealth = maxhealth -1;
+	}
+
+	public int encounter(Character other){
+	    if (strength + dexterity > other.strength + other.dexterity){
+		if (flee(other)){
+		    System.out.println("Enemy fled!");
+		}
+		else {
+		    this.attack(other);
+		}
+	    }
+	    else {
+		flee();
 
 	

@@ -13,7 +13,7 @@ public class Driver {
 	System.out.print("Whatst isst thoust's namest: ");
 	String nameInput = sc.nextLine();
 	h.pause();
-	System.out.println("Welcome bold adventure " + nameInput);
+	System.out.println("\nWelcome bold adventure " + nameInput);
 	w.setName(nameInput);
 	int bonusAttributes = 8;
 	System.out.print("You have 8 bonus attributes!\nWhat would you like to invest them in?\nType S for Str, D for Dex and I for Int:\n");
@@ -40,6 +40,40 @@ public class Driver {
 		System.out.println("What thoust sayst?");
 	    }
 	}
-	System.out.println(w.getStatus());
+    
+	System.out.println("You have encountered a burly ogre!");
+	Ogre o = new Ogre();
+	String fightInput = "";
+	while ((w.getHealth() > 0) && (o.getHealth() > 0)){
+	    System.out.println("\n");
+	    System.out.println(w.getStatus());
+	    System.out.println("What will you do?: Attack Flee");
+	    fightInput = sc.nextLine();
+	    if (fightInput.equals("Attack")){
+		System.out.println("---------------------------------------------------------------");
+		if (w.getDex()>o.getDex()){
+		    w.attack(o);
+		    if (o.getHealth() > 0)
+			o.attack(w);
+		}
+		else{
+		    o.attack(w);
+		    if (w.getHealth() > 0)
+			w.attack(o);
+		}
+	    }
+	    else{}
+	    if (o.getHealth() <= 0){
+		System.out.println("You have slain the ogre!");
+		w.setExp(o.getExp());
+		w.setGold(o.getGold());
+	    }
+	    if (w.getHealth() <= 0){
+		System.out.println("Your adventure ends here...");
+	    }
+	}
+	System.out.println("\n");
     }
 }
+
+

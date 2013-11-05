@@ -2,30 +2,68 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int roll, health, maxhealth, dexterity, strength, intelligence, experience, gold;
+    protected int roll, health, maxhealth, dexterity, strength, intelligence,defense, experience, gold;
     protected double x,y,distance;
     protected String name,charClass;
     Random r = new Random ();
-    
-    public Character(){
+public Character(){
 	Scanner sc =new Scanner(System.in);
 	System.out.println("Enter name: ");
 	name = sc.next();
-        strength = 8+ r.nextInt(4);
-	dexterity = 8 + r.nextInt(4);
-	health = strength;
-	maxhealth = 20;
+        System.out.println("Choose 1 to be a Warrior || Choose 2 to be a Wizard || Choose 3 to see the attributes given to each Character");
+	int cl = sc.next();
+	if (cl==3){
+	    System.out.println("Character Attributes \n" + "Wizard:\n  Strength:18\n   Health:18\n   Experience:1\n   Intelligence:4\n" +"\nWizard:\n  Strength:16\n   Health:16\n   Experience:1\n   Intelligence:7\n");
+	}
+	else if (cl==1){
+	    charClass="Warrior";
+	    strength = 18;
+	    health = 18;
+	    Experience = 1;
+	    Intelligence = 4;
+	}
+	else if (cl==2){
+	    charClass="Wizard";
+	    strength = 16;
+	    health = 16;
+	    Experience = 1;
+	    Intelligence = 7;
+	}
+	else{
+	    System.out.println("Please Choose 1 to be a Warrior or 2 to be a Wizard");
+	    if (cl==1){
+		charClass="Warrior";
+		strength = 18;
+		health = 18;
+		Experience = 1;
+		Intelligence = 4;
+	    }
+	    else if (cl==2){
+		charClass="Wizard";
+		strength = 16;
+		health = 16;
+		Experience = 1;
+		Intelligence = 7;
+	    }
+	}
+	    
+	x = 0;
+	y= 0;
+		
     }
     public Character (String name, String charClass) {
 	this.name = name;
 	this.charClass = charClass;
 	maxhealth = 20;
-	dexterity = r.nextInt (10)+5;
-	strength = r.nextInt (4)+8;
-	intelligence = r.nextInt (10)+5;
-	experience = r.nextInt (10) + 1;
-	gold = r.nextInt (10) + 100;
+	dexterity = 10;
+	strength = 10;
+	intelligence = 10;
+	experience = 1;
+	gold = 100;
 	health = strength;
+	x = 0;
+	y = 0;
+
     }
 
     public void initChar (int maxhealth,int dexterity, int  strength, int  intelligence, int  experience, int gold) {
@@ -38,6 +76,13 @@ public class Character {
 	this.health = strength;
     }
 
+    public double distance(Character other) {
+	double a = (other.x - this.x) * (other.x - this.x);
+	double b = (other.y - this.y) * (other.y - this.y);
+	distance =  Math.sqrt(a+b);
+	return distance;
+
+    }
     public int getHealth() {
 	return health;
     }
@@ -228,7 +273,50 @@ public class Character {
 	return ex;
     }
 
-    //Still needs a levelUp method
+ 
+    public String levelUp(String stat) {
+	String result = "Congratulations!";
+	if (stat == "maxhealth") {
+	    maxhealth = maxhealth + 1;
+	    result = "Leveled up maxhp. maxhp = " + maxhp;
+	}
+	else if (stat == "strength") {
+	    strength = strength + 1;
+	    result  = "Leveled up str. str = " + str;
+	}
+	else if (stat == "dexterity") {
+	    dexterity = dexterity + 1;
+	    result  = "Leveled up dex. dex= " + dex;
+	}
+	else if (stat == "intelligence"){
+	    intelligence = intelligence+ 1;
+	    result  = "Leveled up intl. intl = " + intl;
+	}
+	else if (stat == "defense") {
+	    defense = defense + 1;
+	    result  = "Leveled up def. def = " + def;
+	}
+	else {
+	    result = "Unable to level up a stat. Please input one of the following stats to level up: 'maxhp','str', 'dex', 'intl', or 'def'."; }
+	return result;
+    }
+
+    public String  equipWeapon(String weapon) {
+	String result = "";
+	if( weapon == "Hammer"){
+	    strength = strength + 2;
+	    result = name + " has sucessfully equipped a " + weapon + ".";
+	}
+	else if( weapon == "Sword:"){
+	    strength = strength + 6;
+	    result = name + " has sucessfully equipped a " + weapon + ".";
+	}
+	else {
+	    result =  "Unable to equip weapon. Please select a weapon from the list.";
+	}
+	return result;
+    }
+
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);
