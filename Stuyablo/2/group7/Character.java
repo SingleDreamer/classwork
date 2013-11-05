@@ -10,7 +10,7 @@ public class Character {
     protected String name;
     protected String charClass;
  
-    public int getHealth() {
+    public double getHealth() {
         return health;
     }
     public int getDex() {
@@ -57,7 +57,7 @@ public class Character {
                 int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
                 if (x+y+z <= dexterity) {
                     //needs damage calculator!
-                    int dmg = damageDone(other);
+                    int dmg = damageDone(other, 1);
                     other.loseHealth(dmg);
                     System.out.println("\n" + name + " did " + dmg + " damage to " + other + "!");
                 }
@@ -66,8 +66,8 @@ public class Character {
                 }
     }
     
-    public int damageDone(Character other){
-            return this.strength;
+    public int damageDone(Character other, int multiplier){
+        return this.strength * multiplier;
     }
     
     // returns true if you succesfully flee, false otherwise

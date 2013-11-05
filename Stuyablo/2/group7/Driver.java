@@ -4,9 +4,10 @@ import java.util.*;
 public class Driver {
     public static void main(String[] args) {
     	Scanner sc = new Scanner(System.in);
-    	System.out.print("\nEnter your name: ");
+    	System.out.print("\nEnter a name: ");
     	String name = sc.nextLine();
-    	System.out.println("\nChoose your class:\n\nWarrior\nWizard\nThief\n");
+    	System.out.println("\nChoose your class:\n\nWarrior\nWizard\nThief");
+    	System.out.print(">");
     	String pClass = sc.nextLine();
     	Character c1 = new Character();
     	if (pClass.equals("Warrior")) {
