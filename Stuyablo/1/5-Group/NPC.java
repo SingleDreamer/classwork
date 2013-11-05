@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.*;
+
 public class NPC extends Character{
     Random r = new Random();
     public NPC (String name, double Pstr, double Pdex, double Pintl, double Pdef){
