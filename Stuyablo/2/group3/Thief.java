@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Thief extends Player{
+public class Thief extends Character {
     String name = new String();
     public Thief ( String n ) {
 	name = n;

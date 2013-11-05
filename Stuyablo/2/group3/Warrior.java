@@ -1,7 +1,6 @@
-import java.io.*;
 import java.util.*;
 
-public class Warrior extends Player{
+public class Warrior extends Character {
     String name = new String();
     Scanner sc = new Scanner ( System.in );
     int playerHealth = 50 , gameOver = 0;
