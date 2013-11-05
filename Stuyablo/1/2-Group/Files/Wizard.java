@@ -3,27 +3,27 @@ public class Wizard extends Character{
     protected int mana;
     
     public Wizard() {
+	super();
 	mana = 100;
 	skills = 3;
-	super();
     }
 
     public Wizard(int mana) {
+	super();
  	this.mana = mana;
 	skills = 3;
-	super();
     }
 
     public Wizard(String name) {
+	super(name, 8);
 	mana = 100;
 	skills = 3;
-	super(name, 8);
     }
 
     public Wizard(String name, int mana) {
+	super(name, 8);
 	this.mana = mana;
 	skills = 3;
-	super(name, 8);
     }
 
     public int attack (int type, Character other) {

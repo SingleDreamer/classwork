@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int hp, xp, str, dex, intl, def;
+    protected int hp, maxhp, xp, str, dex, intl, def;
     protected String name;
     private Random r = new Random();
 
@@ -80,16 +80,6 @@ public class Character {
 	    result =  "Unable to equip weapon. Please select a weapon from the list.";
 	}
 	return result;
-    }
-
-    public String getStr() {
-	return "Your Strength is " + str;
-    }
-    public String getDex() {
-	return "Your Dexterity is " + dex;
-    }
-    public String getInt() {
-	return "Your Intelligence is " + intl;
     }
 
 }
