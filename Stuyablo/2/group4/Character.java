@@ -42,7 +42,7 @@ public class Character {
     public int getDex(x) {
 	this.dexterity=x;
     }
-    public int getStrx(x) {
+    public int getStr(x) {
 	this.strength =x;
     }
     public int getInt(x) {
