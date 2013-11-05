@@ -14,9 +14,26 @@ public class Character {
 	experience = 0;
 	gold = 0;
     }
+    public Character(String name, int strAdd, int intAdd, int dexAdd) {
+	experience=0;
+	gold=0;
+	strength=8+strAdd;
+	intelligence=8+intAdd;
+	dexterity=8+dexAdd;
+    }
     public int getHealth() {
 	return health;
     }
+    public int getStrength() {
+	return strength;
+    }
+    public int getDexterity() {
+        return dexterity;
+    }
+    public int getIntelligence() {
+        return intelligence;
+    }
+
     public String getName() {
 	return name;
     }
@@ -58,7 +75,7 @@ public class Character {
 
     public void attack(Character other) {
 	Random r= new Random();
-	int roll=r.nextInt(18); /*three six-sided die roll implementation by Matthew*/
+	int roll=r.nextInt(6)+r.nextInt(6)+r.nextInt(6); /*three six-sided die roll implementation by Matthew*/
 	if (roll < dexterity) {
 	    System.out.println("A hit!");
 	    loseHealth(other,damage);
@@ -74,6 +91,7 @@ public class Character {
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+
 	return true;
     }
 
