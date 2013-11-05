@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int hp, maxhp, xp, str, dex, intl, def;
+    protected int hp, maxhp, xp,lvl, str, dex, intl, def;
     protected String name;
     private Random r = new Random();
 

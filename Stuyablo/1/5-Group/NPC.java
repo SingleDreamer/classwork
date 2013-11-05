@@ -3,6 +3,8 @@ import java.util.*;
 
 public class NPC extends Character{
     Random r = new Random();
+    int x, y;
+
     public NPC (String name, double Pstr, double Pdex, double Pintl, double Pdef, int lvl){
 	this.name = name;
 	str = 8;
@@ -11,13 +13,13 @@ public class NPC extends Character{
 	def = 8;
 	this.lvl = lvl;
 	for (int i = 0; i < (7+lvl); i++){
-	    if (r.nextDouble<Pstr){
+	    if (r.nextDouble()<Pstr){
 		str = str + 1;
 	    }
-	    else if (r.nextDouble<Pdex){
+	    else if (r.nextDouble()<Pdex){
 		dex = dex + 1;
 	    }
-	    else if (r.nextDouble<Pintl){
+	    else if (r.nextDouble()<Pintl){
 		intl = intl + 1;
 	    }
 	    else {
@@ -33,13 +35,13 @@ public class NPC extends Character{
 	def = 8;
 	this.lvl = 1;
 	for (int i = 0; i < 8; i++){
-	    if (r.nextDouble<Pstr){
+	    if (r.nextDouble()<Pstr){
 		str = str + 1;
 	    }
-	    else if (r.nextDouble<Pdex){
+	    else if (r.nextDouble()<Pdex){
 		dex = dex + 1;
 	    }
-	    else if (r.nextDouble<Pintl){
+	    else if (r.nextDouble()<Pintl){
 		intl = intl + 1;
 	    }
 	    else {
