@@ -35,11 +35,47 @@ public class Character {
 	intelligence=intell+8;
     }
 
-    public String chooseClass(){
+    public void chooseClass(){
+	Scanner sc=new Scanner(System.in);
 	System.out.println("Press 1 to be a WARRIOR");
 	System.out.println("Press 2 to be a WIZARD");
 	System.out.println("Press 3 to be an OGRE ");
 	System.out.println("Press 4 to be a THEIF");
+
+	int answer=sc.nextInt();
+
+	if (answer == 1)
+	    charClass="Warrior";
+	if (answer == 2)
+	    charClass="Wizard";
+	if (answer == 3)
+	    charClass="Ogre";
+	if (answer == 4)
+	    charClass="Theif";
+	else {
+	    System.out.println("That is not a valid key.\n");
+	    System.out.println("Press 1 to be a WARRIOR");
+	    System.out.println("Press 2 to be a WIZARD");
+	    System.out.println("Press 3 to be an OGRE ");
+	    System.out.println("Press 4 to be a THEIF");
+
+	}
+	System.out.println("----------------------");
+
+    }
+
+    public void randomClass(){
+	Random rand=new Random();
+	int c=rand.nextInt(4)+1;
+	if (c == 1)
+	    charClass="Warrior";
+	if (c == 2)
+	    charClass="Wizard";
+	if (c == 3)
+	    charClass="Ogre";
+	if (c == 4)
+	    charClass="Theif";
+
 
     }
  
@@ -52,13 +88,63 @@ public class Character {
 
 
     public void talk(Character other){
-	/*not the real thing; just an outline*/
-	//1="Say something charming";
-	//2="Say something intimidating";
-	//3="Say something funny";
-	/*so on and so forth*/
-	/*RESPONSES*/
-	/*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
+	Scanner sc = new Scanner(System.in);
+	say ("you have chosen to talk!");
+	delay (2000);
+        say ("type the number corresponding to your choice");
+        delay (2000); 
+        say ("1. Hey big guy, you wanna go out for some drinks instead?");
+        delay (1000); 
+        say ("2. Please, don't you know who I am? I am the greatest swordsman in the East! " + 
+	     "I've been training since I was 3! You don't have any chance of defeating me!" );
+        delay (1000);
+        say ("3. Didn't you know that they're having a body building competition in the next town?" +
+	     " I bet you'd fit right in!");
+        delay (1000);
+        int answer = sc.nextInt(); 
+        boolean x = new nextBoolean ();
+        if (answer == 1) {
+	    if (x) {
+		delay (1000); 
+		say ("Sure");
+		//end turn
+	    }        
+	    else {
+		delay (1000);
+		say ("no way you freak!"); 
+		this.attack(other);
+	    }
+        }
+        if (answer == 2) {
+	    if (x) {
+		delay (1000); 
+		say ("sh*t");
+		other.flee(this);
+	    }
+	    else {
+		delay (1000); 
+		say ("bullsh*it"); 
+		this.attack(other);
+	    }
+        }
+        if (answer == 3) {
+	    if (x) {
+		delay (1000); 
+		say ("...you're a riot, kid. and an idiot");
+		//end turn
+	    }
+	    else {
+		delay (1000);
+		say ("are you serious?");
+		this.attack(other);
+	    }
+        }
+        //1="Say something charming";
+        //2="Say something intimidating";
+        //3="Say something funny";
+        /*so on and so forth*/
+        /*RESPONSES*/
+        /*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
     }
     public int roll(){
 	
@@ -166,7 +252,7 @@ public class Character {
 	Scanner sc = new Scanner(System.in);
 	say("you have encountered " + other);
 	say("his status is");
-	say (other.getStatus());
+	say (other.getStatus2());
 	say ("type 1 if you wish to talk");
 	say("type 2 if you wish to attempt to flee");
 	say("type 3 if you wish to fight");
@@ -193,12 +279,27 @@ public class Character {
 		return i;
 	}
 	return 0;
+	   
     }
 
 
 
     public String getStatus() {
 	setAttributes();
+	chooseClass();
+        String attrib1=String.format("Str: %d Dex: %d Int: %d",
+                                     strength, dexterity, intelligence);
+        String attrib2=String.format("Exp: %d Health: %d of %d",
+                                     experience,health,maxhealth);
+        String locale = String.format("x: %5.2f y: %5.2f",x,y);
+        String whole=String.format("%s\n%s\n%s\n%s\n%s\n",
+                                   name,charClass,attrib1,attrib2,locale);
+        return whole;
+    }
+
+    public String getStatus2() {
+	setAttributes();
+	randomClass();
         String attrib1=String.format("Str: %d Dex: %d Int: %d",
                                      strength, dexterity, intelligence);
         String attrib2=String.format("Exp: %d Health: %d of %d",
