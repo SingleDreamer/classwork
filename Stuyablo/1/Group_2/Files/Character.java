@@ -174,8 +174,8 @@ public class Character {
 	double d = distance(other);
 	if (d  > range) {
 	    System.out.println(other.name + " is too far away."); 
-	    return damage; }
-	
+	    return damage;
+	}
 
 	Random r = new Random();
 	int rolls = ((1 + r.nextInt(6)) + (1 + r.nextInt(6)) + (1 + r.nextInt(6)));
@@ -189,26 +189,26 @@ public class Character {
 	    return damage;
 	}
 	else if (rolls == 4) {
-	    if (type.equals("physical"))
-	    damage = this.strength * 2;
-	    else if (type.equals("magic"))
-	    damage = this.intelligence * 2;
+	    if (type == 0)
+		damage = this.strength * 2;
+	    else if (type == 1)
+		damage = this.intelligence * 2;
 	    System.out.println(this.name + " critically hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else if (rolls == 3) {
-	    if (type.equals("physical"))
-	    damage = (this.strength + weapon) * 3;
-	    else if (type.equals("magic"))
-	    damage = (this.intelligence + weapon) * 3;
+	    if (type == 0)
+		damage = (this.strength + weapon) * 3;
+	    else if (type == 1)
+		damage = (this.intelligence + weapon) * 3;
 	    System.out.println(this.name + " devastated " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
 	else {
-	    if (type.equals("physical"))
-	    damage = this.strength + weapon;
-	    else if (type.equals("magic"))
-	    damage = this.intelligence + weapon;
+	    if (type == 0)
+		damage = this.strength + weapon;
+	    else if (type == 1)
+		damage = this.intelligence + weapon;
 	    System.out.println(this.name + " hit " + other.name + " for " + damage + " points of damage!"); 
 	    return damage;
 	}
