@@ -106,14 +106,22 @@ public class Character {
     public void attack(Character other) {
 	System.out.println(this.name + " tried to attack " + other.name + ".");
 	boolean hit;
-	Random r = new Random();
-	if (this.dexterity > other.dexterity)
-	    hit = true;
-	else {
-	    if (this.dexterity > (r.nextInt(10) - 5 + this.dexterity))
+	if (this.dexterity - other.dexterity < 5 || this.dexterity - other.dexterity > -5) { // if the difference in dexterity between the two characters is less than 5, it's a 50-50 chance that this character's hit is successful
+	    if (0.5 > Math.random())
 		hit = true;
 	    else
 		hit = false;
+	}
+	else {
+	    if (this.dexterity > other.dexterity) // if this character is significantly faster than the other character, it'll always hit successfully
+		hit = true;
+	    else { // otherwise, if this character is significantly slower than the other, it has a low success rate
+		if (0.2 > Math.random())
+		    hit = true;
+		else
+		    hit = false;
+	    }
+	    
 	}
 	if (hit == false)
 	    System.out.println("Attack failed.");
