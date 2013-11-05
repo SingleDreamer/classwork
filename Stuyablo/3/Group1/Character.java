@@ -83,7 +83,7 @@ public class Character {
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
 		int success = false;
-		if (this.roll(2, effdex*2) >= dexterity/2) {
+		if (this.roll(2, effdex/2) >= dexterity/2) {
 			success = true;
 		}
         return success;
