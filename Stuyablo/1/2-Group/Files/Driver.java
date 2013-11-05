@@ -6,7 +6,7 @@ public class Driver {
 	System.out.println("_________________");
 	wa2.getInfo();
 	System.out.println("_________________");
-	wa1.battle(wa2);
+	wa1.battle(wa2,wa1);
 
 	//Wizard wi = new Wizard("tom", 8);
 //	System.out.println(wi.strength);

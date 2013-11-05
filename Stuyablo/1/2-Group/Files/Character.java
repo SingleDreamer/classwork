@@ -100,18 +100,18 @@ public class Character {
 	return Math.sqrt(((other.x - x)*(other.x - x))+((other.y - y)*(other.y - y)));
     }
 
-    public void battle(Character other) {
-	while (health > 0 && other.health > 0) {
-		if (this.dexterity >= other.dexterity) {
-		    action(this, other);
-		    other.action(other, this);
+    public void battle(Character c2, Character c1) {
+	while (health > 0 && c2.health > 0) {
+		if (this.dexterity >= c2.dexterity) {
+		    this.action(c1, c2);
+		    c2.action(c2, c1);
 		    System.out.println(this.name + "'s hp: " + this.health);
-		    System.out.println(other.name + "'s hp: " + other.health);
+		    System.out.println(c2.name + "'s hp: " + c2.health);
 		}
 		else {
-		    other.action(other, this);
-		    this.action(this, other);
-		    System.out.println(other.name + "'s hp: " + other.health);
+		    c2.action(c2, c1);
+		    this.action(c1, c2);
+		    System.out.println(c2.name + "'s hp: " + c2.health);
 		    System.out.println(this.name + "'s hp: " + this.health);
 		}
 	}
@@ -246,7 +246,7 @@ public class Character {
     public int AIAttack(Character other) {
 	int input = 0;
 	int fdmg = 0;
-	for(int i = 0; i < this.skills; i++) {
+	for(int i = 0; i <= this.skills; i++) {
 	    int fdmg2 = this.test(i,other);
 	    fdmg = Math.max(fdmg,fdmg2);
 	    if (fdmg == fdmg2)
@@ -254,16 +254,16 @@ public class Character {
 	return input;
     }
 
-    public int command(Character other) {
+    public int command(Character c1, Character c2) {
 	int choice = 0;
-	if (this.pc) {
+	if (c1.pc) {
 	    while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
 		System.out.println("Enter 1 to attack, 2 to move, 3 to talk, or 4 to flee");
 		choice = sc.nextInt();
 	    }
 	}
 	else
-	    choice = AI(other);
+	    choice = AI(c1,c2);
 
 	return choice;
     }
@@ -274,7 +274,7 @@ public class Character {
 	boolean talked = false;
 
 	while (turn && moved > 0) {
-	    int command = command(c1);
+	    int command = command(c1,c2);
 	    switch(command) {
 	    case 1:
 		if (c1.pc) {
@@ -328,7 +328,7 @@ public class Character {
 	    }
 
 	    if (turn && moved > 0)
-		command = command(c1);
+		command = command(c1, c2);
 	}
     }
 
@@ -480,7 +480,7 @@ public class Character {
     }
     public void turnHelper(int h, Character c){
 	if (h == 1){
-	    battle(c);
+	//    battle(c);
 	}
 	if (h == 2){
 	    talk(c);
@@ -513,8 +513,8 @@ public class Character {
 	    turn();
 	}
     }
-    public int AI(Character other) {
-	if (test(AIAttack(other),other) > 0)
+    public int AI(Character c1, Character c2) {
+	if (c1.test(AIAttack(c2),c2) > 0)
 	    return 1;
 	else
 	    return 2;

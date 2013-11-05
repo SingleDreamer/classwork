@@ -24,7 +24,7 @@ public class Warrior  extends Character {
 	    }
 	    else if (type == 3) {
 		System.out.println(this.name + " shoots an arrow at " + other.name);
-		return super.attack(other,10,1,0);
+		return super.attack(other,7,1,0);
 	    }
 	    else
 		System.out.println("That is not an option");
