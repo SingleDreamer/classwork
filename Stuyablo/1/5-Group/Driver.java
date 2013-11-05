@@ -6,6 +6,9 @@ public class Driver {
     public static void main(String[] args) {
 	Wizard w = new Wizard();
         playerCharacter p1 = new playerCharacter();
+
+	w.setCharacter(p1);
+	
 	/*
        	NPC A = new NPC("Inimicus");
 	NPC B = new NPC("Flib");
@@ -59,8 +62,6 @@ public class Driver {
 
 	System.out.println(p1);
 	System.out.println(p1.getStr());
-
-	w.basicAttack(p1);
 
 	System.out.println(p1.getDex());
 	System.out.println(p1.getInt());
