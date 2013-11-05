@@ -1,4 +1,7 @@
-public Player extends Character {
+import java.util.*;
+import java.io.*;
+
+public class Player extends Character {
     private int level;
 
     public void attack(){
@@ -12,8 +15,8 @@ public Player extends Character {
 	health = health + n;
     }
     public void battle(){
-	if (health == 0)
-	    return "The battle is over. You have lost";
+	if (health == 0){
+	}
 	else
 	    attack();
     }
@@ -34,5 +37,11 @@ public Player extends Character {
 	//insert scanner stuff here
     }
 
+    public Player (){
+        Scanner n = new Scanner (System.in);
+	System.out.print("Enter your name: ");
+	name = n.nextLine();
+	System.out.print("Welcome, " + name);
+    }
 
 }

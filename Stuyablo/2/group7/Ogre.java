@@ -13,7 +13,7 @@ public class Ogre extends Character {
 	strength = 10 + str;
 	dexterity = 6 + dex;
 	intelligence = 4 + intel;
-	maxhealth = strength;
+	maxhealth = strength * 10;
 	health = maxhealth;
     }
 
