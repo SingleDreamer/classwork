@@ -57,7 +57,7 @@ public class Warrior extends Character{
             }
         }
 
-<<<<<<< HEAD
+
 	//*pew pew*
 	else if (answer == 3){
 	    int a=(dice1[new Random().nextInt(dice1.length)]);
@@ -76,7 +76,7 @@ public class Warrior extends Character{
 	    return this.attack(other); 
 	}
 	return 5;
-=======
+
         //*pew pew*
         else if (answer == 3){
             int a=(dice1[new Random().nextInt(dice1.length)]);
@@ -98,6 +98,6 @@ public class Warrior extends Character{
         else {
             System.out.println(this.name + "you, made a typo!");
         }
->>>>>>> e699fbfdaf5859f8ca54fbcdaf5cc65955619e81
+
     }
 }
