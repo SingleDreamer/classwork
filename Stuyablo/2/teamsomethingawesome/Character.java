@@ -91,6 +91,7 @@ public class Character {
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+
 	return true;
     }
 
