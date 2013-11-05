@@ -6,38 +6,29 @@ public class Character {
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
     
     // Constructors
-    public Character() {
-	health = maxhealth = 1;
-	strength = intelligence = dexterity = 0;
-	experience = 0;
-	level = 1;
-	name = "No Name";
-	characterClass = "No class";
-    }
-    
+    // This constructor is barebones and doesn't do jack. Someone just put it here to method overload the inherent version. I've one-lined it to clean it.
+    public Character() {health = maxhealth = 1;strength = intelligence = dexterity = 0;experience = 0;level = 1;name = "No Name";characterClass = "No class";}
+    //    public setAttributes(int strength,int intelligence,int dexterity) {}
+    // Important constructor - includes scanner functions to prompt for configuration
     public Character (String name, String characterClass) {
 	this.characterClass = characterClass;
 	System.out.println ("You are a " + getCharacterClass() + "\n");
 	this.name = name;
-	
 	if (getCharacterClass().equals ("Warrior")) {
 	    this.strength = 12;
 	    this.intelligence = 4;
 	    this.dexterity = 8;
 	}
-
 	if (getCharacterClass().equals ("Wizard")) {
 	    this.strength = 4;
 	    this.intelligence = 12;
 	    this.dexterity = 8;
 	}
-
 	if (getCharacterClass().equals ("Thief")) {
 	    this.strength = 8;
 	    this.intelligence = 4;
 	    this.dexterity = 12;
 	}
-
 	Scanner scanner2 = new Scanner (System.in);
 	System.out.println ("\n" + "Now it's time to pick your attributes!" + "\n");
 	
