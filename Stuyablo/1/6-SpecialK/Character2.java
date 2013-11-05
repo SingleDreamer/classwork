@@ -25,6 +25,8 @@ public class Character2 {
 	init ("M Zams", "Moran", 12, 8, 12, 0);
     }
 
+
+
     public Character2(String name, String charType){
 	int s = 0;
 	 int dex = 0;
@@ -165,7 +167,27 @@ public class Character2 {
 
     public void setHealth(int h){
 	health = h;
-	    }
+    }
+
+    public void setDexterity(int d){
+	dexterity = d;
+    }
+
+    public boolean flee(Character2 other){
+	if (this.getDexterity() > other.getDexterity()){
+	    System.out.println("You have run away. Your dexterity will be upgraded due to this success");
+	    this.setDexterity(this.getDexterity()+1);
+	    return true;
+	    // you are capable of running away, should cut out of current interaction
+	    // leave your interaction with the current enemy
+	}
+
+	else {
+	    System.out.println("Your enemy has outwiled you. No running away!. He has also uninflicted 1 damage upon you.");
+	    this.setHealth(this.getHealth()-1);
+	    return false;
+	}
+    }
 
     public void attack(Character2 other){
 	int damage = (this.getStrength() - other.getDefense());
