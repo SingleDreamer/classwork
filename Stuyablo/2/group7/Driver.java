@@ -28,6 +28,6 @@ public class Driver {
 			c1 = new Warrior(name);
 		}
 		Character c2 = new Ogre("The ogre");
-		c1.game(c2);
+		c1.fight(c2);
     }
 }

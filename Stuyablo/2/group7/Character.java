@@ -143,7 +143,7 @@ public class Character {
     }
         
     //actually runs game, calls on encounter multiple times
-    public void game(Character other) {
+    public void fight(Character other) {
                 int options = 5, turn = 1;
                 while (options == 5) {
                         pause();
