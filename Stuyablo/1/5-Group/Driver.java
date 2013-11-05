@@ -4,7 +4,9 @@ import java.io.*;
 
 public class Driver {
     public static void main(String[] args) {
-        playerCharacter p1 = new playerCharacter("Zens");
+	Wizard w = new Wizard();
+        playerCharacter p1 = new playerCharacter();
+	/*
        	NPC A = new NPC("Inimicus");
 	NPC B = new NPC("Flib");
 	Boolean play = true;
@@ -51,20 +53,19 @@ public class Driver {
 		}
 	    }
 	}
-	/*
+	*/
+
 	System.out.println(" ");
 
-	System.out.println(p);
-	//System.out.println(p.attack());
-	System.out.println(p.getStr());
-<<<<<<< HEAD:Stuyablo/1/Group-5/Driver.java
-	*/
-=======
-	System.out.println(p.getDex());
-	System.out.println(p.getInt());
-	System.out.println(p.getRole());
+	System.out.println(p1);
+	System.out.println(p1.getStr());
 
->>>>>>> 12aeaba9ebcb26e2609e98bb0c894ec90776c062:Stuyablo/1/5-Group/Driver.java
+	w.basicAttack(p1);
+
+	System.out.println(p1.getDex());
+	System.out.println(p1.getInt());
+	System.out.println(p1.getRole());
+	System.out.println(p1.getHP());
     }
 
 }
