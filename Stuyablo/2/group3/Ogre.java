@@ -7,4 +7,7 @@ public class Ogre extends NonPlayer {
 	dexterity = 8;
 	iq = 4;
     }
+
+    public void attack() {
+    }
 }

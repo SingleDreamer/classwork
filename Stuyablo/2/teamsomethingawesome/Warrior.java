@@ -9,6 +9,7 @@ public class Warrior extends Character{
 	intelligence = 8;
 	name = "Arthur";
 	charClass = "Warrior";
+	damage = strength;
     }
     public Warrior(String name, int strAdd, int intAdd, int dexAdd) {
         experience=0;

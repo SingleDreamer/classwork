@@ -37,6 +37,9 @@ public class Character {
     public String getName() {
 	return name;
     }
+    public void setName(String n){
+	name = n;
+    }
     public void setHealth(int n) { 
 	health=n; 
     }
@@ -49,7 +52,24 @@ public class Character {
 	System.out.println(other.getName()+ " has " + other.getHealth() + " health left.");
 	System.out.println("---------------------------------------------------------------");
     }
-
+    public int getStr(){
+	return strength;
+    }
+    public int getDex(){
+	return dexterity;
+    }
+    public int getInt(){
+	return intelligence;
+    }
+    public void setStr(int i){
+	strength = strength + i;
+    }
+    public void setDex(int i){
+	dexterity = dexterity + i;
+    }
+    public void setInt(int i){
+	intelligence = intelligence + i;
+    }
     /* You have to provide other needed get/set methods */
 
 
