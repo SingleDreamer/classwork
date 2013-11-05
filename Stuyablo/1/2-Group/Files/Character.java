@@ -101,26 +101,24 @@ public class Character {
     }
 
     public void battle(Character other) {
-	boolean otherLiving = true;
-	while (health >0){
-	    if (other.health <= 0){
-		otherLiving = false;
-		System.out.println("Your opponent has died. Success!");
-	    }
-
-	    while (otherLiving){
+	while (health > 0 && other.health > 0) {
 		if (this.dexterity >= other.dexterity) {
-		    this.action(other);
-		    other.action(this);
+		    action(this, other);
+		    other.action(other, this);
 		    System.out.println(this.name + "'s hp: " + this.health);
-		    System.out.println(other.name + "'s hp: " + other.health); }
-		else {
-		    other.action(this);
-		    this.action(other);
 		    System.out.println(other.name + "'s hp: " + other.health);
-		    System.out.println(this.name + "'s hp: " + this.health); }
-	    }
+		}
+		else {
+		    other.action(other, this);
+		    this.action(this, other);
+		    System.out.println(other.name + "'s hp: " + other.health);
+		    System.out.println(this.name + "'s hp: " + this.health);
+		}
 	}
+	if (health <= 0)
+	    System.out.println("You have died!");
+	else
+	    System.out.println("Your opponent has died!");
     }	
 
     //fight called in battle
@@ -260,45 +258,40 @@ public class Character {
 	int choice = 0;
 	if (this.pc) {
 	    while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
-		System.out.print("What will you do? Enter 1 to attack, 2 to move, 3 to talk, or 4 to flee"); 
+		System.out.println("Enter 1 to attack, 2 to move, 3 to talk, or 4 to flee");
 		choice = sc.nextInt();
-		return choice; }
+	    }
 	}
-	
-	choice = AI(other);
+	else
+	    choice = AI(other);
+
 	return choice;
     }
-    public void action(Character other) {
-	int moved = this.movement;
+
+    public void action(Character c1, Character c2) {  //c1's turn
+	int moved = c1.movement;
 	boolean turn = true;
 	boolean talked = false;
 
 	while (turn && moved > 0) {
-	    int command = command(this);
-	    if (command == 1) {
-		if (this.pc) {
+	    int command = command(c1);
+	    switch(command) {
+	    case 1:
+		if (c1.pc) {
 		    System.out.println("Choose an attack: ");
-		    other.health = other.health - this.attack(sc.nextInt(),other); }
+		    c2.health = c2.health - c1.attack(sc.nextInt(),c2);
+		}
 		else
-		    other.health = other.health - this.attack(AIAttack(other),other);
-		turn = false;}
-	
-	    else if (command == 4)
-		flee(other);
-
-	    else if (command == 3) {
-		if (talked)
-		    System.out.println(this.name + " already tried talking");
-		else {
-		    talk(other);
-		    talked = true; } }
+		    c2.health = c2.health - c1.attack(AIAttack(c2),c2);
+		turn = false;
+		break;
 	    
-	    else if (command == 2) {
-		if (this.pc) {
+	    case 2:
+		if (c1.pc) {
 		    int direction;
 		    int distance = -1;
 		    System.out.println("Choose a direction to move in. 1 for north, 2 for northeast, 3 for east, 4 for south east, 5 for south, 6 for southwest, 7 for west, and 8 for northwest");
-		    while (!"1234678".contains(sc.nextLine()))
+		    while (!"1234678".contains(sc.next()))
 			System.out.println("That is not a valid option");
 		    direction = sc.nextInt();
 
@@ -307,17 +300,36 @@ public class Character {
 			range = range + i; }
 		    System.out.println("Move how far? You can move up to " + moved + "yards");
 		    while (distance < 0 || distance > moved) {
-			while (range.indexOf(sc.nextLine()) == -1) {
+			while (range.indexOf(sc.next()) == -1) {
 			    System.out.println("Move how far? You can move up to " + moved + "yards");
 			}
-			distance = sc.nextInt(); }
-		    moved = moved - move(direction,distance); }
+			distance = sc.nextInt();
+		    }
+		    moved = moved - move(direction,distance);
+		}
 	
 		else
-		    moved = moved - AIMove(other,moved); 
-		System.out.println(this.name + "'s current location: " + this.x + "," + this.y); }
+		    moved = moved - AIMove(c2,moved); 
+		System.out.println(c1.name + "'s current location: " + c1.x + "," + c1.y);
+		break;
+
+	    case 3:
+		if (talked)
+		    System.out.println(c1.name + " already tried talking");
+		else {
+		    talk(c2);
+		    talked = true;
+		}
+		break;
+
+	    case 4:
+		flee(c2);
+		break;
+	    }
+
 	    if (turn && moved > 0)
-		command = command(this); }
+		command = command(c1);
+	}
     }
 
 
@@ -327,28 +339,32 @@ public class Character {
 
 	if (direction == 2) {
 	    this.y = this.y + (distance * Math.sqrt(.5));
-	    this.x = this.x + (distance * Math.sqrt(.5)); }
+	    this.x = this.x + (distance * Math.sqrt(.5));
+	}
 
 	else if (direction == 3)
 	    this.x = this.x + distance;
 
 	if (direction == 4) {
 	    this.y = this.y - (distance * Math.sqrt(.5));
-	    this.x = this.x + (distance * Math.sqrt(.5)); }
+	    this.x = this.x + (distance * Math.sqrt(.5));
+	}
 
 	if (direction == 5)
 	    this.y = this.y - distance;
 
 	if (direction == 6) {
 	    this.y = this.y - (distance * Math.sqrt(.5));
-	    this.x = this.x - (distance * Math.sqrt(.5)); }
+	    this.x = this.x - (distance * Math.sqrt(.5));
+	}
 
 	if (direction == 7)
 	    this.x = this.x - distance;
 
 	if (direction == 8) {
 	    this.y = this.y + (distance * Math.sqrt(.5));
-	    this.x = this.x - (distance * Math.sqrt(.5)); }
+	    this.x = this.x - (distance * Math.sqrt(.5));
+	}
 	return distance;	
     }
 
@@ -359,16 +375,19 @@ public class Character {
 	    if (distance(other) >= potential)
 		return move(face(other,1),potential);
 	    else
-		return move(face(other,1),((int)(distance(other)/2)+r.nextInt((int)(distance(other)/2)))); }
+		return move(face(other,1),((int)(distance(other)/2)+r.nextInt((int)(distance(other)/2))));
+	}
 	
 	else if (this.health <= this.maxHealth/2 && this.health >= this.maxHealth/5) {
 	    if (chance >= .25) {
 		if (distance(other) >= potential)
 		    return move(face(other,1),potential);
 		else
-		    return move(face(other,1),(((int)distance(other)/2)+r.nextInt(((int)distance(other)/2)))); }
+		    return move(face(other,1),(((int)distance(other)/2)+r.nextInt(((int)distance(other)/2))));
+	    }
 	    else 
-		return move(face(other,0),((potential/2 + r.nextInt(potential/2)))); }
+		return move(face(other,0),((potential/2 + r.nextInt(potential/2))));
+	}
 
 	else {
 	    if (chance >= .5)
@@ -379,7 +398,9 @@ public class Character {
 		if (distance(other) >= potential)
 		    return move(face(other,1),potential);
 		else
-		    return move(face(other,1),(((int)distance(other)/2)+r.nextInt(((int)distance(other)/2)))); } }
+		    return move(face(other,1),(((int)distance(other)/2)+r.nextInt(((int)distance(other)/2))));
+	    }
+	}
 
     }
 
@@ -391,7 +412,8 @@ public class Character {
 	    if (direction == 1)
 		return 2;
 	    else
-		return 5 + r.nextInt(3); }		
+		return 5 + r.nextInt(3);
+	}		
 
 	else if (xdiff > 0 && ydiff == 0) {
 	    if (direction == 1)
@@ -400,7 +422,9 @@ public class Character {
 		if (5 + r.nextInt(5) > 8)
 		    return 1;
 		else
-		    return 5 + r.nextInt(4); } }
+		    return 5 + r.nextInt(4);
+	    }
+	}
 
 	else if (xdiff > 0 && ydiff < 0) {
 	    if (direction == 1)
@@ -409,31 +433,37 @@ public class Character {
 		if (7 + r.nextInt(3) > 8)
 		    return 1;
 		else
-		    return 7 + r.nextInt(2); } }
+		    return 7 + r.nextInt(2);
+	    }
+	}
 
 	else if (xdiff < 0 && ydiff > 0) {
 	    if (direction == 1)
 		return 8;
 	    else
-		return 3 + r.nextInt(3); }
+		return 3 + r.nextInt(3);
+	}
 	
 	else if (xdiff < 0 && ydiff == 0) {
 	    if (direction == 1)
 		return 7;
 	    else
-		return 1 + r.nextInt(5); }
+		return 1 + r.nextInt(5);
+	}
 
 	else if (xdiff < 0 && ydiff < 0) {
 	    if (direction == 1)
 		return 6;
 	    else
-		return 1 + r.nextInt(3); }
+		return 1 + r.nextInt(3);
+	}
 
 	else if (xdiff == 0 && ydiff > 0) {
 	    if (direction == 1)
 		return 1;
 	    else
-		return 3 + r.nextInt(5); }
+		return 3 + r.nextInt(5);
+	}
 
 	else if (xdiff == 0 && ydiff < 0) {
 	    if (direction == 1)
@@ -442,7 +472,9 @@ public class Character {
 		if (7 + r.nextInt(5) > 8)
 		    return 1 + r.nextInt(3);
 		else
-		    return 7 + r.nextInt(1); } }
+		    return 7 + r.nextInt(1);
+	    }
+	}
 	else
 	    return 1 + r.nextInt(8);
     }
