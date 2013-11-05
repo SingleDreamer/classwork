@@ -151,7 +151,7 @@ public class Character {
 			   "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity;
 	}
 	
-    /*
+    
       public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
 		//Assume attribute1 is vitality, attribute2 is strength, attribute3 is magic and attribute4 is attribute4
 		int damage = strength; //equation subject to change
@@ -160,9 +160,9 @@ public class Character {
 			System.out.println("Hit! " + damage + " damage.");}
 		else {System.out.println("Miss!");}
 	}
-    */
     
-    public void attack(Character other){
+    
+    /*    public void attack(Character other){
 	int damage = strength;
 	while (this.getHealth() > 0 && other.getHealth() > 0){ //the hits and battle continue until one character's health reaches zero
 	    if (this.getDexterity() > other.getDexterity()){ // I am allowing the player with the higher dexterity to attempt to hit first
@@ -252,6 +252,7 @@ public class Character {
 	    this.setExperience(this.getExperience() + 10); 
 	}
     }
+*/
 
     // I'm not sure how to code the leveling up based on the experience points
     //Also the code rules mention that characters play with weapons and those determine the damage. I just left out weapons and dealth with strength because that seemed easier.
