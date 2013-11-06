@@ -11,27 +11,19 @@ public class Wizard extends Character {
 	Level = 1
 	Health = 10;
 	Intelligence = 8;
+	Strength = 8;
 	Dexterity = 10;
 	Mana = 12;
     }
 
-    public attack () {
-	int hit = Mana - 8;
-	//this hit should take into account weapon choice
-	boolean damage = true;
-	Random r = new Random();
-	if (r.nextInt() < 0.5) {
-	    damage = true;
-	} else {
-	    damage = false;
+    public void experience () {
+	experience = experience + 10;
+	if (experience == 100) {
+	    Level = Level + 1;
+	    Health = Health + 3;
+	    Mana = Mana + 2;
+	    Dexterity = Dexterity + 1;
+	    Intelligence = Intelligence + 1;
 	}
-	if (damage==true) {
-	    enemy.Health = enemy.Health - hit;
-	}
-
-    public void encounter () {
-	Random r = new Random();
-	if (r.nextInt() > 0.5) {
-	    
     }
 }

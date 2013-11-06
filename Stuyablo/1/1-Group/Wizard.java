@@ -26,7 +26,7 @@ public class Wizard extends Character {
 	int d1 = dice[r.nextInt(dice.length)];
 	int d2 = dice[r.nextInt(dice.length)];
 	int d3 = dice[r.nextInt(dice.length)];
-	hit = d1 + d2 + d3;
+	int hit = d1 + d2 + d3;
 	
 	if (hit <= this.dexterity){
 	    if (answer == 1){
@@ -60,6 +60,6 @@ public class Wizard extends Character {
 		}
 	    }
 	}
-	
+	return 1;
     }
 }

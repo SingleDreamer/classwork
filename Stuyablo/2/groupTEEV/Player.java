@@ -3,6 +3,7 @@ import java.io.*;
 
 public class Player extends Character {
     private int level;
+    private int cooldown;
 
     public void attack(){
 
@@ -50,19 +51,42 @@ public class Player extends Character {
 	System.out.print("Welcome to StuyabloII, " + name + "\n");
     }
 
-    public void setClass(){
-        Scanner s = new Scanner (System.in);
-	System.out.print ("Are you a Wizard or a Warrior? Please type 'Wizard' or 'Warrior'");
-	String c = s.nextLine();
-	if (c.equals("Wizard")){
-	    charClass = "Wizard";
-	}
-	else if (c.equals("Warrior")){
-	    charClass = "Warrior";
+    public void basicattack(){
+	int damage = 0;
+	if (charClass == "Warrior"){
+	    damage = strength - 2 + Random.nextInt(4);
 	}
 	else {
-	    System.out.print ("Silly player. That's not a choice. \n");
-	    setClass();
+	    damage = intelligence - 2 + Random.nextInt(4);
+	}
+	if (cooldown > 0){
+	    cooldown = cooldown - 1;
 	}
     }
+
+    public void specialattack1(){
+	int damage = 0;
+	if (cooldown = 0){
+	    if (charClass == "Warrior"){
+		damage = strength + 10;
+	    }
+	    else {
+		damage = intelligence + 10;
+	    }
+	    cooldown = 1;
+	}
+    }
+
+    public void specialattack2(){
+	int damage = 0;
+	if (cooldown = 0){
+	    if (charClass == "Warrior"){
+		damage = strength + 20;
+	    }
+	    else {
+		damage = intelligence + 20;
+	    }
+	    cooldown = 3;
+	}
+
 }

@@ -4,10 +4,9 @@ import java.util.*;
 public class Character {
     protected int health, maxhealth;
     protected int dexterity, strength, intelligence;
-    protected int experience;
+    protected int experience,expBase, expReq, level;
     protected String name;
     protected String charClass;
-
 
     public int getHealth() {
 	return health;
@@ -25,8 +24,11 @@ public class Character {
 	return intelligence;
     }
 
+    public int getLevel() {
+	return level;
+    }
+
     public int roll() {
-    
 	Random r = new Random();
 	int die1 = r.nextInt(6) + 1;
 	int die2 = r.nextInt(6) + 1;
@@ -36,10 +38,13 @@ public class Character {
 
     public void attack(Character other) {
 	int dice = roll();
-	int attackDmg =(int) (strength / dice);
+	int attackDmg =(int) (strength / 3);
 	if (dexterity <= dice){
 	    System.out.println("Successful Attack!");
-	    other.health = other.health - attackDmg;
+	    if (attackDmg > other.health)
+		other.health = 0;
+	    else
+		other.health = other.health - attackDmg;
 	}
 	else
 	    System.out.println("Attack failed.");
@@ -71,13 +76,54 @@ public class Character {
 
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
 
+      (they would never be both dead.)
     */
-  public int encounter(Character other) {
-      return 0;
-
+    public int encounter(Character c, Character other) {
+	if (other.flee() == true){
+	    c.experience ++;
+	    return 0;
+	}
+	if (c.flee() == true){
+	    other.experience ++;
+	    return 1;
+	}
+	System.out.println(c + " attacks " + other);
+	c.attack(other);
+	if (other.health > 0){
+	    System.out.println(other + " attacks " + c);
+	    other.attack(c);
+	    if (c.health == 0) {
+		System.out.println(c + " dies");
+		other.experience();
+		return 2;
+	    }
+	}
+	else {
+	    System.out.println(other + " dies");
+	    c.experience();
+	    return 3;
+	}
+	return 5;
   }
 
+    public void experience(){
+	experience += 10;
+    }
 
+    //50 * 1.1 * 1.1 * 1.1 *1.1 * 1.1
+
+    public void level(){
+	if (experience >= expReq){
+	    level ++;
+	    expReq = (int)(Math.pow(1.1, level - 1) * expBase);
+	    experience = 0;
+	    strength += 2;
+	    dexterity +=2;
+	    maxhealth += 2;
+	    health += 2;
+	    
+	}
+    }
 
   public String getStatus() {
     String attrib1=String.format("Str: %d Dex: %d Int: %d",
