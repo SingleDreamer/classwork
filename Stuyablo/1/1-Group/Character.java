@@ -131,8 +131,10 @@ public class Character {
 	    
 
     public void talk(Character other){
+    	
 	Scanner sc = new Scanner(System.in);
 	Random r = new Random(); 
+	
 	say ("you have chosen to talk!");
 	delay (2000);
         say ("type the number corresponding to your choice");
@@ -146,8 +148,10 @@ public class Character {
         say ("3. Didn't you know that they're having a body building competition in the next town?" +
              " I bet you'd fit right in!/n");
         delay (1000);
+        
         int answer = sc.nextInt(); 
         boolean x = r.nextBoolean ();
+        
         if (answer == 1) {
 
             if (x) {
