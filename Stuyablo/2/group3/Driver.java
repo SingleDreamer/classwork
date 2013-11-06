@@ -33,23 +33,26 @@ public class Driver {
             }
             else System.out.println ("Misspelled character type");
         }
+        // DEV Mode
+        if (args.length != 0) {
+            player.health = Integer.MAX_VALUE;
+        }
 
         npc = new Character[r.nextInt(6) + 5];
-        for (int i=0; i<npc.length-1; i++) {
+        for (int i=1; i<npc.length; i++) {
             npc[i] = new Ogre("Ogre " + i, player);
         }
-        npc[npc.length-1] = new MrMoran("BOSS: MR.MORAN", player);
+        npc[0] = new Moran("BOSS MR.MORAN", player);
 
-        int[] xArray = new int [ npc.length - 1 ];
-        int[] yArray = new int [ npc.length - 1 ];
-        for ( int j = 0 ; j < npc.length - 1; j++ ) {
-            xArray [ j ] = npc [ j ].xcor;
-            yArray [ j ] = npc [ j ].ycor;
-        }
         while (player.health > 0) {
+            int[] xArray = new int [ npc.length - 1 ];
+            int[] yArray = new int [ npc.length - 1 ];
+            for ( int j = 0 ; j < npc.length - 1; j++ ) {
+                xArray [ j ] = npc [ j ].xcor;
+                yArray [ j ] = npc [ j ].ycor;
+            }
             String map = new String();
             containsI p = new containsI();
-
             for ( int i = 0 ; i < xArray.length ; i++ )
                 System.out.println ( npc[i] + ": " + xArray[i] + ", " + yArray [ i ] );
 
@@ -72,7 +75,7 @@ public class Driver {
                 }
                 map = map + "\n";
             }
-            System.out.println ( player.xcor + ", " + player.ycor );
+            System.out.println ( "Your coordinates: " + player.xcor + ", " + player.ycor );
             //System.out.println ( map );
             int row = player.gridRange - player.ycor;
             int column = player.gridRange + 1 + player.xcor;
@@ -93,27 +96,27 @@ public class Driver {
             if (choice.equalsIgnoreCase("e")) {
                 System.out.println("Which direction would you like to go? (up, down, left, right)");
                 String dir = sc.nextLine();
-                System.out.println ( player.xcor + ", " + player.ycor );
+                //System.out.println ( player.xcor + ", " + player.ycor );
                 if (dir.equalsIgnoreCase("up")) {
-                    if ( player.ycor <= player.gridRange )
+                    if ( player.ycor < player.gridRange )
                         player.ycor = player.ycor + 1;
                     else
                         System.out.println ( "Out of bounds" );
                 }
                 else if (dir.equalsIgnoreCase("down")) {
-                    if ( player.ycor >= player.gridRange )
+                    if ( player.ycor > (-1 * player.gridRange ))
                         player.ycor = player.ycor - 1;
                     else
                         System.out.println ( "Out of bounds" );
                 }
                 else if (dir.equalsIgnoreCase("left")) {
-                    if ( player.xcor >= player.gridRange )
+                    if ( player.xcor > (-1 * player.gridRange ))
                         player.xcor = player.xcor - 1;
                     else
                         System.out.println ( "Out of bounds" );
                 }
                 else if (dir.equalsIgnoreCase("right")) {
-                    if ( player.xcor <= player.gridRange )
+                    if ( player.xcor < player.gridRange )
                         player.xcor = player.xcor + 1;
                     else
                         System.out.println ( "Out of bounds" );
@@ -125,28 +128,29 @@ public class Driver {
             else if (choice.equalsIgnoreCase("a")) {
                 if (npc.length <= 1) {
                     npc = new Character[r.nextInt(6) + 5];
-                    for (int i=0; i<npc.length-1; i++) {
+                    for (int i=1; i<npc.length; i++) {
                         npc[i] = new Ogre("Ogre " + i, player);
                     }
-                    npc[npc.length-1] = new MrMoran("BOSS: MR.MORAN", player);
+                    npc[0] = new Moran("BOSS: MR.MORAN", player);
                 }
-                player.encounter(npc);
-                while (player.getEnemy().health > 0) {
-                    player.attack();
-                    player.getEnemy().attack();
-                }
-                Character[] tempNpc = new Character[npc.length - 1];
-                int offset = 0;
-                for (int i=0; i<tempNpc.length; i++) {
-                    if (npc[i].equals(player.getEnemy())){
-                        offset -= 1;
+                if (player.encounter(npc)) {
+                    while (player.getEnemy().health > 0) {
+                        player.attack();
+                        player.getEnemy().attack();
                     }
-                    else{
-                        tempNpc[i + offset] = npc[i];
-                   }
+                    Character[] tempNpc = new Character[npc.length - 1];
+                    int offset = 0;
+                    for (int i=0; i<tempNpc.length; i++) {
+                        if (npc[i].equals(player.getEnemy())){
+                            offset -= 1;
+                        }
+                        else {
+                            tempNpc[i + offset] = npc[i];
+                       }
+                    }
+                    npc = tempNpc;
+                    player.getEnemy().die(player);
                 }
-                npc = tempNpc;
-                player.getEnemy().die(player);
             }
             else if (choice.equalsIgnoreCase("i")) {
                 System.out.println(String.format("Class: %s\nLevel: %d\nExperience: %d/%d\nHealth: %d\nStrength: %d\nDexterity: %d\nIntelligence %d\n", player.charClass, player.level, player.exp, (int) (50 + Math.pow(2, player.level)), player.health, player.str, player.dex, player.iq));
