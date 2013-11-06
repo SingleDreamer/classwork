@@ -31,11 +31,7 @@ public class Character {
         }
         dexterity=dex+8;
         strength=stren+8;
-<<<<<<< HEAD
         health=strength;
-=======
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
-	health=strength;
         maxhealth=strength;
         intelligence=intell+8;
     }
@@ -117,7 +113,6 @@ public class Character {
         } 
     }
     public void intimidate(Character other){
-<<<<<<< HEAD
         Random r = new Random();
         if (intelligence >= other.intelligence){
             int intdif = intelligence - other.intelligence;
@@ -133,8 +128,6 @@ public class Character {
         }
     
    
-=======
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
 	Random r = new Random();
 	if (intelligence >= other.intelligence){
 	    int intdif = intelligence - other.intelligence;
@@ -149,12 +142,6 @@ public class Character {
 		health = health - 2;
 	}
     }
-<<<<<<< HEAD
-	        
-=======
-		
-	    
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
 
     public void talk(Character other){
     	
@@ -182,84 +169,66 @@ public class Character {
 
             if (x) {
                 delay (1000); 
-<<<<<<< HEAD
 		say ("Your enemy says:");
-=======
                 say ("Your enemy says:");
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
                 say ("Sure");
                 say ("you walk off into the sunset with your enemy");
             }        
             else {
                 delay (1000);
-<<<<<<< HEAD
 		say ("Your enemy says:");
                 say ("no way you freak!");
                 intimidate(other);
                 dexterity = dexterity + (r.nextInt(3) - 2);
 		this.attack(other);
-=======
                 say ("Your enemy says:");
                 say ("no way you freak!");
 		intimidate(other);
 		dexterity = dexterity + (r.nextInt(3) - 2);
                 this.attack(other);
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
             }
 
         }
         if (answer == 2) {
             if (x) {
                 delay (1000); 
-<<<<<<< HEAD
 		say ("Your enemy says:");
-=======
                 say ("Your enemy says:");
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
                 say ("sh*t");
                 other.flee(this);
             }
             else {
-<<<<<<< HEAD
                 delay (1000);
                 dexterity = dexterity + (r.nextInt(5) - 2);
                 intimidate(other);
 		say ("Your enemy says:");		
 		say ("bullsh*t"); 
-=======
                 delay (1000); 
 		dexterity = dexterity + (r.nextInt(5) - 2);
 		intimidate(other);
 		say ("Your enemy says:");
                 say ("bullsh*t"); 
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
                 this.attack(other);
             }
         }
         if (answer == 3) {
             if (x) {
                 delay (1000); 
-<<<<<<< HEAD
 		say ("Your enemy says:");
-=======
                 say ("Your enemy says:");
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
                 say ("...you're a riot, kid. and an idiot");
                 say("your enemy has left");
             }
             else {
                 delay (1000);
-<<<<<<< HEAD
 		say ("Your enemy says:");
                 say ("are you serious?");
                 dexterity = dexterity + (r.nextInt(4) - 2);
                 intimidate(other);
-=======
                 say ("Your enemy says:");
                 say ("are you serious?");
 		dexterity = dexterity + (r.nextInt(4) - 2);
 		intimidate(other);
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
                 this.attack(other);
             }
         }
@@ -348,11 +317,7 @@ public class Character {
         Random x = new Random();
         if (x.nextInt(intelligence) >= intelligence/2){
             say(this + " has fled");
-<<<<<<< HEAD
-            strength = strength - 1;
-=======
 	    strength = strength - 1;
->>>>>>> 53ee47424e79a95b23823254490916a8878ac05e
             other.takegold(this);
             loosegold();
             return true;
