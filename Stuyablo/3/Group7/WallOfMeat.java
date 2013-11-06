@@ -16,11 +16,11 @@ public class WallOfMeat extends Character{
 		Random r = new Random();
 		int rollDie = r.nextInt(18) + 1;
 		if (rollDie <= dexterity) {
-			System.out.println("Elf successfully hit " + other);
+			System.out.println("WallOfMeat successfully hit the attacker");
 			//enemy loses health
 		}
 		else
-			System.out.println("Elf missed!");
+			System.out.println("WallOfMeat missed!");
 	}
 
     public boolean flee(Character other){
@@ -32,7 +32,7 @@ public class WallOfMeat extends Character{
 		return true;
 	}
 
-	public int encounter(Character other) {
+    public int encounter(Character other) {
 		//need to figure out if other wants flee
 		if (other.strength + other.dexterity > strength + dexterity) {
 			if (flee(other))
@@ -54,8 +54,9 @@ public class WallOfMeat extends Character{
 	}
 		
 
-
-
+    public int getHealth(){
+	return health;
+    }
 
 
 
