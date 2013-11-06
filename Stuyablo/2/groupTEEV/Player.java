@@ -7,14 +7,14 @@ public class Player extends Character {
 
     public void attack(Character c){
 	Scanner s = new Scanner (System.in);
-	System.out.print ("How would you like to fight?" + "\n" + "1 : Basic Attack, 2: Special Attack 1, 3: Special Attack 2");
+	System.out.print ("How would you like to fight?" + "\n" + "1 : Basic Attack, 2: Special Attack 1, 3: Special Attack 2 ");
 	int attack = s.nextInt();
 	if (attack == 1){
 	    basicattack(c);
 	}
 	else if (attack == 2){
 	    if (cooldown > 0){
-		System.out.println("You do not have the energy for that");
+		System.out.println("You do not have the energy for that ");
 		attack(c);
 	    }
 	    else
@@ -22,7 +22,8 @@ public class Player extends Character {
 	}
 	else if (attack == 3){
 	    if (cooldown > 0){
-		System.out.println("You do not have the energy for that");
+		System.out.println("You do not have the energy for that ");
+		attack (c);
 	    }
 	    else
 		specialattack2(c);
@@ -149,8 +150,8 @@ public class Player extends Character {
 	if (other.getHealth() > 0){
 	    other.attack(this);
 	}
-	System.out.print(this + " : " +  health);
-	System.out.print(other + " : " + other.getHealth());
+	System.out.print(this + " : " +  health + " \n");
+	System.out.print(other + " : " + other.getHealth()+ " \n");
 	if ((health > 0) && (other.getHealth() > 0)){
 	    this.battle(other);
 	}
@@ -181,6 +182,7 @@ public class Player extends Character {
 		    action()
 		health = maxhealth;
 		System.out.println("Your health is now max. Used " + amt + " gold.\n");
+		action();
 	    }
 	    else {
 		System.out.println("Your health is maxed already!\n");
