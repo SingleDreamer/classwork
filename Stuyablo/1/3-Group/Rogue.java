@@ -6,7 +6,6 @@ public class Rogue extends PC {
     private Random rand = new Random();
     Scanner sc = new Scanner(System.in);
 
-    protected int poison;
     protected int stealth;
 
     public Rogue() {
