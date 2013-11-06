@@ -3,9 +3,17 @@ import java.util.*;
 public class Warrior extends Character {
 
     public Warrior (String n) {
-        super(n , 1 );
+        super(n);
+        super.playerInit();
         super.charClass = "Warrior";
+        super.weapons[0] = 4; // Warrior can do 4 damage with hand
     }
+
+    public void attack () {
+        int damage = (int) Math.sqrt(str);
+        super.attack(damage);
+    }
+
 /*
     public void attack() {
 	Random r = new Random();
