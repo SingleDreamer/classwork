@@ -23,8 +23,28 @@ public class Driver {
 	
 
 	System.out.println("-------------------------------");
-	System.out.println("It's "+ enemy +"! \n What will you do?: ");
-	player.encounter(enemy);
+
+	System.out.println(player.getHealth());
+	System.out.println(enemy.getHealth());
+	
+	while ((player.alive()) && (enemy.alive())){
+	    System.out.println("It's "+ enemy +"! \n What will you do?: ");	    
+	    System.out.print("(1)Fight or (2)Flee\n");
+	    String input = sc.nextLine();
+	    if (input.equals("1")){
+		player.attack(enemy);
+		enemy.attack(player);
+		}
+	    else if (input.equals("2")){
+		player.flee();
+	    }
+	    else {
+		System.out.println("Invalid choice");
+	    }
+	    System.out.println("Your Health: " + player.getHealth());
+	    System.out.println("Enemy Health: " + enemy.getHealth());
+	    System.out.println("-------------------------------");
+	}
 	System.out.println("Someone died...");
     }
 }

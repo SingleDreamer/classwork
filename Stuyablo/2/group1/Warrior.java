@@ -7,12 +7,11 @@ public class Warrior extends Character {
 
     public Warrior(String Name) {
 	name = Name;
-	strength = 12;
-	dexterity = 4;
 	setStat();
 	health = strength;
 	System.out.println("Strength: " + strength);
 	System.out.println("Dexterity: " + dexterity);
+	System.out.println("Intelligence: " + intelligence);
     }
 
     public void attack(Character c) {
