@@ -4,15 +4,14 @@ import java.util.*;
 public class Driver {
     public static void main(String[] args) {
 	PC c = new PC();
-	c.PCCreation();
-	NPC x = new NPC();
+	NPC n = new NPC();
 	System.out.println(c.getStatus());
 	Random r = new Random();
-	for (n = 0; n < 50; n ++){
+	for (int z = 0; z < 50; z ++){
 	    if (r.nextInt(2) < 1){
 		System.out.println("You've encountered something!");
 		NPC x = new NPC();
-		c.encounter(x);
+		c.encounter(n);
 	    }
 	    else{
 		System.out.println("You walk merrily onwards");
