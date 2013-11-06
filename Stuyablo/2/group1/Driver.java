@@ -16,7 +16,7 @@ public class Driver {
 	
 	player.setChar();
 
-	while (true) {
+	while (player.turn()) {
 	    player.turn();
 	}
     }

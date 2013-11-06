@@ -1,6 +1,7 @@
 Steven Zabolotny, Michael Lim, George Drimba, Shane Lorenzen
 
 (We collaborated on googledoc, and submitted final copy of the project in one shot.)
+EDIT - We added two characters Slime (NPC) and Wizard (PC)
 
 CHARACTERS
 ==========
@@ -70,13 +71,25 @@ Exp requirement will grow each time by 5.
 
 Class specifics:
 
+Player Characters
 
 ARCHER CLASS
 =============
 Damage is exclusively based on Dexterity.
 Has more health than normal characters.
 
+WIZARD CLASS
+============
+Damage is exclusively based on Intelligence.
+Has more health than normal characters.
+
+Non-Player Characters
+
 OGRE CLASS
 ==========
 Damage is strength + 3.
 Has less health than normal characters.
+
+SLIME CLASS
+===========
+HAs very weak damage and low health compared to normal characters.

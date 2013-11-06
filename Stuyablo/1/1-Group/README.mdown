@@ -51,11 +51,10 @@ THINGS TO ADD:
 	To make things simple, a player will regenerate to his/her full health after he/she has 
 	successfully defeated the opponent. 
 
-	OGRE SUBCLASS
-	
-	THIEF SUBCLASS
 	
 THINGS THAT DO NOT WORK:
+
+	OGRE, THIEF, WIZARD SUBCLASS
 
 	WIZARD SUBCLASS
 	

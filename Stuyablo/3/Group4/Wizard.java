@@ -1,10 +1,10 @@
 import java.io.*;
 import java.util.*;
 
-public class Archer extends Character {
+public class Wizard extends Character {
 	//Wonder if this constructor will work in asking to initialize character.
-	public Archer() {
-		charClass = "Archer";
+	public Wizard() {
+		charClass = "Wizard";
 		Scanner s = new Scanner(System.in);
 		Random r = new Random();
 		x = r.nextInt(8);
@@ -42,7 +42,7 @@ public class Archer extends Character {
 			    strength = strength + 8;
 
 		}
-		maxhealth = 8*strength;
+		maxhealth = 10*strength;
 		health = maxhealth;
 	}
 	
@@ -68,7 +68,7 @@ public class Archer extends Character {
 			experienceneeded = experienceneeded + 5 * (level - 1); /*Increases exp needed to level up by 5 per level, so its 10, 15, 25, 40, 60 Consider that you get 10 exp + enemies health per each kill.*/
 		    }
 		}
-		maxhealth = 8 * strength;
+		maxhealth = 10 * strength;
 		health = maxhealth; //health regeneration
 		}
 		
@@ -107,9 +107,9 @@ public class Archer extends Character {
 			System.out.println(name + " died.");
 		}
 		else {
-		if (dexterity >= roll) {
-			other.damage(dexterity-2);
-			System.out.println(name + " has dealt " + (dexterity-2) + " damage to its enemy!");
+		    if ((dexterity + (intelligence /2)) >= roll) {
+			other.damage(intelligence + 3);
+			System.out.println(name + " has dealt " + (intelligence + 3) + " damage to its enemy!");
 			System.out.println("----------------------------------------------------------------");
 		}
 		else {
