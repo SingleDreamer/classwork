@@ -53,9 +53,6 @@ public class PC extends Character{
 	}
 	
 	health = 50 + ((strength - 8)*4);
-    }	
-
-    public void turn(Character other){
     }
 }
 
