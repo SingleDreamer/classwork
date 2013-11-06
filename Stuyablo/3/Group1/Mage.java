@@ -12,6 +12,7 @@ public class Mage extends Character {
 	public boolean Cast(String spell, Character other) {
 		if (spell.equals("Bolt")) {
 			return Bolt(other);
+			//where is the function titled "Bolt" ?
 		}
 		if (spell.equals("Frost")) {
 			return Frost(other);
