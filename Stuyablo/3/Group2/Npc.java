@@ -10,7 +10,7 @@ public class Npc extends Character {
 	strength = 4;
 	intellegence = 4;
 	level = lv;
-	ep = 0;
+	ep = 30 + 20*lv;
 	for (int i = 3 + lv; i > 0; i--) {
 	    Random r = new Random();
 	    int number = r.nextInt(3);
@@ -23,5 +23,10 @@ public class Npc extends Character {
 		}
 	hp = strength;
 	mp = strength;		
+    }
+
+    public boolean die() {
+        System.out.println(name + " is dead.");
+	return false;
     }
 }

@@ -115,6 +115,12 @@ public class Character {
 	else 
 	    return die();
     }
+
+    public boolean changeEP(int n) {
+	ep = ep + n;
+    }
+	
+
     public boolean attack(Character other) {
 	try {
 	    Thread.sleep(1000);
