@@ -12,14 +12,14 @@ public class Driver {
 	*/
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Welcome to StuyabloII. \n Enter your name: ");
-	String name = sc.nextLine();
+	name = sc.nextLine();
 	System.out.println("Hello " + name);
 	System.out.println("-------------------------------");
 	
 	if (r.nextDouble() > 0.5){
-	    player = new Warrior();}
+	    player = new Warrior(name);}
 	else{
-	    player = new Wizard();}
+	    player = new Wizard(name);}
 	if (r.nextDouble() > 0.5){
 	    enemy = new Ogre();}
 	else{
