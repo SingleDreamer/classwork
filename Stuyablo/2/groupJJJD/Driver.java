@@ -4,8 +4,8 @@ public class Driver {
 	System.out.println(w.getStatus());
 	Warrior wbot = new Warrior("Bot",0,0,0);
 	System.out.println(wbot.getStatus());
-	
+	w.calcDmg();
 	System.out.println(w.dmgdouble);
-	
+	w.encounter(wbot);
     }
 }

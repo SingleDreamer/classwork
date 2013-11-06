@@ -7,11 +7,24 @@ public class Warrior extends Character{
 		this.name = name;
 		strength = 8;
 		dexterity = 8;
+		intelligence = 8;
 		experience = 0;
 		level = 1;
+		expBase = 50;
 
+		System.out.println();
 		System.out.println("Hello " + name);
+		try {
+		Thread.sleep(2000);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
 		System.out.println("You have 8 points to alot to either strength or dexterity. Please type and number between 0 and 8.");
+		try {
+		Thread.sleep(2000);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
 		System.out.println("This number will be added to your strength. This number subtracted from 8 will be added to dexterity.");
 		System.out.println();
 		Scanner in = new Scanner(System.in);
@@ -31,7 +44,7 @@ public class Warrior extends Character{
 		System.out.println();
 
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch(InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}
@@ -44,26 +57,176 @@ public class Warrior extends Character{
 		int attackDmg =(int) (strength / 3);
 		if (dexterity <= dice){
 			try {
-				Thread.sleep(1500);
+				Thread.sleep(2000);
 			} catch(InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
 
+			System.out.println();
 		    System.out.println("You succesfuly attacked " + other.name);
 
-		    if (attackDmg > other.health)
-			other.health = 0;
-			System.out.println("You killed " + other.name);
-		    else
-			other.health = other.health - attackDmg;
+		    if (attackDmg > other.health) {
+				other.health = 0;
+				try {
+					Thread.sleep(2000);
+				} catch(InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
+
+				System.out.println();
+				System.out.println("You killed " + other.name);
+			}
+			else
+				other.health = other.health - attackDmg;
 		}
-		else
-		    System.out.println("Attack failed.");
-		
+
+		else {
+			try {
+				Thread.sleep(2000);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			System.out.println();
+		    System.out.println(" Your attack failed.");
+		}
     }
 
-	public static void main(String[] args) {
-		Warrior w = new Warrior("Test");
-	}
+    //Encounter: if other decides to flee, this gets experience, and encounter ends... 
+    //if this decides to flee, other gets experience and encounter ends... 
+    //otherwise, fight fight fight!
+    public int encounter(Character other) {
+		Scanner in = new Scanner(System.in);
+	
+		if (other.flee() == true){
+		    experience ++;
+		    try {
+			Thread.sleep(2000);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+		    System.out.println(other + " has fled.");
+		    System.out.println();
+		    System.out.println(this.getStatus());
+		    System.out.println();
+		    System.out.println("Your level is: " + this.level);
+		    return 0;
+		}
+		
+		System.out.println();
+		try {
+		Thread.sleep(2000);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
+		System.out.println("Do you wish to attempt to flee? (Type 'true' or 'false')");
+		System.out.println();
+		boolean fleeAttempt = in.nextBoolean();
+		if (fleeAttempt) {
+			if (this.flee() == true){
+		    	other.experience ++;
+	
+		    	try {
+				Thread.sleep(2000);
+				} catch(InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
+				System.out.println();
+		    	System.out.println("You have succesfuly fled.");
+		    	return 1;
+		    }
+		    else
+		    	try {
+				Thread.sleep(2000);
+				} catch(InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
+				System.out.println();
+		    	System.out.println("You were unable to flee.");
+		}
+		
+		System.out.println("You will now attack " + other);
+		this.attack(other);
+		System.out.println();
+		try {
+		Thread.sleep(2000);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
 
+		System.out.println("Your current health:" + this.health);
+		
+		try {
+		Thread.sleep(2000);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
+
+		System.out.println(other + "'s current health:" + other.health);
+		System.out.println();
+		System.out.println("~~~~~~~~~~~~~~");
+		System.out.println();
+	
+		if (other.health > 0){
+		    other.attack(this);
+		    System.out.println();
+
+		    try {
+			Thread.sleep(2000);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+
+		    System.out.println("Your current health:" + this.health);
+
+			try {
+			Thread.sleep(2000);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+
+		    System.out.println(other + "'s current health:" + other.health);
+		    System.out.println();
+		    System.out.println("~~~~~~~~~~~~~~~~");
+			System.out.println();
+		    
+		    if (this.health <= 0) {
+		    	try {
+				Thread.sleep(2000);
+				} catch(InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
+
+				System.out.println("You were defeated. You are dead");
+				other.experience();
+				other.level();
+				return 2;
+		    }
+		}
+		else {
+			try {
+			Thread.sleep(2000);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+		    System.out.println(other + " was defeated. Victory is yours!");
+		    this.experience();
+		    this.level();
+		    try {
+			Thread.sleep(2000);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			System.out.println(this.getStatus());
+
+			try {
+			Thread.sleep(2000);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+
+			System.out.println("Level: " + this.level);
+		    return 3;
+		}
+		return 5;
+	}
 }

@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Game{
-        
+        Scanner input = new Scanner(System.in);        
         /*
         turn() signifies the player's turn.
         */
@@ -11,12 +11,12 @@ public class Game{
                 boolean turn = true;
                 int status = 0; //Status of game returned from encounter
                 while (turn == true) {
-                        System.out.println("Commands:");
-                        System.out.println("0. Light Attack");
-                        System.out.println("1. Heavy Attack");
-                        System.out.println("2. Spell NOT IMPLEMENTED");
-                        System.out.println("3. Item NOT IMPLEMENTED");
-                        System.out.println("4. Flee");
+                        System.out.println("------------------------");
+                        System.out.print("Commands:");
+                        System.out.print("0. Light Attack ");
+                        System.out.print("1. Heavy Attack ");
+                        System.out.print("2. Special Attack ");
+                        System.out.print("3. Flee");
                         
                         int select = input.nextInt();
                         
@@ -31,7 +31,12 @@ public class Game{
                                 if (status == 2 || status == 3)
                                     turn = false;
                         }
-                        if (select == 4) {
+                        if (select == 2){
+                                status = player.encounter(player2, "Special Attack");
+                                if (status == 2 || status == 3)
+                                    turn = false;
+                        }
+                        if (select == 3) {
                                 status = player.encounter(player2,"Flee");
                                 if (status == 1){
                                     System.out.println("Flee successful!");
@@ -40,5 +45,6 @@ public class Game{
                         }
                         
                 }
+                System.out.println("Battle over");
         }
 }

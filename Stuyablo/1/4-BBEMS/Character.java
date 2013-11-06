@@ -1,14 +1,26 @@
 import java.util.*;
 
 public class Character {
-    private int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
+    static int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
     protected int health, maxhealth, strength, intelligence, dexterity, experience, level;
     protected String name, characterClass;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
     
     // Constructors
     // This constructor is barebones and doesn't do jack. Someone just put it here to method overload the inherent version. I've one-lined it to clean it.
-    public Character() {health = maxhealth = 1;strength = intelligence = dexterity = 0;experience = 0;level = 1;name = "No Name";characterClass = "No class";}
+    public Character() {
+	
+	if (random.nextInt (3) < 2) {
+	    health = maxhealth = strength;strength = random.nextInt (10);
+	    intelligence = random.nextInt (10);
+	    dexterity = random.nextInt (10);
+	    experience = 0;level = 1;name = "ANGRY ENEMY";characterClass = "No class";}
+	else {health = maxhealth = strength;strength = random.nextInt (15);
+	    intelligence = random.nextInt (15);
+	    dexterity = random.nextInt (15);
+	    experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";}
+	
+    }
     // Important constructor - includes scanner functions to prompt for configuration
     public Character (String name, String characterClass) {
 	this.characterClass = characterClass;
@@ -19,13 +31,13 @@ public class Character {
 	if (getCharacterClass().equals ("Thief")) {this.setAttributes(8,4,12);}
 	Scanner scanner2 = new Scanner (System.in);
 	System.out.println ("\n" + "Now it's time to pick your attributes!" + "\n");
-	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+	delay();
 	System.out.println ("You have 8 points to assign among your three attributes: Strength, Dexterity and Intelligence." + "\n");
-	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+	delay();
         System.out.println ("Strength will be your warrior's and theives attack stat, while Intelligence defines your Wizard's prowess in battle." + "\n");
-	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+	delay();
 	System.out.println ("On the other hand, if you want to hit your opponent, then it might be worth investing in Dexterity." + "\n");
-	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+	delay();
         
 	int n = 8;
 	String attributer = "";
@@ -70,7 +82,7 @@ public class Character {
 	    input2 = false;
 	    
 	}
-	
+	health=maxhealth=strength;
     }
     
     
@@ -94,13 +106,16 @@ public class Character {
     public void setLevel(int level) {this.level = level;}
     public void setName(String name) {this.name = name;}
     public void setCharacterClass(String characterClass) {this.characterClass = characterClass;}
-
     public void setAttributes(int strength,int intelligence,int dexterity) {this.strength = strength;this.intelligence = intelligence;this.dexterity = dexterity;}    
     public String toString() {
 	return name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
 	    "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity;
     }
     
+    public static void delay() {
+	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+    }	
+
     
     /* public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
 	//Assume attribute1 is vitality, attribute2 is strength, attribute3 is magic and attribute4 is attribute4
@@ -118,17 +133,17 @@ public class Character {
 	String firstHit = "";
 	// set the damage that is done by this character
 	if (getCharacterClass().equals("Wizard")){
-	    damage = intelligence;
+	    damage = intelligence - random.nextInt (10);
 	}
 	else if ((getCharacterClass().equals("Warrior")) || (getCharacterClass().equals("Thief"))){
-	    damage = strength;
+	    damage = strength - random.nextInt (10);
 	}
 	// set the damage done by other character
 	if (other.getCharacterClass().equals("Wizard")){
-	    otherDamage = other.getIntelligence();
+	    otherDamage = other.getIntelligence() - random.nextInt (10);
 	}
 	else if ((other.getCharacterClass().equals("Warrior")) || (other.getCharacterClass().equals("Thief"))){
-	    otherDamage = other.getStrength();
+	    otherDamage = other.getStrength() - random.nextInt (10);
 	}
 
 	if (this.getDexterity() == other.getDexterity()){ // in case the dexterity's of the two characters are equal we randomly increase one by 1 so we can determine who will hit first
@@ -232,4 +247,5 @@ public class Character {
     //Also I did not know how to use distance for fighting battles because even if each character has a coordinate for x and a coordinate for y 
     //well it makes sense they the x and y values have to have a certain distance between them for attack to work and we can easily add that
     //I just don't know as the character progresses throughout the game how the x and y coordinates are suppose to adjust to his/her position   
+    
 }
