@@ -155,7 +155,6 @@ public class Character {
             if (x) {
                 delay (1000); 
 		say ("Your enemy says:");
-                say ("Your enemy says:");
                 say ("Sure");
                 say ("you walk off into the sunset with your enemy");
             }        
@@ -164,32 +163,21 @@ public class Character {
 		say ("Your enemy says:");
                 say ("no way you freak!");
                 intimidate(other);
-                dexterity = dexterity + (r.nextInt(3) - 2);
+                dexterity = dexterity + (y.nextInt(3) - 2);
 		this.attack(other);
-                say ("Your enemy says:");
-                say ("no way you freak!");
-		intimidate(other);
-		dexterity = dexterity + (r.nextInt(3) - 2);
-                this.attack(other);
             }
 
         }
         if (answer == 2) {
             if (x) {
                 delay (1000); 
-		say ("Your enemy says:");
                 say ("Your enemy says:");
                 say ("sh*t");
                 other.flee(this);
             }
             else {
-                delay (1000);
-                dexterity = dexterity + (r.nextInt(5) - 2);
-                intimidate(other);
-		say ("Your enemy says:");		
-		say ("bullsh*t"); 
                 delay (1000); 
-		dexterity = dexterity + (r.nextInt(5) - 2);
+		dexterity = dexterity + (y.nextInt(5) - 2);
 		intimidate(other);
 		say ("Your enemy says:");
                 say ("bullsh*t"); 
@@ -199,20 +187,15 @@ public class Character {
         if (answer == 3) {
             if (x) {
                 delay (1000); 
-		say ("Your enemy says:");
                 say ("Your enemy says:");
                 say ("...you're a riot, kid. and an idiot");
                 say("your enemy has left");
             }
             else {
                 delay (1000);
-		say ("Your enemy says:");
-                say ("are you serious?");
-                dexterity = dexterity + (r.nextInt(4) - 2);
-                intimidate(other);
                 say ("Your enemy says:");
                 say ("are you serious?");
-		dexterity = dexterity + (r.nextInt(4) - 2);
+		dexterity = dexterity + (y.nextInt(4) - 2);
 		intimidate(other);
                 this.attack(other);
             }

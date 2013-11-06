@@ -3,7 +3,7 @@
 Period 1 - Group 4
 
 * Benjamin Rothman
-* Brian ???
+* Brian Guo
 * Eugene Lee
 * Maria Kollaros
 * Sean Yip
