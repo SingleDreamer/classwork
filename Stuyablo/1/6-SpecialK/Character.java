@@ -20,6 +20,11 @@ public class Character {
 	maxhealth = s;
 	charm = ch;
     }
+
+    public Character(String n, String c, int s, int dex, int def, int ch){
+	init(n, c, s, dex, def, ch);
+    }
+	
     
     public Character(){
 	System.out.println("Mr. Moran begins strong, but quite slow due to his low dexterity. This makes it harder to run away from opponents. He also has the lowest possible charm, meaning you will probably go last");
@@ -277,6 +282,7 @@ public class Character {
 		}
      }
     public void encounter(Character other) {
+	System.out.println("" + other.getStatus());
 	System.out.println("Enter 1 to flee, any other number to fight");
             Scanner sc = new Scanner(System.in);
 	int response = sc.nextInt();
