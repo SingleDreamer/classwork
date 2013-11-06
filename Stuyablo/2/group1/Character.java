@@ -71,7 +71,7 @@ public class Character {
 	System.out.print("What would you like to be? Warrior? Blah?");
 	if (sc.nextLine().equals("Warrior")) {
 	    Warrior w = new Warrior();
-	    System.out.println("Woo, You're a warrio");
+	    System.out.println("Woo, You're a warrior");
 	}
 	else if (sc.nextLine().equals("Blah")) {
 	    System.out.println("Woo, you're a blah");

@@ -5,16 +5,16 @@ public class Warrior extends Character {
     private int exp=0,lvl=1;
     private int wait;
 
-    public void Warrior() {
+    public Warrior() {
 	str = 12;
 	dex = 4;
-	super.setStat();
+	setStat();
 	health = str;
 	System.out.println("Strength: " + str);
 	System.out.println("Dexterity: " + dex);
     }
 
-    public void attack(NPC c) {
+    public void attack(Character c) {
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Choose your attack!\n" + "(1) Poke, (2) Stab, (3) SUPERSLASH");
 	int atk = sc.nextInt();
@@ -44,7 +44,7 @@ public class Warrior extends Character {
 	return (sum <= dex);
     }
 
-    public void poke(NPC c) {
+    public void poke(Character c) {
 	Random r = new Random();
 	String atk = "poke";
 	int dmg = (int)(str*r.nextDouble());
@@ -62,7 +62,7 @@ public class Warrior extends Character {
 	}
     }
 
-    public void stab(NPC c) {
+    public void stab(Character c) {
 	Random r = new Random();
 	String atk = "stab";
 
@@ -82,7 +82,7 @@ public class Warrior extends Character {
 	}
     }
 
-    public void superslash(NPC c) {
+    public void superslash(Character c) {
 	Random r = new Random();
 	String atk = "superslash";
 
