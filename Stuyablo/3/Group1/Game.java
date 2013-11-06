@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Game{
-        
+        Scanner input = new Scanner(System.in);        
         /*
         turn() signifies the player's turn.
         */

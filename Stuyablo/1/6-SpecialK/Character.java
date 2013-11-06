@@ -55,11 +55,7 @@ public class Character {
 	name = sc.next();
 	System.out.println("Choose your class. 1-Moran, 2-Wizard, 3-Zhang, 4- Warrior, Any other number- Student ");
 	int cl = sc.nextInt();
-	int s = 0;
-	int dex = 0;
-	int def = 0;
-	int mh = 0;
-	int ch = 0;
+	
 	if (cl == 1){
 	    charType="Moran";
 	    s = 12;
@@ -157,6 +153,7 @@ public class Character {
 	    }
 	     else {
 		 System.out.println("You can't do that.");
+		 i = i + 1;
 	     }
 	      i = i - 1;
 	}
@@ -231,6 +228,7 @@ public class Character {
  // can potentially give random bonuses
 		if (luck > dexterity){
 		    System.out.println("You missed.");
+		}
 		    else if (luck == dexterity -1){ 
 		    damage = this.getStrength() - other.getDefense()/4;
 		    if (damage > 0){
@@ -267,7 +265,6 @@ public class Character {
 			System.out.println("You hit but did not have enough power to damage your opponent");
 		    }
 	    }
-    }
     }
 
      public void Battle(Character other){

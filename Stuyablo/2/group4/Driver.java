@@ -12,8 +12,6 @@ public class Driver {
     public static void main(String[] args) {
         Player a = new Player("Aida");
         Ogre b = new Ogre();
-        //a.getStatus();	
-	//a.attack(b);
-	System.out.println(a.encounter(b));
+        a.encounter(b);
     }
 }
