@@ -1,4 +1,3 @@
-package Game;
 import java.io.*;
 import java.util.*;
 
