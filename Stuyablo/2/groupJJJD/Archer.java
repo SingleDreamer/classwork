@@ -15,13 +15,11 @@ public class Archer extends Character{
 	rollDice();
 	if (roll > this.dexterity) {
 	    
-	    other.health = other.health - this.dmgdouble;
+	    other.health = other.health - (int)this.dmg;
+	this.dexterity=this.dexterity-(int)distance;
 	    other.dexterity = other.dexterity - 1;
-	    //Archer vision is too good, he aims at the ankles so his opponents are less mobile.
-	    System.out.println(this.toString() + "'s Health: " + this.health);
-	    System.out.println(other.toString() + "'s Health: " + other.health);
-	    System.out.println(this.toString() + "'s Damage: " + this.dmgdouble);
-	    System.out.println(other.toString() + "'s Damage: " + other.dmgdouble);
+	    //Archer vision is too good, he aims at the ankles so his opponents are less mobile.		System.out.println(this.toString() + " shoots a bow");
+	    
 	}
 	
     }
