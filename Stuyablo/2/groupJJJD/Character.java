@@ -12,7 +12,7 @@ public class Character {
     protected String charClass;
     protected int roll;
     protected int level,dmg;
-	protected double dmgdouble; 
+    protected double dmgdouble; 
  
     public void rollDice() { //a method to use roll the dice -jamesc
 	Random r = new Random();

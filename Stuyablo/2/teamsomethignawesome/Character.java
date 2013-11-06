@@ -70,6 +70,9 @@ public class Character {
     public void setExp(int i){
 	experience = experience + i;
     }
+    public void setDamage(){
+	damage = strength;
+    }
     /* You have to provide other needed get/set methods */
 
 
@@ -78,7 +81,7 @@ public class Character {
 	Random r= new Random();
 	int roll=r.nextInt(6) + r.nextInt(6)+ r.nextInt(6); /*three six-sided die roll implementation by Matthew*/
 	if (roll < this.getDex()) {
-	    System.out.println("A hit!");
+	    System.out.println(this.getName() + " hit!");
 	    loseHealth(other,damage);
 	    /* do the attack:
 	       print out the attempt and the result and update
@@ -86,11 +89,11 @@ public class Character {
 	    */
 	}
 	else {
-	    System.out.println("A miss...\n---------------------------------------------------------------");
+	    System.out.println(this.getName() + " missed!\n---------------------------------------------------------------");
 	}
     }
 
-    // returns true if you succesfully flee, false otherwise SIKE
+    // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other){
 	h.pause();
 	Random r= new Random();
@@ -107,7 +110,7 @@ public class Character {
       so, and if it's succesful it should adjust experience and or
       gold as needed and return a 0.
 
-      Then, it should decide if this character tries to flee.
+      Then, it should decide if this character tries to flee. 
       If so and it's succesful, return a 1;
       
       Otherwise, call attack on both sides:
@@ -117,7 +120,6 @@ public class Character {
 
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
     */
-<<<<<<< HEAD
     
     public int encounter(Character other, String fightInput) {
 	boolean failFlee = false;
@@ -141,55 +143,25 @@ public class Character {
 	    else{
 		System.out.println("You failed to flee\n---------------------------------------------------------------");
 		other.attack(this);
+		if (this.getHealth() == 0){
+		    System.out.println("Your adventure ends here...");
+		}
 	    }
 	}
 	if (fightInput.equals("Attack")){
 	    this.attack(other);
-	    if (other.getHealth()>0 && !failFlee){
+	    if (other.getHealth()>0 && !failFlee)
 		other.attack(this);
-	    }
 	    if (this.getHealth()==0)
 		return 2;
-	    if (other.getHealth()==0)
+	    if (other.getHealth()==0){
+		this.setExp(other.getExp());
 		return 3;
+	    }
 	}
 	return 5;    
     }
     
-=======
-
-    public int encounter(Ogre other) {
-	System.out.println("You are now facing an ogre! Its stats are: " + other.getStatus());
-	
-	if (other.flee(this)==true) {
-	    experience = other.getExp();
-	    gold = gold + other.getGold();
-	    return 0;
-		 }
-			   
-	else if (this.flee(other)==true) {
-	    return 1;
-	}
-
-	else {
-	    this.attack(other);
-	    other.attack(this);
-	    if (this.health <= 0){
-		return 2;
-	    }
-	    else if (other.health <= 0){
-		return 3;
-	    }
-	    else if (other.health <= 0 && this.health <= 0){
-		return 4;
-	    }
-	    else {
-		return 5;
-	    }
-    }
-    }
-
->>>>>>> 1f86ccfc8fb294e2cf7929d792b46d51ea9621a9
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);
