@@ -73,6 +73,32 @@ public class Character {
     }
 
     public int encounter (Character other) {
+<<<<<<< HEAD
+	if (other.flee() == true){
+	    other.experience();
+	    return 0;}
+	if (this.flee() == true){
+	    this.experience();
+	    return 1;
+	} else {
+	    Random r = new Random();
+	    int Dice = r.nextInt(18);
+	    if (Dice <= this.Dexterity) {
+		this.attack(other);
+		System.out.println("You attacked " + other.toString() + "!");
+		this.experience();
+	        if (other.getHealth() > 0) {
+		    other.attack(this);
+		}
+	    } else {
+		System.out.println("You missed!");
+	    }
+	}
+	if (this.getHealth() <= 0) return 2;
+	else if (other.getHealth() <= 0) return 3;
+	else if (this.getHealth() <= 0 && other.Health <= 0) return 4;
+	else return 5;
+=======
         if (other.flee() == true){
             other.experience();
             return 0;}
@@ -97,6 +123,7 @@ public class Character {
         else if (other.getHealth() <= 0) return 3;
         else if (this.getHealth() <= 0 && other.Health <= 0) return 4;
         else return 5;
+>>>>>>> f85b12f9d35f54e8e4159988614ab402c70eb41e
     }
 
       public void attack (Character other) {
