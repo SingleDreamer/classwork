@@ -47,9 +47,40 @@ public class Stuyablo {
 		_class = "Thief";
 		player = new Thief (name);
 	    }
+
+	     random.nextInt (3) = int z;
+
+	    while (!(player.getHealth()=0)) { 
+	    
 	    System.out.println(player);
+	    
+	  
+
+	    if (z = 0) {
 	    Wizard opponent = new Wizard();
 	    player.attack(opponent);
+	    player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
+
+	    }
+
+	    if (z = 1) {
+	    Warrior opponent = new Warrior();
+	    player.attack(opponent);
+	    player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
+
+	    }
+
+	    if (z = 2) {
+	    Thief opponent = new Thief();
+	    player.attack(opponent);
+	    player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
+
+	    }
+
+	    }
+
+	    System.out.println (player);
+	    Sytsem.out.println ("You have killed" + player.getopponentsDefeated() + "opponents!");
 	    
 	    
 	    System.out.println("\nProgram terminated.");
