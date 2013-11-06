@@ -35,15 +35,6 @@ public class Warrior extends Character {
 	}
     }
 		
-    public boolean hit() {
-	Random r = new Random();
-	int d1,d2,d3,sum;
-	d1 = r.nextInt(6) + 1;
-	d2 = r.nextInt(6) + 1;
-	d3 = r.nextInt(6) + 1;
-	sum = d1 + d2 + d3;
-	return (sum <= dexterity);
-    }
 
     public void poke(Character c) {
 	Random r = new Random();
