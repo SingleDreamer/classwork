@@ -48,14 +48,10 @@ public class Stuyablo {
 		player = new Thief (name);
 	    }
 	    System.out.println(player);
-	    Character opponent = new Character();
-	    opponent.setHealth(100);
-	    opponent.setMaxhealth(100);
-	    opponent.setStrength(10);
-	    opponent.setIntelligence(10);
-	    opponent.setDexterity(10);
+	    Wizard opponent = new Wizard();
 	    player.attack(opponent);
-	    System.out.println(opponent);
+	    
+	    
 	    System.out.println("\nProgram terminated.");
 	}
     // Sean Yip's ASCII Logo thing. Made it into a separate static method to clean main method clean - EL

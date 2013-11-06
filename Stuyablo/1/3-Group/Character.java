@@ -2,8 +2,9 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int health, maxhealth;
+    protected int health, maxhealth; 
     protected int dexterity, strength, intelligence;
+    //determined through npc and pc constructors
     protected int experience;
     protected int gold;
     protected double x,y,distance;
@@ -13,9 +14,15 @@ public class Character {
     public int getHealth() {
 	return health;
     }
-
-    /* You have to provide other needed get/set methods */
-
+    public int getDex() {
+	return dexterity;
+    }
+    public int getStr() {
+	return strength;
+    }
+    public int getInt() {
+	return intelligence;
+    }
 
     public void attack(Character other) {
 	/* do the attack:
@@ -26,6 +33,7 @@ public class Character {
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+	return false;
     }
 
 

@@ -3,22 +3,38 @@ import java.util.*;
 
 public class Character {
     protected String Name;
-    protected int Health;
+    protected int Health,maxhealth;
     protected int Mana;
     protected int Strength;
     protected int Intelligence;
     protected int Dexterity;
     protected int Level = 1;
-    protected int experience = 0;
+    protected int experience = 0,gold;
+    protected double x,y;
+    private Scanner sc1 = new Scanner(System.in);
+
+    public Character () {
+	System.out.println("Character name is:");
+	Name = sc1.nextLine();
+	Health = 16;
+	Strength = 8;
+	Mana = 8;
+	Intelligence = 8;
+	Dexterity = 8;
+	Level = 1;
+	experience = 0;
+	maxhealth = 50;
+	gold = 0;
+    }
 
     public String getStatus() {
         String attrib1=String.format("Str: %d Dex: %d Int: %d",
-                                     strength, dexterity, intelligence);
+                                     Strength,Dexterity, Intelligence);
         String attrib2=String.format("Exp: %d Health: %d of %d",
-                                     experience,health,maxhealth);
+                                     experience,Health,maxhealth);
         String locale = String.format("x: %5.2f y: %5.2f",x,y);
         String whole=String.format("%s\n%s\n%s\n%s\n",
-                                   name,attrib1,attrib2,locale);
+                                   Name,attrib1,attrib2,locale);
         return whole;
     }
 
@@ -31,26 +47,42 @@ public class Character {
     }
 
     public boolean flee () {
-	int Dice = r.nextInt(18);
-	if (Dice <= this.Dexterity) {
+	Random r = new Random();
+	int Dice = r.nextInt(36);
+	if (Dice < this.Dexterity) {
 	    System.out.println("You escaped!");
 	    return true;
 	} else {
-	    return false;}
-	return true;
+	    System.out.println("You must fight!");
+	    return false;
+	}
     }
 
-    public void encounter (Character other) {
-	if (this.flee() == true)
+    public int encounter (Character other) {
+	if (other.flee() == true){
+	    other.experience();
+	    return 0;}
+	if (this.flee() == true){
 	    this.experience();
-	else {
+	    return 1;
+	} else {
 	    Random r = new Random();
 	    int Dice = r.nextInt(18);
 	    if (Dice <= this.Dexterity) {
 		this.attack(other);
 		System.out.println("You attacked" + other.toString() + "!");
+		this.experience();
+	        if (other.getHealth() > 0) {
+		    other.attack(this);
+		}
+	    } else {
+		System.out.println("You missed!");
 	    }
 	}
+	if (this.getHealth() <= 0) return 2;
+	else if (other.getHealth() <= 0) return 3;
+	else if (this.getHealth() <= 0 && other.Health <= 0) return 4;
+	else return 5;
     }
 
       public void attack (Character other) {
@@ -61,14 +93,31 @@ public class Character {
 	int Dice = r.nextInt(18);
 	if (Dice <= this.Dexterity) {
 	    damage = true;
+	    System.out.println("It's a hit for " + this.toString() + " !");
 	} else {
 	    damage = false;
+	    System.out.println(this.toString() + " Missed!");
 	}
 	if (damage==true) {
 	    other.Health = other.Health - hit;
-	    this.experience();
-	}else {
-	    System.out.println("You missed!");
 	}
+      }
+
+    public void experience () {
+	if (Level == 10) {
+	    experience = 0;
+	} else {
+	    experience = experience + 5;
+	    if (experience == 100) {
+		Level = Level + 1;
+		Health = Health + 1;
+		Mana = Mana + 1;
+		Dexterity = Dexterity + 1;
+		Intelligence = Intelligence + 1;
+		Strength = Strength + 1;
+		experience = 0;
+	    }
+	}
+    }
 }
 	

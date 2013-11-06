@@ -12,19 +12,5 @@ public class Ogre extends Character {
 	maxDex = 16;
 	health = r.nextInt(8) + 4;
 	maxHealth = 16;
-
-<<<<<<< HEAD
-=======
-    public Ogre(){
-	name="Ogre";
-	double r1 = new random();
-	double r2 = new random();
-	double r3 = new random();
-	setStr=(r1*10)%1;
-        setDex=(r1*10)%1;
-        setInt=(r1*10)%1;
->>>>>>> f14821dd0248bf3273ac8c78d046584da099d260
     }
-
-
 }
