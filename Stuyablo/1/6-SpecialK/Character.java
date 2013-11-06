@@ -55,6 +55,11 @@ public class Character {
 	name = sc.next();
 	System.out.println("Choose your class. 1-Moran, 2-Wizard, 3-Zhang, 4- Warrior, Any other number- Student ");
 	int cl = sc.nextInt();
+	int s = 0;
+	int dex = 0;
+	int def = 0;
+	int mh = 0;
+	int ch = 0;
 	if (cl == 1){
 	    charType="Moran";
 	    s = 12;
@@ -156,6 +161,7 @@ public class Character {
 	     }
 	      i = i - 1;
 	}
+	init (name, charType, s, dex, def, ch);
     }
 
     public int getHealthPer(){
@@ -267,7 +273,7 @@ public class Character {
 	    this.attack(other);
 	    if (other.getHealth()>0){
 		    other.attack(this);}
-	    r +=1
+	    r +=1;
 		}
      }
     public void encounter(Character other) {
