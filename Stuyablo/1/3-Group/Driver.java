@@ -7,6 +7,7 @@ public class Driver {
 	NPC n = new NPC();
 	System.out.println(c.getStatus());
 	Random r = new Random();
+	Scanner sc = new Scanner(System.in);
 	System.out.println("Greetings, player! There are many paths to take in this adventure! Which kind of character do you wish to be? [Type only the character class]");
 	System.out.println("1. Rogue");
 	System.out.println("2. Warrior");
