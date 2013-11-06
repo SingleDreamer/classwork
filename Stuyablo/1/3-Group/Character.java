@@ -2,8 +2,9 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int health, maxhealth;
+    protected int health, maxhealth; 
     protected int dexterity, strength, intelligence;
+    //determined through npc and pc constructors
     protected int experience;
     protected int gold;
     protected double x,y,distance;
