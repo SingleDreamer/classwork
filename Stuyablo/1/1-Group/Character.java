@@ -153,8 +153,12 @@ public class Character {
             }
             else {
                 delay (1000); 
+<<<<<<< HEAD
                 say ("bullsh*it"); 
 		strength = strength + (r.nextInt(5) - 2);
+=======
+                say ("bullsh*t"); 
+>>>>>>> e7f70d66df334d07f5a97cb3bdedc1f71e0d5636
                 this.attack(other);
             }
         }

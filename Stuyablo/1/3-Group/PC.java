@@ -33,6 +33,7 @@ public class PC extends Character{
 	    dexterity = dexterity + pointsleft;
 	    pointsleft = 0;
 	}
+
 	else {
 	    dexterity = dexterity + m;
 	    pointsleft = pointsleft = m;
@@ -50,6 +51,8 @@ public class PC extends Character{
 	    intelligence = intelligence + m;
 	    pointsleft = pointsleft = m;
 	}
+	
+	health = strength;
     }	
 }
 
