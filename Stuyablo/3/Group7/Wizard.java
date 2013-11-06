@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 public class Wizard extends Character {
-    Scanner sc = new Scanner(System.in);
 
     public Wizard(String n) {
 	Random r = new Random();
