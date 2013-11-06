@@ -126,21 +126,6 @@ public class Character {
             if (intdif >= 3)
                 health = health - 2;
         }
-    
-   
-	Random r = new Random();
-	if (intelligence >= other.intelligence){
-	    int intdif = intelligence - other.intelligence;
-	    other.strength = other.strength - (r.nextInt(intdif) + 1);
-	    if (intdif >= 3)
-		other.health = other.health - 2;
-	}
-	else {
-	    int intdif = other.intelligence - intelligence;
-	    strength = strength - (r.nextInt(intdif) + 1);
-	    if (intdif >= 3)
-		health = health - 2;
-	}
     }
 
     public void talk(Character other){
