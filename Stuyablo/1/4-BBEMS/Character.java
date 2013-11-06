@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Character {
     private int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
-    protected int health, maxhealth, strength, intelligence, dexterity, experience, level, freezecount;
+    protected int health, maxhealth, strength, intelligence, dexterity, experience, level, freezecount, opponentsDefeated;
     protected String name, characterClass;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
     
@@ -98,6 +98,7 @@ public class Character {
     public int getLevel() {return level;}
     public String getName() {return name;}
     public String getCharacterClass() {return characterClass;}
+    public int getOpponentsDefeated() {return opponentsDefeated;}
     
     public void setHealth(int health) {this.health = health;;}
     public void setMaxhealth(int maxhealth) {this.maxhealth = maxhealth;}
@@ -109,6 +110,7 @@ public class Character {
     public void setName(String name) {this.name = name;}
     public void setCharacterClass(String characterClass) {this.characterClass = characterClass;}
     public void setAttributes(int strength,int intelligence,int dexterity) {this.strength = strength;this.intelligence = intelligence;this.dexterity = dexterity;}    
+    public void setOpponentsDefeated (int n) {this.opponentsDefeated = n;}
     public String toString() {
 	return name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
 	    "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity;

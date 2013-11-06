@@ -150,8 +150,15 @@ public class Player extends Character {
 	if (other.getHealth() > 0){
 	    other.attack(this);
 	}
+	int otherHealth = other.getHealth();
+	if (otherHealth < 0){
+	    otherHealth = 0;
+	}
+	if (health < 0){
+	    health = 0;
+	}
 	System.out.print(this + " : " +  health + " \n");
-	System.out.print(other + " : " + other.getHealth()+ " \n");
+	System.out.print(other + " : " + otherHealth+ " \n");
 	if ((health > 0) && (other.getHealth() > 0)){
 	    this.battle(other);
 	}
