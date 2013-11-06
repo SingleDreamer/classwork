@@ -113,7 +113,7 @@ public class Character {
 
     public int encounter(Character other) {
 	Scanner sc = new Scanner(System.in);
-	System.out.println("You have an encountered " + other);
+	System.out.println("You have encountered an " + other);
 	this.getStatus();
 	if (other.flee(this)) { 
 	    return 0;
@@ -125,9 +125,11 @@ public class Character {
 	if (choice.equals("y")) {
 	    if (this.flee(other)) {
 		return 1;
-		System.out.println("you have fleed");
 	    }
 	}
+        return battle(other);
+    }
+    public int battle(Character other) {
 	this.attack(other);
 	if (other.health > 0) {
 	    other.attack(this);
@@ -142,6 +144,8 @@ public class Character {
 	else if ((this.health == 0) && (other.health == 0)) {
 	    return 4;
 	}
-        return 5;
+	else {
+	    return battle(other);
+	}
     }
 }
