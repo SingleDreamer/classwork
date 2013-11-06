@@ -6,13 +6,19 @@ public class Ogre extends Character {
     private String weapon;
     private boolean hasWeapon, isPlayer;
 
-
+    // if the classes want the ogre to be a possible player class, we can use this constructor to give an option
     public Ogre(String name, boolean playable) {
 	super(name,10,6,3,playable);
 	isPlayer = playable;
 	if (isPlayer) {
 		weapon = "Club";
 		hasWeapon = true;
+<<<<<<< HEAD
+=======
+	    }
+	else {
+	    weapon();
+>>>>>>> 1c862b0a26d26a88566c7036a6bb1cbcbf5df589
 	}
 	else {
 		    weapon = "None";
@@ -25,12 +31,14 @@ public class Ogre extends Character {
 		isPlayer = false;
 		weapon();
     }
+
     public Ogre() {
 		super("Ogre",10,6,3,false);
 		isPlayer = false;
 		weapon();
     }
 
+    // some ogres might have weapons
     public void weapon() {
 		if (Math.random() < .5) {
 		    weapon = "Club";
@@ -43,6 +51,7 @@ public class Ogre extends Character {
     }
 
     public void attack(Character other) {
+<<<<<<< HEAD
 		if (isPlayer == false) {
 		    super.attack(other);
 		}

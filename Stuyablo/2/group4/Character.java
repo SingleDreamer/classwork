@@ -21,6 +21,12 @@ public class Character {
 	
     }
 
+    public void greet() {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("What is your name, warrior?");
+	String name = sc.nextLine();
+	this.name = name;
+    }
     //Get Methods
     public int getHP() {
 	return health;
@@ -61,15 +67,15 @@ public class Character {
 	System.out.println(this + "'s STATS:");
 
 	System.out.println("Health: "+ this.getHP()); 
-        //multStr("*",((this.getHP()/this.maxHealth)*100.0));  
+	//        multStr("*",Math.round((this.getHP()/this.maxHealth)*100.0));  
 	System.out.println("(" + (((this.getHP()*1.0)/(this.maxHealth*1.0))*100.0) + "%)");
 
 	System.out.println("Strength: "+ this.getStr());
-        //multStr("*",((this.getStr()/this.maxStr)*100)); 
+        multStr("*",Math.round((this.getStr()/this.maxStr)*100)); 
 	System.out.println("(" + (((this.getStr()*1.0)/(this.maxStr*1.0))*100.0) + "%)");
 
 	System.out.println("Dexterity: "+ this.getDex());
-        //multStr("*",((this.getDex()/this.maxDex)*100)); 
+        multStr("*",Math.round((this.getDex()/this.maxDex)*100)); 
 	System.out.println("(" + (((this.getDex()*1.0)/(this.maxDex*1.0))*100) + "%)");
     }
 
@@ -116,35 +122,60 @@ public class Character {
 	System.out.println("You have encountered an " + other);
 	this.getStatus();
 	if (other.flee(this)) { 
+	    System.out.println(other + " has escaped!");
 	    return 0;
 	}
 	
-	System.out.println("Do you want to escape?");
+	System.out.println("Do you want to try to escape?");
 	System.out.println("y - yes \nn - no");
 	String choice = sc.nextLine();
 	if (choice.equals("y")) {
 	    if (this.flee(other)) {
+		System.out.println("You have escaped safely...this time");
 		return 1;
 	    }
 	}
         return battle(other);
     }
+
     public int battle(Character other) {
-	this.attack(other);
-	if (other.health > 0) {
-	    other.attack(this);
+	
+	System.out.println("What do you want to do?");
+	System.out.println("a - attack \nf - flee");
+
+	Scanner sc = new Scanner(System.in);
+	String move = sc.nextLine();
+	
+	if (move.equals("f")) {
+	    if (this.flee(other)) {
+		System.out.println("You have successfully fleed!");
+		return 1;
+		
+	    }
 	}
+
+	if (move.equals("a")) {
+	    this.attack(other);
+	    if (other.health > 0) {
+		other.attack(this);
+	    }
+	}
+
 	this.getStatus();
 	if (other.health == 0) {
+	    System.out.println(other + " has died");
 	    return 3;
 	}
 	else if (this.health == 0) {
+	    System.out.println("You have died!");
 	    return 2;
 	}
 	else if ((this.health == 0) && (other.health == 0)) {
+	    System.out.println("Both you and " + other + " have died"); 
 	    return 4;
 	}
 	else {
+	    System.out.println("===================");
 	    return battle(other);
 	}
     }
