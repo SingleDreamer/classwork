@@ -12,7 +12,7 @@ public class Driver {
 	*/
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Welcome to StuyabloII. \n Enter your name: ");
-	String name = sc.nextLine();
+	name = sc.nextLine();
 	System.out.println("Hello " + name);
 	System.out.println("-------------------------------");
 	

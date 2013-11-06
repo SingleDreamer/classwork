@@ -5,7 +5,8 @@ public class Warrior extends Character {
     private int exp=0,lvl=1;
     private int wait;
 
-    public Warrior() {
+    public Warrior(String Name) {
+	name = Name;
 	strength = 12;
 	dexterity = 4;
 	setStat();
