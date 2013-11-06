@@ -8,24 +8,28 @@ public class Wizard extends Character{
 	super();
 	mana = 100;
 	skills = 3;
+	health = strength * 8;
     }
 
     public Wizard(int mana) {
 	super();
  	this.mana = mana;
 	skills = 3;
+	health = strength * 8;
     }
 
     public Wizard(String name) {
 	super(name, 8);
 	mana = 100;
 	skills = 3;
+	health = strength * 8;
     }
 
     public Wizard(String name, int mana) {
 	super(name, 8);
 	this.mana = mana;
 	skills = 3;
+	health = strength * 8;
     }
 
     public int attack (int type, Character other) {
