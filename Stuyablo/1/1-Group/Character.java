@@ -31,7 +31,7 @@ public class Character {
         }
         dexterity=dex+8;
         strength=stren+8;
-	health=strength;
+        health=strength;
         maxhealth=strength;
         intelligence=intell+8;
     }
@@ -42,12 +42,12 @@ public class Character {
         answerChoice=false;
         while (!answerChoice){
 
-        System.out.println("Press 1 to be a WARRIOR");
-        System.out.println("Press 2 to be a WIZARD");
-        System.out.println("Press 3 to be an OGRE ");
-        System.out.println("Press 4 to be a THIEF");
+	    System.out.println("Press 1 to be a WARRIOR");
+	    System.out.println("Press 2 to be a WIZARD");
+	    System.out.println("Press 3 to be an OGRE ");
+	    System.out.println("Press 4 to be a THIEF");
 
-        int answer=sc.nextInt();
+	    int answer=sc.nextInt();
 
 
             if (answer == 1){
@@ -113,60 +113,58 @@ public class Character {
         } 
     }
     public void intimidate(Character other){
-	Random r = new Random();
-	if (intelligence >= other.intelligence){
-	    int intdif = intelligence - other.intelligence;
-	    other.strength = other.strength - (r.nextInt(intdif) + 1);
-	    if (intdif >= 3)
-		other.health = other.health - 2;
-	}
-	else {
-	    int intdif = other.intelligence - intelligence;
-	    strength = strength - (r.nextInt(intdif) + 1);
-	    if (intdif >= 3)
-		health = health - 2;
-	}
+        Random r = new Random();
+        if (intelligence >= other.intelligence){
+            int intdif = intelligence - other.intelligence;
+            other.strength = other.strength - (r.nextInt(intdif) + 1);
+            if (intdif >= 3)
+                other.health = other.health - 2;
+        }
+        else {
+            int intdif = other.intelligence - intelligence;
+            strength = strength - (r.nextInt(intdif) + 1);
+            if (intdif >= 3)
+                health = health - 2;
+        }
     }
-		
-	    
 
     public void talk(Character other){
     	
 	Scanner sc = new Scanner(System.in);
-	Random r = new Random(); 
+	Random y = new Random(); 
 	
 	say ("you have chosen to talk!");
 	delay (2000);
         say ("type the number corresponding to your choice");
         say ("--------------------------------------------------");
         delay (2000); 
-        say ("1. Hey big guy, you wanna go out for some drinks instead?/n");
+        say ("1. Hey big guy, you wanna go out for some drinks instead?\n");
         delay (1000); 
         say ("2. Please, don't you know who I am? I am the greatest swordsman in the East! " + 
-             "I've been training since I was 3! You don't have any chance of defeating me!/n" );
+             "I've been training since I was 3! You don't have any chance of defeating me!\n" );
         delay (1000);
         say ("3. Didn't you know that they're having a body building competition in the next town?" +
-             " I bet you'd fit right in!/n");
+             " I bet you'd fit right in!\n");
         delay (1000);
         
         int answer = sc.nextInt(); 
-        boolean x = r.nextBoolean ();
+        boolean x = y.nextBoolean ();
         
         if (answer == 1) {
 
             if (x) {
                 delay (1000); 
-                say ("Your enemy says:");
+		say ("Your enemy says:");
                 say ("Sure");
                 say ("you walk off into the sunset with your enemy");
             }        
             else {
                 delay (1000);
-                say ("Your enemy says:");
+		say ("Your enemy says:");
                 say ("no way you freak!");
-		intimidate(other);
-		dexterity = dexterity + (r.nextInt(3) - 2);
-                this.attack(other);
+                intimidate(other);
+                dexterity = dexterity + (y.nextInt(3) - 2);
+		this.attack(other);
             }
 
         }
@@ -179,7 +177,7 @@ public class Character {
             }
             else {
                 delay (1000); 
-		dexterity = dexterity + (r.nextInt(5) - 2);
+		dexterity = dexterity + (y.nextInt(5) - 2);
 		intimidate(other);
 		say ("Your enemy says:");
                 say ("bullsh*t"); 
@@ -197,12 +195,12 @@ public class Character {
                 delay (1000);
                 say ("Your enemy says:");
                 say ("are you serious?");
-		dexterity = dexterity + (r.nextInt(4) - 2);
+		dexterity = dexterity + (y.nextInt(4) - 2);
 		intimidate(other);
                 this.attack(other);
             }
         }
-        else {
+        if (((answer != 1) && (answer != 2)) && (answer != 3)) {
         	say ("that is not a valid input, please choose one of the given responses");
         	delay (2000);
         	this.talk(other); 
@@ -369,7 +367,7 @@ public class Character {
             else 
                 return 3;
         }
-        else {
+        if (((answer != 1) && (answer != 2)) && (answer != 3))  {
         	say ("that is not a valid input, please try again");
         	this.encounter(other);
         }
