@@ -3,7 +3,7 @@ import java.util.*;
 public class Warrior extends Character {
 
     public Warrior (String n) {
-        super(n);
+        super(n , 1 );
         super.charClass = "Warrior";
     }
 /*
