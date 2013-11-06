@@ -113,14 +113,6 @@ public class Character {
         } 
     }
 
-
-    public void talk1(Character other){
-	System.out.println("herro there");
-    }
-
-
-
-
     public void talk(Character other){
 	Scanner sc = new Scanner(System.in);
 	Random r = new Random(); 
@@ -143,11 +135,12 @@ public class Character {
             if (x) {
                 delay (1000); 
                 say ("Sure");
-                //end turn
+                return 5;
             }        
             else {
                 delay (1000);
-                say ("no way you freak!"); 
+                say ("no way you freak!");
+		strength = strength + (r.nextInt(6) - 2);
                 this.attack(other);
             }
 
@@ -161,6 +154,7 @@ public class Character {
             else {
                 delay (1000); 
                 say ("bullsh*it"); 
+		strength = strength + (r.nextInt(5) - 2);
                 this.attack(other);
             }
         }
@@ -168,11 +162,12 @@ public class Character {
             if (x) {
                 delay (1000); 
                 say ("...you're a riot, kid. and an idiot");
-                //end turn
+                return 5;
             }
             else {
                 delay (1000);
                 say ("are you serious?");
+		strength = strength + (r.nextInt(4) - 2);
                 this.attack(other);
             }
         }
