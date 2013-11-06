@@ -6,8 +6,11 @@ import java.util.*;
 
 public class Mage extends Character {
 	protected String[] Spells = {"Bolt", "Frost"};
-	
 	//basically Cast the spell that is in the array, e.g. Cast(Spells[0], target) will cast Bolt.
+	
+	public Mage(String name) {
+        super(name);
+    }
 	public boolean Cast(String spell, Character other) {
 		if (spell.equals("Bolt")) {
 			return Bolt(other);
