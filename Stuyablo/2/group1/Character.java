@@ -8,8 +8,11 @@ public class Character {
     protected int health,maxHealth;
     protected int dexterity,strength,intelligence;
     protected int points;
+<<<<<<< HEAD
+=======
     protected int exp=0,lvl=1;
     protected int x,y;
+>>>>>>> 2aae427b8a58af23908eebd78de64eca9a498a8f
 	   
     public void attack(Character other) {
         /* do the attack:
