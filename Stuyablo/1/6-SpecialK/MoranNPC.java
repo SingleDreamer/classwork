@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.*;
+
 public class MoranNPC extends Character {
     
     public MoranNPC(){

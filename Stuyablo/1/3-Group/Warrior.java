@@ -49,6 +49,7 @@ public class Warrior extends PC {
 	    System.out.println("Nope.");
 	}
     }
+}
 	
 	    
 	  

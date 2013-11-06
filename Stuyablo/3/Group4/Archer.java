@@ -50,7 +50,7 @@ public class Archer extends Character {
 		experience = experience + exp;
 		if (experience > experienceneeded) {
 			level = level + 1;
-			System.out.println(name + " leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3.Intelligence");
+			System.out.println(name + " leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3. Intelligence");
 			
 		
 		Scanner s = new Scanner(System.in);
@@ -74,19 +74,18 @@ public class Archer extends Character {
 
 	} 
 	public boolean flee(Character other) {
-		int[] a = other.getStat();
-		if (health < 15) {
-			health = health + 10;
+		Scanner s = new Scanner(System.in);
+		System.out.println("Will " + name +" fight? \n1. Yes\n2. No");
+		int i = s.nextInt();
+		if (i != 1) {
+			System.out.println(name + " ran away! \n\n");
+			System.out.println("----------------------------------------------------------------");
 			return true;
 		}
-		if (distance < 11 || distance > -11)
-			return false;
-		if (dexterity < a[0])
-			return false;
 		else
-			return true;
-		
-	}
+			return false;
+			
+		}
 	
 	public void attack(Character other) {
 		System.out.println(getStatus());

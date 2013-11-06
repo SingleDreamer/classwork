@@ -28,9 +28,17 @@ public class Character {
 		    health = 0;
     }
 
-    // returns true if you succesfully flee, false otherwise
+// returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
-	return true;
+	    Random r = new Random();
+	    if(r.nextFloat() > 0.35)
+	    {
+		    System.out.println("Got away safely");
+		    return true;
+	    }
+	    System.out.println("Failed to escape");
+	    return false;
+	
     }
 
 
@@ -50,7 +58,21 @@ public class Character {
     */
 
     public int encounter(Character other) {
-        return 0;
+        while (enemy.getHealth() > 0 && player.getHealth() > 0){
+	    System.out.print("(1)Fight or (2)Flee\n");
+	    String input = sc.nextLine();
+	    if (input.equals("1")){
+		player.attack(enemy);
+		}
+	    else if (input.equals("2")){
+		flee();
+	    }
+	    else
+		System.out.println("Invalid choice");
+	    System.out.println("Your Health: " + player.getHealth());
+	    System.out.println("Enemy Health: " + enemy.getHealth());
+	    System.out.println("-------------------------------");
+	}
     }
 
     /*
@@ -81,13 +103,13 @@ public class Character {
 
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
-	System.out.print("What would you like to be? Warrior? Blah?");
+	System.out.print("What would you like to be? Warrior? Wizard?");
 	if (sc.nextLine().equals("Warrior")) {
 	    Warrior w = new Warrior();
 	    System.out.println("Woo, You're a warrior");
 	}
-	else if (sc.nextLine().equals("Blah")) {
-	    System.out.println("Woo, you're a blah");
+	else if (sc.nextLine().equals("Wizard")) {
+	    System.out.println("Woo, you're a Wizard");
 	}
 	else {
 	    System.out.println("Silly you, ponies aren't a choice");
