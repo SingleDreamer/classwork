@@ -4,6 +4,7 @@ public class Thief extends Character {
 
     public Thief (String n) {
         super(n);
+        super.playerInit();
         super.charClass = "Thief";
         super.weapons[0] = 3; // Thief can do 3 damage with hand
     }

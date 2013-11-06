@@ -162,7 +162,7 @@ public class Character {
             }        
             else {
                 delay (1000);
-                say ("Your enemy says:")
+                say ("Your enemy says:");
                 say ("no way you freak!");
 		intimidate(other);
 		dexterity = dexterity + (r.nextInt(3) - 2);
@@ -191,7 +191,7 @@ public class Character {
                 delay (1000); 
                 say ("Your enemy says:");
                 say ("...you're a riot, kid. and an idiot");
-                say("your enemy has left")
+                say("your enemy has left");
             }
             else {
                 delay (1000);

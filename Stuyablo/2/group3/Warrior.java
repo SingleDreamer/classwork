@@ -4,6 +4,7 @@ public class Warrior extends Character {
 
     public Warrior (String n) {
         super(n);
+        super.playerInit();
         super.charClass = "Warrior";
         super.weapons[0] = 4; // Warrior can do 4 damage with hand
     }
