@@ -179,10 +179,11 @@ public class Player extends Character {
 		    gold = gold - (maxhealth - health);
 		else{
 		    System.out.println("You do not have the gold for that.");
-		    action()
+		    action();
 		health = maxhealth;
 		System.out.println("Your health is now max. Used " + amt + " gold.\n");
 		action();
+		}
 	    }
 	    else {
 		System.out.println("Your health is maxed already!\n");
