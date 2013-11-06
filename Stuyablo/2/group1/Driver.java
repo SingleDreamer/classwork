@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Driver {
     public static void main(String[] args) {
+	Character player,enemy;
 	Random r = new Random();
 	/*Character a,b;
 	a = new Character();
@@ -16,17 +17,17 @@ public class Driver {
 	System.out.println("-------------------------------");
 	
 	if (r.nextDouble > 0.5){
-	    Character player = new Warrior();}
+	    player = new Warrior();}
 	else{
-	    Character player = new Wizard();}
+	    player = new Wizard();}
 	if (r.nextDouble > 0.5){
-	    Character enemy = new Ogre();}
+	    enemy = new Ogre();}
 	else{
-	    Character enemy = new Undead();}
+	    enemy = new Undead();}
 	
 
 	System.out.println("-------------------------------");
-	System.out.println("It's "+ enemy.toString +"! \n What will you do?: ");
+	System.out.println("It's "+ enemy.toString() +"! \n What will you do?: ");
 	while (enemy.getHealth() > 0 && player.getHealth() > 0){
 	    System.out.print("Fight/Flee\n");
 	    String input = sc.nextLine();
