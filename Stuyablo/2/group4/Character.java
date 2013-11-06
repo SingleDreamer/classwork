@@ -43,11 +43,7 @@ public class Character {
     public void setDex(int x) {
 	this.dexterity=x;
     }
-<<<<<<< HEAD
     public void setStr(int x) {
-=======
-    public int getStr(x) {
->>>>>>> f14821dd0248bf3273ac8c78d046584da099d260
 	this.strength =x;
     }
     public void setInt(int x) {
@@ -132,8 +128,6 @@ public class Character {
 		System.out.println("you have fleed");
 	    }
 	}
-<<<<<<< HEAD
-	
 	this.attack(other);
 	if (other.health > 0) {
 	    other.attack(this);
@@ -144,33 +138,10 @@ public class Character {
 	}
 	else if (this.health == 0) {
 	    return 2;
-=======
-
-
-	else if (choice.equals("1")){
-	    this.attack(other);
-
-	    if (other.health>0) {
-		other.attack(this);
-		if (this.health<=0) {
-		    return 2;
-		    System.out.println("you have been attacked");
-		}	
-
-	    }
-	    else {
-		return 3;
-	    }
-		    return 5;
->>>>>>> f14821dd0248bf3273ac8c78d046584da099d260
 	}
 	else if ((this.health == 0) && (other.health == 0)) {
 	    return 4;
 	}
-	else {
-	    return 5;
-	}
-       
+        return 5;
     }
-
 }
