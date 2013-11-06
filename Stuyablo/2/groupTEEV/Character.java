@@ -13,14 +13,6 @@ public class Character {
 	return health;
     }
 
-    public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
-    }
-
-    // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
 	return false;
     }
@@ -149,6 +141,24 @@ public class Character {
 	return name;
     }
     
+    public void loseHealth(int n){
+	health = health - n;
+    }
+    public void gainHealth(int n){
+	health = health + n;
+    }
+
+    public void gainGold(int n){
+	gold = gold + n;
+    }
+
+    public void loseGold(int n){
+	gold = gold - n;
+    }
+
+    public void gainExp(int n){
+	experience = experience + n;
+    }
 
 
 }
