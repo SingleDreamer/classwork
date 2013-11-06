@@ -12,6 +12,7 @@ public class Character {
     protected String name;
     //constructors
     protected String charClass;
+    Random rand = new Random();
     
     public int getHealth() {
 	return health;
@@ -29,8 +30,27 @@ public class Character {
 	return experience;
     }
 
+    public int roll() {
+	int i =0 ;
+	int total = 0;
+	int a = 0;
+	while (i<3){
+	    a=rand.nextInt(6)+1;
+	    total=total + a;
+	    i++;
+	}
+	return total;
+    }
+
     public void attack(Character other) {
-	//nothing so far
+	int dmg = 0;
+        if (this.dexterity > roll()){
+	    dmg = this.strength - other.def;
+	    other.health=other.health - dmg;
+	    System.out.println(this.name + " has inflicted " + dmg+ " damage to" + other.name);
+	}
+	else {
+	    System.out.println(name + " missed.");
     }
     
     
@@ -46,6 +66,8 @@ public class Character {
 	}
 
         while (health > 0 && other.health > 0){
+	    System.out.println("Your coordinates are x: " + this.x + " y: " + this.y);
+	    System.out.println("The enemy's coordinates are x: " + other.x + " y: " + other.y);
 	    if (dexterity >= other.dexterity) {
 		PCturn(other);
 		other.NPCturn(this);
@@ -92,6 +114,9 @@ public class Character {
     }
 
     public void PCturn(Character other){
+	int move = 2;
+	
+	
     }
 
     public String getStatus() {

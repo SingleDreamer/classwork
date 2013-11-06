@@ -5,9 +5,13 @@ public class Wizard extends Character{
     protected int mana;
 
     public Wizard(String Name) {
-	super();
 	name = Name;
+	setStat();
+	health = strength;
 	mana = intelligence;
+	System.out.println("Strength: " + strength);
+	System.out.println("Dexterity: " + dexterity);
+	System.out.println("Intelligence: " + intelligence);
     }
 
     public void basic(Character other) {
