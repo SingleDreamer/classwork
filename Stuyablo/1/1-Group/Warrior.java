@@ -35,7 +35,7 @@ public class Warrior extends Character{
             if ((a+b+c)<this.dexterity) {
             //if x,y coors are <2 or something (something small)
                 System.out.println(this.name + " whacked " + other.name +" with a hammer!");
-            return super.attack(other);
+		return super.attack(other);
             }
             else {
                 System.out.println(this.name + "'s attack failed!");

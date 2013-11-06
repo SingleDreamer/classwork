@@ -21,6 +21,12 @@ public class Character {
 	
     }
 
+    public void greet() {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("What is your name, warrior?");
+	String name = sc.nextLine();
+	this.name = name;
+    }
     //Get Methods
     public int getHP() {
 	return health;
@@ -138,36 +144,23 @@ public class Character {
 	System.out.println("a - attack \nf - flee");
 
 	Scanner sc = new Scanner(System.in);
-	String move = sc.nextline();
+	String move = sc.nextLine();
 	
-	if (move.equals("a")) {
-		this.attack(other);
-		if (other.health > 0) {
-		    other.attack(this);
-		}
-	}
-<<<<<<< HEAD
-	    
 	if (move.equals("f")) {
 	    if (this.flee(other)) {
-		return 1;
 		System.out.println("You have successfully fleed!");
-	    }}
-	else {
-	    return 0;
+		return 1;
+		
+	    }
 	}
-        
-	return battle(other);
-	
-	//this.getStatus();
-	if (other.health == 0) { //checks to see if ogre is dead
-	    return 3;
+
+	if (move.equals("a")) {
+	    this.attack(other);
+	    if (other.health > 0) {
+		other.attack(this);
+	    }
 	}
-	else if (this.health == 0) {  //checks to see if you is dead
-	    return 2;
-	}
-	else if ((this.health == 0) && (other.health == 0)) {  //checks to see if both are dead
-=======
+
 	this.getStatus();
 	if (other.health == 0) {
 	    System.out.println(other + " has died");
@@ -179,7 +172,6 @@ public class Character {
 	}
 	else if ((this.health == 0) && (other.health == 0)) {
 	    System.out.println("Both you and " + other + " have died"); 
->>>>>>> 50fbeedf651570d32692b89270d46fc943e60d66
 	    return 4;
 	}
 	else {
