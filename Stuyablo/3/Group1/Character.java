@@ -41,6 +41,10 @@ public class Character {
     public int getEffSt() {return st;}
     public int getEffDx() {return dx;}
     public int getEffIq() {return iq;}
+	//again
+	public void setEffSt(int St) {this.st = St;}
+    public void setEffDx(int Dx) {this.dx = Dx;}
+    public void setEffIq(int Iq) {this.iq = Iq;}
 
     public boolean alive() {return hp>0;}
 
