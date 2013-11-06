@@ -58,6 +58,9 @@ public class Character {
 
     */
     public int encounter(Character other) {
+	//the encounter system wil start with s.o.p
+	//System.out.println(this.name + "has encountered a" + other.name);
+	
 	return 0;
     }
 

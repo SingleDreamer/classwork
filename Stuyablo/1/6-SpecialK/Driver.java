@@ -7,7 +7,7 @@ public class Driver {
 	n.getStatus();
 	System.out.println(n.getStatus());
 	Random e = new Random();
-	Character p = new Character("Enemy", "Warrior", e.nextInt(18), e.nextInt(18), e.nextInt(18), e.nextInt(5));
+	Character p = new Character("Enemy", "Warrior", e.nextInt(10), e.nextInt(10), e.nextInt(18), e.nextInt(5));
 	n.encounter(p);
 }
 }
