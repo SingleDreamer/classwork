@@ -164,12 +164,12 @@ public class Character {
 		say ("Your enemy says:");
                 say ("no way you freak!");
                 intimidate(other);
-                dexterity = dexterity + (r.nextInt(3) - 2);
+                dexterity = dexterity + (y.nextInt(3) - 2);
 		this.attack(other);
                 say ("Your enemy says:");
                 say ("no way you freak!");
 		intimidate(other);
-		dexterity = dexterity + (r.nextInt(3) - 2);
+		dexterity = dexterity + (y.nextInt(3) - 2);
                 this.attack(other);
             }
 
@@ -184,12 +184,12 @@ public class Character {
             }
             else {
                 delay (1000);
-                dexterity = dexterity + (r.nextInt(5) - 2);
+                dexterity = dexterity + (y.nextInt(5) - 2);
                 intimidate(other);
 		say ("Your enemy says:");		
 		say ("bullsh*t"); 
                 delay (1000); 
-		dexterity = dexterity + (r.nextInt(5) - 2);
+		dexterity = dexterity + (y.nextInt(5) - 2);
 		intimidate(other);
 		say ("Your enemy says:");
                 say ("bullsh*t"); 
@@ -208,11 +208,11 @@ public class Character {
                 delay (1000);
 		say ("Your enemy says:");
                 say ("are you serious?");
-                dexterity = dexterity + (r.nextInt(4) - 2);
+                dexterity = dexterity + (y.nextInt(4) - 2);
                 intimidate(other);
                 say ("Your enemy says:");
                 say ("are you serious?");
-		dexterity = dexterity + (r.nextInt(4) - 2);
+		dexterity = dexterity + (y.nextInt(4) - 2);
 		intimidate(other);
                 this.attack(other);
             }
