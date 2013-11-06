@@ -5,7 +5,6 @@ public class Undead extends Character{
     Random r = new Random();
 
     public Undead(){
-	setStat();
         name = "The Lich King";
         maxHealth = 6 + r.nextInt(5);
         health = maxHealth;
