@@ -182,21 +182,24 @@ public class Player extends Character {
 	if (ans == 1){
 	    if (health < maxhealth){
 		int amt = maxhealth - health;
-		if ((gold - (maxhealth - health)) >= 0)
+
+		if ((gold - (maxhealth - health)) >= 0){
 		    gold = gold - (maxhealth - health);
+		    health = maxhealth;
+		    System.out.println("Your health is now max. Used " + amt + " gold.\n");
+	            action();
+		}
 		else{
 		    System.out.println("You do not have the gold for that.");
 		    action();
-		health = maxhealth;
-		System.out.println("Your health is now max. Used " + amt + " gold.\n");
-		action();
+
 		}
 	    }
 	    else {
 		System.out.println("Your health is maxed already!\n");
 		action();
 	    }
-	}
+	}   
 	else if (ans == 2){
 	    encounter();
 	}
@@ -208,8 +211,8 @@ public class Player extends Character {
 	    System.out.println("Silly player. That's not a command.\n");
 	    action();
 	}
+	
     }
-
     public void flee(){
 	if (experience >= 20){
 	    experience = experience - 20;
