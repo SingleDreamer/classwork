@@ -11,6 +11,7 @@ public class Character {
     protected String charClass;
     protected int distance;
     protected boolean isHere;
+    protected int dieRoll;
 
 Random generator = new Random();
 
@@ -48,28 +49,24 @@ Random generator = new Random();
 	*/
     }
 
-    // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
-		return true;
+
+    public int DieRoll(){
+        for (int i=0; i<3; i++){
+	    dieRoll = dieRoll + generator.nextInt(5) + 1;
+        }
+        return dieRoll;
     }
 
+    public void flee(){
+	DieRoll();
+	if (dieRoll <= dexterity) {
+	    System.out.println("You have fled");
+	    isHere = false;
+	}
+	else 
+	    System.out.println("You tried to flee but weren't fast enough!");
+    }
 
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee.
-      If so and it's succesful, return a 1;
-
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0)
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
 
  public int encounter(Character other){
 	 return 0;
@@ -87,6 +84,43 @@ Random generator = new Random();
 	return whole;
     }
 
+
+    public boolean isAlive(){
+	if (health > 0)
+	    return true;
+	return false;
+    }
+
+    public void playerEncounter(Character other){	
+	Scanner sc = new Scanner(System.in);
+	System.out.println("What would you like to do?(a for attack, f for flee)");
+	String action = sc.nextLine();
+	if (action == "a")
+	    attack(other);
+	    System.out.println("The enemy now has" + " " + other.getHealth() + " " + "health");
+	if (action == "f")
+	    flee();
+	if (action != "a" && action != "f")
+	    System.out.println("That is not a valid choice. Skip turn.");
+    }
+
+
+    public void startEncounter(Character other){
+	isHere = true;
+	System.out.println("You have encountered an enemy");
+	while (isAlive() && other.isAlive() && isHere){
+	    playerEncounter(other);
+	    other.attack(this);
+	    System.out.println("Your current health is" + " " + health);
+	}
+	if (!other.isAlive())
+	    System.out.println("You win!");
+	if (!isHere)
+	    System.out.println("You ran from battle.");
+	else
+	    System.out.println("You died");
+	    System.out.println("GAME OVER");	       
+    }
 
     public String toString() {
 	return name;
