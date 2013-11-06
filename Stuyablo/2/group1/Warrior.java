@@ -5,6 +5,15 @@ public class Warrior extends Character {
     private int exp=0,lvl=1;
     private int wait;
 
+    public void Warrior() {
+	strength = 12;
+	dexterity = 4;
+	super.setStat();
+	health = strength;
+	System.out.println("Strength: " + strength);
+	System.out.println("Dexterity: " + dexterity);
+    }
+
     public void attack(NPC c) {
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Choose your attack!\n" + "(1) Poke, (2) Stab, (3) SUPERSLASH");
