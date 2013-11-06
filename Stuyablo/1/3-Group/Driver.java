@@ -7,6 +7,17 @@ public class Driver {
 	NPC n = new NPC();
 	System.out.println(c.getStatus());
 	Random r = new Random();
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Greetings, player! There are many paths to take in this adventure! Which kind of character do you wish to be? [Type only the character class]");
+	System.out.println("1. Rogue");
+	System.out.println("2. Warrior");
+	int inp = sc.next();
+	if (inp==1) {
+	    Rogue p = new Rogue();
+	}
+	else if (inp==2){
+	    Warrior p = new Warrior();
+	}
 	for (int z = 0; z < 50; z ++){
 	    if (r.nextInt(2) < 1){
 		System.out.println("You've encountered something!");

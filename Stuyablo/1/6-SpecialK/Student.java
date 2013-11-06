@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.*;
+
 public class Student extends Character {
     
     public Student(){

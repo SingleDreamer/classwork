@@ -11,7 +11,7 @@ public class Driver {
 	    Scanner a = new Scanner(System.in);
 	    String choice = a.nextLine();
 	    if (choice.equalsIgnoreCase("a")){
-		Character p = new Character("Enemy", "Bot", e.nextInt(10), e.nextInt(10), e.nextInt(18), e.nextInt(5));
+		Character p = new Character("Enemy", "Bot", e.nextInt(10)+10, e.nextInt(10), e.nextInt(18), e.nextInt(5));
 		n.encounter(p);
 	    }
 	    else if (choice.equalsIgnoreCase("b")){
