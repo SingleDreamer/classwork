@@ -10,7 +10,6 @@ public class Rogue extends PC {
 
     public Rogue() {
 	super();
-	poison=0;
     }
 
     public int dice() {
@@ -39,7 +38,7 @@ public class Rogue extends PC {
 	else if (weapon ==2) {
 	    System.out.println("Knife!");
 	    Thread.sleep(2000);
-	    if (dexterity > roll()) {
+	    if (dexterity > dice()) {
 		System.out.println(name + " stabs the " + other.name+"!");
 		other.setHealth(other.getHealth()-strength);
 		System.out.println(name + " deals " + strength + " damage!");
