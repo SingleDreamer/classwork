@@ -74,35 +74,37 @@ public void attack(Character other) {
 	} catch(InterruptedException ex) {
 	    Thread.currentThread().interrupt();
 	}
-	if (health < 4)
-		System.out.println("Cannot attack!");
-	else {
+	
 /* do the attack:
 	   print out the attempt and the result and update
 	   all relavent variables
 	*/
 	Random r = new Random();
 	int roll = r.nextInt(16) + 3;
+	if (health == 0) {
+		System.out.println(name + " died.");
+	}
+	else {
 	if (dexterity >= roll) {
 		other.damage(strength);
-		System.out.println("You have dealt " + strength + " damage to your enemy!");
+		System.out.println(name + " has dealt " + strength + " damage to the enemy!");
+		System.out.println("----------------------------------------------------------------");
 	}
-	else 
-		System.out.println("You missed!");
-		if (other.getStat()[0] >= roll) {
-		damage(other.getStat()[1]);
-		System.out.println("Your enemy has dealt " + other.getStat()[1] + " damage to you!");
-		} else {
-		System.out.println("Your enemy missed!");
-		}
-
+	else {
+		System.out.println(name + " has missed!");
+		System.out.println("----------------------------------------------------------------");
+	}
 	}
 }
 
     // returns true if you succesfully flee, false otherwise
 public boolean flee(Character other) {
 	int[] a = other.getStat();
-	if (distance < 4 || distance > -4)
+	if (health < 10) {
+		health = health + 10;
+		return true;
+	}
+	if (distance < 11 || distance > -11)
 		return false;
 	if (dexterity < a[0])
 		return false;
@@ -138,18 +140,22 @@ public boolean flee(Character other) {
     	}
 	if (other.flee(this) == true) {
 		System.out.println("Enemy has run away! \n\n");
+		System.out.println("----------------------------------------------------------------");
 		level(3);
 		gold = gold + 10;
 		return 0;
 	}
 	if (flee(other) == true) {
-		System.out.println("You ran away! \n\n");
+		System.out.println(name + " ran away! \n\n");
+		System.out.println("----------------------------------------------------------------");
 		return 1;
 	}
 	else {
+		System.out.println("----------------------------------------------------------------");
 		System.out.println("Engaging in a battle - distance = " + distance);
 		while(health > 0 && other.getHealth() > 0) {
 		this.attack(other);
+		other.attack(this);
 		}
 		if (other.getHealth() <= 0 && health <= 0)
 			return 4;
@@ -170,7 +176,7 @@ public void level(int exp) {
 	experience = experience + exp;
 	if (experience > experienceneeded) {
 		level = level + 1;
-		System.out.println("You leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3. Intelligence");
+		System.out.println(name + " leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3. Intelligence");
 		
 	
 	Scanner s = new Scanner(System.in);
@@ -222,6 +228,10 @@ public void level(int exp) {
             	System.out.println(other.getStatus());
             	return playmore;
             }
+            if (playmore == 3 )
+            	System.out.println(name + " won the battle!");
+            if (playmore == 4 )
+            	System.out.println("Both died.");
           
         }
     	try {
