@@ -41,32 +41,34 @@ public class Driver {
 		System.out.println("What thoust sayst?");
 	    }
 	}
-    
-	System.out.println("You have encountered a burly ogre!");
-	Ogre o = new Ogre();
-	String fightInput = "";
-	while ((w.getHealth() > 0) && (o.getHealth() > 0)){
-	    System.out.println("\n");
-	    System.out.println(w.getStatus());
-	    System.out.println("What will you do?: Attack Flee");
-	    fightInput = sc.nextLine();
-	    if (fightInput.equals("Attack") || fightInput.equals("Flee")){
-		System.out.println("---------------------------------------------------------------");
-		e = w.encounter(o, fightInput);
-		if (e == 0)
-		    o.setHealth(0);
-		if (e == 1)
-		    w.setHealth(0);
-		if (e == 2)
-		    System.out.println("Your adventure ends here...");
-		if (e == 3)
-		    System.out.println("You have slain the ogre");
+	w.setDamage();
+	while((w.getHealth() > 0)){
+	    h.pause();
+	    System.out.println("\nCAUTION");
+	    System.out.println("You have encountered a burly ogre!");
+	    Ogre o = new Ogre();
+	    String fightInput = "";
+	    while ((w.getHealth() > 0) && (o.getHealth() > 0)){
+		System.out.println("\n");
+		System.out.println(w.getStatus());
+		System.out.println("What will you do?: Attack Flee");
+		fightInput = sc.nextLine();
+		if (fightInput.equals("Attack") || fightInput.equals("Flee")){
+		    System.out.println("---------------------------------------------------------------");
+		    e = w.encounter(o, fightInput);
+		    if (e == 0)
+			o.setHealth(0);
+		    if (e == 1)
+			w.setHealth(0);
+		    if (e == 2)
+			System.out.println("Your adventure ends here...");
+		    if (e == 3){
+			System.out.println("You have slain the ogre");
+		    }
+		    
+		}
 	    }
-	    
-      
-	    
 	}
-	System.out.println("\n");
     }
 }
 

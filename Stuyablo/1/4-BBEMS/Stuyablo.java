@@ -48,9 +48,9 @@ public class Stuyablo {
 		player = new Thief (name);
 	    }
 	    System.out.println(player);
-	    /*Wizard opponent = new Wizard("Harry");
+	    Wizard opponent = new Wizard();
 	    player.attack(opponent);
-	    */
+	    
 	    
 	    System.out.println("\nProgram terminated.");
 	}
