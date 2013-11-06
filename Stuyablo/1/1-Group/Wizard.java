@@ -34,6 +34,7 @@ public class Wizard extends Character {
 		    other.health = oph - (this.strength + 8);
 		    mana = mana - 8;
 		    System.out.println(this.name + " has unleashed a FIREBALL upon " + other.name);
+		    //return super.attack(other);
 		}		
 		else{
 		    System.out.println("You don't have enough mana!");
@@ -59,6 +60,10 @@ public class Wizard extends Character {
 		    System.out.println("You don't have enough mana!");
 		}
 	    }
+	}
+	else{
+	    System.out.println("Your attack missed!");
+	    attack(other);
 	}
 	return 1;
     }
