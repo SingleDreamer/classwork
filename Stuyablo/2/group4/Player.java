@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Player extends Character {
-    public Player(String n){
+    public Player(String n) {
 	name = n;
 	health = 8;
 	maxHealth = 16;
