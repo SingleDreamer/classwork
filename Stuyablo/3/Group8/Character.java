@@ -11,9 +11,11 @@ public class Character {
     protected int Level = 1;
     protected int experience = 0,gold;
     protected double x,y;
+    private Scanner sc1 = new Scanner(System.in);
 
-    public Character (String name) {
-	Name = name;
+    public Character () {
+	System.out.println("Character name is:");
+	Name = sc1.nextLine();
 	Health = 16;
 	Strength = 8;
 	Mana = 8;
@@ -46,12 +48,14 @@ public class Character {
 
     public boolean flee () {
 	Random r = new Random();
-	int Dice = r.nextInt(18);
-	if (Dice <= this.Dexterity) {
+	int Dice = r.nextInt(36);
+	if (Dice < this.Dexterity) {
 	    System.out.println("You escaped!");
+	    return true;
 	} else {
-	    return false;}
-	return true;
+	    System.out.println("You must fight!");
+	    return false;
+	}
     }
 
     public int encounter (Character other) {

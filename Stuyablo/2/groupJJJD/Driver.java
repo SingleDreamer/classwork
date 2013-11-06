@@ -6,6 +6,6 @@ public class Driver {
 	System.out.println(wbot.getStatus());
 	w.calcDmg();
 	System.out.println(w.dmgdouble);
-	
+	w.encounter(wbot);
     }
 }
