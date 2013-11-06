@@ -52,10 +52,14 @@ public class Wizard extends Character {
     public boolean flee(Character other) {
 	Random r = new Random();
 	int rollDie = r.nextInt(18) + 1;
-	if (rollDie <= dexterity)
+	if (rollDie <= dexterity){
+	    System.out.println(name + " has successfully fled!");
 	    return true;
-	else
+	}
+	else {
+	    System.out.println(name + " cannot escape!");
 	    return false;
+	}
     }
 
     public int encounter(Character other) {
@@ -73,26 +77,40 @@ public class Wizard extends Character {
 		    intelligence = intelligence + 1;
 		experience = 0;
 	    }
+	    System.out.println("Enemy has fled!");
 	    return 0;
 	}
-	System.out.print("Do you want to flee or attack?");
+	System.out.print("Do you want to flee or attack? : ");
 	String answer = sc.nextLine();
 	if (answer == "flee") {
-	    if (flee(other))
+	    if (flee(other)){
 		return 1;
+	    }
 	}
 	else if (answer == "attack") {
 	    this.attack(other);
 	    if (other.health > 0)
 		other.attack(this);
 	}
-	if (health == 0)
+	if (health == 0){
+	    System.out.println("You have died!");
 	    return 2;
-	else if (other.health == 0)
+	}
+	else if (other.health == 0){
+	    System.out.println("You have slain the enemy!");
 	    return 3;
-	else if (health == 0 && other.health == 0)
+	}
+	else if (health == 0 && other.health == 0){
+	    System.out.println("You have slain each other!");
 	    return 4;
-	else
+	}
+	else{
+	    System.out.println("Both of you have survived!");
 	    return 5;
+	}
+    }
+
+    public int getHealth() {
+	return health;
     }
 }

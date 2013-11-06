@@ -83,4 +83,8 @@ public class Warrior extends Character {
             return 5;
 	
     }
+    
+    public int getHealth() {
+	return health;
+    }
 }

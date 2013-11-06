@@ -27,6 +27,7 @@ public class Character {
     public void playerInit() {
         xcor = 0;
         ycor = 0;
+<<<<<<< HEAD
         armors = new int[] {1}; // Has mama's rags
         level = 1;
     }
@@ -35,6 +36,16 @@ public class Character {
         this.level = player.level;
         xcor = (int) (Math.random() * gridRange * 2 - gridRange);
         ycor = (int) (Math.random() * gridRange * 2 - gridRange);
+=======
+        level = 1;
+        armors = new int[] {1}; // Has mama's rags
+    }
+
+    public void npcInit(Character player) {
+        xcor = (int) (Math.random() * gridRange * 2 - gridRange);
+        ycor = (int) (Math.random() * gridRange * 2 - gridRange);
+        this.level = player.level;
+>>>>>>> 908970635b48640840f1fa25b1d7bc4e4e544137
         armors = new int[] {r.nextInt(3)};
     }
 
