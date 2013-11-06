@@ -77,4 +77,28 @@ This could cause the Homework character to accidentally kill itself. However, us
 
 ## Leveling 
 
+Leveling is based on the sum of all stats: `dexterity`, `intellegence`, and `strength`. The sum is dubbed 
+internally as `stats`. 
 
+After an encounter, the victorious character will gain the experience 
+points of the losing character.
+Experience points are referred to as `ep`. 
+
+The game will then determine the character's eligibility for leveling
+up and act accordingly. 
+
+Experience points necessary for leveling up are based on `stats`. 
+
+
+| `stats` Reached | `ep` Required |
+| ------- | ------------- |
+| <= 36 | 125 |
+| 
+<= 40 | 250 |
+| <= 45 | 1000 |
+| <= 50 | 3000 |
+| <= 55 | 5000 |
+
+`ep` required will be subtracted from the player's total `ep` (thus, players will have some leftover `ep`). 
+`level` will be increased by one. 
+This will grant a single stat point, taking the player through stat increase flow and allowing them to add the point to their choice of `strength`, `dexterity`, and `intellegence`. 
