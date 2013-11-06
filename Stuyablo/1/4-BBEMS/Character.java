@@ -1,13 +1,8 @@
 import java.util.*;
 
 public class Character {
-<<<<<<< HEAD
     private int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
     protected int health, maxhealth, strength, intelligence, dexterity, experience, level, freezecount;
-=======
-    static int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
-    protected int health, maxhealth, strength, intelligence, dexterity, experience, level;
->>>>>>> 5999713c8527d9bfb036613a4bd54c639ee36bbc
     protected String name, characterClass;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
     
@@ -241,7 +236,7 @@ public class Character {
 		freezecount = freezecount - 1;
 	    }
 	    if (this.boostcount == 0) {
-		if (this.characterClass == "Wizard") {
+		if (this.characterClass.equals("Wizard")) {
 		    this.intelligence = this.intelligence * 0.4;
 		}
 		boostcount = -1;
