@@ -1,9 +1,9 @@
 import java.io.*;
 import java.util.*;
 
-public class Warrior extends Character {
-	public Warrior(String name) {
-		super(name, 10, 6, 8, true);
+public class Thief extends Character {
+	public Thief(String name) {
+		super(name, 8, 10, 6, true);
     }
     public void attack(Character other) {
         Random r = new Random();
@@ -11,16 +11,16 @@ public class Warrior extends Character {
         int dex = dexterity;
         int mult = 1;
         int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
-        System.out.println("\nChoose your weapon:\n1 - Axe\n2 - Sword");
+        System.out.println("\nChoose your weapon:\n1 - Dagger\n2 - Short sword");
         System.out.print(">");
         int weapon = sc.nextInt();
         if (weapon == 1) {
-        	dex = dexterity - 1;
-        	mult = 3;
+        	dex = dexterity + 3;
+        	mult = 2;
         }
         else if (weapon == 2) {
-        	dex = dexterity + 2;
-        	mult = 2;
+        	dex = dexterity + 1;
+        	mult = 3;
         }
         System.out.println("\n" + this + " attacked!");
         pause();

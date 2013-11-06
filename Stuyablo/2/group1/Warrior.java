@@ -33,7 +33,6 @@ public class Warrior extends Character {
 	    attack(c);
 	}
     }
-<<<<<<< HEAD
 		
     public boolean hit() {
 	Random r = new Random();
@@ -44,9 +43,6 @@ public class Warrior extends Character {
 	sum = d1 + d2 + d3;
 	return (sum <= dex);
     }
-=======
-	       
->>>>>>> a7e01a5fa86ee0d337798577ee5688f918980cda
 
     public void poke(Character c) {
 	Random r = new Random();
@@ -71,19 +67,11 @@ public class Warrior extends Character {
 	String atk = "stab";
 
 	if (wait == 0) {
-<<<<<<< HEAD
 	    int dmg = (int)(str*(0.5 + r.nextDouble()));
 	    if (hit()) {
 		c.health = c.health - dmg;
 		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
 	    }
-=======
-	    int dmg = (int(str*(0.5 + r.nextDouble())));
-	    if (hit() == true) {
-		c.health = c.health - dmg;
-		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
-		    }
->>>>>>> a7e01a5fa86ee0d337798577ee5688f918980cda
 	    else {
 		System.out.println(name + " missed " + c + ".");
 	    }
@@ -99,13 +87,8 @@ public class Warrior extends Character {
 	String atk = "superslash";
 
 	if (wait == 0) {
-<<<<<<< HEAD
 	    int dmg = (int)(str*(1 + r.nextDouble()));
-	    if (hit()) {
-=======
-	    int dmg = (int(str*(1 + r.nextDouble())));
 	    if (hit() == true) {
->>>>>>> a7e01a5fa86ee0d337798577ee5688f918980cda
 		c.health = c.health - dmg;
 		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
 		    }

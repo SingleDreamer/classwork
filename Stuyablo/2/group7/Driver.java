@@ -3,28 +3,39 @@ import java.util.*;
 
 public class Driver {
     public static void main(String[] args) {
-            Scanner sc = new Scanner(System.in);
-            System.out.print("\nEnter a name: ");
-            String name = sc.nextLine();
-            System.out.println("\nChoose your class:\n\nWarrior\nWizard");
+        Scanner sc = new Scanner(System.in);
+        Stuyablo s = new Stuyablo();
+        System.out.println("What kind of game would you like?\n1 - Player vs Player\n2 - Player vs NPC\n3 - NPC vs NPC");
+        System.out.print(">");
+        Character c1 = new Character("name",8,8,8,false);
+        Character c2 = new Character("name",8,8,8,false);
+        int option = sc.nextInt();
+        if (option == 1){
+            c1 = c1.createNew();
+            c2 = c2.createNew();
+        }
+        else if (option == 2) {
+            System.out.println("Who would you like to play against?\n1 - Ogre\n2 - Mr. Moran");
             System.out.print(">");
-            String pClass = sc.nextLine();
-            Character c1;
-            if (pClass.equals("Warrior")) {
-                    System.out.println("\nYou are now a warrior!\n");
-                    c1 = new Warrior(name);
+            c1 = c1.createNew();
+            int enemy = sc.nextInt();
+            if (enemy == 2) {
+                c2 = new MrMoran();
             }
-                else if (pClass.equals("Wizard")){
-                        System.out.println("\nYou are now a wizard!\n");
-                        c1 = new Wizard(name);
-                }
-
-                
-                else {
-                        System.out.println("\nInvalid class, defaulting to Warrior.\n");
-                        c1 = new Warrior(name);
-                }
-                Character c2 = new Ogre("Ogre");
-                c1.fight(c2);
+            else {
+                c2 = new Ogre("Ogre");
+            }
+        }
+        else if (option == 3) {
+            c1 = new Ogre("Ogre");
+            c2 = new MrMoran();
+        }
+        else {
+            System.out.println("You can't follow directions, so I'll make you watch Mr.Moran fight an ogre.");
+            c1 = new Ogre("Ogre");
+            c2 = new MrMoran();        
+        }
+        System.out.println("\n" + c1.getStatus() + "\n" + c2.getStatus());
+        s.fight(c1, c2);    
     }
 }
