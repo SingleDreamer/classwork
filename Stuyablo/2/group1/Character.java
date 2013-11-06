@@ -45,7 +45,7 @@ public class Character {
 
     public String getStatus() {
       String attrib1=String.format("Str: %d Dex: %d Int: %d", strength, dexterity, intelligence);
-      String attrib2=String.format("Exp: %d Health: %d of %d", experience,health,maxhealth);
+      String attrib2=String.format("Exp: %d Health: %d of %d", exp,health,maxHealth);
       String locale = String.format("x: %5.2f y: %5.2f",x,y);
       String whole=String.format("%s\n%s\n%s\n%s\n", name,attrib1,attrib2,locale);
       return whole;
