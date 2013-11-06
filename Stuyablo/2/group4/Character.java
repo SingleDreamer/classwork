@@ -116,6 +116,7 @@ public class Character {
 	System.out.println("You have encountered an " + other);
 	this.getStatus();
 	if (other.flee(this)) { 
+	    System.out.println(other + " has escaped!");
 	    return 0;
 	}
 	
@@ -124,6 +125,7 @@ public class Character {
 	String choice = sc.nextLine();
 	if (choice.equals("y")) {
 	    if (this.flee(other)) {
+		System.out.println("You have escaped safely...this time");
 		return 1;
 	    }
 	}
@@ -136,15 +138,19 @@ public class Character {
 	}
 	this.getStatus();
 	if (other.health == 0) {
+	    System.out.println(other + " has died");
 	    return 3;
 	}
 	else if (this.health == 0) {
+	    System.out.println("You have died!");
 	    return 2;
 	}
 	else if ((this.health == 0) && (other.health == 0)) {
+	    System.out.println("Both you and " + other + " have died"); 
 	    return 4;
 	}
 	else {
+	    System.out.println("===================");
 	    return battle(other);
 	}
     }
