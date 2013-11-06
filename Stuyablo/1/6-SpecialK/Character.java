@@ -153,6 +153,7 @@ public class Character {
 	    }
 	     else {
 		 System.out.println("You can't do that.");
+		 i = i + 1;
 	     }
 	      i = i - 1;
 	}
