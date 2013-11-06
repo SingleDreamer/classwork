@@ -5,19 +5,13 @@ public class Player extends Character {
     private int level;
     private int cooldown;
 
-    public Player (){
-        Scanner n = new Scanner (System.in);
-	System.out.print("Enter your name: ");
-	name = n.nextLine();
-	System.out.print("Welcome to StuyabloII, " + name + "\n");
-    }
-
     public void attack(Character c){
 	Scanner s = new Scanner (System.in);
-	System.out.print ("How would you like to fight? \n1 : Basic Attack, 2: Special Attack 1, 3: Special Attack 2. \n Or would you like to flee? \n  4: Flee  ");
+	System.out.print ("How would you like to fight?" + "\n" + "1 : Basic Attack, 2: Special Attack 1, 3: Special Attack 2 ");
 	int attack = s.nextInt();
-	if (attack == 1)
+	if (attack == 1){
 	    basicattack(c);
+	}
 	else if (attack == 2){
 	    if (cooldown > 0){
 		System.out.println("You do not have the energy for that. Wait "+ cooldown + " more turns.");
@@ -34,12 +28,8 @@ public class Player extends Character {
 	    else
 		specialattack2(c);
 	}
-	else if (attack == 4){
-	    flee();
-	    action();
-	}
 	else {
-	    System.out.print ("That is not an attack.");
+	    System.out.print ("That is not an attack. ");
 	    attack(c);
 	}
     }
@@ -68,18 +58,26 @@ public class Player extends Character {
 	}	
     }
 
-
+    public Player (){
+        Scanner n = new Scanner (System.in);
+	System.out.print("Enter your name: ");
+	name = n.nextLine();
+	System.out.print("Welcome to StuyabloII, " + name + "\n");
+    }
 
     public void basicattack(Character c){
 	Random r = new Random();
 	int damage = 0;
 	String aname = "Basic Attack";
-	if (charClass.equals("Warrior"))
+	if (charClass.equals("Warrior")){
 	    damage = strength - 2 + r.nextInt(5);
-	else 
+	}
+	else {
 	    damage = intelligence - 2 + r.nextInt(5);
-	if (cooldown > 0)
+	}
+	if (cooldown > 0){
 	    cooldown = cooldown - 1;
+	}
 	if (hit()){
 	    c.loseHealth(damage);
 	    System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!\n");
@@ -94,11 +92,11 @@ public class Player extends Character {
 	String aname = "";
 	if (cooldown == 0){
 	    if (charClass.equals("Warrior")){
-		damage = strength + 15;
+		damage = strength + 10;
 		aname = "Sword Spin";
 	    }
 	    else {
-		damage = intelligence + 15;
+		damage = intelligence + 10;
 		aname = "Fire Blast";
 	    }
 	    cooldown = 1;
@@ -117,11 +115,11 @@ public class Player extends Character {
 	String aname = "";
 	if (cooldown == 0){
 	    if (charClass.equals("Warrior")){
-		damage = strength + 25;
+		damage = strength + 20;
 		aname = "Sword Lunge";
 	    }
 	    else {
-		damage = intelligence + 25;
+		damage = intelligence + 20;
 		aname = "Electric Strike";
 	    }
 	    cooldown = 3;
@@ -146,15 +144,11 @@ public class Player extends Character {
     }
 	
     public void battle(Nonplayer other) {
-	if (health > 0)
+	if (health > 0){
 	    this.attack(other);
-	else if (other.getHealth() > 0)
+	}
+	if (other.getHealth() > 0){
 	    other.attack(this);
-<<<<<<< HEAD
-	System.out.print(this + " : " +  health + " \n");
-	System.out.print(other + " : " + other.getHealth()+ " \n");
-	if ((health > 0) && (other.getHealth() > 0))
-=======
 	}
 	int otherHealth = other.getHealth();
 	if (otherHealth < 0){
@@ -166,11 +160,12 @@ public class Player extends Character {
 	System.out.print(this + " : " +  health + " \n");
 	System.out.print(other + " : " + otherHealth+ " \n");
 	if ((health > 0) && (other.getHealth() > 0)){
->>>>>>> 9b80cbd1c72a9acd8ff3c8745b9bdcbb7e0c128c
 	    this.battle(other);
+	}
 	else {
-	    if (health <= 0)
+	    if (health <= 0){
 		System.out.print("GAME OVER!");
+	    }
 	    else {
 		System.out.print("You have won the fight! Gained 300 gold and 30 experience. \n");
 		gold = gold + 300;
@@ -222,7 +217,7 @@ public class Player extends Character {
 	else{
 	    experience = 0;
 	}
-	System.out.println ("Coward! You have fled! Lost 20 experience. \n");
+	System.out.println ("Coward! You have fleed! Lost 20 experience. \n");
     }
 
     public void encounter(){
@@ -234,9 +229,6 @@ public class Player extends Character {
 	    ans = s.nextLine();
 	    if (ans.equals("Fight")){
 		Nonplayer enemy = new Nonplayer("Mr.Moran");
-		enemy.setStrength(8 + (this.level-1));
-		enemy.setDexterity(8 + (this.level-1));
-		enemy.Setintelligence(8 + (this.level-1));
 	        battle (enemy);
 	    }
 	    else if (ans.equals("Flight")){
@@ -244,7 +236,7 @@ public class Player extends Character {
 		action();
 	    }
 	    else{
-		System.out.println("Invalid response, the enemy has run away.\n");
+		System.out.println("Invalid response, the enemy has ran away.\n");
 	    }
 	}
 	else {
@@ -252,9 +244,6 @@ public class Player extends Character {
 	    ans = s.nextLine();
 	    if (ans.equals("Fight")){
 		Nonplayer enemy = new Nonplayer("Ogre");
-		enemy.setStrength(8 + (this.level-1));
-		enemy.setDexterity(8 + (this.level-1));
-		enemy.Setintelligence(8 + (this.level-1));
 	        battle (enemy);
 	    }
 	    else if (ans.equals("Flight")){
@@ -262,7 +251,7 @@ public class Player extends Character {
 		action();
 	    }
 	    else{
-		System.out.println("Invalid response, the enemy has run away.\n");
+		System.out.println("Invalid response, the enemy has ran away.\n");
 		action();
 	    }
 	}
