@@ -89,12 +89,66 @@ public class Character {
     
     // returns true if you succesfully flee, false otherwise
     public boolean flee() { //I don't see why you need Character other in parameter
-	if (this.roll(3,6) >= getEffDx()) {
-	    System.out.println("lelelelelel");
-	    return true;
-	}
-	System.out.println("Couldn't escape");
-        return false;
+		boolean success = false;
+		if (this.roll(2, effDex/2) >= dexterity/2) {
+			success = true;
+		}
+        return success;
+    }
+
+
+    /*
+      this routine will decide first ask if other tries to flee. If
+      so, and if it's succesful it should adjust experience and or
+      gold as needed and return a 0.
+
+      Then, it should decide if this character tries to flee. 
+      If so and it's succesful, return a 1;
+      
+      Otherwise, call attack on both sides:
+      this.attack(other);
+      if (other.health>0) 
+        other.attack(this);
+
+      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
+
+    */
+    public int encounter(Character other,String command) {
+	boolean playerDied = false;
+        boolean opponentDied = false;
+        if (command.equals("Light Attack")){
+            this.lightAttack(other);
+            if (other.getHealth() <= 0)
+                opponentDied = true;
+            other.lightAttack(this);
+            if (this.getHealth() <= 0)
+                playerDied = true;
+        }
+        if (command.equals("Heavy Attack")){
+            this.heavyAttack(other);
+            if (other.getHealth() <= 0)
+                opponentDied = true;
+            other.heavyAttack(this);
+            if (this.getHealth() <= 0)
+                playerDied = true;
+        }
+        if (command.equals("Flee")){
+            if (this.flee())
+                return 1;
+        }
+        System.out.println("This Character's status: ");
+        System.out.println(this.getStatus());
+        System.out.println("Other Character's status: ");
+        System.out.println(other.getStatus());
+		
+        if (playerDied && opponentDied)
+            return 4;
+        else if (playerDied)
+            return 2;
+        else if (opponentDied)
+            return 3;
+        else
+            return 5;
     }
 
     public String getStatus() {

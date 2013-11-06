@@ -26,12 +26,13 @@ public class Warrior extends Character {
 	    //basically, the chacter will be able to attack
 	    System.out.println(n + " attacked and hit the enemy!");
 	    experience = experience + 1;
+	    other.health = other.health -1;
 	    if (experience = 15){
 		maxhealth = maxhealth + 5;
 		experience = 10;
+		strength = strength +1;
+		dexterity = dexterity +1;
 		//kind of like leveling up
-	    }
-	    else {
 	    }
 	}
 	else {
@@ -39,23 +40,45 @@ public class Warrior extends Character {
 	    flee();
 		//if the PC is weaker than NPC, PC can flee
 		}
+    }
 
-	public void flee(Character other){
+    public void flee(Character other){
+	Random r = new Random();
+	int rollDie = r.nextInt(18) +1;
+	if(rollDie <= dexterity){
 	    System.out.println(n + " fled. Cowardly actions have decreased EXP.");
 	    experience = experience - 1;
-	    maxhealth = maxhealth -1;
+	    maxhealth = maxhealth -5;
 	}
+	else {
+	    System.out.println(n + " failed to flee.")
+		}
+    }
 
-	public int encounter(Character other){
-	    if (strength + dexterity > other.strength + other.dexterity){
-		if (flee(other)){
-		    System.out.println("Enemy fled!");
-		}
-		else {
-		    this.attack(other);
-		}
+    public int encounter(Character other){
+	if (other.flee(this)){
+	    experience = experience -1;
+	    if(experience == 15){
+		maxhealth = maxhealth + 5;
+		experience = 10;
+		strength = strength +1;
+		dexterity = dexterity +1;
 	    }
-	    else {
-		flee();
-
-	
+	}
+	else if (other.strength>=this.strength || other.health>=this.health) {
+            if (flee(other))
+                return 1;
+                    }
+        this.attack(other);
+        if (other.health > 0)
+            other.attack(this);
+        if (health == 0)
+            return 2;
+        else if (other.health == 0)
+            return 3;
+        else if (health == 0 && other.health == 0)
+            return 4;
+        else
+            return 5;
+    }
+}

@@ -9,7 +9,7 @@ public class Driver {
             System.out.println("\nChoose your class:\n\nWarrior\nWizard\nThief");
             System.out.print(">");
             String pClass = sc.nextLine();
-            Character c1 = new Character();
+            Character c1 = new Character(name,8,8,8,true);
             if (pClass.equals("Warrior")) {
                     System.out.println("\nYou are now a warrior!\n");
                     c1 = new Warrior(name);

@@ -36,42 +36,48 @@ public class Character {
         return distance;
     }
 
-	public Character(String name, int baseStr, int baseDex, int baseInt, int extra) {
+	public Character(String name, int baseStr, int baseDex, int baseInt, boolean playable) {
 		Random r = new Random();
 		this.name = name;
-		eStr = r.nextInt(9);
-		eDex = r.nextInt(9- eStr);
-		eInt = 8 - eStr - eDex;
-		this.dexterity = baseDex + eDex;
-		this.strength = baseStr + eStr;
-		this.intelligence = baseInt + eInt;
-		this.maxhealth = this.strength;
-		this.health = this.maxhealth;
+        if (playable) {
+            distributeStats(baseStr, baseDex, baseInt);
+        }
+        else {
+    		int eStr = r.nextInt(9);
+    		int eDex = r.nextInt(9 - eStr);
+    		int eInt = 8 - eStr - eDex;
+    		this.dexterity = baseDex + eDex;
+    		this.strength = baseStr + eStr;
+    		this.intelligence = baseInt + eInt;
+        }
+    	this.maxhealth = this.strength * 10;
+    	this.health = this.maxhealth;
 	}
-	
-	public Character(String name, int baseStr, int baseDex, int baseInt, int addStr, int addDex, int addInt) {
-		this.name = name;
-		this.dexterity = baseDex + addDex;
-		this.strength = baseStr + addStr;
-		this.intelligence = baseInt + addInt;
-		this.maxhealth = this.strength;
-		this.health = this.maxhealth;
-	}
-    /* THIS IS THE RANDOMIZED CONSTRUCTOR, COPY PASTE INTO THE SPECIFIC CLASS FILES AND TWEAK
-    public Character(String name) {
 
-            Random r = new Random();
-            this.name = name;
-            eStr = r.nextInt(9);
-            eDex = r.nextInt(9- eStr);
-            eInt = 8 - eStr - eDex;
-            this.dexterity = baseDex + eDex;
-            this.strength = baseStr + eStr;
-            this.intelligence = baseInt + eInt;
-            this.maxhealth = this.strength;
-            this.health = this.maxhealth;
+    public void distributeStats(int baseStr, int baseDex, int baseInt) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(name + ", choose your stats:\n\nStrength affects health and the damage done by melee characters.\nDexterity affects accuracy.\nIntelligence affects the chance of fleeing and the damage done by magic users.\n\nWarriors start off with 10 strength, 6 dexterity, and 8 intelligence.\nWizards start off with 6 strength, 8 dexterity, and 10 intelligence.\nThieves start off with 8 strength, 10 dexterity, and 6 intelligence.\n\nYou have 8 more points to allocate.");
+        System.out.println("\nHow many points do you want to add to strength?");
+        System.out.print(">");
+        int str = sc.nextInt();
+        System.out.println("\nHow many points do you want to add to dexterity?");
+        System.out.print(">");
+        int dex = sc.nextInt();
+        System.out.println("\nHow many points do you want to add to intelligence?");
+        System.out.print(">");
+        int intel = sc.nextInt();
+        this.name = name;
+        strength = baseStr + str;
+        dexterity = baseDex + dex;
+        intelligence = baseInt + intel;
+        System.out.println(String.format("\nStr: %d Dex: %d Int: %d\n\n",
+                                    strength, dexterity, intelligence));
+        if (dexterity + strength + intelligence > 32) {
+            System.out.println("You have added too many points, please try again.\n\n");
+            distributeStats(baseStr, baseDex, baseInt);
+        }
     }
-    */
+
 
     public void attack(Character other) {
                 Random r = new Random();
@@ -199,29 +205,6 @@ public class Character {
         } 
         catch (Exception e) {
                 // do nothing here - it should never get run 
-        }
-    }
-    public void distributeStats() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println(name + ", choose your stats:\n\nStrength affects health and the damage done by melee characters.\nDexterity affects accuracy.\nIntelligence affects the chance of fleeing and the damage done by magic users.\n\nWarriors start off with 10 strength, 6 dexterity, and 8 intelligence.\nWizards start off with 6 strength, 8 dexterity, and 10 intelligence.\nThieves start off with 8 strength, 10 dexterity, and 6 intelligence.\n\nYou have 8 more points to allocate.");
-        System.out.println("\nHow many points do you want to add to strength?");
-        System.out.print(">");
-        int str = sc.nextInt();
-        System.out.println("\nHow many points do you want to add to dexterity?");
-        System.out.print(">");
-        int dex = sc.nextInt();
-        System.out.println("\nHow many points do you want to add to intelligence?");
-        System.out.print(">");
-        int intel = sc.nextInt();
-        this.name = name;
-        strength = 10 + str;
-        dexterity = 6 + dex;
-        intelligence = 8 + intel;
-        System.out.println(String.format("\nStr: %d Dex: %d Int: %d\n\n",
-                                    strength, dexterity, intelligence));
-        if (dexterity + strength + intelligence > 32) {
-            System.out.println("You have added too many points, please try again.\n\n");
-            distributeStats();
         }
     }
 }
