@@ -20,26 +20,21 @@ public class GoblinMage extends Character {
     }
     
     public void die(Character other) {
-	other.gold = other.gold + gold;
-	other.experience = other.experience + experience;
-	String winmessage = String.format("You have defeated the %s and gained %s experience and %s gold!", name, experience, gold);
+	other.gold = other.gold + this.gold;
+	other.experience = other.experience + this.experience;
+	String winmessage = String.format("You have defeated the %s and gained %s experience and %s gold!", this.name, this.experience, this.gold);
 	System.out.println(winmessage);
     }
 
     public void attack(Character other) {
-	int die1 = (int)(Math.random() * 7);
-	int die2 = (int)(Math.random() * 7);
-	int die3 = (int)(Math.random() * 7);
-	int roll = die1 + die2 + die3;
 	System.out.println("The " + name + " tried attacking you!");
-	
-	if (roll > dexterity) {
+	if (roll() == false) {
 	    //miss
 	    System.out.println("The " + name + " stuttered while casting its spell and accidentally summoned a bag of potato chips!");}
 	else {
 	    //hit
 	    System.out.println("The " + name + "showered you in fireballs!");
-	    int damage = (int)(intelligence/4 + (Math.random() * 3)) - 1;
+	    int damage = (int)(this.intelligence/4 + (Math.random() * 3)) - 1;
 	    other.health = other.health - damage;
 	}
     }

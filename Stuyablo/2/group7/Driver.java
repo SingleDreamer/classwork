@@ -9,7 +9,7 @@ public class Driver {
             System.out.println("\nChoose your class:\n\nWarrior\nWizard\nThief");
             System.out.print(">");
             String pClass = sc.nextLine();
-            Character c1 = new Character(name,8,8,8,true);
+            Character c1 = new Character(name,8,8,8,false);
             if (pClass.equals("Warrior")) {
                     System.out.println("\nYou are now a warrior!\n");
                     c1 = new Warrior(name);
@@ -28,7 +28,7 @@ public class Driver {
                         System.out.println("\nInvalid class, defaulting to Warrior.\n");
                         c1 = new Warrior(name);
                 }
-                Character c2 = new Ogre("The ogre");
+                Character c2 = new Ogre("Ogre");
                 c1.fight(c2);
     }
 }

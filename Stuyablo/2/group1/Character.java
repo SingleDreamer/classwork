@@ -6,9 +6,10 @@ public class Character {
     protected String name;
     protected String charclass="none";
     protected int health,maxHealth;
-    protected int dex,str;
+    protected int dexterity,strength,intelligence;
     protected int points;
     protected int exp=0,lvl=1;
+    protected int x,y;
 	   
     public void attack(Character other) {
         /* do the attack:
@@ -42,18 +43,13 @@ public class Character {
         return 0;
     }
 
-    /*
-      public String getStatus() {
-      String attrib1=String.format("Str: %d Dex: %d Int: %d",
-      strength, dexterity, intelligence);
-      String attrib2=String.format("Exp: %d Health: %d of %d",
-      experience,health,maxhealth);
+    public String getStatus() {
+      String attrib1=String.format("Str: %d Dex: %d Int: %d", strength, dexterity, intelligence);
+      String attrib2=String.format("Exp: %d Health: %d of %d", experience,health,maxhealth);
       String locale = String.format("x: %5.2f y: %5.2f",x,y);
-      String whole=String.format("%s\n%s\n%s\n%s\n",
-      name,attrib1,attrib2,locale);
+      String whole=String.format("%s\n%s\n%s\n%s\n", name,attrib1,attrib2,locale);
       return whole;
-      }
-    */
+    }
 
 
     public String toString() {
@@ -65,69 +61,48 @@ public class Character {
 	System.out.print("Welcome to StuyabloII.\nEnter your name: ");
 	name = sc.nextLine();
 	System.out.println("Hello " + name);
-	setClass();
-    }
-
-    public void	setClass() {
-	Scanner sc = new Scanner(System.in);
-	System.out.print("You may be a Warrior or a Theif. Select your class: ");
-	if (sc.nextLine().equals("Warrior")) {
-	    System.out.println("\nYou have selected the Warrior!\n");
-	    setWarrior();
-	}
-	else if (sc.nextLine().equals("Theif")) {
-	    System.out.println("\nYou have selected the Theif!\n");
-	    setTheif();
-	}
-	else {
-	    System.out.println("Sorry, that is not a class.");
-	    setClass();
-	}
-    }
-
-    public void setWarrior() {
-	str = 12;
-	dex = 4;
-	health = str;
-	Scanner sc = new Scanner(System.in);
-	System.out.println("Strength: " + str);
-	System.out.println("Dexterity: " + dex);
 	setStat();
     }
 
-    public void setTheif() {
-	System.out.println("hello");
-    }
+    //SETCLASS IS DEFINITELY NOT THE RIGHT WAY TO DO THIS
+    //
+    //public void setWarrior() {
+    //    strength = 12;
+    //    dexterity = 4;
+    //    health = strength;
+    //    Scanner sc = new Scanner(System.in);
+    //    System.out.println("Strength: " + strength);
+    //    System.out.println("Dexterity: " + dexterity);
+    //    setStat();
+    //}
 
     public void setStat() {
 	points = 8;
 	Scanner sc = new Scanner(System.in);
+
 	System.out.println("You have " + points + " skill points available.");
-	System.out.print("Strength + ");
-	if (sc.nextInt() > points) {
-	    System.out.println("Sike! Try again");
-	    setStat();
+	System.out.print("Strength = 8 + :");
+	int add = sc.nextInt();
+	if (add > points){
+	    add = points;
+	    System.out.printf("Only able to add %d points\n",add);
 	}
-	else {	
-	    int addS = sc.nextInt();
-	    str = str + addS;
-	    points = points - addS;
-	    System.out.println("You still have " + points + " skill points available");
+        strength = strength + add;
+        points = points - add;
+
+        System.out.println("You still have " + points + " skill points available");
+	add = sc.nextInt();
+	System.out.print("Dexterity = 8 + :");
+	if (add > points) {
+	    add = points;
+	    System.out.printf("Only able to add %d points\n",add);
 	}
-	System.out.print("Dexterity + ");
-	if (sc.nextInt() > points) {
-	    System.out.println("Nah... try again");
-	    setStat();
-	}
-	else {
-	    int addD = sc.nextInt();
-	    dex = dex + addD;
-	    points = points - addD;
-	    System.out.println("You still have " + points + " skill points available");
-	}
-	if (points > 0) {
-	    System.out.println("Your remaining skill points will be destroyed! teehee");
-	}
+
+	dexterity = dexterity + add;
+	points = points - add;
+	
+	System.out.printf("Remaining %d points put into intelligence",points);
+	intelligence += points;
     }
 
     public int getHealth() {
