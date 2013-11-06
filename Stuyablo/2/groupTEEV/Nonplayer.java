@@ -97,6 +97,9 @@ public class Nonplayer extends Character {
     }
 
 
-
+    public Nonplayer (String n){
+	charClass = n;
+	name = n;
+    }
 
 }
