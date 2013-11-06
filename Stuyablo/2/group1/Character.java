@@ -68,7 +68,7 @@ public class Character {
         return name;
     }
 
-    public Character() {
+    /* public Character() {
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Welcome to StuyabloII.\nEnter your name: ");
 	name = sc.nextLine();
@@ -77,7 +77,7 @@ public class Character {
 	setStat();
 	health = maxHealth = strength;
     }
-
+    */
 
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
