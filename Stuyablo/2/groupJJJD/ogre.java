@@ -1,17 +1,20 @@
 public class ogre extends Character{
     
     public ogre(){
-	strength = 8;
+	Random r = new Random();
+        a = r.nextInt(2) + 5;
+	strength = a;
 	health= strength;
 	maxhealth=strength;
 	dexterity= 8;
-	intelligence = 8;
+	// This ogre exercises, he has amazing coordination
+	intelligence = 2;
 	
 }
     
     public String toString(){
 	return super.toString() + " the Ogre";
-
+    }
 	public void attack(Character other) {
 	    rollDice();
 	    if (roll > this.dexterity) {
@@ -25,7 +28,7 @@ public class ogre extends Character{
 	    }
 		
 	}
-    }
+}
     
     
 }
