@@ -9,5 +9,6 @@ public class Warrior extends PC {
     
     public void attack(Character other) {
 	super.attack();
+	System.out.println("You swing mightily with your sword and it slices through the enemy's flesh");
     }
 }
