@@ -78,10 +78,7 @@ public class Character {
 	health = maxHealth = strength;
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 7ed6de04bdaf0fd2d061de14999e36e417e4ba45
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
 	System.out.print("What would you like to be? Warrior? Blah?");
