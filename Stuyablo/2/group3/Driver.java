@@ -30,30 +30,46 @@ public class Driver {
             else System.out.println ("Misspelled character type");
         }
         
-        System.out.print ( "Hello " + name + "! Congratulations on becoming a " + type + "! Please select what you want to do next. (Attack nearest enemy(a), explore(e), or talk to friend(t)): ");
-        String choice = sc.nextLine();
-
-        if (choice.equals("e")) {
-            System.out.println("Which direction would you like to go? (up, down, left, right)");
-            String dir = sc.nextLine();
-            if (dir == "up"){
-                player.ycor = player.ycor + 1;
-            }
-            else if (dir == "down"){
-                player.ycor = player.ycor - 1;
-            }
-            else if (dir == "left"){
-                player.xcor = player.xcor - 1;
-            }
-            else if (dir == "right"){
-                player.xcor = player.xcor + 1;
-            }
+        System.out.print ( "Hello " + name + "! Congratulations on becoming a " + type + "!" );
+	int i = 0;
+	while ( i == 0 ) {
+	    if ( player.health == 0 )
+		i = 1;
+	    System.out.println ( "What would you line to do? (Attack nearest enemy(a), explore(e), or talk to friend(t)): ");
+	    String choice = sc.nextLine();
+	    if (choice.equals("e")) {
+		System.out.println("Which direction would you like to go? (up, down, left, right)");
+		String dir = sc.nextLine();
+		System.out.println ( player.xcor + ", " + player.ycor );
+		if (dir == "up"){
+		    if ( player.ycor <= player.gridRange )
+			player.ycor = player.ycor + 1;
+		    else System.out.println ( "Out of bounds" );
+		}
+		else if (dir == "down"){
+		    if ( player.ycor >= player.gridRange )
+			player.ycor = player.ycor - 1;
+		    else System.out.println ( "Out of bounds" );
+		}
+		else if (dir == "left"){
+		    if ( player.xcor >= player.gridRange )
+			player.xcor = player.xcor - 1;
+		    else System.out.println ( "Out of bounds" );
+		}
+		else if (dir == "right"){
+		    if ( player.xcor <= player.gridRange )
+			player.xcor = player.xcor + 1;
+		    else System.out.println ( "Out of bounds" );
+		}
+		//	else System.out.println ( "Misspelled direction" );
 
     /*  String choice = sc.nextLine();
             if ( choice.equals ( "a" ) )
             player.attack();
         }
     */
+	    }
+	    else System.out.println ( "Please enter a valid command" );
         }
     }
 }

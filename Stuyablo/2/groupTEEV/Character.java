@@ -13,39 +13,6 @@ public class Character {
 	return health;
     }
 
-    public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
-    }
-
-    // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
-	return false;
-    }
-
-
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
-    public int encounter() {
-	return 0;
-    }
-
     public String getStatus() {
 	String cclass = "Character Class: " + charClass;
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
@@ -141,14 +108,12 @@ public class Character {
 	}
     }
 
-    public int getExperience(){
-	return experience;
-    }
-
     public String toString() {
 	return name;
     }
     
-
+    public void loseHealth(int n){
+	health = health - n;
+    }
 
 }
