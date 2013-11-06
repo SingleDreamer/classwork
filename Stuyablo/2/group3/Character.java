@@ -5,7 +5,7 @@ public class Character {
     protected String name;
     protected String charClass;
     protected int xcor, ycor;
-    protected int str, dex, intel, health;
+    protected int str, dex, intel, health = 50;
     protected int lvl, exp, skills;
     protected int[] weapons = new int[1];
     protected int currentWeapon = 0;
@@ -21,6 +21,16 @@ public class Character {
         ycor = (int) (Math.random() * gridRange * 2 - gridRange);
         str = dex = intel = 8;
         skills = 8;
+    }
+
+    public Character ( String n, int i) {
+        name = n;
+        xcor = (int) (Math.random() * gridRange * 2 - gridRange);
+        ycor = (int) (Math.random() * gridRange * 2 - gridRange);
+        str = dex = intel = 8;
+        skills = 8;
+	xcor = 0;
+	ycor = 0;
     }
 
     public String toString() {
