@@ -14,7 +14,7 @@ public class NPC extends Character{
 	health = 50 + ((strength - 8)*4);
     }
     
-    public boolean adjacentCheck(PC other){
+    public boolean adjacentCheck(Character other){
 	boolean o = false;
 	if (x == other.x && ((y + 1 == other.y) || (y - 1 == other.y)))
 	    o = true;
@@ -23,7 +23,7 @@ public class NPC extends Character{
 	return o;
     }
     
-    public void turn (PC other){
+    public void turn(Character other){
 	int move = 2;
 	while (move > 0 && !adjacentCheck(other)){ // while there are still moves and pc isn't next to npc
 	    Random r = new Random();
@@ -41,6 +41,11 @@ public class NPC extends Character{
 		    y = y - 1;
 	    }
 	}
+
+	if (adjacentCheck(other)){
+		attack(other);
+	    }
     }
+
 }
 
