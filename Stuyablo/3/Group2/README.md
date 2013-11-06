@@ -4,6 +4,9 @@
 **Members**: Michelle Chen, Aaron Mortenson, Sarah Prutchenko, Elvin Shoyfer
 
 ## Characters
+
+Basic stats of all characters: `strength`, `dexterity`, and `intellegence`. 
+
 **The Elf**: The elf is a player character. As the elf you can choose to upgrade your weapon from the default "basic dagger" to something better. 
 
 *Weapons*
@@ -68,6 +71,27 @@ This could cause the Homework character to accidentally kill itself. However, us
 
 
 ## Combat
+
+At the start of a round of an encounter, a player is given options, which they can select using numbers. Player actions are not randomly generated. 
+
+Enemy NPC stats distribution and attacks are randomly generated. 
+
+All in-game actions are relayed to the player via `System.out.println()`. This includes numerical data as well as 
+accompanying amusing dialogue.
+
+To determine if a standard attack succeeds, `roll()` is called, emulating a 3d6 roll.
+
+All characters have the ability to attempt to `flee()`. 
+Its success is determined by a comparison of the `dextirity` values
+of both of the participants; if the one who is attempting to flee 
+has a greater `dexterity`, it will be a success.
+
+Experience points, or `ep`, are granted upon victory. The winnings are the enemy player's `ep` points; they are added to the victor's sum, and they are not subtracted from the loser's.
+
+Certain characters have unique spells, pre-encounter abilities, and varying criteria for success/effectiveness of attacks, specified below.
+ 
+
+
 **The Elf**: The elf uses various weapons for combat. The better the weapon, the more damage it has the potential to inflict. The damage is determined by the type of weapon and how much strength the elf has. The elf has the ability to upgrade his weapon at the start of an encounter. 
 
 
