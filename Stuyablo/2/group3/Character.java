@@ -9,7 +9,7 @@ public class Character {
     protected int lvl, exp, skills;
     protected int[] weapons = new int[1];
     protected int currentWeapon = 0;
-    protected int[] armors = new int[];
+    protected int[] armors = new int[1];
 
     public int gridRange = 10;
 
@@ -21,6 +21,10 @@ public class Character {
         ycor = (int) (Math.random() * gridRange * 2 - gridRange);
         str = dex = intel = 8;
         skills = 8;
+    }
+
+    public String toString() {
+        return name;
     }
 
     protected void attack(Character other) {
@@ -62,4 +66,5 @@ public class Character {
             }
         }
     }
-}  
+
+}
