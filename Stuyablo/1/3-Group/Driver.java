@@ -11,6 +11,9 @@ public class Driver {
 	for (n = 0, n < 50, n ++){
 	    if (r.nextInt(2) < 1){
 		System.out.println("You've encountered something!");
+		if (r.nextInt(2)<1){
+		    
+
 	    }
 	    else{
 		System.out.println("You walk merrily onwards");
