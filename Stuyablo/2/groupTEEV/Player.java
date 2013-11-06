@@ -224,8 +224,9 @@ public class Player extends Character {
 		Nonplayer enemy = new Nonplayer("Mr.Moran");
 	        battle (enemy);
 	    }
-	    else if (ans.equals("Flee")){
+	    else if (ans.equals("Flight")){
 		flee();
+		action();
 	    }
 	    else{
 		System.out.println("Invalid response, the enemy has ran away.\n");
@@ -238,11 +239,13 @@ public class Player extends Character {
 		Nonplayer enemy = new Nonplayer("Ogre");
 	        battle (enemy);
 	    }
-	    else if (ans.equals("Flee")){
+	    else if (ans.equals("Flight")){
 		flee();
+		action();
 	    }
 	    else{
 		System.out.println("Invalid response, the enemy has ran away.\n");
+		action();
 	    }
 	}
     }
