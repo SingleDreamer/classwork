@@ -40,8 +40,12 @@ public class Driver {
 		System.out.println("What thoust sayst?");
 	    }
 	}
-    
-	System.out.println("You have encountered a burly ogre!");
+	w.play(20);
+	/*
+	h.pause();
+	System.out.println("You have encountered a burly ogre!\n");
+	h.pause();
+
 	Ogre o = new Ogre();
 	String fightInput = "";
 	while ((w.getHealth() > 0) && (o.getHealth() > 0)){
@@ -73,6 +77,7 @@ public class Driver {
 	    }
 	}
 	System.out.println("\n");
+	*/
     }
 }
 

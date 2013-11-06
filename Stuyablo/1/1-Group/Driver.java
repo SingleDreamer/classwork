@@ -23,11 +23,11 @@ public class Driver {
 	    Warrior war = new Warrior(name);
 	    c=war;
 	}
-	/*	if (a.equals("Wizard")){
+       	if (a.equals("Wizard")){
 	    Wizard wiz = new Wizard(name);
 	    c=wiz;
 	}
-	*/
+       
 	//up to here
 
     

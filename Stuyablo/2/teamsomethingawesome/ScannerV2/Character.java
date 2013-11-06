@@ -87,7 +87,7 @@ public class Character {
 	}
     }
 
-    // returns true if you succesfully flee, false otherwise
+    // returns true if you succesfully flee, false otherwise SIKE
     public boolean flee(Character other){
 	Random r= new Random();
 	if (r.nextInt(6) + r.nextInt(6)+ r.nextInt(6) +r.nextInt(6) < other.getDex()){       // if the sum of the outcomes of four dice is less than your dexterity, then you escape.
@@ -103,7 +103,7 @@ public class Character {
       so, and if it's succesful it should adjust experience and or
       gold as needed and return a 0.
 
-      Then, it should decide if this character tries to flee. 
+      Then, it should decide if this character tries to flee.
       If so and it's succesful, return a 1;
       
       Otherwise, call attack on both sides:
@@ -113,21 +113,38 @@ public class Character {
 
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
     */
-    /*
+
     public int encounter(Ogre other) {
 	System.out.println("You are now facing an ogre! Its stats are: " + other.getStatus());
 	
 	if (other.flee(this)==true) {
-	    other.giveExp(this);
-	    other.giveGold(this);
+	    experience = other.getExp();
+	    gold = gold + other.getGold();
 	    return 0;
 		 }
 			   
 	else if (this.flee(other)==true) {
 	    return 1;
 	}
+
+	else {
+	    this.attack(other);
+	    other.attack(this);
+	    if (this.health <= 0){
+		return 2;
+	    }
+	    else if (other.health <= 0){
+		return 3;
+	    }
+	    else if (other.health <= 0 && this.health <= 0){
+		return 4;
+	    }
+	    else {
+		return 5;
+	    }
     }
-    */
+    }
+
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);
