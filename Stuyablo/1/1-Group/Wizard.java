@@ -29,38 +29,44 @@ public class Wizard extends Character {
 	//int hit = d1 + d2 + d3;
 	
 	//System.out.println (hit);
+	System.out.println (roll()); 
 	
 	while (this.health > 0 || other.health > 0){
-	    if (roll <= this.dexterity) {
-		if (answer == 1){
+	   
+	    if (answer == 1){
+		if (roll() >= this.dexterity) {
 		    if (mana >= 8){
 			other.takedamage(8);
 			mana = mana - 8;
-			System.out.println(this.name + " has unleashed a FIREBALL upon " + other.name);
-			say (other + " has lost " + strength + " health points and has "+other.getHealth()+" health points left");
+			say (this.name + " has unleashed a FIREBALL upon " + other.name);
+			say (other + " has lost " + "8" + " health points and has "+other.getHealth()+" health points left");
 			//return super.attack(other);
 		    }		
 		    else{
 			System.out.println("You don't have enough mana!");
 		    }
 		}
-		else if (answer == 2){
+	    }
+	    else if (answer == 2){
+		if (roll() >= this.dexterity) {
 		    if (mana >= 3){
-		        other.takedamage(3);
+			other.takedamage(3);
 			mana = mana - 3;
-			System.out.println(this.name + " has unleashed an ICESTORM upon " + other.name);
-			say (other + " has lost " + strength + " health points and has "+other.getHealth()+" health points left");
+			say (this.name + " has unleashed an ICESTORM upon " + other.name);
+			say (other + " has lost " + "3" + " health points and has "+other.getHealth()+" health points left");
 		    }
 		    else{
 			System.out.println("You don't have enough mana!");
 		    }
 		}
-		else if (answer == 3){
+	    }
+	    else if (answer == 3){
+		if (roll() >= this.dexterity) {
 		    if (mana >= 5){
-		        other.takedamage(5);
+			other.takedamage(5);
 			mana = mana - 5;
-			System.out.println(this.name + " has unleashed a EARTHSHAKER upon " + other.name);
-			say (other + " has lost " + strength + " health points and has "+other.getHealth()+" health points left");
+			say (this.name + " has unleashed a EARTHSHAKER upon " + other.name);
+			say (other + " has lost " + "5" + " health points and has "+other.getHealth()+" health points left");
 		    }
 		    else {
 			System.out.println("You don't have enough mana!");
@@ -68,28 +74,29 @@ public class Wizard extends Character {
 		}
 	    }
 	
+	    
 	    else{
-		System.out.println("Your attack missed!");
-		this.attack(other);
+	    say ("Your attack missed!");
+	    this.attack(other);
 	    }
 	    if (this.health <= 5){
-                if (this.flee(other)){
-                    return 0;
-                }
-            }
-            if (other.health <= 5){
-                if (other.flee(this)){
-                    return 1;
-                }
-            }
+		if (this.flee(other)){
+		    return 0;
+		}
+	    }
+	    if (other.health <= 5){
+		if (other.flee(this)){
+		    return 1;
+		}
+	    }
 	}
 	if (this.health <= 0){
-            this.die();
-            return 2;
-        }
-        else{
-            other.die();
-            return 3;
-        }
+	    this.die();
+	    return 2;
+	}
+	else{
+	    other.die();
+	    return 3;
+	}
     }
 }
