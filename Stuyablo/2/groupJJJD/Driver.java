@@ -9,5 +9,6 @@ public class Driver {
 	System.out.println(w.dmg);
 	
 	w.encounter(wbot);
+	
     
   }}
