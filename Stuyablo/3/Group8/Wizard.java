@@ -17,7 +17,7 @@ public class Wizard extends Character {
     }
 
     public void experience () {
-	experience = experience + 10;
+	experience = experience + 5;
 	if (experience == 100) {
 	    Level = Level + 1;
 	    Health = Health + 3;
