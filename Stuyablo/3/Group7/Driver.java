@@ -9,6 +9,11 @@ public class Driver {
 	Elf e = new Elf();
 	WallOfMeat wom = new WallOfMeat();
 	
-	w.encounter(wi);
+	wi.encounter(e);
+	System.out.println("---------------------");
+	w.encounter(wom);
+	System.out.println("---------------------");
+	wom.encounter(e);
+	System.out.println("---------------------");
     }
 }

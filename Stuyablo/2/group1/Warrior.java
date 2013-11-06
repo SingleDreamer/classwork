@@ -16,7 +16,7 @@ public class Warrior extends Character {
 
     public void attack(Character c) {
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Choose your attack!\n" + "(1) Poke, (2) Stab, (3) SUPERSLASH");
+	System.out.print("Choose your attack!\n" + "(1) Poke, (2) Stab, (3) SUPERSLASH\n");
 	int atk = sc.nextInt();
 
 	if (atk == 1) {
