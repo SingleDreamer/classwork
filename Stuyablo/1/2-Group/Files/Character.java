@@ -92,7 +92,11 @@ public class Character {
 		    System.out.println("That is not a valid option. Please say <y> or <n>.");
 	    }
 	}
-	    
+	try {
+	    Thread.sleep(2000);
+	} catch (Exception e){
+	    //do nothing here
+	}
 	System.out.println("Your Character " + name + " has been created!");
 	init(name,50,100,str,dex,inte,0,0.0,0.0,true);
     }
@@ -133,8 +137,13 @@ public class Character {
     public String talk(Character c){
 	System.out.println("Choices: 1. Say something nice 2. Say something evil 3. Say nothing");
 	int choice = sc.nextInt();
+	try {
+	    Thread.sleep(2000); // how many milliseconds to pause
+	} catch (Exception e) {
+	    // do nothing here 
+	}
 	respond(choice,c);
-
+	
 	return "Generic talk";
     }
 
@@ -280,6 +289,11 @@ public class Character {
 		if (c1.pc) {
 		    System.out.println("Choose an attack: ");
 		    c2.health = c2.health - c1.attack(sc.nextInt(),c2);
+		    try {
+			Thread.sleep(2000); // how many milliseconds to pause
+		    } catch (Exception e) {
+			// do nothing here 
+		    }
 		}
 		else
 		    c2.health = c2.health - c1.attack(AIAttack(c2),c2);
@@ -504,6 +518,7 @@ public class Character {
 		battle(c, this);
 	    else if (x == 2)
 		talk(c);
+	    
 	    else
 		System.out.println("That is not a valid option");
 	}
