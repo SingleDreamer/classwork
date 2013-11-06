@@ -11,8 +11,13 @@ public class Character {
     protected String name;
     protected String charClass;
     protected int roll;
+<<<<<<< HEAD
     protected int level;
 	protected double dmgdouble; 
+=======
+    protected int level,dmg;
+    protected double dmgdouble; 
+>>>>>>> 82a05de6598f17e982fdf12cbe4ea796ccbd46d3
  
     public void rollDice() { //a method to use roll the dice -jamesc
 	Random r = new Random();
