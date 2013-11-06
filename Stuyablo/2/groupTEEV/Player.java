@@ -159,7 +159,9 @@ public class Player extends Character {
 		System.out.print("GAME OVER!");
 	    }
 	    else {
-		System.out.print("You have won the fight! \n");
+		System.out.print("You have won the fight! Gained 300 gold and 30 experience. \n");
+		gold = gold + 300;
+		experience = experience + 30;
 		action();
 	    }
 	}
@@ -193,4 +195,49 @@ public class Player extends Character {
 	    action();
 	}
     }
+
+    public void flee(){
+	if (experience >= 20){
+	    experience = experience - 20;
+	}
+	else{
+	    experience = 0;
+	}
+	System.out.println ("Coward! You have fleed! Lost 20 experience. \n");
+    }
+
+    public void encounter(){
+	Random r = new Random();
+	String ans;
+	Scanner s = new Scanner (System.in);
+	if (r.nextInt(3)== 2){
+	    System.out.println("You have encountered Mr. Moran! Fight like a hero or flee like a coward? Input 'Fight' or 'Flight'\n");
+	    ans = s.nextLine();
+	    if (ans.equals("Fight")){
+		Nonplayer enemy = new Nonplayer("Mr.Moran");
+	        battle (enemy);
+	    }
+	    else if (ans.equals("Flee")){
+		flee();
+	    }
+	    else{
+		System.out.println("Invalid response, the enemy has ran away.\n");
+	    }
+	}
+	else {
+	    System.out.println("You have encountered an ogre! Fight like a hero or flee like a coward? Input 'Fight' or 'Flight'\n");
+	    ans = s.nextLine();
+	    if (ans.equals("Fight")){
+		Nonplayer enemy = new Nonplayer("Ogre");
+	        battle (enemy);
+	    }
+	    else if (ans.equals("Flee")){
+		flee();
+	    }
+	    else{
+		System.out.println("Invalid response, the enemy has ran away.\n");
+	    }
+	}
+    }
+
 }
