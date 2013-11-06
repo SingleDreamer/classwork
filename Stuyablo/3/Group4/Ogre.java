@@ -53,6 +53,20 @@ public void level(int exp) {
 	
 
 } 
+public boolean flee(Character other) {
+	int[] a = other.getStat();
+	if (health < 12) {
+		health = health + 8;
+		return true;
+	}
+	if (distance < 11 || distance > -11)
+		return false;
+	if (dexterity < a[0])
+		return false;
+	else
+		return true;
+	
+}
 
 public void attack(Character other) {
 	System.out.println(getStatus());
@@ -62,29 +76,31 @@ public void attack(Character other) {
 	} catch(InterruptedException ex) {
 	    Thread.currentThread().interrupt();
 	}
-	if (health < 4)
-		System.out.println("Cannot attack!");
-	else {
+	
 /* do the attack:
 	   print out the attempt and the result and update
 	   all relavent variables
 	*/
 	Random r = new Random();
 	int roll = r.nextInt(16) + 3;
-	if (dexterity >= roll) {
-		other.damage(strength);
-		System.out.println("You have dealt " + strength + " damage to your enemy!");
+	if (health == 0) {
+		System.out.println("Ogre died.");
 	}
-	else 
-		System.out.println("You missed!");
-		if (other.getStat()[0] >= roll) {
-		damage(other.getStat()[1]);
-		System.out.println("Your enemy has dealt " + other.getStat()[1] + " damage to you!");
-		} else {
-		System.out.println("Your enemy missed!");
+	else {
+		if (dexterity >= roll) {
+		
+		other.damage(strength + 3);
+		System.out.println("Ogre dealt " + (strength+3) + " damage to its enemy!");
+		System.out.println("----------------------------------------------------------------");
 		}
-
+		else { 
+		System.out.println("Ogre missed!");
+		System.out.println("----------------------------------------------------------------");
 	}
+}
+		
+
+	
 }
 }
 /* We do not need this method, but if we ever do, it will be useful.
