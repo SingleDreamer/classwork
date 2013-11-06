@@ -32,7 +32,6 @@ public class Driver {
         
         System.out.print ( "Hello " + name + "! Congratulations on becoming a " + type + "! Please select what you want to do next. (Attack nearest enemy(a), explore(e), or talk to friend(t)): ");
         String choice = sc.nextLine();
-
         if (choice.equals("e")) {
             System.out.println("Which direction would you like to go? (up, down, left, right)");
             String dir = sc.nextLine();
@@ -48,12 +47,9 @@ public class Driver {
             else if (dir == "right"){
                 player.xcor = player.xcor + 1;
             }
-
-    /*  String choice = sc.nextLine();
-            if ( choice.equals ( "a" ) )
-            player.attack();
         }
-    */
+        else if (choice.equals( "a" )) {
+            player.encounter();
         }
     }
 }
