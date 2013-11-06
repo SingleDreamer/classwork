@@ -4,9 +4,10 @@ import java.util.*;
 public class Wizard extends Character{
     protected int mana;
 
-    public Wizard()
+    public Wizard(String Name)
     {
 	super();
+	name = Name;
 	mana = intelligence;
     }
 

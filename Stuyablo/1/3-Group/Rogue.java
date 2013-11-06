@@ -30,17 +30,17 @@ public class Rogue extends PC {
 	int weapon = sc.next();
 	if (weapon == 1) {
 	    System.out.println("Quick Attack!");
-	    Thread.sleep(2000);
+	    Thread.sleep(1000);
 	    System.out.println(name + " slaps the " + other.name+"!");
-	    other.setHealth(other.getHealth()-1);
+	    other.health = other.health-1;
 	    System.out.println(name + " deals 1 damage!");
 	}
 	else if (weapon ==2) {
 	    System.out.println("Knife!");
-	    Thread.sleep(2000);
+	    Thread.sleep(1000);
 	    if (dexterity > dice()) {
 		System.out.println(name + " stabs the " + other.name+"!");
-		other.setHealth(other.getHealth()-strength);
+		other.health = other.health-strength;
 		System.out.println(name + " deals " + strength + " damage!");
 	    }
 	    else {

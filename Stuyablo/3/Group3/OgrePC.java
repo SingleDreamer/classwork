@@ -36,19 +36,22 @@ public int DieRoll(){
 
 
 public void attack(Character other){
-		DieRoll();
-		Random rnd = new Random();
-		rnd.nextInt(strength);
-		
-		//If Ogre roles less than its strength, it hits the attack!
-		if (dieRoll <= rnd) {
-			System.out.println ("You successfully attacked!");
-			other.health = other.health - 1;
-			experience = experience + 1;
-		}
-		//If Ogre roles more than its strength, it !
+	int dice = DieRoll();
+	
+		if (attackRange < distance) {
+			distance = distance - 1;
+			}
 		else {
-			System.out.println ("You missed!");
+			
+			if (dice <= dexterity) {
+				System.out.println ("You successfully attacked!");
+				experience = experience + 1;
+				other.health = other.health - 1;
+				}
+		
+			else {
+					System.out.println ("you missed!");
+			}
 		}
 }
 
