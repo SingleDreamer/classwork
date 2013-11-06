@@ -59,7 +59,7 @@ public class Character {
 	int d1 = r1.nextInt(6) + 1;
 	int d2 = r2.nextInt(6) + 1;
 	int d3 = r3.nextInt(6) + 1;
-	return (dexterity > (d1+d2+d3));
+	return (dexterity >= (d1+d2+d3));
     }
 
 
