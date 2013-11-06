@@ -1,33 +1,34 @@
 import java.util.*;
-import java.os.*;
+import java.io.*;
 
-public claass Nonplayer extends Character {
+public class Nonplayer extends Character {
+    Random s = new Random();
     private int cooldown;
-    public void attack(){
+    public void attack(Character c){
 	if (cooldown != 0){
-	    basicattack();
+	    basicattack(c);
 	}
 	else{
-	    if ((Random.nextInt(10)<3)){
-		specialattack2();
+	    if ((s.nextInt(10))<3){
+		specialattack2(c);
 	    }
-	    else if ((Random.nextInt(10)<5)){
-		specialattack1();
+	    else if ((s.nextInt(10))<5){
+		specialattack1(c);
 	    }
 	    else
-		basicattack();
+		basicattack(c);
 	}
     }
-    public int getHealth(){
-	return health;
-    }
-    public void basicattack(){
+
+    public void basicattack(Character c){
+	Random r = new Random();
 	int damage = 0;
+	String aname = "Basic Attack";
         if (charClass == "Ogre"){
-            damage = strength - 4 + Random.nextInt(3);
+            damage = strength - 4 + r.nextInt(3);
         }
         else {
-            damage = intelligence + 2 + Random.nextInt(3);
+            damage = intelligence + 2 + r.nextInt(3);
         }
         if (cooldown > 0){
             cooldown = cooldown - 1;
@@ -40,17 +41,17 @@ public claass Nonplayer extends Character {
             System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
         }
     }
-    public void specialattack1(){
+    public void specialattack1(Character c){
 	int damage = 0;
 	String aname = "";
-        if (cooldown = 0){
+        if (cooldown == 0){
             if (charClass == "Ogre"){
                 damage = strength + 8;
-		aname = "Club whack";
+		aname = "Club Whack";
             }
             else {
                 damage = intelligence + 13;
-		aname = "Call parent"
+		aname = "Call Parent";
             }
             cooldown = 3;
         }
@@ -62,17 +63,17 @@ public claass Nonplayer extends Character {
             System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
         }
     }
-    public void specialattack2(){
+    public void specialattack2(Character c){
 	String aname = "";
 	int damage = 0;
-        if (cooldown = 0){
+        if (cooldown == 0){
             if (charClass == "Ogre"){
                 damage = strength + 20;
-		aname = "Slime ball at head";
+		aname = "Slime Ball at Head";
             }
             else {
                 damage = intelligence + 25;
-		aname = "Confiscate phone";
+		aname = "Confiscate Phone";
             }
             cooldown = 5;
         }
@@ -84,17 +85,7 @@ public claass Nonplayer extends Character {
             System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
         }
     }
-    public void loseHealth(int n){
-	health = health - n;
-    }
 
-    public void gainHealth(int n){
-	health = health + n;
-    }
-    
-    public void giveExp(Character c, int n){
-	c.gainExp(n);
-    }
     public boolean hit(){
         Random r = new Random();
         int dice1, dice2, dice3;

@@ -8,8 +8,11 @@ public class Character {
     protected int health,maxHealth;
     protected int dexterity,strength,intelligence;
     protected int points;
+<<<<<<< HEAD
+=======
     protected int exp=0,lvl=1;
     protected int x,y;
+>>>>>>> 2aae427b8a58af23908eebd78de64eca9a498a8f
 	   
     public void attack(Character other) {
         /* do the attack:
@@ -45,7 +48,7 @@ public class Character {
 
     public String getStatus() {
       String attrib1=String.format("Str: %d Dex: %d Int: %d", strength, dexterity, intelligence);
-      String attrib2=String.format("Exp: %d Health: %d of %d", experience,health,maxhealth);
+      String attrib2=String.format("Exp: %d Health: %d of %d", exp,health,maxHealth);
       String locale = String.format("x: %5.2f y: %5.2f",x,y);
       String whole=String.format("%s\n%s\n%s\n%s\n", name,attrib1,attrib2,locale);
       return whole;
