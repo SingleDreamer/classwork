@@ -2,13 +2,34 @@ import java.util.*;
 
 public class Character {
     private int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
-    protected int health, maxhealth, strength, intelligence, dexterity, experience, level;
-    protected String name, characterClass, condition;
+    protected int health, maxhealth, strength, intelligence, dexterity, experience, level, freezecount;
+    protected String name, characterClass;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
     
     // Constructors
     // This constructor is barebones and doesn't do jack. Someone just put it here to method overload the inherent version. I've one-lined it to clean it.
-    public Character() {health = maxhealth = 1;strength = intelligence = dexterity = 0;experience = 0;level = 1;name = "No Name";characterClass = "No class";}
+    int freezecount = 0;
+
+    public Character() {
+
+	if (random.nextInt (3) < 2) {
+	health = maxhealth = strength;strength = random.nextInt (10);
+	intelligence = random.nextInt (10);
+	dexterity = random.nextInt (10);
+experience = 0;level = 1;name = "ANGRY ENEMY";characterClass = "No class";}
+
+    
+
+    else {health = maxhealth = strength;strength = random.nextInt (15);
+	intelligence = random.nextInt (15);
+	dexterity = random.nextInt (15);
+experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";}
+
+}
+
+
+
+
     // Important constructor - includes scanner functions to prompt for configuration
     public Character (String name, String characterClass) {
 	this.characterClass = characterClass;
@@ -70,7 +91,7 @@ public class Character {
 	    input2 = false;
 	    
 	}
-	
+	health=maxhealth=strength;
     }
     
     
@@ -121,14 +142,14 @@ public class Character {
 	    damage = damagesource;
 	}
 	else if ((getCharacterClass().equals("Warrior")) || (getCharacterClass().equals("Thief"))){
-	    damage = strength;
+	    damage = strength - random.nextInt (10);
 	}
 	// set the damage done by other character
 	if (other.getCharacterClass().equals("Wizard")){
-	    otherDamage = other.getIntelligence();
+	    otherDamage = other.getIntelligence() - random.nextInt (10);
 	}
 	else if ((other.getCharacterClass().equals("Warrior")) || (other.getCharacterClass().equals("Thief"))){
-	    otherDamage = other.getStrength();
+	    otherDamage = other.getStrength() - random.nextInt (10);
 	}
 
 	if (this.getDexterity() == other.getDexterity()){ // in case the dexterity's of the two characters are equal we randomly increase one by 1 so we can determine who will hit first
@@ -149,13 +170,12 @@ public class Character {
 	
 	    
 	while (this.getHealth() > 0 && other.getHealth() > 0){ //the hits and battle continue until one character's health reaches zero
-	    while condition
 	    if (firstHit.equals(this.getName())){ // if this character has the higher dexterity he hits first
 		int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled by this character
 		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled by this character
 		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled by this character
-		int sum = one + two + three; // this represents the sum of the results of the three di
-		if (sum <= this.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		int sum = one + two + three; // this represents the sum of the results of the three die
+		if (sum <= this.getDexterity() && this.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    other.setHealth(other.getHealth() - damage); 
 		    System.out.println(this.getName() + "hit" + other.getName());
 		}
@@ -167,7 +187,7 @@ public class Character {
 		int five = random.nextInt(6) + 1; // this represents the number of the second dice that is rolled by other character
 		int six = random.nextInt(6) + 1; // this represents the number of the third dice that is rolled by other character
 		int sum2 = four + five + six; // this represents the sum of the three di
-		if (sum2 <= other.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		if (sum2 <= other.getDexterity()&& other.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    this.setHealth(this.getHealth() - otherDamage); 
 		    System.out.println(other.getName() + "hit" + this.getName());
 		}
@@ -180,7 +200,7 @@ public class Character {
 		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled by other character
 		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled by other character
 		int sum = one + two + three; // this represents the sum of the results of the three di
-		if (sum <= other.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		if (sum <= other.getDexterity() && other.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    this.setHealth(this.getHealth() - otherDamage); 
 		    System.out.println(other.getName() + "hit" + this.getName());
 		}
@@ -192,7 +212,7 @@ public class Character {
 		int five = random.nextInt(6) + 1; // this represents the number of the second dice that is rolled by this character
 		int six = random.nextInt(6) + 1; // this represents the number of the third dice that is rolled by this character
 		int sum2 = four + five + six; // this represents the sum of the three di
-		if (sum2 <= this.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		if (sum2 <= this.getDexterity()&& other.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    other.setHealth(other.getHealth() - damage); 
 		    System.out.println(this.getName() + "hit" + other.getName());
 		}
@@ -216,6 +236,15 @@ public class Character {
 	    System.out.println("Intelligence: " + other.getIntelligence());
 	    System.out.println("Dexterity: " + other.getDexterity());
 	    System.out.println("Experience: " + other.getExperience());
+	    if (this.freezecount > 0) {
+		freezecount = freezecount - 1;
+	    }
+	    if (this.boostcount == 0) {
+		if (this.characterClass == "Wizard") {
+		    this.intelligence = this.intelligence * 0.4;
+		}
+		boostcount = -1;
+	    }
 	}
 	if (this.getHealth() == 0){
 	    System.out.println(this.getName() + "has been defeated by" + other.getName()); // maybe you guys would rather have the winner's name first as opposed to the loser's name first

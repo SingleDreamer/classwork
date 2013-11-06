@@ -5,6 +5,7 @@ import java.util.*;
 public class Wizard extends Character {
     protected double spelldamage;
     protected Random r;
+    protected int boostcount;
 
 
     public Wizard () {
@@ -30,11 +31,29 @@ public class Wizard extends Character {
 	if (spell == 3) {
 	    spelldamage = (this.intelligence * 1.1);
 	    super.attack(other,spelldamage);
+	    System.out.println(other.getName() + "was hit by ice");
 	    if (Math.random() < 0.4) {
-		other.condition = "frozen";
+		other.freezecount  = 2;
+		System.out.println (other.getName() + "was frozen");
 	    }
 	}
-
+	if (spell == 4) {
+	    this.intelligence = this.intelligence * 2.5;
+	    this.boostcount = 2;
+	    System.out.println(this.getName() + "has increased their intelligence");
+	}
+	
+	if (spell == 5) {
+	    other.freezecount = 3;
+	    System.out.println (other.getName() + "is asleep");
+	}
+	
+	if (spell == 6) {
+	    spelldamage = this.intelligence * 3;
+	    super.attack(other,spelldamage);
+	    Sysetm.out.println (other.getName() + "has been hit by the final flame");
+	}
+    }
 }
 
 

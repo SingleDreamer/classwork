@@ -59,7 +59,7 @@ public class Character {
         else {
             int yourTestDex = (int) (dex / (Math.random() + 1));
             double chance = yourTestDex / other.dex;
-            if (chance > 1 || Math.random < chance) {
+            if (chance > 1 || Math.random() < chance) {
                 damage -= other.armor;
                 System.out.println(String.format("You successfully hit %s for %d damage!", other, damage));
             }
