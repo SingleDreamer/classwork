@@ -50,19 +50,5 @@ public class Player extends Character {
 	System.out.print("Welcome to StuyabloII, " + name + "\n");
     }
 
-    public void setClass(){
-        Scanner s = new Scanner (System.in);
-	System.out.print ("Are you a Wizard or a Warrior? Please type 'Wizard' or 'Warrior'");
-	String c = s.nextLine();
-	if (c.equals("Wizard")){
-	    charClass = "Wizard";
-	}
-	else if (c.equals("Warrior")){
-	    charClass = "Warrior";
-	}
-	else {
-	    System.out.print ("Silly player. That's not a choice. \n");
-	    setClass();
-	}
-    }
+
 }

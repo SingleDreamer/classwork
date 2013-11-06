@@ -26,7 +26,6 @@ public class Character {
     }
 
     public int roll() {
-    
 	Random r = new Random();
 	int die1 = r.nextInt(6) + 1;
 	int die2 = r.nextInt(6) + 1;
@@ -36,7 +35,7 @@ public class Character {
 
     public void attack(Character other) {
 	int dice = roll();
-	int attackDmg =(int) (strength / dice);
+	int attackDmg =(int) (strength / 3);
 	if (dexterity <= dice){
 	    System.out.println("Successful Attack!");
 	    other.health = other.health - attackDmg;
@@ -71,10 +70,31 @@ public class Character {
 
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
 
+      (they would never be both dead.)
     */
-  public int encounter(Character other) {
-      return 0;
-
+    public int encounter(Character c, Character other) {
+	if (other.flee() == true){
+	    c.experience ++;
+	    return 0;
+	}
+	if (c.flee() == true){
+	    return 1;
+	}
+	System.out.println(c + " attacks " + other);
+	c.attack(other);
+	if (other.health > 0){
+	    System.out.println(other + " attacks " + c);
+	    other.attack(c);
+	    if (c.health == 0) {
+		System.out.println(c + " dies");
+		return 2;
+	    }
+	}
+	else {
+	    System.out.println(other + " dies");
+	    return 3;
+	}
+	return 5;
   }
 
 
