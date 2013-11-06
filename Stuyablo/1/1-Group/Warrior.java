@@ -35,7 +35,7 @@ public class Warrior extends Character{
             if ((a+b+c)<this.dexterity) {
             //if x,y coors are <2 or something (something small)
                 System.out.println(this.name + " whacked " + other.name +" with a hammer!");
-            return super.attack(other);
+		return super.attack(other);
             }
             else {
                 System.out.println(this.name + "'s attack failed!");
@@ -76,24 +76,6 @@ public class Warrior extends Character{
 	}
 	return 5;
 
-        //*pew pew*
-        else if (answer == 3){
-            int a=(dice1[new Random().nextInt(dice1.length)]);
-            int b=(dice1[new Random().nextInt(dice1.length)]);
-            int c=(dice1[new Random().nextInt(dice1.length)]);
-            if ((a+b+c)<this.dexterity) {
-                System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
-                return super.attack(other);
-            }
-		      
-            else {
-                System.out.println(this.name + "'s attack failed!");
-            }
-        }
-
-        else {
-            System.out.println(this.name + "you, made a typo!");
-        }
-
+        
     }
 }

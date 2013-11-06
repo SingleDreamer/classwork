@@ -4,9 +4,13 @@ import java.io.*;
 public class Driver {
     public static void main(String[] args) {
         Game g = new Game();
-        Player p1 = new Player("Player");   
-	Enemy e = new Enemy();
+        Character c = new Character("Character 1");   
+        System.out.println(c.getStatus());
+        Warrior w1 = new Warrior("Warrior");
+        System.out.println(w1.getStatus());
+        Game game = new Game();
 
-	g.encounter(p1,e);
+        game.turn(w1,c);
+
     }
 } 

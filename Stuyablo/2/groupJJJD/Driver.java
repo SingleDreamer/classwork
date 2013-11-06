@@ -1,9 +1,8 @@
-import java.util.*;
-import java.io.*;
-
 public class Driver {
     public static void main(String[] args) {
-	Character c = new Character();
-	System.out.println(c.getStatus());
-    }
-}
+	//Here you can change the classes of the player and enemy, and their stats 
+	Warrior James = new Warrior("James",5,2,1);
+	Ogre Enemy = new Ogre("Ogre",0,0,0);
+	James.encounter(Enemy);
+    
+  }}

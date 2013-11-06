@@ -22,7 +22,7 @@ public class Character {
 	strength = 8 + s;
 	intelligence = 8 + i;
 	health = strength;
-	maxhealth = 50;
+	maxhealth = health;
 	experience = 0; 
 	gold = 0;
 	//distance = 0;
@@ -43,7 +43,7 @@ public class Character {
 	strength = 8 + s;
 	intelligence = 8 + i;
 	health = strength;
-	maxhealth = 50;
+	maxhealth = health;
 	experience = 0; 
 	gold = 0;
 	//distance = 0;
@@ -59,7 +59,7 @@ public class Character {
 	int d1 = r1.nextInt(6) + 1;
 	int d2 = r2.nextInt(6) + 1;
 	int d3 = r3.nextInt(6) + 1;
-	return (dexterity > (d1+d2+d3));
+	return (dexterity >= (d1+d2+d3));
     }
 
 

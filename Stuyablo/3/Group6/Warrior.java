@@ -14,6 +14,7 @@ public class Warrior extends Character {
 	dexterity = 4 + d;
 	strength = 15 + s;
 	health = strength;
+	maxhealth = health;
 	intelligence = 4 + i;
 	name = "Default Warrior";
 	charClass = "PC";
@@ -31,6 +32,7 @@ public class Warrior extends Character {
 	dexterity = 4 + d;
 	strength = 15 + s;
 	health = strength;
+	maxhealth = health;
 	intelligence = 4 + i;
 	name = n;
 	charClass = "PC";
@@ -96,8 +98,8 @@ public class Warrior extends Character {
 	else{
 	    System.out.println("In that case, it looks likes you're going to attempt an attack.");
 	    this.attack(other);
-	    //  if (other.health > 0)
-	    //	other.attack(this);
+	      if (other.health > 0)
+	    	other.attack(this);
 	}
 	if (this.health == 0 && other.health == 0) {
 	    System.out.println(this + " and " + other + " died.");

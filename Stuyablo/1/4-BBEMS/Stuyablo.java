@@ -47,15 +47,42 @@ public class Stuyablo {
 		_class = "Thief";
 		player = new Thief (name);
 	    }
+
+	    int z = random.nextInt (3);
+
+	    while (!(player.getHealth()==0)) { 
+	    
 	    System.out.println(player);
-	    Character opponent = new Character();
-	    opponent.setHealth(100);
-	    opponent.setMaxhealth(100);
-	    opponent.setStrength(10);
-	    opponent.setIntelligence(10);
-	    opponent.setDexterity(10);
+	    
+	  
+
+	    if (z== 0) {
+	    Wizard opponent = new Wizard();
 	    player.attack(opponent);
-	    System.out.println(opponent);
+	    player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
+
+	    }
+
+	    if (z== 1) {
+	    Warrior opponent = new Warrior();
+	    player.attack(opponent);
+	    player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
+
+	    }
+
+	    if (z == 2) {
+	    Thief opponent = new Thief();
+	    player.attack(opponent);
+	    player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
+
+	    }
+
+	    }
+
+	    System.out.println (player);
+	    Sytsem.out.println ("You have killed" + player.getOpponentsDefeated() + "opponents!");
+	    
+	    
 	    System.out.println("\nProgram terminated.");
 	}
     // Sean Yip's ASCII Logo thing. Made it into a separate static method to clean main method clean - EL
