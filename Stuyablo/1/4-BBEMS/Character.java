@@ -3,7 +3,7 @@ import java.util.*;
 public class Character {
     private int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
     protected int health, maxhealth, strength, intelligence, dexterity, experience, level;
-    protected String name, characterClass;
+    protected String name, characterClass, condition;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
     
     // Constructors
@@ -112,13 +112,13 @@ public class Character {
     }
     */
 
-    public void attack(Character other){
+    public void attack(Character other, int damagesource){
 	int damage = 0;
 	int otherDamage = 0;
 	String firstHit = "";
 	// set the damage that is done by this character
 	if (getCharacterClass().equals("Wizard")){
-	    damage = intelligence;
+	    damage = damagesource;
 	}
 	else if ((getCharacterClass().equals("Warrior")) || (getCharacterClass().equals("Thief"))){
 	    damage = strength;
@@ -149,6 +149,7 @@ public class Character {
 	
 	    
 	while (this.getHealth() > 0 && other.getHealth() > 0){ //the hits and battle continue until one character's health reaches zero
+	    while condition
 	    if (firstHit.equals(this.getName())){ // if this character has the higher dexterity he hits first
 		int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled by this character
 		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled by this character
