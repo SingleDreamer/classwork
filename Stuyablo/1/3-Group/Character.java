@@ -58,7 +58,6 @@ public class Character {
 
     */
     public int encounter(Character other) {
-	System.out.
 	return 0;
     }
 

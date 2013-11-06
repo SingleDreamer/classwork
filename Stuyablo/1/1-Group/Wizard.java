@@ -28,7 +28,10 @@ public class Wizard extends Character {
 	int d3 = dice[r.nextInt(dice.length)];
 	int hit = d1 + d2 + d3;
 	
-	if (hit <= this.dexterity){
+	//System.out.println (hit);
+	
+	//if (hit <= this.dexterity) {
+	if (true) {
 	    if (answer == 1){
 		if (mana >= 8){
 		    other.health = oph - (this.strength + 8);
@@ -61,6 +64,7 @@ public class Wizard extends Character {
 		}
 	    }
 	}
+	
 	else{
 	    System.out.println("Your attack missed!");
 	    attack(other);
