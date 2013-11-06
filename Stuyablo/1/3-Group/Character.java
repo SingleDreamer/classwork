@@ -39,26 +39,30 @@ public class Character {
 	return false;
     }
     */
+    
+    
+    public void encounter(Character other) {
+        Random r = new Random();
+	x = r.nextInt(8);
+	y = r.nextInt(8);
+	other.x = r.nextInt(8);
+	other.y = r.nextInt(8);
+	while ((other.x == x) && (other.y == y)){
+	    other.x = r.nextInt(8);
+	    other.y = r.nextInt(8);
+	}
 
-
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
-    public int encounter(Character other) {
-	return 0;
+        while (health > 0 && other.health > 0){
+	    if (dexterity >= other.dexterity) {
+		turn(other);
+		other.turn(this);
+	    }
+	    else {
+		other.turn(this);
+		turn(other);
+	    }
+	}	
+		    
     }
 
 

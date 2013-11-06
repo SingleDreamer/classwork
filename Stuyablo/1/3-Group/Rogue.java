@@ -12,7 +12,7 @@ public class Rogue extends PC {
 	super();
     }
 
-    public int dice() {
+    public int roll() {
 	int total = 0;
 	int a = 0;
 	int i = 0;
@@ -25,11 +25,30 @@ public class Rogue extends PC {
     }
 	    
 
-    public void attack (Character other) {
+    public void attack (NPC other) {
 	System.out.println("Choice of Attack? 1-Weak Slap 2-Knife");
-	int weapon = sc.next();
+	int weapon = sc.nextInt();
 	if (weapon == 1) {
 	    System.out.println("Quick Attack!");
+<<<<<<< HEAD
+	    try {Thread.sleep(200);
+	    } catch (Exception e){
+		//
+	    }
+	    System.out.println(name + " slaps the " + other.name+"!");
+	    other.health = other.health - (strength - 3);
+	    System.out.println(name + " deals" + (strength * 0.5) + " damage!");
+	}
+	else if (weapon ==2) {
+	    System.out.println("Knife!");
+	    try {Thread.sleep(200);
+	    } catch (Exception e){
+		//
+	    }
+	    if (dexterity > roll()) {
+		System.out.println(name + " stabs the " + other.name+"!");
+		other.health = other.health - strength;
+=======
 	    Thread.sleep(1000);
 	    System.out.println(name + " slaps the " + other.name+"!");
 	    other.health = other.health-1;
@@ -41,6 +60,7 @@ public class Rogue extends PC {
 	    if (dexterity > dice()) {
 		System.out.println(name + " stabs the " + other.name+"!");
 		other.health = other.health-strength;
+>>>>>>> 314c85116b9a7e432307ef6ebaacdb48f49cd6f8
 		System.out.println(name + " deals " + strength + " damage!");
 	    }
 	    else {
@@ -51,8 +71,7 @@ public class Rogue extends PC {
 	    System.out.println("Nope.");
 	}
     }
-	
-	    
+}
 	  
 	    
 	    
