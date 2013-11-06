@@ -50,11 +50,11 @@ public class Character {
 
     public void setHp(int hp){this.hp = hp;} //dunno if this will get used much
     public void hurt(int dam) {
-        if (dam<0) {System.out.println("DEBUG: Damage below 0?");}
-        this.hp = this.hp - dam;
+        if (dam<0) 
+            this.hp = this.hp - dam;
     }
     public void heal(int dam) {
-        if (dam<0) {System.out.println("DEBUG: Negative healing?");}
+        if (dam<0)
         this.hp = this.hp + dam;
     }
 
@@ -71,7 +71,7 @@ public class Character {
         System.out.println(this.getName() + " rolled " + hitroll);
         System.out.println(this.getName() + "'s effDex + 1: " + (getEffDx()-1));
         if (hitroll < this.getEffDx()+1){ //Plus 1 is to make this attack more accurate
-            other.hurt(1);
+            other.setHp(other.getHp()-1);
             System.out.println("Attack successful");
         } else {
             System.out.println("Attack missed");
@@ -83,9 +83,8 @@ public class Character {
         System.out.println(this.getName() + " rolled " + roll);
         System.out.println(this.getName() + "'s effDex - 1: " + (getEffDx()-1));
         if (roll < this.getEffDx()-1){ //Minus 1 is to make this attack less accurate
-            other.hurt(2);
+            other.setHp(other.getHp()-2);
             System.out.println("Heavy attack successful");
-            System.out.println("*");
         } else {
             System.out.println("Attack missed");
         }
@@ -94,7 +93,7 @@ public class Character {
     // returns true if you succesfully flee, false otherwise
     public boolean flee() { //I don't see why you need Character other in parameter
                 boolean success = false;
-                if (this.roll(2, effDex/2) >= dexterity/2) {
+                if (this.roll(2, dx/2) >= dx/2) {
                         success = true;
                 }
         return success;
@@ -122,18 +121,18 @@ public class Character {
         boolean opponentDied = false;
         if (command.equals("Light Attack")){
             this.lightAttack(other);
-            if (other.getHealth() <= 0)
+            if (other.getHp() <= 0)
                 opponentDied = true;
             other.lightAttack(this);
-            if (this.getHealth() <= 0)
+            if (this.getHp() <= 0)
                 playerDied = true;
         }
         if (command.equals("Heavy Attack")){
             this.heavyAttack(other);
-            if (other.getHealth() <= 0)
+            if (other.getHp() <= 0)
                 opponentDied = true;
             other.heavyAttack(this);
-            if (this.getHealth() <= 0)
+            if (this.getHp() <= 0)
                 playerDied = true;
         }
         if (command.equals("Flee")){
