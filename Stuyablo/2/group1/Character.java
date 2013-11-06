@@ -71,6 +71,7 @@ public class Character {
 	System.out.print("Welcome to StuyabloII.\nEnter your name: ");
 	name = sc.nextLine();
 	System.out.println("Hello " + name);
+	strength = dexterity = intelligence = 8;
 	setStat();
 	health = maxHealth = strength;
     }
