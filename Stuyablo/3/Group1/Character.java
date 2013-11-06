@@ -1,6 +1,11 @@
 import java.io.*;
 import java.util.*;
 
+/* st = Strength
+   dx = Dexterity
+   iq = Intelligence
+*/
+
 public class Character {
     protected int hp;
     protected int st,dx,iq;
@@ -42,7 +47,7 @@ public class Character {
     public int getEffDx() {return dx;}
     public int getEffIq() {return iq;}
 	//again
-	public void setEffSt(int St) {this.st = St;}
+    public void setEffSt(int St) {this.st = St;}
     public void setEffDx(int Dx) {this.dx = Dx;}
     public void setEffIq(int Iq) {this.iq = Iq;}
 
@@ -53,6 +58,7 @@ public class Character {
         if (dam<0) 
             this.hp = this.hp - dam;
     }
+    
     public void heal(int dam) {
         if (dam<0)
         this.hp = this.hp + dam;
