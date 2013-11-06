@@ -14,7 +14,7 @@ public class Player extends Character {
 	}
 	else if (attack == 2){
 	    if (cooldown > 0){
-		System.out.println("You do not have the energy for that ");
+		System.out.println("You do not have the energy for that. Wait "+ cooldown + " more turns.");
 		attack(c);
 	    }
 	    else
@@ -22,7 +22,7 @@ public class Player extends Character {
 	}
 	else if (attack == 3){
 	    if (cooldown > 0){
-		System.out.println("You do not have the energy for that ");
+		System.out.println("You do not have the energy for that. Wait "+ cooldown + " more turns.");
 		attack (c);
 	    }
 	    else
