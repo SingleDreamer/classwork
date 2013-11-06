@@ -350,7 +350,8 @@ public class Character {
 	    }
 	    else{
 		System.out.println("Your words will be ignored! Don't even try.  How dare you try to negotiate, this is not the UN"); // this will be printed no matter what, because they have no time to enter something to say
-	    this.encounter(other);
+		other.setHealth(other.getMaxHealth());
+		this.encounter(other);
 	    }
 	
 	}
