@@ -161,6 +161,7 @@ public class Character {
 	     }
 	      i = i - 1;
 	}
+	init (name, charType, s, dex, def, ch);
     }
 
     public int getHealthPer(){

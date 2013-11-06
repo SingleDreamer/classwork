@@ -3,6 +3,7 @@ import java.io.*;
 import java.math.*;
 
 public class Player extends Character {
+    private String[] weapons = new String[]{"basic dagger", "broadsword", "longsword", "flaming sword", "master sword"};
     private int points;
     private Scanner sc = new Scanner(System.in);
     private boolean firstencounter = true;
@@ -75,6 +76,22 @@ public class Player extends Character {
 	}
 	System.out.println("You cannot escape!");
 	return true;
+    }
+    public boolean attack(Character other){
+	try{
+	    Thread.sleep(1000);
+	}
+	catch(InterruptedException ex){
+	    Thread.currentThread().interrupt();
+	}
+	if (roll()){
+	    System.out.println(name + " deals " +(strength+dexterity)/4 + " damage with the " + weapons[strength/5]);
+	    return other.changeHP((strength+dexterity)/4);
+	}
+	else {
+	    System.out.println(name + " 's attack misses!");
+	    return true;
+	}
     }
 
     public boolean die() {
