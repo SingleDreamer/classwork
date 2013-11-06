@@ -85,7 +85,7 @@ public class Character {
         if (c == 3)
             charClass="Ogre";
         if (c == 4)
-            charClass="Theif";
+            charClass="Thief";
 
 
     }
@@ -151,15 +151,6 @@ public class Character {
                 this.attack(other);
             }
 
-	    if (x) {
-		delay (1000); 
-		say ("Sure");
-	    }        
-	    else {
-		delay (1000);
-		say ("no way you freak!"); 
-		this.attack(other);
-	    }
         }
         if (answer == 2) {
             if (x) {
@@ -169,7 +160,7 @@ public class Character {
             }
             else {
                 delay (1000); 
-                say ("bullsh*it"); 
+                say ("bullsh*t"); 
                 this.attack(other);
             }
         }

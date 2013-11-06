@@ -1,10 +1,8 @@
 import java.util.*;
 import java.io.*;
-
+//Yay for Goblins! -Angela
 public class Goblin extends Character {
   
-
-
     public Goblin(String nameGob){
 	//this is a constructor that sets up stats for gargoyle, a NPC! (randomly, of course)
 	Random r = new Random();
@@ -20,5 +18,19 @@ public class Goblin extends Character {
 	expBase = 50;
     }
 
+
+    public void attack(Character other) {
+	int dice = roll();
+	int attackDmg =(int) (strength / 3);
+	if (dexterity <= dice){
+	    System.out.println(name + " successfully slapped " + other);
+	    if (attackDmg > other.health)
+		other.health = 0;
+	    else
+		other.health = other.health - attackDmg;
+	}
+	else
+	    System.out.println(name + " failed to slap " + other);
+    }
 	   
 }

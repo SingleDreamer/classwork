@@ -8,7 +8,7 @@ public class Wizard extends Character {
     public Wizard () {
 	System.out.println("Your name is:");
 	Name = sc.nextLine();
-	Level = 1
+	Level = 1;
 	Health = 10;
 	Intelligence = 8;
 	Strength = 8;
@@ -17,13 +17,18 @@ public class Wizard extends Character {
     }
 
     public void experience () {
-	experience = experience + 5;
-	if (experience == 100) {
-	    Level = Level + 1;
-	    Health = Health + 3;
-	    Mana = Mana + 2;
-	    Dexterity = Dexterity + 1;
-	    Intelligence = Intelligence + 1;
+	if (Level == 10) {
+	    experience = 0;
+	} else {
+	    experience = experience + 5;
+	    if (experience == 100) {
+		Level = Level + 1;
+		Health = Health + 3;
+		Mana = Mana + 2;
+		Dexterity = Dexterity + 1;
+		Intelligence = Intelligence + 1;
+		experience = 0;
+	    }
 	}
     }
 }
