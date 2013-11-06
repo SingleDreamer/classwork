@@ -3,7 +3,6 @@ import java.util.*;
 
 public class WarriorNPC extends Character {
 
-protected int distance;
 protected int dieRoll;
 protected int attackRange;
 
@@ -11,6 +10,7 @@ protected int attackRange;
 public WarriorNPC() {
 	strength = 10;
 	health = strength;
+	maxhealth = health;
 	dexterity = 6;
 	attackRange = 7;
 	experience = 4;

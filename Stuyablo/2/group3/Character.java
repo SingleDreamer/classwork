@@ -27,8 +27,8 @@ public class Character {
     public void playerInit() {
         xcor = 0;
         ycor = 0;
-        level = 1;
         armors = new int[] {1}; // Has mama's rags
+        level = 1;
     }
 
     public void npcInit(Character player) {

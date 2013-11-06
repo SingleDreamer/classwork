@@ -13,45 +13,56 @@ Experience- gained throughout the game as players slay ogres. Level up at 100
 
 Level- gain extra points in stats (Strength or Dexterity)
 
+Intelligence-
 
-Basic Player and Nonplayer Methods
+Gold-gained when leveling up
+
+Character class methods
 ==========================
-Attack() - players or ogres will attack one another using their respective attack skills 
-	This includes the roll for the "accuracy" part
-
-status() - Current health of both fighters, and other miscellaneous information. 
+getStatus-returns status of all current attributes
 
 loseHealth(int n) - this allows ogres and players to call upon each other to inflict damage
 
-gainHealth(int n) - same as loseHealth
+setStat- calls setIntelligence, setStrength and setDexterity until its called all three or the 8 available points have
+	entirely run out.
 
-Battle() - calls upon a series of Attack() where the status of the entire battle will be printed out.
-	Ends when a player/ogre has 0 health
+setIntelligence-adds a certain number of points to intelligence, following same rules as setDexterity
 
-Retreat() - avoid a battle
-	Experience would be lost upon a retreat
+setDexterity- adds a certain number of points to dexterity, following the same rules as setStrength
+
+setStrength- adds a certian amount of points to strength(depending on imput, but must be less than or equal
+	to available points to be distributed)
 
 
 Player Specific Methods 
 =============================
-gainExp(int n) - gains a specific amount of experience
+attack(charcter type)- gives you three options of attack, basicattack, special attack 1 and special attack 2, 
+	and depending on input runs one of the attacks unless your cooldown is too high
+	
+levelUp()- levels up a character, increases their health, gold and expperience, also gives more points to 
+	be distribued among the attributes
 
-addStrength() - +1 to strength
+basicattack-increases damage, decreases cooldown variable and attempts to hit; different damage points depending on 
+	character
 
-addDexterity() - +1 to dexterity
+specialattack1-attacks with special weapons, and damage done to warrior is in strength, but damage done to wizard is intelligence
+	sets cooldown to 1
+specialattack2-same as specialattack 1 but with different weapons and thus different hit and damage returns
 
-skill#() - inflicts this much damage and has this much accuracy
-	This will be called upon by the player through a scanner for each Attack()
-	Each player should have 3-4 attack skills
+hit is decided if the sum of 3 random 6 sided dice being rolled is less than dexterity
+battle goes for as long as health exists, and gold and experience is gained. if you have won, then action method is called
 
+action- allows you to choose wether or not to heal yoursel, keep fighting or check status
+
+flee- you flee and lose experience points
+
+encounter-plays an encounter for whether you have encountered moran or an ogre, allows you to fight or flee
 
 Nonplayer/Ogre Specific Methods
 ===============================
-skill#() - same as player, but much weaker to make game somewhat easier
+attack methods work basically the same with three attacks possible, basic, special 1 and special 2, except it depends on
+random rather than input
 
-encounter(player name) - will run every "turn" or now and then (not sure how to do this yet)
-	Based on a Math.Random() within a certain range, 
-	the ogre will "encounter" the player, asking them to Battle() or Retreat()
 
 
 
