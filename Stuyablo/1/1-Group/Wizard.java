@@ -30,7 +30,8 @@ public class Wizard extends Character {
 	
 	//System.out.println (hit);
 	
-	if (hit <= this.dexterity) {
+	//if (hit <= this.dexterity) {
+	if (true) {
 	    if (answer == 1){
 		if (mana >= 8){
 		    other.health = oph - (this.strength + 8);
