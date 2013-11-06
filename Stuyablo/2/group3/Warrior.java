@@ -1,19 +1,13 @@
 import java.util.*;
 
 public class Warrior extends Character {
-    String name = new String();
-    Scanner sc = new Scanner ( System.in );
-    int playerHealth = 50 , gameOver = 0;
 
-    public Warrior ( String n ) {
-	name = n;
-	strength = 12;
-	dexterity = 10;
-	iq = 10;
+    public Warrior (String n) {
+        super(n);
+        super.charClass = "Warrior";
     }
 
     public void attack() {
-	NonPlayer enemy = new NonPlayer();
 	Random r = new Random();
 	int enemyHealth = 50;
 	if ( r.nextInt() > 0 )
