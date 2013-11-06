@@ -9,10 +9,11 @@ public class Character {
     protected int Intelligence;
     protected int Dexterity;
     protected int Level = 1;
-    protected int experience = 0,gold;
+    protected int experience = 0, gold;
     protected double x,y;
+    Scanner s = new Scanner(System.in);
 
-    public Character (String name) {
+    public Character(String name) {
 	Name = name;
 	Health = 16;
 	Strength = 8;
@@ -23,6 +24,20 @@ public class Character {
 	experience = 0;
 	maxhealth = 50;
 	gold = 0;
+	for (int i=8 ; i>0; i--) {
+	    System.out.print("You have " + 1 + " points to distribute. Where would you like to upgrade? (enter s for Strength, i for Intelligence, d for Dexterity");
+	    String pt = s.nextLine();
+	    if (pt.equals("s")) {
+		Strength = Strength + 1;
+	    } else if (pt.equals("i")) {
+		Intelligence = Intelligence + 1;
+	    } else if (pt.equals("d")) {
+		Dexterity = Dexterity + 1;
+	    } else {
+		System.out.print("You didn't enter a valid answer! Try again: ");
+		i = i + 1;
+	    }
+	}
     }
 
     public String getStatus() {
@@ -44,9 +59,9 @@ public class Character {
         return Health;
     }
 
-    public boolean flee () {
+    public boolean flee() {
 	Random r = new Random();
-	int Dice = r.nextInt(18);
+	int Dice = r.nextInt(6) + r.nextInt(6) + r.nextInt(6);
 	if (Dice <= this.Dexterity) {
 	    System.out.println("You escaped!");
 	} else {
@@ -63,7 +78,7 @@ public class Character {
 	    return 1;
 	} else {
 	    Random r = new Random();
-	    int Dice = r.nextInt(18);
+	    int Dice = r.nextInt(6) + r.nextInt(6) + r.nextInt(6);
 	    if (Dice <= this.Dexterity) {
 		this.attack(other);
 		System.out.println("You attacked" + other.toString() + "!");
@@ -86,7 +101,7 @@ public class Character {
 	//this hit should take into account weapon choice
 	boolean damage = true;
 	Random r = new Random();
-	int Dice = r.nextInt(18);
+	int Dice = r.nextInt(6) + r.nextInt(6) + r.nextInt(6);
 	if (Dice <= this.Dexterity) {
 	    damage = true;
 	    System.out.println("It's a hit for " + this.toString() + " !");
@@ -106,11 +121,20 @@ public class Character {
 	    experience = experience + 5;
 	    if (experience == 100) {
 		Level = Level + 1;
-		Health = Health + 1;
-		Mana = Mana + 1;
-		Dexterity = Dexterity + 1;
-		Intelligence = Intelligence + 1;
-		Strength = Strength + 1;
+	        for (int i=2;i>0;i--) {
+		    System.out.print("You have " + 1 + " points to distribute. Where would you like to upgrade? (enter s for Strength, i for Intelligence, d for Dexterity");
+		    String pt = s.nextLine();
+		    if (pt.equals("s")) {
+			Strength = Strength + 1;
+		    } else if (pt.equals("i")) {
+			Intelligence = Intelligence + 1;
+		    } else if (pt.equals("d")) {
+			Dexterity = Dexterity + 1;
+		    } else {
+			System.out.print("You didn't enter a valid answer! Try again: ");
+			i = i + 1;
+		    }
+		}
 		experience = 0;
 	    }
 	}
