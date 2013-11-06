@@ -126,21 +126,6 @@ public class Character {
             if (intdif >= 3)
                 health = health - 2;
         }
-    
-   
-	Random r = new Random();
-	if (intelligence >= other.intelligence){
-	    int intdif = intelligence - other.intelligence;
-	    other.strength = other.strength - (r.nextInt(intdif) + 1);
-	    if (intdif >= 3)
-		other.health = other.health - 2;
-	}
-	else {
-	    int intdif = other.intelligence - intelligence;
-	    strength = strength - (r.nextInt(intdif) + 1);
-	    if (intdif >= 3)
-		health = health - 2;
-	}
     }
 
     public void talk(Character other){
@@ -179,12 +164,12 @@ public class Character {
 		say ("Your enemy says:");
                 say ("no way you freak!");
                 intimidate(other);
-                dexterity = dexterity + (r.nextInt(3) - 2);
+                dexterity = dexterity + (y.nextInt(3) - 2);
 		this.attack(other);
                 say ("Your enemy says:");
                 say ("no way you freak!");
 		intimidate(other);
-		dexterity = dexterity + (r.nextInt(3) - 2);
+		dexterity = dexterity + (y.nextInt(3) - 2);
                 this.attack(other);
             }
 
@@ -199,12 +184,12 @@ public class Character {
             }
             else {
                 delay (1000);
-                dexterity = dexterity + (r.nextInt(5) - 2);
+                dexterity = dexterity + (y.nextInt(5) - 2);
                 intimidate(other);
 		say ("Your enemy says:");		
 		say ("bullsh*t"); 
                 delay (1000); 
-		dexterity = dexterity + (r.nextInt(5) - 2);
+		dexterity = dexterity + (y.nextInt(5) - 2);
 		intimidate(other);
 		say ("Your enemy says:");
                 say ("bullsh*t"); 
@@ -223,11 +208,11 @@ public class Character {
                 delay (1000);
 		say ("Your enemy says:");
                 say ("are you serious?");
-                dexterity = dexterity + (r.nextInt(4) - 2);
+                dexterity = dexterity + (y.nextInt(4) - 2);
                 intimidate(other);
                 say ("Your enemy says:");
                 say ("are you serious?");
-		dexterity = dexterity + (r.nextInt(4) - 2);
+		dexterity = dexterity + (y.nextInt(4) - 2);
 		intimidate(other);
                 this.attack(other);
             }
