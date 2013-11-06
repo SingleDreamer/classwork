@@ -1,14 +1,15 @@
-*Michael, Andrew, Corrin, and Aida.*
+#StuyabloII
+`Version 0.9-alpha`
+
+*By Michael, Andrew, Corrin, and Aida.*
 
 ## Basic Player Attributes:
 
-**Strength** - The base for how much damage a player does. This is randomly determine between
-100 - 200.
+**Strength** - The base for how much damage a player does. Players will begin with 8pts, ogres between 6 and 12.
 
-**Dexterity** - Will determine the chances of the player running away. Dexterity is between
-15 - 20.
+**Dexterity** - Will determine the chances of the player running away. Players will begin with 8pts, ogres between 6 and 12.
 
-**Health** - Players will begin with a randomly determined health between 5000 - 6000 (denoted by MaxH).
+**Health** - Players will begin with 8pts, ogres between 6 and 12.
 
 
 ##Basic Actions:
@@ -18,6 +19,8 @@ ranged characters; therefore, we won't have a range system. The minimum damage a
 can do is 50 below its strength and max is 50 above its strength. The damage the player does
 each turn is randomly chosen from the range of damage of the player.
 
-**Retreat** - The ability to retreat or escape from an encouter is based on how much health the
+**Flee** - The ability to retreat or escape from an encouter is based on how much health the
 player has left and the player's dexterity. To find the chance of retreating, the players dexterity
 is added to half the percentage of health left over of the retreating player.
+
+**Encounter** = The method that handles our combat system. Checkout the code for full details.
