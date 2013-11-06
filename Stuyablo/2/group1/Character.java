@@ -11,7 +11,6 @@ public class Character {
     protected int exp=0,lvl=1;
     protected int x,y;
 
-<<<<<<< HEAD
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
 	System.out.println("What would you like to be?");
@@ -33,106 +32,6 @@ public class Character {
 
     public void setStat(int n) {
 	points = n;
-=======
-    public String getName() {
-	return name;
-    }
-	   
-    public void attack(Character other) {
-        System.out.println("Sissy Slap!");
-    }
-    
-    public void takeDamage(int amount) {
-	    health -= amount;
-	    if(health < 0)
-		    health = 0;
-    }
-
-    public boolean flee() {
-	    Random r = new Random();
-	    if(r.nextFloat() > 0.35)
-	    {
-		    System.out.println("Got away safely");
-		    return true;
-	    }
-	    System.out.println("Failed to escape");
-	    return false;
-	
-    }
-
-    public boolean hit() {
-	Random r = new Random();
-	int d1,d2,d3,sum;
-	d1 = r.nextInt(6) + 1;
-	d2 = r.nextInt(6) + 1;
-	d3 = r.nextInt(6) + 1;
-	sum = d1 + d2 + d3;
-	return (sum <= dexterity);
-    }
-
-    public void encounter(Character other) {
-        while (other.getHealth() > 0 && this.getHealth() > 0){
-	    System.out.print("(1)Fight or (2)Flee\n");
-	    Scanner sc = new Scanner(System.in);
-	    String input = sc.nextLine();
-	    if (input.equals("1")){
-		this.attack(other);
-		other.attack(this);
-		}
-	    else if (input.equals("2")){
-		this.flee();
-	    }
-	    else {
-		System.out.println("Invalid choice");
-	    }
-	    System.out.println("Your Health: " + this.getHealth());
-	    System.out.println("Enemy Health: " + other.getHealth());
-	    System.out.println("-------------------------------");
-	}
-    }
-
-    /*
-    public String getStatus() {
-      String attrib1=String.format("Str: %d Dex: %d Int: %d", strength, dexterity, intelligence);
-      String attrib2=String.format("Exp: %d Health: %d of %d", exp,health,maxHealth);
-      String locale = String.format("x: %5.2f y: %5.2f",x,y);
-      String whole=String.format("%s\n%s\n%s\n%s\n", name,attrib1,attrib2,locale);
-      return whole;
-    }
-    */
-
-
-    public String toString() {
-        return name;
-    }
-
-    /* public Character() {
-	Scanner sc = new Scanner(System.in);
-	System.out.print("Welcome to StuyabloII.\nEnter your name: ");
-	name = sc.nextLine();
-	System.out.println("Hello " + name);
-	strength = dexterity = intelligence = 8;
-	setStat();
-	health = maxHealth = strength;
-    }
-    */
-
-    //SETCLASS IS DEFINITELY NOT THE RIGHT WAY TO DO THIS
-    //
-    //public void setWarrior() {
-    //    strength = 12;
-    //    dexterity = 4;
-    //    health = strength;
-    //    Scanner sc = new Scanner(System.in);
-    //    System.out.println("Strength: " + strength);
-    //    System.out.println("Dexterity: " + dexterity);
-    //    setStat();
-    //}
-
-
-    public void setStat() {
-	points = 8;
->>>>>>> e55bb355abfb7969825abc384cb5206f4af1b4a1
 	Scanner sc = new Scanner(System.in);
 
 	System.out.println("You have " + points + " skill points available.");
