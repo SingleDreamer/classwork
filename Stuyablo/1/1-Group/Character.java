@@ -200,7 +200,7 @@ public class Character {
                 this.attack(other);
             }
         }
-        else {
+        if (((answer != 1) && (answer != 2)) && (answer != 3)) {
         	say ("that is not a valid input, please choose one of the given responses");
         	delay (2000);
         	this.talk(other); 
