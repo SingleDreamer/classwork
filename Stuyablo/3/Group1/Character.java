@@ -89,6 +89,9 @@ public class Character {
             System.out.println("Attack missed");
         }
     }
+    public void specialAttack(Character other){
+
+    }
     
     // returns true if you succesfully flee, false otherwise
     public boolean flee() { //I don't see why you need Character other in parameter
@@ -131,9 +134,18 @@ public class Character {
             this.heavyAttack(other);
             if (other.getHp() <= 0)
                 opponentDied = true;
-            other.heavyAttack(this);
+            other.lightAttack(this);
             if (this.getHp() <= 0)
                 playerDied = true;
+        }
+        if (command.equals("Special Attack")){
+            specialAttack(other);
+            if (other.getHp() <= 0)
+                opponentDied = true;
+            other.lightAttack(this);
+            if (this.getHp() <= 0)
+                playerDied = true;
+            
         }
         if (command.equals("Flee")){
             if (this.flee())
