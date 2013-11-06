@@ -12,7 +12,7 @@ public class Driver {
 	*/
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Welcome to StuyabloII. \n Enter your name: ");
-	name = sc.nextLine();
+	String name = sc.nextLine();
 	System.out.println("Hello " + name);
 	System.out.println("-------------------------------");
 	
@@ -31,10 +31,10 @@ public class Driver {
 	while (enemy.getHealth() > 0 && player.getHealth() > 0){
 	    System.out.print("(1)Fight or (2)Flee\n");
 	    String input = sc.nextLine();
-	    if (input == 1){
+	    if (input.equals("1")){
 		player.attack(enemy);
 		}
-	    else if (input == 2){
+	    else if (input.equals("2")){
 		System.out.println("You coward...");
 	    }
 	    else
