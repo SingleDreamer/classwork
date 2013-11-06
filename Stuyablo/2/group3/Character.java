@@ -1,15 +1,65 @@
 import java.util.*;
 
 public class Character {
-    protected int strength, dexterity, iq, xcor, ycor;
 
-    public Character() {
-        int range = 10;
-	xcor = (int)Math.random()*range*2 - 10;
-	ycor = (int)Math.random()*range*2 - 10;
+    protected String name;
+    protected String charClass;
+    protected int xcor, ycor;
+    protected int str, dex, intel, health;
+    protected int lvl, exp, skills;
+    protected int[] weapons = new int[1];
+    protected int currentWeapon = 0;
+    protected int[] armors = new int[];
+
+    public int gridRange = 10;
+
+    Random r = new Random();
+
+    public Character(String n) {
+        name = n;
+        xcor = (int) (Math.random() * gridRange * 2 - gridRange);
+        ycor = (int) (Math.random() * gridRange * 2 - gridRange);
+        str = dex = intel = 8;
+        skills = 8;
     }
 
-    public void attack() {
-	System.out.println ( "attack" );
+    protected void attack(Character other) {
+        int damage = weapons[currentWeapon];
+        int result = r.nextInt(6) + r.nextInt(6) + r.nextInt(6) + 3;
+        if (result == 3) {
+            damage *= 3;
+            System.out.println(String.format("You successfully hit %s for %d damage!", other, damage));
+        }
+        else if (result == 4) {
+            damage *= 2;
+            System.out.println(String.format("You successfully hit %s for %d damage!", other, damage));
+        }
+        else if (result == 5) {
+            System.out.println(String.format("You successfully hit %s for %d damage!", other, damage));
+        }
+        else if (result == 18) {
+            int[] tempWeapons = new int[weapons.length - 1];
+            int offset = 0;
+            for (int i=0; i < tempWeapons.length; i++) {
+                if (i == currentWeapon)
+                    offset += 1;
+                else
+                    tempWeapons[i] = weapons[i + offset];
+            }
+            weapons = tempWeapons;
+            System.out.println("Oops! You broke your weapon! Now you have to use your hands!");
+        }
+        else {
+            int yourTestDex = (int) (dex / (Math.random() + 1));
+            double chance = yourTestDex / other.dex;
+            if (chance > 1) {
+                System.out.println(String.format("You successfully hit %s for %d damage!", other, damage));
+            }
+            else if (Math.random() < chance) {
+                System.out.println(String.format("You successfully hit %s for %d damage!", other, damage));
+            else {
+                System.out.println(String.format("%s dodged your attack!", other);
+            }
+        }
     }
-}
+}  
