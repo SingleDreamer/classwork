@@ -17,9 +17,9 @@ public class Driver {
 	System.out.println("-------------------------------");
 	
 	if (r.nextDouble() > 0.5){
-	    player = new Warrior();}
+	    player = new Warrior(name);}
 	else{
-	    player = new Wizard();}
+	    player = new Wizard(name);}
 	if (r.nextDouble() > 0.5){
 	    enemy = new Ogre();}
 	else{
