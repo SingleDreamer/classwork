@@ -6,7 +6,7 @@ public class Warrior extends Character {
         super(n);
         super.charClass = "Warrior";
     }
-
+/*
     public void attack() {
 	Random r = new Random();
 	int enemyHealth = 50;
@@ -35,4 +35,5 @@ public class Warrior extends Character {
 		gameOver = 1;
 	}
     }
+*/
 }
