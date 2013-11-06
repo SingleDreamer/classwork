@@ -9,6 +9,8 @@ public class Ogre extends Character{
 
     
     public void setAttributes(){
+	experience=50;
+	gold=100;
 	addpoints= 9;       
 	maxhealth=20;
 	addpoints=addpoints-(r.nextInt(addpoints));
@@ -31,17 +33,35 @@ public class Ogre extends Character{
 	   health=strength;}
 	   else{
 	       intelligence=intelligence+addpoints;} }
-	   
-	//expiernece 
-	//gold
-	//distance, very confused on this
-	name="Ogre";
+          
+      	name="Ogre";
 	setCharClass("NPC");
 
 }
 
+    public void die (Character other){
+	other.gold=other.gold+this.gold;
+	other.experience=other.experience+this.experience;
+	String winmessage= "You have defeated the "+ name+ " and gained "+this.experience+" and "+this.gold+" gold!";
+	System.out.println(winmessage);
 
-}
+    }
+    public void attack(Character other) {
+	int die1=(int)(Math.random()*7);
+	int die2=(int)(Math.random()*7);
+	int die3= (int)(Math.random()*7);
+	int roll=die1+die2+die3;
+	System.out.println("The " + name+ " tried attacking you!");
+	if (roll > dexterity){
+	    System.out.println("The " + name+" tried to attack you and failed!!!");
+    }
+	else {
+	    System.out.println("The "+ name + "has hit you with a tree");
+	    int damage= (int)(intelligence/4 + (Math.random() * 3))-1;
+	    other.health=other.health-damage;
+	}
+
+    }}
 
 
 
