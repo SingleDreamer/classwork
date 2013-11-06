@@ -339,8 +339,35 @@ public class Character {
             
 	if (x.nextInt(100)>50 && other.flee(this)){ //randomizes if enemy tries to flee
 	    System.out.println("Enemy fled.");}
-        else if (response==1 && this.flee(other)){
+        else if ((response==1) && (this.flee(other))){
 	    System.out.println("You fled.");}
+	else if ((response==1) && ((this.flee(other))==false)){
+	    System.out.println("You did not flee");
+	    System.out.println("Now you have no option but to fight \n");
+	    this.Battle(other);
+		if (this.getHealth()<=0){
+		    System.out.println("You died.");
+		}
+		else{
+		    System.out.println("You triumphed.");
+		    Random a = new Random();
+		    if (other.getStrength()>0){
+			this.setStrength(this.getStrength() + ((other.getStrength()/10)+1));
+		    }
+		    if (other.getDexterity()>0)
+		    {
+			this.setDexterity(this.getDexterity()+((other.getDexterity()/10)+1));
+		    }
+		    if (other.getDefense()>0){
+			this.setDefense(this.getDefense()+((other.getDefense()/10)+1));
+		    }
+		    this.setHealth(this.getHealth()+2);
+		    if (this.getHealth()>this.getMaxHealth()){
+			this.setHealth(this.getMaxHealth());
+		    }
+		    System.out.println(this.getStatus());
+		}
+	}
 	else if (response == 2){
 	    System.out.println("Speak your mind: ");
 	    Scanner sc1 = new Scanner(System.in);
@@ -350,7 +377,8 @@ public class Character {
 	    }
 	    else{
 		System.out.println("Your words will be ignored! Don't even try.  How dare you try to negotiate, this is not the UN"); // this will be printed no matter what, because they have no time to enter something to say
-	    this.encounter(other);
+		other.setHealth(other.getMaxHealth());
+		this.encounter(other);
 	    }
 	
 	}
