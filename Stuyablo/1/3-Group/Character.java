@@ -13,9 +13,15 @@ public class Character {
     public int getHealth() {
 	return health;
     }
-
-    /* You have to provide other needed get/set methods */
-
+    public int getDex() {
+	return dexterity;
+    }
+    public int getStr() {
+	return strength;
+    }
+    public int getInt() {
+	return intelligence;
+    }
 
     public void attack(Character other) {
 	/* do the attack:
@@ -26,6 +32,7 @@ public class Character {
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+	return false;
     }
 
 
