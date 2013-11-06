@@ -5,7 +5,6 @@ public class Undead extends Character{
     Random r = new Random();
 
     public Undead(){
-	super.setStat();
         name = "The Lich King";
         maxHealth = 6 + r.nextInt(5);
         health = maxHealth;
@@ -14,13 +13,8 @@ public class Undead extends Character{
 	intelligence = 8 + r.nextInt(5);
     }
     public void attack(Character other) {
-	    int sum = 0;
-
-	    sum += r.nextInt(6) + 1;
-	    sum += r.nextInt(6) + 1;
-	    sum += r.nextInt(6) + 1;
-	    
-	    if(sum <= dexterity){
+	    	    
+	    if(hit() == true){
 		System.out.println("Hit!");
 		other.takeDamage(this.strength/2);
 	    }

@@ -11,46 +11,61 @@ public class Character {
     protected int exp=0,lvl=1;
     protected int x,y;
 
-    public String getName()
-    {return name;}
+    public String getName() {
+	return name;
+    }
 	   
     public void attack(Character other) {
-        /* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-        */
+        System.out.println("Sissy Slap!");
     }
     
-    public void takeDamage(int amount)
-    {
+    public void takeDamage(int amount) {
 	    health -= amount;
 	    if(health < 0)
 		    health = 0;
     }
 
-    // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
-	return true;
+    public boolean flee() {
+	    Random r = new Random();
+	    if(r.nextFloat() > 0.35)
+	    {
+		    System.out.println("Got away safely");
+		    return true;
+	    }
+	    System.out.println("Failed to escape");
+	    return false;
+	
     }
 
+    public boolean hit() {
+	Random r = new Random();
+	int d1,d2,d3,sum;
+	d1 = r.nextInt(6) + 1;
+	d2 = r.nextInt(6) + 1;
+	d3 = r.nextInt(6) + 1;
+	sum = d1 + d2 + d3;
+	return (sum <= dexterity);
+    }
 
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee.
-      If so and it's succesful, return a 1;
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0)
-      other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-    */
-
-    public int encounter(Character other) {
-        return 0;
+    public void encounter(Character other) {
+        while (other.getHealth() > 0 && this.getHealth() > 0){
+	    System.out.print("(1)Fight or (2)Flee\n");
+	    Scanner sc = new Scanner(System.in);
+	    String input = sc.nextLine();
+	    if (input.equals("1")){
+		this.attack(other);
+		other.attack(this);
+		}
+	    else if (input.equals("2")){
+		this.flee();
+	    }
+	    else {
+		System.out.println("Invalid choice");
+	    }
+	    System.out.println("Your Health: " + this.getHealth());
+	    System.out.println("Enemy Health: " + other.getHealth());
+	    System.out.println("-------------------------------");
+	}
     }
 
     /*
@@ -81,13 +96,14 @@ public class Character {
 
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
-	System.out.print("What would you like to be? Warrior? Blah?");
+	System.out.print("What would you like to be? Warrior? Wizard?");
 	if (sc.nextLine().equals("Warrior")) {
-	    Warrior w = new Warrior();
+	    Warrior w = new Warrior(name);
 	    System.out.println("Woo, You're a warrior");
 	}
-	else if (sc.nextLine().equals("Blah")) {
-	    System.out.println("Woo, you're a blah");
+	else if (sc.nextLine().equals("Wizard")) {
+	    Wizard w = new Wizard(name);
+	    System.out.println("Woo, you're a Wizard");
 	}
 	else {
 	    System.out.println("Silly you, ponies aren't a choice");

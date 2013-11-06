@@ -11,12 +11,12 @@ public class Driver {
 	    Scanner a = new Scanner(System.in);
 	    String choice = a.nextLine();
 	    if (choice.equalsIgnoreCase("a")){
-		Character p = new Character("Enemy", "Bot", e.nextInt(10), e.nextInt(10), e.nextInt(18), e.nextInt(5));
+		Character p = new Character("Enemy", "Bot", e.nextInt(10)+10, e.nextInt(10), e.nextInt(18), e.nextInt(5));
 		n.encounter(p);
 	    }
 	    else if (choice.equalsIgnoreCase("b")){
 		String[] chat = new String[6];
-		chat[0] = "Get off the bridge";
+		chat[0] = "Get off the bridge.";
 		chat[1] = "Make sure you get at least 24 hours of sleep daily.";
 		chat[2] = "You're not allowed on floors 1-10.";
 		chat[3] = "Should I confiscate that?...";

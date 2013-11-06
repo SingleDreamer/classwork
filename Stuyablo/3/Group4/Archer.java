@@ -50,7 +50,7 @@ public class Archer extends Character {
 		experience = experience + exp;
 		if (experience > experienceneeded) {
 			level = level + 1;
-			System.out.println("You leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3.Intelligence");
+			System.out.println(name + " leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3. Intelligence");
 			
 		
 		Scanner s = new Scanner(System.in);
@@ -73,6 +73,19 @@ public class Archer extends Character {
 		
 
 	} 
+	public boolean flee(Character other) {
+		Scanner s = new Scanner(System.in);
+		System.out.println("Will " + name +" fight? \n1. Yes\n2. No");
+		int i = s.nextInt();
+		if (i != 1) {
+			System.out.println(name + " ran away! \n\n");
+			System.out.println("----------------------------------------------------------------");
+			return true;
+		}
+		else
+			return false;
+			
+		}
 	
 	public void attack(Character other) {
 		System.out.println(getStatus());
@@ -82,28 +95,26 @@ public class Archer extends Character {
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
-		if (health < 4)
-			System.out.println("Cannot attack!");
-		else {
+		
 	/* do the attack:
 		   print out the attempt and the result and update
 		   all relavent variables
 		*/
 		Random r = new Random();
 		int roll = r.nextInt(16) + 3;
+		if (health == 0) {
+			System.out.println(name + " died.");
+		}
+		else {
 		if (dexterity >= roll) {
 			other.damage(dexterity);
-			System.out.println("You have dealt " + dexterity + " damage to your enemy!");
+			System.out.println(name + " has dealt " + dexterity + " damage to its enemy!");
+			System.out.println("----------------------------------------------------------------");
 		}
-		else 
-			System.out.println("You missed!");
-			if (other.getStat()[0] >= roll) {
-			damage(other.getStat()[1]);
-			System.out.println("Your enemy has dealt " + other.getStat()[1] + " damage to you!");
-			} else {
-			System.out.println("Your enemy missed!");
-			}
-
+		else {
+			System.out.println(name + " missed!");
+			System.out.println("----------------------------------------------------------------");
+		}
 		}
 	}
 }

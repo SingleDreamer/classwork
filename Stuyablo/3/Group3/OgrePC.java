@@ -26,6 +26,7 @@ public int getDistance(){
 }
 
 public void attack(Character other){
+<<<<<<< HEAD
         int dice = DieRoll();
                 if (attackRange < distance) {
                         distance = distance - 1;
@@ -42,6 +43,25 @@ public void attack(Character other){
                                 System.out.println ("you missed!");
                         }
                 }
+=======
+	int dice = DieRoll();
+	
+		if (attackRange < distance) {
+			distance = distance - 1;
+			}
+		else {
+			
+			if (dice <= dexterity) {
+				System.out.println ("You successfully attacked!");
+				experience = experience + 1;
+				other.health = other.health - 1;
+				}
+		
+			else {
+					System.out.println ("you missed!");
+			}
+		}
+>>>>>>> 3e98ff56985fd5fcca2bf7a00f578a824ad077ac
 }
 
 }
