@@ -31,6 +31,14 @@ public class Player extends Character {
 	health = health + n;
     }
 
+    public void gainGold(int n){
+	gold = gold + n;
+    }
+
+    public void loseGold(int n){
+	gold = gold - n;
+    }
+
     public void gainExp(int n){
 	experience = experience + n;
     }
@@ -81,10 +89,10 @@ public class Player extends Character {
 	}
 	if (hit()){
 	    c.loseHealth(damage);
-	    System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!");
+	    System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!\n");
 	}
 	else {
-	    System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!");
+	    System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
 	}
     }
 
@@ -104,10 +112,10 @@ public class Player extends Character {
 	}
 	if (hit()){
 	    c.loseHealth(damage);
-	    System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!");
+	    System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!\n");
 	}
 	else {
-	    System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!");
+	    System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
 	}
     }
 
@@ -127,10 +135,10 @@ public class Player extends Character {
 	}
 	if (hit()){
 	    c.loseHealth(damage);
-	    System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!");
+	    System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!\n");
 	}
 	else {
-	    System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!");
+	    System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
 	}
     }
 
@@ -144,4 +152,32 @@ public class Player extends Character {
 	return (sum <= dexterity);
     }
 	
+    public void action(){
+	Scanner s = new Scanner (System.in);
+	System.out.print("what would you like to do? \n 1: Heal yourself or 2: Fight enemies? or 3: Check Status");
+        int ans = s.nextInt();
+	if (ans == 1){
+	    if (health < maxhealth){
+		int amt = maxhealth - health;
+		gold = gold - (maxhealth - health);
+		health = maxhealth;
+		System.out.println("Your health is now max. Used " + amt + " gold.");
+	    }
+	    else {
+		System.out.println("Your health is maxed already!");
+	    }
+	}
+	else if (ans == 2){
+	    encounter();
+	}
+	else if (ans == 3){
+	    System.out.println(getStatus());
+	    action();
+	}
+	else {
+	    System.out.println("Silly player. That's not a command.");
+	    action();
+	}
+    }
+
 }
