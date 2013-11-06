@@ -17,6 +17,7 @@ public class Driver {
         else if (option == 2) {
             System.out.println("Who would you like to play against?\n1 - Ogre\n2 - Mr. Moran");
             System.out.print(">");
+            int enemy = sc.nextInt();
             c1 = c1.createNew();
             int enemy = sc.nextInt();
             if (enemy == 2) {
