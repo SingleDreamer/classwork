@@ -47,29 +47,55 @@ public class Thief extends Character{
 	}
     }
 
-    public int encounter(Character other){
-	System.out.println(this + " encounters " + other.name);
-	System.out.println("Do you wish to fight or flee? To fight enter true and to flee enter false");
-	boolean b = sc1.nextBoolean();
-	if (b == false){
-	    boolean a = this.flee(other);
-	    if(a == true){
-		System.out.println(this + " flees away from " + other.name + " successfully.");
-		return 1;
-	    }
-	    if(a == false){
-		System.out.println(this + " was unable to flee.");
-	    }
-	}
-	else {
-	    this.attack(other);
-	    if(other.health == 0)
-		return 2;
-	    other.attack(this);
-	    if(this.health == 0)
-		return 3;
-	    return 4;
-	}
-	return 5;
+    public int encounter(Character other) {
+        Scanner scan1 = new Scanner(System.in);
+        System.out.print("Do you want to flee? (enter 'true' or 'false'): ");
+        boolean b = scan1.nextBoolean();
+        if (b) {
+            System.out.println(this + " tried to flee.");
+            boolean fleesuccess = other.flee(other);
+            if (fleesuccess == true) {
+                this.experience += 1;
+                this.gold += 1;
+                System.out.println("Fleed successfully.  " + this + "'s experience and gold each increased by 1.");
+                System.out.println();
+                return 0;
+            }
+            if (fleesuccess == false) {
+                System.out.println("Failed to flee.");
+                System.out.println();
+                return 1;
+            }
+        }
+        else{
+            System.out.println("In that case, it looks likes you're going to attempt an attack.");
+            this.attack(other);
+              if (other.health > 0)
+                    other.attack(this);
+        }
+        if (this.health == 0 && other.health == 0) {
+            System.out.println(this + " and " + other + " died.");
+            System.out.println();
+            return 4;
+        }
+        else if (this.health == 0) {
+            System.out.println(this + " died.");
+            System.out.println();
+            return 2;
+        }
+        else if (other.health == 0) {
+            System.out.println(other + " died.");
+            //this.gold += other.gold; //potential incorporation of gold
+            //other.gold = 0;
+            this.experience += 5;
+            System.out.println(this + "'s experience increased by 5.");
+            System.out.println();
+            return 3;
+        }
+        else {
+            System.out.println("No characters killed.  Battle continues.");
+            System.out.println();
+            return 5;
+        }
     }
 }

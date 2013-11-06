@@ -4,24 +4,14 @@ import java.util.*;
 public class Wizard extends Character{
     protected int mana;
 
-    public Wizard()
-    {
+    public Wizard(String Name) {
 	super();
+	name = Name;
 	mana = intelligence;
     }
 
-    /* You have to provide other needed get/set methods */
-
-
-    public void attack(Character other) {
-	    Random r = new Random();
-	    int sum = 0;
-
-	    sum += r.nextInt(6) + 1;
-	    sum += r.nextInt(6) + 1;
-	    sum += r.nextInt(6) + 1;
-	    
-	    if(sum <= dexterity)
+    public void basic(Character other) {
+	    if(hit()==true)
 	    {
 		    System.out.println("You hit the " + other.getName() + " for " + 2 + " damage!");
 		    other.takeDamage(2);
@@ -33,18 +23,11 @@ public class Wizard extends Character{
     }
     
     public void throwFireball(Character other) {
-	    Random r = new Random();
-	    int sum = 0;
-
-	    sum += r.nextInt(6) + 1;
-	    sum += r.nextInt(6) + 1;
-	    sum += r.nextInt(6) + 1;
-	    
 	    if(mana >= 2)
 	    {
 		    mana -= 2;
 
-		    if(sum <= dexterity)
+		    if(hit()==true)
 		    {
 			    System.out.println("You cast an orb of flame at the " + other.getName() + " for " + 6 + " damage!");
 			    other.takeDamage(6);
@@ -61,17 +44,10 @@ public class Wizard extends Character{
 
     public void heal()
     {
-	    Random r = new Random();
-
-	    int sum = 0;
-
-	    sum += r.nextInt(6) + 1;
-	    sum += r.nextInt(6) + 1;
-	    sum += r.nextInt(6) + 1;
 	    if(mana >= 1)	    
 	    {
 		    mana -= 1;
-		    if(sum <= dexterity)
+		    if(hit()==true)
 		    {
 			    System.out.println("You heal yourself");
 			    health += 3;
@@ -88,67 +64,23 @@ public class Wizard extends Character{
 
     }
 
-
-    // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
-	    Random r = new Random();
-	    if(r.nextFloat() > 0.35)
-	    {
-		    System.out.println("Got away safely");
-		    return true;
-	    }
-	    System.out.println("Failed to escape");
-	    return false;
-	
-    }
-
-
-
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
-    public int encounter(Character other) {
-	if(!alive())
-		return aliveState(other);	
-
-	Scanner s = new Scanner(System.in);
-	//while(s.hasNext()){s.next();}//clear the buffer
-	
-	System.out.println("You encounter a(n) " + other.getName());
-	while(true)
-	{
-		System.out.println("You can:\n  1:Whack it with your staff\n  2:Throw a fireball\n  3: Cast 'heal'\n  4:  Flee");
-		switch(s.nextInt())
-		{
+    public void attack(Character c) {
+	Scanner s = new Scanner(System.in);	
+	System.out.println("You can:\n  1:Whack it with your staff\n  2:Throw a fireball\n  3: Cast 'heal'\n  4:  Flee");
+	switch(s.nextInt()){
 			case 1:
-				attack(other);
-				return aliveState(other);
+				basic(c);
+				
 			case 2:
-				throwFireball(other);
-				return aliveState(other);
+				throwFireball(c);
+				
 			case 3:
-				return aliveState(other);
+				heal();
 			case 4:
-				if(flee(other))
-					return 1;
+				flee();
 				
 			default:
 				System.out.println("Invalid command, try again");
-		}
 	}
     }
-
 }

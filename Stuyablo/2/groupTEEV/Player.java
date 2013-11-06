@@ -20,7 +20,7 @@ public class Player extends Character {
 	    basicattack(c);
 	else if (attack == 2){
 	    if (cooldown > 0){
-		System.out.println("You do not have the energy for that ");
+		System.out.println("You do not have the energy for that. Wait "+ cooldown + " more turns.");
 		attack(c);
 	    }
 	    else
@@ -28,7 +28,7 @@ public class Player extends Character {
 	}
 	else if (attack == 3){
 	    if (cooldown > 0){
-		System.out.println("You do not have the energy for that ");
+		System.out.println("You do not have the energy for that. Wait "+ cooldown + " more turns.");
 		attack (c);
 	    }
 	    else
@@ -150,9 +150,23 @@ public class Player extends Character {
 	    this.attack(other);
 	else if (other.getHealth() > 0)
 	    other.attack(this);
+<<<<<<< HEAD
 	System.out.print(this + " : " +  health + " \n");
 	System.out.print(other + " : " + other.getHealth()+ " \n");
 	if ((health > 0) && (other.getHealth() > 0))
+=======
+	}
+	int otherHealth = other.getHealth();
+	if (otherHealth < 0){
+	    otherHealth = 0;
+	}
+	if (health < 0){
+	    health = 0;
+	}
+	System.out.print(this + " : " +  health + " \n");
+	System.out.print(other + " : " + otherHealth+ " \n");
+	if ((health > 0) && (other.getHealth() > 0)){
+>>>>>>> 9b80cbd1c72a9acd8ff3c8745b9bdcbb7e0c128c
 	    this.battle(other);
 	else {
 	    if (health <= 0)

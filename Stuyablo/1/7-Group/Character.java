@@ -2,55 +2,64 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int roll, health, maxhealth, dexterity, strength, intelligence,defense, experience, gold;
+    protected int roll, health, maxhealth, dexterity, strength, intelligence,defense, experience, gold, damage;
     protected double x,y,distance;
     protected String name,charClass;
     Random r = new Random ();
 public Character(){
-	Scanner sc =new Scanner(System.in);
-	System.out.println("Enter name: ");
+    name = "name";
+    health = 0;
+    strength = 0;
+}
+    /*	Scanner sc =new Scanner(System.in);
+	System.out.print("Enter name: ");
 	name = sc.next();
-        System.out.println("Choose 1 to be a Warrior || Choose 2 to be a Wizard || Choose 3 to see the attributes given to each Character");
-	int cl = sc.next();
-	if (cl==3){
+        System.out.print("Choose 1 to be a Warrior || Choose 2 to be a Wizard || Choose 3 to see the attributes given to each Character");
+	String cl = sc.next();
+	if (cl=="3"){
 	    System.out.println("Character Attributes \n" + "Wizard:\n  Strength:18\n   Health:18\n   Experience:1\n   Intelligence:4\n" +"\nWizard:\n  Strength:16\n   Health:16\n   Experience:1\n   Intelligence:7\n");
 	}
-	else if (cl==1){
+	else if (cl=="1"){
 	    charClass="Warrior";
 	    strength = 18;
 	    health = 18;
-	    Experience = 1;
-	    Intelligence = 4;
+	    experience = 1;
+	    intelligence = 4;
+	    dexterity = 8;
+	    
 	}
-	else if (cl==2){
+	else if (cl=="2"){
 	    charClass="Wizard";
 	    strength = 16;
 	    health = 16;
-	    Experience = 1;
-	    Intelligence = 7;
+	    experience = 1;
+	    intelligence = 7;
+	    dexterity = 8;
 	}
 	else{
 	    System.out.println("Please Choose 1 to be a Warrior or 2 to be a Wizard");
-	    if (cl==1){
+	    if (cl=="1"){
 		charClass="Warrior";
 		strength = 18;
 		health = 18;
-		Experience = 1;
-		Intelligence = 4;
+		experience = 1;
+		intelligence = 4;
+		dexterity = 8;
 	    }
-	    else if (cl==2){
+	    else if (cl=="2"){
 		charClass="Wizard";
 		strength = 16;
 		health = 16;
-		Experience = 1;
-		Intelligence = 7;
+		experience = 1;
+		intelligence = 7;
+		dexterity = 8;
 	    }
 	}
 	    
 	x = 0;
 	y= 0;
-		
-    }
+    */		
+    
     public Character (String name, String charClass) {
 	this.name = name;
 	this.charClass = charClass;
@@ -147,7 +156,7 @@ public Character(){
 	else {
 
 	    System.out.println(name + " hits the enemy");
-	    other.setHealth(other.getHealth()-1);
+	    other.setHealth(other.getHealth()-damage);
 	    this.setStrength(this.getStrength()+1);
 	    this.experience = this.experience + 10;
 	    System.out.println(other.name);
@@ -273,7 +282,7 @@ public Character(){
 	return ex;
     }
 
- 
+    /*
     public String levelUp(String stat) {
 	String result = "Congratulations!";
 	if (stat == "maxhealth") {
@@ -316,6 +325,7 @@ public Character(){
 	}
 	return result;
     }
+    */
 
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",

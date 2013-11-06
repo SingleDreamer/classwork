@@ -1,22 +1,15 @@
 import java.util.*;
 
 public class Character {
-<<<<<<< HEAD
-    private int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
-    protected int health, maxhealth, strength, intelligence, dexterity, experience, level, freezecount;
-=======
     static int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
-    protected int health, maxhealth, strength, intelligence, dexterity, experience, level;
->>>>>>> 5999713c8527d9bfb036613a4bd54c639ee36bbc
+    protected int health, maxhealth,intelligence, strength, dexterity, experience, level, opponentsDefeated, freezecount;
     protected String name, characterClass;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
     
     // Constructors
     // This constructor is barebones and doesn't do jack. Someone just put it here to method overload the inherent version. I've one-lined it to clean it.
-    int freezecount = 0;
-
     public Character() {
-	
+	int freezecount = 0;
 	if (random.nextInt (3) < 2) {
 	    health = maxhealth = strength;strength = random.nextInt (10);
 	    intelligence = random.nextInt (10);
@@ -30,6 +23,7 @@ public class Character {
     }
     // Important constructor - includes scanner functions to prompt for configuration
     public Character (String name, String characterClass) {
+	int freezecount = 0;
 	this.characterClass = characterClass;
 	System.out.println ("You are a " + getCharacterClass() + "\n");
 	this.name = name;
@@ -103,6 +97,7 @@ public class Character {
     public int getLevel() {return level;}
     public String getName() {return name;}
     public String getCharacterClass() {return characterClass;}
+    public int getOpponentsDefeated() {return opponentsDefeated;}
     
     public void setHealth(int health) {this.health = health;;}
     public void setMaxhealth(int maxhealth) {this.maxhealth = maxhealth;}
@@ -114,6 +109,7 @@ public class Character {
     public void setName(String name) {this.name = name;}
     public void setCharacterClass(String characterClass) {this.characterClass = characterClass;}
     public void setAttributes(int strength,int intelligence,int dexterity) {this.strength = strength;this.intelligence = intelligence;this.dexterity = dexterity;}    
+    public void setOpponentsDefeated (int n) {this.opponentsDefeated = n;}
     public String toString() {
 	return name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
 	    "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity;
@@ -134,13 +130,13 @@ public class Character {
     }
     */
 
-    public void attack(Character other, int damagesource){
+    public void attack(Character other){
 	int damage = 0;
 	int otherDamage = 0;
 	String firstHit = "";
 	// set the damage that is done by this character
 	if (getCharacterClass().equals("Wizard")){
-	    damage = damagesource;
+	    damage = intelligence - random.nextInt(10);
 	}
 	else if ((getCharacterClass().equals("Warrior")) || (getCharacterClass().equals("Thief"))){
 	    damage = strength - random.nextInt (10);
@@ -239,12 +235,6 @@ public class Character {
 	    System.out.println("Experience: " + other.getExperience());
 	    if (this.freezecount > 0) {
 		freezecount = freezecount - 1;
-	    }
-	    if (this.boostcount == 0) {
-		if (this.characterClass == "Wizard") {
-		    this.intelligence = this.intelligence * 0.4;
-		}
-		boostcount = -1;
 	    }
 	}
 	if (this.getHealth() == 0){

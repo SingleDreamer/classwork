@@ -44,6 +44,6 @@ Maximum Health = Strength/Intelligence;
 
 During battle turns, you roll 3 dice. If the value of the 3 dice is less that your dexterity, it's a hit. For each extra coordinates you are away (starting at 1away), you have to roll less than your dexterity minus that number minus one.
 
-ie: If you are at (2,0) and the enemy is at (0,0), and you're dexterity is 11, you have to roll a 10 or lower to get a hit. 
+
 
 

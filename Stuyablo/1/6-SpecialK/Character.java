@@ -8,7 +8,8 @@ public class Character {
     protected int strength; // effects strength of hits
     protected int charm; // effects who goes attempts to hit first in a battle
     protected String name;
-    protected String charType; 
+    protected String charType;
+    protected String winner;
 
     protected void init(String n, String c, int s, int dex, int def, int ch){
 	name = n;
@@ -123,6 +124,7 @@ public class Character {
 	    if (inputs.equals("0")){
 		    strength += 1;
 		    maxhealth += 1;
+		    health += 1;
 		}
 
 	    else if (inputs.equals("1")){
@@ -143,6 +145,7 @@ public class Character {
 		 if (k==0){
 		     strength += 1;
 		     maxhealth += 1;
+		     health += 1;
 		 }
 
 		 else if (k == 1){
@@ -212,7 +215,6 @@ public class Character {
 
     public boolean flee(Character other){
 	if (this.getDexterity() > other.getDexterity()){
-	    System.out.println("You have run away. Your dexterity will be upgraded due to this success");
 	    this.setDexterity(this.getDexterity()+1);
 	    return true;
 	    // you are capable of running away, should cut out of current interaction
@@ -329,23 +331,83 @@ public class Character {
      }
     public void encounter(Character other) {
 	System.out.println("" + other.getStatus());
-	System.out.println("Enter 1 to flee, any other number to fight");
+	System.out.println("Enter 1 to flee, 2 to talk, any other number to fight");
             Scanner sc = new Scanner(System.in);
 	int response = sc.nextInt();
 	Random x = new Random();
             
 	if (x.nextInt(100)>50 && other.flee(this)){ //randomizes if enemy tries to flee
 	    System.out.println("Enemy fled.");}
-        else if (response==1 && this.flee(other)){
-	    System.out.println("You fled.");}
+        else if ((response==1) && (this.flee(other))){
+	    System.out.println("You fled, and gained some dexterity.");}
+	else if ((response==1) && ((this.flee(other))==false)){
+	    System.out.println("You did not flee");
+	    System.out.println("Now you have no option but to fight \n");
+	    this.Battle(other);
+		if (this.getHealth()<=0){
+		    System.out.println("You died.");
+		}
+		else{
+		    System.out.println("You triumphed.");
+		    Random a = new Random();
+		    if (other.getStrength()>0){
+			this.setStrength(this.getStrength() + ((other.getStrength()/10)+1));
+		    }
+		    if (other.getDexterity()>0)
+		    {
+			this.setDexterity(this.getDexterity()+((other.getDexterity()/10)+1));
+		    }
+		    if (other.getDefense()>0){
+			this.setDefense(this.getDefense()+((other.getDefense()/10)+1));
+		    }
+		    this.setHealth(this.getHealth()+2);
+		    if (this.getHealth()>this.getMaxHealth()){
+			this.setHealth(this.getMaxHealth());
+		    }
+		    System.out.println(this.getStatus());
+		}
+	}
+	else if (response == 2){
+	    System.out.println("Speak your mind: ");
+	    Scanner sc1 = new Scanner(System.in);
+	   
+	    if (sc1.equals("")){
+		System.out.println("What are your thoughts!");
+	    }
+	    else{
+		System.out.println("Your words will be ignored! Don't even try.  How dare you try to negotiate, this is not the UN"); // this will be printed no matter what, because they have no time to enter something to say
+		other.setHealth(other.getMaxHealth());
+		this.encounter(other);
+	    }
+	
+	}
         else{
 	    this.Battle(other);
 		if (this.getHealth()<=0){
-		    System.out.println("You died.");}
+		    System.out.println("You died.");
+		}
 		else{
-		    System.out.println("You triumphed.");}
+		    System.out.println("You triumphed.");
+		    Random a = new Random();
+		    if (other.getStrength()>this.getStrength()){
+			this.setStrength(this.getStrength() + ((other.getStrength()/10)+1));
+		    }
+		    if (other.getDexterity()>this.getDexterity())
+		    {
+			this.setDexterity(this.getDexterity()+((other.getDexterity()/10)+1));
+		    }
+		    if (other.getDefense()>this.getDefense()){
+			this.setDefense(this.getDefense()+((other.getDefense()/10)+1));
+		    }
+		    this.setHealth(this.getHealth()+2);
+		    if (this.getHealth()>this.getMaxHealth()){
+			this.setHealth(this.getMaxHealth());
+		    }
+		    System.out.println(this.getStatus());
+		}
 	    }
     }   
+
      public String getStatus() {
         String attrib1=String.format("Str: %d Dex: %d Def: %d Chr: %d",
                                      strength, dexterity, defense, charm);

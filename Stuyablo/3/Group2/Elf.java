@@ -3,11 +3,12 @@ import java.io.*;
 import java.math.*;
 
 public class Elf extends Character {
-    private String[] weapons = new String[]{"basic dagger", "broadsword", "longsword", "flaming sword", "master sword"};
+    private String[] weapons = new String[]{"bow and arrow", "crossbow", "broadsword", "longsword", "flaming sword","hella sword","majestic sword","master sword"};
     private int points;
     private Scanner sc = new Scanner(System.in);
     private boolean firstencounter = true;
     private boolean atk;
+    private String weapon = "basic dagger";
 
     public int addStat(String stat) {
 	System.out.println("Add how many points to " + stat + " (0-" + points + ")");
@@ -42,14 +43,29 @@ public class Elf extends Character {
     }
 
     public boolean encounter(Character other) {	
-	if (firstencounter == true)
-	System.out.println("A wild " + other + " Appeared!");
-	firstencounter = false;
-	try {
-	    Thread.sleep(1000);
-	} catch(InterruptedException ex) {
-	    Thread.currentThread().interrupt();
+	if (firstencounter == true){
+	    System.out.println("A wild " + other + " Appeared!");
+	   
+	
+	    try {
+		Thread.sleep(1000);
+	    } catch(InterruptedException ex) {
+		Thread.currentThread().interrupt();
+	    }
+	    if (strength> 8){
+		System.out.println("Do you wan to upgrade your weapon? Enter 1 for yes, 2 for no");
+		int choose = sc.nextInt();
+		if (choose==1){
+		    weapon = weapons[strength-7];
+		    System.out.println("You traded your basic dagger for the "+ weapon);
+		}
+		else {
+		    System.out.println("Fine. Keep your lame " + weapon);
+		}
+		firstencounter = false;
+	    }
 	}
+		
 	System.out.println("What would you like to do? Enter 1 for flee, 2 for attack");
 	int whatdo = sc.nextInt();
 	if (whatdo == 1)
@@ -85,8 +101,22 @@ public class Elf extends Character {
 	    Thread.currentThread().interrupt();
 	}
 	if (roll()){
-	    System.out.println(name + " deals " +(strength+dexterity)/4 + " damage with the " + weapons[strength/5]);
-	    return other.changeHP((strength+dexterity)/4);
+	    if (weapon == weapons[0]|| weapon == weapons[1]){
+		System.out.println(name + " deals " +strength/5 + " damage with the " + weapon);
+		return other.changeHP((strength)/5);
+	}
+	    if(weapon == weapons[2] || weapon == weapons[3]){
+		System.out.println(name + " deals " + strength/4 + " damage with the " + weapon);
+		return other.changeHP(strength/4);
+	    }
+	    if (weapon == "basic dagger"){
+		System.out.println(name +" deals " + strength/6 + " damage with the rusty " + weapon);
+		return other.changeHP(strength/6);
+	    }
+	    else{
+		System.out.println(name + " deals " + strength/3 +" damage with the brilliant " + weapon);
+		return other.changeHP(strength/3);
+	    }
 	}
 	else {
 	    System.out.println(name + " 's attack misses!");

@@ -16,10 +16,13 @@ Level- gain extra points in stats (Strength, Intelligence or Dexterity)
 
 Gold- allows the player to pay to refill their health (1 piece = 1 health point)
 
+charClass - for players: wizard or warrior
+        for nonplayers: Ogre or Mr. Moran
+
 
 Basic Player and Nonplayer Methods
 ==================================
-attack() - for the player, it asks which of the three types of attacks they would like to use, or if they would like to flee. For the nonplayer, it chooses one of the attacks. The special attacks are dependent on the class of the character, and can only be used once 	after which there is a period of cool down before a special attack can be used again. The basic attack doesn’t affect the cool down and is determined by the character’s strength (if it’s an ogre or a warrior) or intelligence (if it’s a Mr. Moran or a wizard)
+attack() - for the player, it asks which of the three types of attacks they would like to use, or if they would like to flee. For the nonplayer, it chooses one of the attacks. The special attacks are dependent on the class of the character, and can only be used once after which there is a period of cool down before a special attack can be used again. The basic attack doesn’t affect the cool down and is determined by the character’s strength (if it’s an ogre or a warrior) or intelligence (if it’s a Mr. Moran or a wizard)
 
 loseHealth(int n) - this allows characters to call upon each other to inflict damage during a battle
 
