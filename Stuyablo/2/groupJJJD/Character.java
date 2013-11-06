@@ -56,10 +56,10 @@ public class Character {
     if (roll > this.dexterity) {
     
     other.health = other.health - (int)this.dmg;
-    System.out.println(this.toString() + "'s Health: " + this.health);
+    /*System.out.println(this.toString() + "'s Health: " + this.health);
     System.out.println(other.toString() + "'s Health: " + other.health);
     System.out.println(this.toString() + "'s Damage: " + this.dmg);
-    System.out.println(other.toString() + "'s Damage: " + other.dmg);
+    System.out.println(other.toString() + "'s Damage: " + other.dmg);*/
     }
     
     }
@@ -117,8 +117,8 @@ public class Character {
 		if (other.health > 0) {
 		    other.attack(this);
 		}	
-	    }
-	    	    System.out.println("Your current Health : " +this.health);
+  	    }	
+   	    	    System.out.println("Your current Health : " +this.health);
 	    System.out.println("His current Health : " + other.health);}
     return 0;
     }
