@@ -46,6 +46,8 @@ public class Character {
 	}
 
         while (health > 0 && other.health > 0){
+	    System.out.println("Your coordinates are x: " + this.x + " y: " + this.y);
+	    System.out.println("The enemy's coordinates are x: " + other.x + " y: " + other.y);
 	    if (dexterity >= other.dexterity) {
 		PCturn(other);
 		other.NPCturn(this);
@@ -92,6 +94,9 @@ public class Character {
     }
 
     public void PCturn(Character other){
+	int move = 2;
+	
+	
     }
 
     public String getStatus() {
