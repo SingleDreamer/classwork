@@ -239,9 +239,7 @@ public class Character {
     }
 	
 	public int attack (Character other){
-		int huh=0;
 		while (this.health>0 && other.health>0){
-		if (huh==0){
 			if (dexterity<=roll()){
 				other.takedamage(this.strength);
 				say (other + " has lost " + strength + " health points and has " + other.getHealth() + " health points left. ");
@@ -253,7 +251,7 @@ public class Character {
 				}
 			}
 			
-			else{
+			if (dexterity > roll()){
 				say(this + "'s attack missed!");
 				try{
 					Thread.sleep(2000);
@@ -262,10 +260,7 @@ public class Character {
 					
 				}
 			}
-			huh=1;
-			}
 			
-			if (huh==1){
 			if (other.dexterity<=other.roll()){
 				this.takedamage(other.strength);
 				say (this + " has lost " + other.strength + " health points and has " + this.getHealth() + " health points left. ");
@@ -276,7 +271,7 @@ public class Character {
 				}
 			}
 			
-			else{
+			if (other.dexterity > other.roll()){
 				say(other + "'s attack missed!");
 				try{
 					Thread.sleep(2000);
@@ -285,17 +280,13 @@ public class Character {
 					
 				}
 			}
-			huh=0;
 		}
-	}
-		
 		if (other.health<=0){
 			other.die();
 			System.out.println("Congratulations! You defeated you opponent");
 			System.out.println("You earned 100 gold and "+ other.maxhealth + " experience points!");
 			this.gold=gold + 100;
 			this.experience=experience + other.maxhealth;
-			this.health=this.maxhealth;
 			
 			try{
 				Thread.sleep(2000);
@@ -317,12 +308,7 @@ public class Character {
 		Random x = new Random();
 		if (x.nextInt(intelligence) >= intelligence/2){
 			System.out.println(this + " has fled.");
-			try{
-					Thread.sleep(2000);
-				}
-			catch (Exception e){
-					
-				}
+			delay(2000);
 			System.out.println("It's not over yet!");
 			this.encounter(other);
 			return true;
@@ -335,31 +321,13 @@ public class Character {
 	public int encounter(Character other){
 		Scanner sc = new Scanner (System.in);
 		say ("you have encountered " + other);
-		try{
-			Thread.sleep(2000);
-			}
-		catch (Exception e){	
-			}
-		say ("his status is "+ other.getStatus2());
-		try{
-			Thread.sleep(2000);
-			}
-		catch (Exception e){	
-			}
+		delay(2000);
+		say ("his status is: \n"+ other.getStatus2());
+		delay(2000);
 		say ("type 1 if you wish to talk");
-        try {
-            Thread.sleep(2000);
-        }
-        catch(Exception e){
-        
-        } 
+        delay(2000);
         say("type 2 if you wish to attempt to flee");
-        try {
-            Thread.sleep(2000);
-        }
-        catch(Exception e){
-        
-        } 
+        delay(2000);
         say("type 3 if you wish to fight");
         
         int answer = sc.nextInt();
