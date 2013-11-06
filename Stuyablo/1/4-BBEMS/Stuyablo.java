@@ -48,29 +48,29 @@ public class Stuyablo {
 		player = new Thief (name);
 	    }
 
-	     random.nextInt (3) = int z;
+	    int z = random.nextInt (3);
 
-	    while (!(player.getHealth()=0)) { 
+	    while (!(player.getHealth()==0)) { 
 	    
 	    System.out.println(player);
 	    
 	  
 
-	    if (z = 0) {
+	    if (z== 0) {
 	    Wizard opponent = new Wizard();
 	    player.attack(opponent);
 	    player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
 
 	    }
 
-	    if (z = 1) {
+	    if (z== 1) {
 	    Warrior opponent = new Warrior();
 	    player.attack(opponent);
 	    player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
 
 	    }
 
-	    if (z = 2) {
+	    if (z == 2) {
 	    Thief opponent = new Thief();
 	    player.attack(opponent);
 	    player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
@@ -80,7 +80,7 @@ public class Stuyablo {
 	    }
 
 	    System.out.println (player);
-	    Sytsem.out.println ("You have killed" + player.getopponentsDefeated() + "opponents!");
+	    Sytsem.out.println ("You have killed" + player.getOpponentsDefeated() + "opponents!");
 	    
 	    
 	    System.out.println("\nProgram terminated.");
