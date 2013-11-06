@@ -367,7 +367,7 @@ public class Character {
             else 
                 return 3;
         }
-        else {
+        if (((answer != 1) && (answer != 2)) && (answer != 3))  {
         	say ("that is not a valid input, please try again");
         	this.encounter(other);
         }
