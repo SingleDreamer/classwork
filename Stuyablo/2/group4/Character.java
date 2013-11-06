@@ -2,40 +2,101 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int health, maxhealth;
-    protected int dexterity, strength, intelligence;
+    protected int health, maxHealth;
+    protected int dexterity, maxDex, strength, maxStr, intelligence, maxInt;
     protected int experience;
     protected int gold;
     protected double x,y,distance;
     protected String name;
     protected String charClass;
  
-    public int getHealth() {
-        return health;
+    public String toString() {
+	return name;
     }
 
-    /* You have to provide other needed get/set methods */
+    public void multStr(String str, int times){
+	for (int i = 0; i < times; i++) {
+	    System.out.print(str);
+	}
+	
+    }
 
+    //Get Methods
+    public int getHP() {
+	return health;
+    }
+    public int getDex() {
+	return dexterity;
+    }
+    public int getStr() {
+	return strength;
+    }
+    public int getInt() {
+	return intelligence;
+    }
+    public int getExp() {
+	return experience;
+    }
+
+    //Set Methods
+
+    public void setDex(int x) {
+	this.dexterity=x;
+    }
+    public void setStr(int x) {
+	this.strength =x;
+    }
+    public void setInt(int x) {
+	this.intelligence=x;
+    }
+    public void setExp(int x) {
+	this.experience=x;
+    }
+    public void setHP(int x) {
+	this.health = x;
+    }
+   
+
+    public void getStatus() {
+	System.out.println(this + "'s STATS:");
+
+	System.out.println("Health: "+ this.getHP()); 
+        //multStr("*",((this.getHP()/this.maxHealth)*100.0));  
+	System.out.println("(" + (((this.getHP()*1.0)/(this.maxHealth*1.0))*100.0) + "%)");
+
+	System.out.println("Strength: "+ this.getStr());
+        //multStr("*",((this.getStr()/this.maxStr)*100)); 
+	System.out.println("(" + (((this.getStr()*1.0)/(this.maxStr*1.0))*100.0) + "%)");
+
+	System.out.println("Dexterity: "+ this.getDex());
+        //multStr("*",((this.getDex()/this.maxDex)*100)); 
+	System.out.println("(" + (((this.getDex()*1.0)/(this.maxDex*1.0))*100) + "%)");
+    }
 
     public void attack(Character other) {
-        /* do the attack:
-           print out the attempt and the result and update
-           all relavent variables
-        */
+        Random r = new Random();
+
+	int dice1 = r.nextInt(6);
+	int dice2 = r.nextInt(6);
+	int dice3 = r.nextInt(6);
+
+	if (dice1 + dice2 + dice3 > this.getDex()) {
+	    int damage = r.nextInt(this.strength/4);
+	    other.health = other.health - damage;
+	}
     }
 
-    // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
-	int ans;
-	double r = Math.random();
-	if (r > .5) {
-	    ans = true}
+        Random r = new Random();
+	if (r.nextDouble() > .5) {
+	    return true;
+	}
 	else {
-	    ans = false}
-	return ans;
+	    return false;
+	}
     }
 
-
+	
     /*
       this routine will decide first ask if other tries to flee. If
       so, and if it's succesful it should adjust experience and or
@@ -47,31 +108,40 @@ public class Character {
       Otherwise, call attack on both sides:
       this.attack(other);
       if (other.health>0) 
-        other.attack(this);
+      other.attack(this);
+      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead. */
 
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
     public int encounter(Character other) {
-        return 0;
+	Scanner sc = new Scanner(System.in);
+	System.out.println("You have an encountered " + other);
+	this.getStatus();
+	if (other.flee(this)) { 
+	    return 0;
+	}
+	
+	System.out.println("Do you want to escape?");
+	System.out.println("y - yes \nn - no");
+	String choice = sc.nextLine();
+	if (choice.equals("y")) {
+	    if (this.flee(other)) {
+		return 1;
+		System.out.println("you have fleed");
+	    }
+	}
+	this.attack(other);
+	if (other.health > 0) {
+	    other.attack(this);
+	}
+	this.getStatus();
+	if (other.health == 0) {
+	    return 3;
+	}
+	else if (this.health == 0) {
+	    return 2;
+	}
+	else if ((this.health == 0) && (other.health == 0)) {
+	    return 4;
+	}
+        return 5;
     }
-
-
-
-    public String getStatus() {
-        String attrib1=String.format("Str: %d Dex: %d Int: %d",
-                                     strength, dexterity, intelligence);
-        String attrib2=String.format("Exp: %d Health: %d of %d",
-                                     experience,health,maxhealth);
-        String locale = String.format("x: %5.2f y: %5.2f",x,y);
-        String whole=String.format("%s\n%s\n%s\n%s\n",
-                                   name,attrib1,attrib2,locale);
-        return whole;
-    }
-
-
-    public String toString() {
-        return name;
-    }
-    
 }

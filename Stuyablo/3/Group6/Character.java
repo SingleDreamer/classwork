@@ -4,138 +4,138 @@ import java.util.*;
 public class Character {
     protected int health, maxhealth;
     protected int dexterity, strength, intelligence;
-    protected int experience;
-    protected int gold;
-    protected double x,y,distance;
-    protected String name;
-    protected String charClass;
+    protected int experience, gold;
+    protected double x, y, distance;
+    protected String name, charClass;
+
+    // remember to print out players' stats regularly during battle
 
     public Character() {
-	health = 8;
-	maxhealth = 20; // If you agree.
-	dexterity = 8;
-	strength = 8;
-	intelligence = 8;
+	Random r = new Random();
+	int j = 8;
+	int d = r.nextInt(j);
+	j = j - d;
+	int s = r.nextInt(j);
+	j = j - s;
+	int i = j;
+	dexterity = 8 + d;
+	strength = 8 + s;
+	intelligence = 8 + i;
+	health = strength;
+	maxhealth = 50;
 	experience = 0; 
 	gold = 0;
-	distance = 0;
-	name = "Unnamed Character";
-	charClass = "PC or NPC"; // I think.
+	//distance = 0;
+	name = "Default Character";
+	charClass = "PC or NPC";
+    }
+
+
+    public Character(String n) {
+	Random r = new Random();
+	int j = 8;
+	int d = r.nextInt(j);
+	j = j - d;
+	int s = r.nextInt(j);
+	j = j - s;
+	int i = j;
+	dexterity = 8 + d;
+	strength = 8 + s;
+	intelligence = 8 + i;
+	health = strength;
+	maxhealth = 50;
+	experience = 0; 
+	gold = 0;
+	//distance = 0;
+	name = n;
+	charClass = "PC or NPC";
+    }
  
-    public void setHealth(int i) {
-	health = i;
-    }
 
-    public int getHealth() {
-	return health;
+    public boolean roll() {
+	Random r1 = new Random();
+	Random r2 = new Random();
+	Random r3 = new Random();
+	int d1 = r1.nextInt(6) + 1;
+	int d2 = r2.nextInt(6) + 1;
+	int d3 = r3.nextInt(6) + 1;
+	return (dexterity > (d1+d2+d3));
     }
-
-    public void setMaxHealth(int i) {
-	maxhealth = i;
-    }
-
-    public int getMaxHealth() {
-	return maxhealth;
-    }
-
-    public void setDexterity(int i) {
-	dexterity = i;
-    }
-
-    public int getDexterity() {
-	return dexterity;
-    }
-
-    public void setStrength(int i) {
-	strength = i;
-    }
-
-    public int getStrength() {
-	return strength;
-    }
-
-    public void setIntelligence(int i) {
-	intelligence = i;
-    }
-
-    public int getIntelligence() {
-	return intelligence;
-    }
-
-    public void setExperience(int i) {
-	experience = i;
-    }
-
-    public int setExperience() {
-	return experience;
-    }
-
-    public void setGold(int i) {
-	gold = i;
-    }
-
-    public int getGold() {
-	return gold;
-    }
-
-    public void setDistance(double d) {
-	distance = d;
-    }
-
-    public double getDistance() {
-	return distance;
-    }
-
-    public void setName(String s) {
-	name = s;
-    }
-
-    public String getName() {
-	return name;
-    }
-
-    public void setCharClass(String s) {
-	charClass = s;
-    }
-
-    public String getCharClass() {
-	return charClass;
-    }
-
 
 
     public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
+	System.out.println(this + " tried to attack " + other + ".");
+	boolean hitsuccess = this.roll();
+	if (hitsuccess == false) {
+	    System.out.println("Attack failed.");
+	}
+	if (hitsuccess == true) {
+	    int damage = strength / 2; // damage is half that of strength
+	    System.out.println("Attack succeeded.");
+	    if (other.health <= damage) {
+		other.health = 0;
+		this.experience += other.experience;
+		System.out.println(other + " defeated.  " + this + "'s experience increased by " + other.experience + " points.");
+	    }
+	    else
+		other.setHealth(other.health - damage);
+	    System.out.println(other + "'s health has decreased to " + other.getHealth() + ".");
+	    this.experience += 1;
+	    System.out.println(this + "'s experience increased by 1 point.");
+	}
     }
 
 
-
-    // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+	// this doesn't incorporate distance (not yet, anyway)
+	if (0.5 > Math.random() && this.dexterity > other.dexterity) // there's a 50% chance this character wants to flee, and it will be successful if it's fast enough
+	    return true;
+	else
+	    return false;
     }
 
 
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
     public int encounter(Character other) {
-	return 0;
+	if (0.5  > Math.random()) {
+	    System.out.println(this + " tried to flee.");
+	    boolean fleesuccess = other.flee(other);
+	    if (fleesuccess == true) {
+		this.experience += 1;
+		System.out.println("Fleed successfully.");
+		System.out.println();
+		return 0;
+	    }
+	    if (fleesuccess == false) {
+		System.out.println("Failed to flee.");
+		System.out.println();
+		return 1;
+	    }
+	}
+	else {
+	    this.attack(other);
+	    if (other.health > 0)
+		other.attack(this);
+	}
+	if (this.health == 0 && other.health == 0) {
+	    System.out.println(this + " and " + other + " died.");
+	    System.out.println();
+	    return 4;
+	}
+	else if (this.health == 0) {
+	    System.out.println(this + " died.");
+	    System.out.println();
+	    return 2;
+	}
+	else if (other.health == 0) {
+	    System.out.println(other + " died.");
+	    System.out.println();
+	    return 3;
+	}
+	else {
+	    System.out.println("No character killed.  Battle continues.");
+	    System.out.println();
+	    return 5;
+	}
     }
 
 
@@ -145,32 +145,42 @@ public class Character {
 				     strength, dexterity, intelligence);
 	String attrib2=String.format("Exp: %d Health: %d of %d",
 				     experience,health,maxhealth);
-	String locale = String.format("x: %5.2f y: %5.2f",x,y);
-	String whole=String.format("%s\n%s\n%s\n%s\n",
-				   name,attrib1,attrib2,locale);
+	//String locale = String.format("x: %5.2f y: %5.2f",x,y);
+	String whole=String.format("\t%s\n\t%s\n\t%s\n",
+				   name,attrib1,attrib2);//locale);
 	return whole;
     }
 
+    public void setHealth(int i) {health = i;}
+    public int getHealth() {return health;}
 
-    public String toString() {
-	return name;
-    }
-    
+    public void setMaxHealth(int i) {maxhealth = i;}
+    public int getMaxHealth() {return maxhealth;}
+
+    public void setDexterity(int i) {dexterity = i;}
+    public int getDexterity() {return dexterity;}
+
+    public void setStrength(int i) {strength = i;}
+    public int getStrength() {return strength;}
+
+    public void setIntelligence(int i) {intelligence = i;}
+    public int getIntelligence() {return intelligence;}
+
+    public void setExperience(int i) {experience = i;}
+    public int getExperience() {return experience;}
+
+    public void setGold(int i) {gold = i;}
+    public int getGold() {return gold;}
+
+    public void setDistance(double d) {distance = d;}
+    public double getDistance() {return distance;}
+
+    public void setName(String s) {name = s;}
+    public String getName() {return name;}
+
+    public void setCharClass(String s) {charClass = s;}
+    public String getCharClass() {return charClass;}
+
+    public String toString() {return name;}
+
 }
-
-
-/*
-
-Attributes
-
-For a human, each attribute starts at 8 and you have 8 additional points to distribute. A PC can use user input to generate the characters or you can do it randomly. An NPC should randomly set the attributes. Other races can have different starting points and point allotments. Likewise you can start specific characters with certain strengths and weaknesses.
-
-Combat
-
-To hit an opponent, you have to roll your dexterity or less on three six sided dice.
-
-For distance weapons, the in the real game you subtracted 1 from your dexterity for the purposes of the roll per grid space travelled. You would make the adjustment based on the distance between the two characters.
-
-Damage is based on the weapon you use and the weapons you can use are based on strength, k.
-
-*/
