@@ -1,12 +1,12 @@
 import java.util.*;
 
-public class MrMoran extends Character {
+public class Moran extends Character {
 
     private boolean loot; // true for weapon, false for armor
 
     Random r = new Random(); 
 
-    public MrMoran(String n, Character player) {
+    public Moran(String n, Character player) {
         super(n);
         npcInit(player);
         loot = r.nextBoolean();

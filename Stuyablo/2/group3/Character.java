@@ -32,9 +32,8 @@ public class Character {
     }
 
     public void npcInit(Character player) {
-        /*xcor = (int) (Math.random() * gridRange * 2 - gridRange);
-        ycor = (int) (Math.random() * gridRange * 2 - gridRange);*/
-        xcor=ycor=0;
+        xcor = (int) (Math.random() * gridRange * 2 - gridRange);
+        ycor = (int) (Math.random() * gridRange * 2 - gridRange);
 
         // Code used for balancing strength of player and nonplayers
         level = player.level;
@@ -59,18 +58,20 @@ public class Character {
     }
 
     public double getDistance(Character other) {
-        double sq1 = Math.pow(xcor, 2) + Math.pow(ycor, 2);
-        double sq2 = Math.pow(other.xcor, 2) + Math.pow(other.ycor, 2);
+        double sq1 = Math.pow(xcor - other.xcor, 2);
+        double sq2 = Math.pow(ycor - other.ycor, 2);
         return Math.sqrt(sq1 + sq2);
     }
 
-    protected void encounter(Character[] npc) {
-        for (int i=0; i<npc.length; i++) {
+    protected boolean encounter(Character[] npc) {
+        for (int i=0; i<npc.length-1; i++) {
             if (getDistance(npc[i]) < 1.5) {
                 setEnemy(npc[i]);
-                break;
+                return true;
             }
         }
+        System.out.println("There are no nearby enemies!");
+        return false;
     }
 
     // Dummy method since Java won't compile if you're in the superclass calling a subclass method that works perfectly fine

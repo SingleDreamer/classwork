@@ -1,9 +1,9 @@
 import java.io.*;
 import java.util.*;
 
-public class Warrior extends Character{
+public class Theif extends Character{
     
-    public Warrior(String name){
+    public Theif(String name){
         super(name);
     }
 
@@ -20,9 +20,9 @@ public class Warrior extends Character{
           arrow(far range)*/
 
         System.out.println("Choose your attack:");
-        System.out.println("Press 1 to use your hammer");
-        System.out.println("Press 2 to use your sword");
-        System.out.println("Press 3 to use your bow and arrow");
+        System.out.println("Press 1 to use your pistol");
+        System.out.println("Press 2 to use your dagger");
+        System.out.println("Press 3 to use steal");
 
         Scanner sc=new Scanner(System.in);
         int answer=sc.nextInt();
@@ -34,7 +34,7 @@ public class Warrior extends Character{
             int c=(dice1[new Random().nextInt(dice1.length)]);
             if ((a+b+c)<this.dexterity) {
             //if x,y coors are <2 or something (something small)
-                System.out.println(this.name + " whacked " + other.name +" with a hammer!");
+                System.out.println(this.name + " shot " + other.name +" with a pistol!");
 		return super.attack(other);
             }
             else {
@@ -49,7 +49,7 @@ public class Warrior extends Character{
             int b=(dice1[new Random().nextInt(dice1.length)]);
             int c=(dice1[new Random().nextInt(dice1.length)]);
             if ((a+b+c)<this.dexterity) {
-                System.out.println(this.name + " slashed " + other.name + " with a sword!");
+                System.out.println(this.name + " stabbed " + other.name + " with a dagger!");
                 return super.attack(other);
             }
             else {
@@ -64,7 +64,7 @@ public class Warrior extends Character{
 	    int b=(dice1[new Random().nextInt(dice1.length)]);
 	    int c=(dice1[new Random().nextInt(dice1.length)]);
 	    if ((a+b+c)<this.dexterity) {
-		System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
+		System.out.println(this.name + " stole " + other.name + "'s health!");
 		return super.attack(other);
 	    }
 	    else {

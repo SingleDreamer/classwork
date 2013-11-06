@@ -34,18 +34,18 @@ public class Wizard extends Character {
 	while (this.health > 0 || other.health > 0){
 	   
 	    if (answer == 1){
-		if (roll() >= this.dexterity) {
-		    if (mana >= 8){
-			other.takedamage(8);
-			mana = mana - 8;
-			say (this.name + " has unleashed a FIREBALL upon " + other.name);
-			say (other + " has lost " + "8" + " health points and has "+other.getHealth()+" health points left");
-			//return super.attack(other);
-		    }		
-		    else{
-			System.out.println("You don't have enough mana!");
-		    }
-		}
+			if (roll() >= this.dexterity) {
+			    if (mana >= 8){
+					other.takedamage(8);
+					mana = mana - 8;
+					say (this.name + " has unleashed a FIREBALL upon " + other.name);
+					say (other + " has lost " + "8" + " health points and has "+other.getHealth()+" health points left");
+					//return super.attack(other);
+				    }		
+			    else{
+				System.out.println("You don't have enough mana!");
+			    }
+			}
 	    }
 	    else if (answer == 2){
 		if (roll() >= this.dexterity) {

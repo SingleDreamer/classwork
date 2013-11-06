@@ -10,16 +10,16 @@ public class Nonplayer extends Character {
 	name = n;
     }
 
-    public setStrength(int n){
-	strength = n;
+    public void setStrength(){
+	strength = 8+level;
     }
 
-    public setDexterity(int n){
-	dexterity = n;
+    public void setDexterity(){
+	dexterity = 8+level;
     }
 
-    public setIntelligence(int n){
-	intelligence = n;
+    public void setIntelligence(){
+	intelligence = 8 + level;
     }
 
     public void attack(Character c){
@@ -48,7 +48,7 @@ public class Nonplayer extends Character {
             cooldown = cooldown - 1;	
 	if (hit()){
             c.loseHealth(damage);
-            System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!\n");
+            System.out.println (name + " has attacked " + c + " with " + aname + " and did " + damage + " damage!\n");
         }
         else {
             System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
@@ -70,7 +70,7 @@ public class Nonplayer extends Character {
         }
 	if (hit()){
             c.loseHealth(damage);
-            System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!\n");
+            System.out.println (name + " has attacked " + c + " with " + aname + " and did " + damage + " damage!\n");
         }
         else {
             System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
@@ -92,7 +92,7 @@ public class Nonplayer extends Character {
         }
 	if (hit()){
             c.loseHealth(damage);
-            System.out.println (name + " has attacked " + c + " with " + aname + "and did " + damage + " damage!\n");
+            System.out.println (name + " has attacked " + c + " with " + aname + " and did " + damage + " damage!\n");
         }
         else {
             System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
