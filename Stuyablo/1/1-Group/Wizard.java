@@ -31,7 +31,7 @@ public class Wizard extends Character {
 	//System.out.println (hit);
 	
 	while (this.health > 0 || other.health > 0){
-	    if (hit <= this.dexterity) {
+	    if (roll <= this.dexterity) {
 		if (answer == 1){
 		    if (mana >= 8){
 			other.takedamage(8);
