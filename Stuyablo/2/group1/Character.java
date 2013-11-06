@@ -96,12 +96,13 @@ public class Character {
 
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
-	System.out.print("What would you like to be? Warrior? Wizard?");
-	if (sc.nextLine().equals("Warrior")) {
+	System.out.print("What would you like to be? Warrior? Wizard?\n");
+	String input = sc.nextLine();
+	if (input.equals("Warrior")) {
 	    Warrior w = new Warrior(name);
 	    System.out.println("Woo, You're a warrior");
 	}
-	else if (sc.nextLine().equals("Wizard")) {
+	else if (input.equals("Wizard")) {
 	    Wizard w = new Wizard(name);
 	    System.out.println("Woo, you're a Wizard");
 	}
