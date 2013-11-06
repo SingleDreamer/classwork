@@ -16,6 +16,8 @@ public class Goblin extends Character {
 	health = maxhealth;
 	experience = 0;
 	name = nameGob;
+	level = 1;
+	expBase = 50;
     }
 
 	   
