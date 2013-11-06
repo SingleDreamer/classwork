@@ -22,40 +22,53 @@ public class Character {
     }
     
     public Character(){
-	init ("M Zams", "Moran", 12, 8, 12, 0);
-    }
-
-    public Character(String name, String charType){
-	int s = 0;
-	 int dex = 0;
-	 int def = 0;
-	 int mh = 0;
-	 int ch = 0;
-
-	if (charType.equals("Moran")){
-		 s = 12;
-		 dex = 8;
-		 def = 12;
-		 mh = s;
-		 ch = 0;
-	    }
-
-	if (charType.equals("Wizard")){
-		 s = 11;
-		 dex = 13;
-		 def = 8;
-		 mh = s;
-		 ch = 1;
-	    }
-	
-	if (charType.equals("Zhang")){
-	     s = 11;
-	     dex = 8;
-	     def = 13;
-	     mh = s;
-	     ch = 2;
+	Scanner sc = new Scanner (System.in);
+	System.out.println("Enter your name:");
+	name = sc.next();
+	System.out.println("Choose your class. 1-Moran, 2-Wizard, 3-Zhang, 4- Warrior, Any other number- Student");
+	int cl = sc.nextInt();
+	if (cl == 1){
+	    charType="Moran";
+	    s = 12;
+	    dex = 8;
+	    def = 12;
+	    mh = s;
+	    ch = 0;
 	}
-
+	else if (cl == 2){
+	    charType="Wizard";
+	    s = 11;
+	    dex = 13;
+	    def = 8;
+	    mh = s;
+	    ch = 1;
+	}
+	else if (cl == 3){
+	    charType="Zhang";
+	    s = 11;
+	    dex = 8;
+	    def = 13;
+	    mh = s;
+	    ch = 2;
+	}
+	else if (cl == 3){
+	    charType="Warrior";
+	    s = 13;
+	    dex = 8;
+	    def = 11;
+	    mh = s;
+	    ch = 1;
+	}
+	else {
+	    charType="Student";
+	    s = 10;
+	    dex = 12;
+	    def = 12;
+	    mh = s;
+	    ch = 2;
+	}
+    }
+    public void setStats(){
 	Scanner scanner = new Scanner (System.in);
 	System.out.println("You may now choose certain apsects of your atributes");
 	try {
@@ -91,6 +104,14 @@ public class Character {
 	catch (Exception a){
 	    // intentionally empty...nothing happens
 	}
+	System.out.println("Warriors have high strength and good defense, but dexterity is low. Their charm is above Moran's, though.");
+	try {
+            Thread.sleep(3000); // pauses for 3 seconds
+        }
+        catch (Exception a){
+            // intentionally empty...nothing happens
+        }
+	System.out.println("Guess the stats of students!");
 
 	int i = 8;
 

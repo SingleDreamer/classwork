@@ -4,31 +4,14 @@ public class Driver {
     public static void main(String[] args) {
 	//Character c = new Character(); Zamnaksy's
 	//System.out.println(c.getStatus()); Zamansky's
-	
+
 	//PLEASE KEEP INPUT=The user input and PROMPT=What we print out
 	Helper h = new Helper();
+	Warrior w = new Warrior();
 	//System.out.println(w.getStatus()); Testing
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Whatst isst thoust's namest: ");
 	String nameInput = sc.nextLine();
-        Character w = new Character();
-	boolean u = false;
-	while (u==false) {
-	    System.out.println("Whatst classt dost thoust desirest to be?");
-	    String classc=sc.nextLine() ;
-	    if (classc.equals( "Warrior")) {
-		w= (Warrior)(w);
-		u=true;
-	    }
-	    else if (classc.equals( "Thief")) {
-	        w= (Thief)(w);
-		u=true;
-	    }
-	    else{
-		System.out.println("Try again...");
-	    }
-	}
-	
 	h.pause();
 	System.out.println("\nWelcome bold adventure " + nameInput);
 	w.setName(nameInput);
@@ -59,7 +42,6 @@ public class Driver {
 	}
     
 	System.out.println("You have encountered a burly ogre!");
-
 	Ogre o = new Ogre();
 	String fightInput = "";
 	while ((w.getHealth() > 0) && (o.getHealth() > 0)){
