@@ -29,12 +29,12 @@ public class Driver {
 	System.out.println("-------------------------------");
 	System.out.println("It's "+ enemy.toString() +"! \n What will you do?: ");
 	while (enemy.getHealth() > 0 && player.getHealth() > 0){
-	    System.out.print("Fight/Flee\n");
+	    System.out.print("(1)Fight or (2)Flee\n");
 	    String input = sc.nextLine();
-	    if (input.equalsIgnoreCase("Fight")){
+	    if (input == 1){
 		player.attack(enemy);
 		}
-	    else if (input.equalsIgnoreCase("Flee")){
+	    else if (input == 2){
 		System.out.println("You coward...");
 	    }
 	    else
