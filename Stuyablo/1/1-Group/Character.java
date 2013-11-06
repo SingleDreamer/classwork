@@ -11,80 +11,81 @@ public class Character {
     protected String charClass;
 
     public Character(String n){
-	name = n;
+        name = n;
     }
+
     public void setAttributes(){
-	int dex;
-	int stren;
-	int intell;
-	Random r=new Random();
-	try{
-	    dex=r.nextInt(8)+1;
-	    stren=r.nextInt(8-dex)+1;
-	    intell=8-dex-stren;
-	}
-	catch (Exception e){
-	    dex=3;
-	    stren=3;
-	    intell=2;
-	}
-	health=50;
-	maxhealth=50;
-	dexterity=dex+8;
-	strength=stren+8;
-	intelligence=intell+8;
+        int dex;
+        int stren;
+        int intell;
+        Random r=new Random();
+        try{
+            dex=r.nextInt(8)+1;
+            stren=r.nextInt(8-dex)+1;
+            intell=8-dex-stren;
+        }
+        catch (Exception e){
+            dex=3;
+            stren=3;
+            intell=2;
+        }
+        health=50;
+        maxhealth=50;
+        dexterity=dex+8;
+        strength=stren+8;
+        intelligence=intell+8;
     }
 
     public void chooseClass(){
-	Scanner sc=new Scanner(System.in);
-	boolean answerChoice;
-	answerChoice=false;
-	while (!answerChoice){
+        Scanner sc=new Scanner(System.in);
+        boolean answerChoice;
+        answerChoice=false;
+        while (!answerChoice){
 
-	System.out.println("Press 1 to be a WARRIOR");
-	System.out.println("Press 2 to be a WIZARD");
-	System.out.println("Press 3 to be an OGRE ");
-	System.out.println("Press 4 to be a THEIF");
+        System.out.println("Press 1 to be a WARRIOR");
+        System.out.println("Press 2 to be a WIZARD");
+        System.out.println("Press 3 to be an OGRE ");
+        System.out.println("Press 4 to be a THIEF");
 
-	int answer=sc.nextInt();
+        int answer=sc.nextInt();
 
 
-	    if (answer == 1){
-		charClass="Warrior";
-		answerChoice=true;
-	    }
-	    else if (answer == 2){
-		charClass="Wizard";
-		answerChoice=true;
-	    }
-	    else if (answer == 3){
-		charClass="Ogre";
-		answerChoice=true;
-	    }
-	    else if (answer == 4){
-		charClass="Theif";
-		answerChoice=true;
-	    }
-	    else {
-		System.out.println("That is not a valid key.\n");
-		//doesn't work b/c goes straight to the encounter
-	    }
-	}
-	System.out.println("----------------------");
+            if (answer == 1){
+                charClass="Warrior";
+                answerChoice=true;
+            }
+            else if (answer == 2){
+                charClass="Wizard";
+                answerChoice=true;
+            }
+            else if (answer == 3){
+                charClass="Ogre";
+                answerChoice=true;
+            }
+            else if (answer == 4){
+                charClass="Thief";
+                answerChoice=true;
+            }
+            else {
+                System.out.println("That is not a valid key.\n");
+                //doesn't work b/c goes straight to the encounter
+            }
+        }
+        System.out.println("----------------------");
 
     }
 
     public void randomClass(){
-	Random rand=new Random();
-	int c=rand.nextInt(4)+1;
-	if (c == 1)
-	    charClass="Warrior";
-	if (c == 2)
-	    charClass="Wizard";
-	if (c == 3)
-	    charClass="Ogre";
-	if (c == 4)
-	    charClass="Theif";
+        Random rand=new Random();
+        int c=rand.nextInt(4)+1;
+        if (c == 1)
+            charClass="Warrior";
+        if (c == 2)
+            charClass="Wizard";
+        if (c == 3)
+            charClass="Ogre";
+        if (c == 4)
+            charClass="Theif";
 
 
     }
@@ -94,35 +95,46 @@ public class Character {
     }
 
     public String getName(){
-	return name;
+        return name;
     }
 
     public String getCharClass(){
-	return charClass;
+        return charClass;
     }
 
     /* You have to provide other needed get/set methods */
 
     public void delay (int x) {
-    	try {
-	    Thread.sleep(x);
-	}
-	catch(Exception e){
-	
-	} 
+            try {
+            Thread.sleep(x);
+        }
+        catch(Exception e){
+        
+        } 
     }
 
     //TAKE OUT LATER
+
     public void talk(Character other){
+        System.out.println("herro there");
+    }
+
+    public void talk1(Character other){
 	System.out.println("herro there");
     }
 
     //Something wrong with talk. Commenting out for now
-    /*<- take out
 
+    /*
     public void talk(Character other){
 
+
+        Scanner sc = new Scanner(System.in);
+        say ("you have chosen to talk!");
+        delay (2000);
+
 	Scanner sc = new Scanner(System.in);
+	Random r = new Random(); 
 	say ("you have chosen to talk!");
 	delay (2000);
         say ("type the number corresponding to your choice");
@@ -130,18 +142,29 @@ public class Character {
         say ("1. Hey big guy, you wanna go out for some drinks instead?");
         delay (1000); 
         say ("2. Please, don't you know who I am? I am the greatest swordsman in the East! " + 
-	     "I've been training since I was 3! You don't have any chance of defeating me!" );
+             "I've been training since I was 3! You don't have any chance of defeating me!" );
         delay (1000);
         say ("3. Didn't you know that they're having a body building competition in the next town?" +
-	     " I bet you'd fit right in!");
+             " I bet you'd fit right in!");
         delay (1000);
         int answer = sc.nextInt(); 
-        boolean x = new nextBoolean ();
+        boolean x = r.nextBoolean ();
         if (answer == 1) {
+
+            if (x) {
+                delay (1000); 
+                say ("Sure");
+                //end turn
+            }        
+            else {
+                delay (1000);
+                say ("no way you freak!"); 
+                this.attack(other);
+            }
+
 	    if (x) {
 		delay (1000); 
 		say ("Sure");
-		//end turn
 	    }        
 	    else {
 		delay (1000);
@@ -150,28 +173,28 @@ public class Character {
 	    }
         }
         if (answer == 2) {
-	    if (x) {
-		delay (1000); 
-		say ("sh*t");
-		other.flee(this);
-	    }
-	    else {
-		delay (1000); 
-		say ("bullsh*it"); 
-		this.attack(other);
-	    }
+            if (x) {
+                delay (1000); 
+                say ("sh*t");
+                other.flee(this);
+            }
+            else {
+                delay (1000); 
+                say ("bullsh*it"); 
+                this.attack(other);
+            }
         }
         if (answer == 3) {
-	    if (x) {
-		delay (1000); 
-		say ("...you're a riot, kid. and an idiot");
-		//end turn
-	    }
-	    else {
-		delay (1000);
-		say ("are you serious?");
-		this.attack(other);
-	    }
+            if (x) {
+                delay (1000); 
+                say ("...you're a riot, kid. and an idiot");
+                //end turn
+            }
+            else {
+                delay (1000);
+                say ("are you serious?");
+                this.attack(other);
+            }
         }
         //1="Say something charming";
         //2="Say something intimidating";
@@ -182,90 +205,102 @@ public class Character {
 
     /* <-take out
 
-    	Scanner sc = new Scanner(System.in);
-    	say ("you have chosen to talk!");
-    	delay (2000);
-	say ("type the number corresponding to your choice");
-	delay (2000); 
-	say ("1. Hey big guy, you wanna go out for some drinks instead?");
-	delay (1000); 
-	say ("2. Please, don't you know who I am? I am the greatest swordsman in the East! " + 
-	"I've been training since I was 3! You don't have any chance of defeating me!" );
-	delay (1000);
-	say ("3. Didn't you know that they're having a body building competition in the next town?" +
-	" I bet you'd fit right in!");
-	delay (1000);
-	int answer = sc.nextInt(); 
-	boolean x = new nextBoolean ();
-	if (answer == 1) {
-		if (x) {
-			delay (1000); 
-			say ("Sure");
-			//end turn
-		}	
-		else {
-			delay (1000);
-			say ("no way you freak!"); 
-			this.attack(other);
-		}
-	}
-	if (answer == 2) {
-		if (x) {
-			delay (1000); 
-			say ("sh*t");
-			other.flee(this);
-		}
-		else {
-			delay (1000); 
-			say ("bullsh*it"); 
-			this.attack(other);
-		}
-	}
-	if (answer == 3) {
-		if (x) {
-			delay (1000); 
-			say ("...you're a riot, kid. and an idiot");
-			//end turn
-		}
-		else {
-			delay (1000);
-			say ("are you serious?");
-			this.attack(other);
-		}
-	}
-	//1="Say something charming";
-	//2="Say something intimidating";
-	//3="Say something funny";
-	/*so on and so forth*/
-	/*RESPONSES*/
-	/*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
+            Scanner sc = new Scanner(System.in);
+            say ("you have chosen to talk!");
+            delay (2000);
+        say ("type the number corresponding to your choice");
+        delay (2000); 
+        say ("1. Hey big guy, you wanna go out for some drinks instead?");
+        delay (1000); 
+        say ("2. Please, don't you know who I am? I am the greatest swordsman in the East! " + 
+        "I've been training since I was 3! You don't have any chance of defeating me!" );
+        delay (1000);
+        say ("3. Didn't you know that they're having a body building competition in the next town?" +
+        " I bet you'd fit right in!");
+        delay (1000);
+        int answer = sc.nextInt(); 
+        boolean x = new nextBoolean ();
+        if (answer == 1) {
+                if (x) {
+                        delay (1000); 
+                        say ("Sure");
+                        //end turn
+                }        
+                else {
+                        delay (1000);
+                        say ("no way you freak!"); 
+                        this.attack(other);
+                }
+        }
+        if (answer == 2) {
+                if (x) {
+                        delay (1000); 
+                        say ("sh*t");
+                        other.flee(this);
+                }
+                else {
+                        delay (1000); 
+                        say ("bullsh*it"); 
+                        this.attack(other);
+                }
+        }
+        if (answer == 3) {
+                if (x) {
+                        delay (1000); 
+                        say ("...you're a riot, kid. and an idiot");
+                        //end turn
+                }
+                else {
+                        delay (1000);
+                        say ("are you serious?");
+                        this.attack(other);
+                }
+        }
+        //1="Say something charming";
+        //2="Say something intimidating";
+        //3="Say something funny";
+        /*so on and so forth*/
+        /*RESPONSES*/
+        /*NPC's strength increases, deceases, player's strength increases, decreases, blahblahblah. RANDOM RESPONSE*/
     //<-take out }
 
     /*
+	    if (x) {
+		delay (1000); 
+		say ("...you're a riot, kid. and an idiot");
+	    }
+	    else {
+		delay (1000);
+		say ("are you serious?");
+		this.attack(other);
+	    }
+        }
+    }
 END HERE
 */
+
     public int roll(){
-	
-	Random x = new Random();
-	int dice1 = x.nextInt(6) + 1;
-	int dice2 = x.nextInt(6) + 1;
-	int dice3 =  x.nextInt(6) + 1;
+        
+        Random x = new Random();
+        int dice1 = x.nextInt(6) + 1;
+        int dice2 = x.nextInt(6) + 1;
+        int dice3 =  x.nextInt(6) + 1;
         return dice1+dice2+dice3;
     }
     public void takedamage(int k){
-	health = health - k;
+        health = health - k;
     }
     public void say(String s){
-	System.out.println(s);
+        System.out.println(s);
     }
     public void takegold( Character other){
-	gold = gold + other.gold;
+        gold = gold + other.gold;
     }
     public void loosegold() {
-	gold = 0;
+        gold = 0;
     }
     public void die(){
-	say( name + " has died");
+        say( name + " has died");
     }
 
     public int  attack(Character other) {
@@ -439,6 +474,6 @@ END HERE
     public String toString() {
         return name;
     }
+}
 
     
-}
