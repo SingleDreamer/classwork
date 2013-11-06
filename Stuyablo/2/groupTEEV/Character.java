@@ -31,9 +31,12 @@ public class Character {
 	Scanner s = new Scanner (System.in);
 	System.out.print (" \n" + "Strength: + ");
 	int strengthboost = s.nextInt();
-	if (strengthboost <= points){
+	if ((strengthboost <= points)&&(strengthboost>=0)){
 	    strength = strength + strengthboost;
 	    p = points - strengthboost;
+	}
+	else if (strengthboost < 0){
+	    System.out.print("I'm sorry, but you can't refund points");
 	}
 	else {
 	    System.out.print("Getting a little greedy now?");
@@ -47,9 +50,12 @@ public class Character {
 	Scanner s = new Scanner (System.in);
 	System.out.print (" \n" + "Dexterity: + ");
 	int dexboost = s.nextInt();
-	if (dexboost <= points){
+	if ((dexboost <= points)&&(dexboost >=0)){
 	    dexterity = dexterity + dexboost;
 	    p = points - dexboost;
+	}
+	else if (dexboost < 0){
+	    System.out.print("I'm sorry, but you can't refund points");
 	}
 	else {
 	    System.out.print("Getting a little greedy now?");
@@ -62,9 +68,12 @@ public class Character {
 	Scanner s = new Scanner (System.in);
 	System.out.print (" \n" + "Intelligence: + ");
 	int intboost = s.nextInt();
-	if (intboost <= points){
+	if ((intboost <= points)&&(intboost>=0)){
 	    intelligence = intelligence + intboost;
 	    p = points - intboost;
+	}
+	else if (intboost < 0){
+	    System.out.print("I'm sorry, but you can't refund points");
 	}
 	else {
 	    System.out.print("Getting a little greedy now?");
