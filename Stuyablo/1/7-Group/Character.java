@@ -6,11 +6,12 @@ public class Character {
     protected double x,y,distance;
     protected String name,charClass;
     Random r = new Random ();
-public Character(){
-    name = "name";
-    health = 0;
-    strength = 0;
-}
+    Scanner scc = new Scanner (System.in);
+    public Character(){
+	name = "name";
+	health = 0;
+	strength = 0;
+    }
     /*	Scanner sc =new Scanner(System.in);
 	System.out.print("Enter name: ");
 	name = sc.next();
@@ -156,7 +157,7 @@ public Character(){
 	else {
 
 	    System.out.println(name + " hits the enemy");
-	    other.setHealth(other.getHealth()-damage);
+	    other.setHealth(other.getHealth()- damage);
 	    this.setStrength(this.getStrength()+1);
 	    this.experience = this.experience + 10;
 	    System.out.println(other.name);
@@ -172,8 +173,8 @@ public Character(){
 
     }
 
-    public boolean flee(Character other) {
-	return (this.dexterity - other.dexterity + 10 > r.nextInt (30));
+    public boolean hit (Character other) {
+	return (this.dexterity > r.nextInt (18));
  
     }
 
@@ -181,53 +182,71 @@ public Character(){
 
     public void Battle(int n, Character other){
 	int stat = 0;
-	while (n>=0){
-	    if (n==0){
-		System.out.println("Game Over");
-
-		break;
+	System.out.print ("Do you want to flee? (Y or N)");
+	String s = scc.next ();
+	if (! s.equals ("Y") && ! s.equals ("N")) {
+	    System.out.print ("Do you want to flee? (Y or N)");
+	    s = scc.next ();
+	}
+	
+	if (s.equals ("Y")) {
+	    if (other.hit(this)) {
+		System.out.println (other.getName() + " has successfully fled.");
 	    }
 	    else {
-		if (this.strength > other.strength){
-		    stat=this.encounter(other);
-		    if (stat > 1 && stat < 5){
-			if (stat == 2){
-			    System.out.println("You have died");
-			    
-			}
-			else if (stat == 3){
-			    System.out.println("Your opponent has died");
-			}
-			else if (stat == 4){
-			    System.out.println("You and your opponent have both died");
-			}
-			break;
-		    }
-		    else{
-			n = n-1;
-		    }
+		System.out.println (other.getName() + " has failed at fled.");
+		other.Battle (n , this);
+	    }
+	}
+	else {
+	    while (n>=0){
+		if (n==0){
+		    System.out.println("Game Over");
+
+		    break;
 		}
 		else {
-		    stat = other.encounter(this);
-		    if (stat > 1 && stat < 5){
-			if (stat == 2){
-			    System.out.println("Your opponent has died");
-			 
+		    if (this.dexterity > other.dexterity){
+			stat=this.encounter(other);
+			if (stat > 1 && stat < 5){
+			    if (stat == 2){
+				System.out.println("You have died");
+			    
+			    }
+			    else if (stat == 3){
+				System.out.println("Your opponent has died");
+			    }
+			    else if (stat == 4){
+				System.out.println("You and your opponent have both died");
+			    }
+			    break;
 			}
-			else if (stat == 3){
-
-			    System.out.println("You have died");
-	        
+			else{
+			    n = n-1;
 			}
-			else if (stat == 4){
-
-			    System.out.println("You and your opponent have both died");
-	       
-			}
-			break;
 		    }
-		    else{
-			n = n-1;
+		    else {
+			stat = other.encounter(this);
+			if (stat > 1 && stat < 5){
+			    if (stat == 2){
+				System.out.println("Your opponent has died");
+			 
+			    }
+			    else if (stat == 3){
+
+				System.out.println("You have died");
+	        
+			    }
+			    else if (stat == 4){
+
+				System.out.println("You and your opponent have both died");
+	       
+			    }
+			    break;
+			}
+			else{
+			    n = n-1;
+			}
 		    }
 		}
 	    }
@@ -238,8 +257,8 @@ public Character(){
     public int encounter(Character other) {
 	int ex = 0;
 	if (this.getHealth() > 0 && other.getHealth() > 0){
-	    if (other.flee(this)) {
-		System.out.println(other.name + " flees");
+	    if (other.hit(this)) {
+		System.out.println(other.name + " says hi");
 		System.out.println(other.name);
 		System.out.println("   Health:" + other.getHealth());
 		System.out.println(this.name);
@@ -248,9 +267,9 @@ public Character(){
 		ex= 0;
 	    }
      
-	    else if (this.flee(other)) {
+	    else if (this.hit(other)) {
 		ex = 1;
-		System.out.println(this.name + " flees");
+		System.out.println(this.name + " says hi");
 		System.out.println(other.name);
 		System.out.println("   Health:" + other.getHealth());
 		System.out.println(this.name);
@@ -259,7 +278,9 @@ public Character(){
 
 	    }
 	    else {
+		this.attack (other);
 		other.attack(this);
+		
 		if (this.health <= 0){
 		    if(other.health <= 0) {
 			ex= 4;
@@ -277,70 +298,70 @@ public Character(){
 	}
 	else{
 	    ex = 5;
-		}
+	}
 	     
 	return ex;
     }
 
     /*
-    public String levelUp(String stat) {
-	String result = "Congratulations!";
-	if (stat == "maxhealth") {
-	    maxhealth = maxhealth + 1;
-	    result = "Leveled up maxhp. maxhp = " + maxhp;
-	}
-	else if (stat == "strength") {
-	    strength = strength + 1;
-	    result  = "Leveled up str. str = " + str;
-	}
-	else if (stat == "dexterity") {
-	    dexterity = dexterity + 1;
-	    result  = "Leveled up dex. dex= " + dex;
-	}
-	else if (stat == "intelligence"){
-	    intelligence = intelligence+ 1;
-	    result  = "Leveled up intl. intl = " + intl;
-	}
-	else if (stat == "defense") {
-	    defense = defense + 1;
-	    result  = "Leveled up def. def = " + def;
-	}
-	else {
-	    result = "Unable to level up a stat. Please input one of the following stats to level up: 'maxhp','str', 'dex', 'intl', or 'def'."; }
-	return result;
-    }
+      public String levelUp(String stat) {
+      String result = "Congratulations!";
+      if (stat == "maxhealth") {
+      maxhealth = maxhealth + 1;
+      result = "Leveled up maxhp. maxhp = " + maxhp;
+      }
+      else if (stat == "strength") {
+      strength = strength + 1;
+      result  = "Leveled up str. str = " + str;
+      }
+      else if (stat == "dexterity") {
+      dexterity = dexterity + 1;
+      result  = "Leveled up dex. dex= " + dex;
+      }
+      else if (stat == "intelligence"){
+      intelligence = intelligence+ 1;
+      result  = "Leveled up intl. intl = " + intl;
+      }
+      else if (stat == "defense") {
+      defense = defense + 1;
+      result  = "Leveled up def. def = " + def;
+      }
+      else {
+      result = "Unable to level up a stat. Please input one of the following stats to level up: 'maxhp','str', 'dex', 'intl', or 'def'."; }
+      return result;
+      }
 
-    public String  equipWeapon(String weapon) {
-	String result = "";
-	if( weapon == "Hammer"){
-	    strength = strength + 2;
-	    result = name + " has sucessfully equipped a " + weapon + ".";
-	}
-	else if( weapon == "Sword:"){
-	    strength = strength + 6;
-	    result = name + " has sucessfully equipped a " + weapon + ".";
-	}
-	else {
-	    result =  "Unable to equip weapon. Please select a weapon from the list.";
-	}
-	return result;
-    }
+   `public String  equipWeapon(String weapon) {
+      String result = "";
+      if( weapon == "Hammer"){
+      strength = strength + 2;
+      result = name + " has sucessfully equipped a " + weapon + ".";
+      }
+      else if( weapon == "Sword:"){
+      strength = strength + 6;
+      result = name + " has sucessfully equipped a " + weapon + ".";
+      }
+      else {
+      result =  "Unable to equip weapon. Please select a weapon from the list.";
+      }
+      return result;
+      }
     */
 
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);
 	String attrib2=String.format("Exp: %d Health: %d of %d",
-					     experience,health,maxhealth);
-		String locale = String.format("x: %5.2f y: %5.2f",x,y);
-		String whole=String.format("%s\n%s\n%s\n%s\n",
-					   name,attrib1,attrib2,locale);
-		return whole;
-	    }
+				     experience,health,maxhealth);
+	String locale = String.format("x: %5.2f y: %5.2f",x,y);
+	String whole=String.format("%s\n%s\n%s\n%s\n",
+				   name,attrib1,attrib2,locale);
+	return whole;
+    }
 
 
-	    public String toString() {
-		return name;
-	    }
+    public String toString() {
+	return name;
+    }
     
-	}
+}
