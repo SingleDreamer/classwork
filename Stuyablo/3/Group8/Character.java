@@ -84,7 +84,7 @@ public class Character {
             int Dice = r.nextInt(6) + r.nextInt(6) + r.nextInt(6);
             if (Dice <= this.Dexterity) {
                 this.attack(other);
-                System.out.println("You attacked" + other.toString() + "!");
+                System.out.println("You attacked " + other.toString() + "!");
                 this.experience();
                 if (other.getHealth() > 0) {
                     other.attack(this);
@@ -107,7 +107,7 @@ public class Character {
         int Dice = r.nextInt(6) + r.nextInt(6) + r.nextInt(6);
         if (Dice <= this.Dexterity) {
             damage = true;
-            System.out.println("It's a hit for " + this.toString() + " !");
+            System.out.println("It's a hit for " + this.toString() + "!");
         } else {
             damage = false;
             System.out.println(this.toString() + " Missed!");
@@ -126,8 +126,8 @@ public class Character {
                 Level = Level + 1;            
                 experience = 0;
 		for (int i=2;i>0;i--) {
-		    System.out.print("You have " + i + " points to distribute. Where would you like to upgrade? (enter s for Strength, i for Intelligence, d for Dexterity");
-		    String pt = s.nextLine();
+		    System.out.print("You have " + i + " points to distribute. Where would you like to upgrade? (enter s for Strength, i for Intelligence, d for Dexterity) ");
+		    String pt = sc1.nextLine();
 		    if (pt.equals("s")) {
 			Strength = Strength + 1;
 		    } else if (pt.equals("i")) {
