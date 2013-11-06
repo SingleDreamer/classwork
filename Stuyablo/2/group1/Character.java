@@ -6,7 +6,7 @@ public class Character {
     protected String name;
     protected String charclass="none";
     protected int health,maxHealth;
-    protected int dexterity,strength,intelligence;
+    protected int dexterity=8,strength=8,intelligence;
     protected int points;
     protected int exp=0,lvl=1;
     protected int x,y;
@@ -96,14 +96,14 @@ public class Character {
 
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
-	System.out.print("What would you like to be? Warrior? Wizard?");
+	System.out.print("What would you like to be? Warrior? Wizard? ");
 	if (sc.nextLine().equals("Warrior")) {
-	    Warrior w = new Warrior(name);
 	    System.out.println("Woo, You're a warrior");
+	    Warrior w = new Warrior(name);
 	}
 	else if (sc.nextLine().equals("Wizard")) {
-	    Wizard w = new Wizard(name);
 	    System.out.println("Woo, you're a Wizard");
+	    Wizard w = new Wizard(name);
 	}
 	else {
 	    System.out.println("Silly you, ponies aren't a choice");
@@ -136,6 +136,7 @@ public class Character {
 	    System.out.printf("Only able to add %d points\n",add);
 	}
         strength = strength + add;
+	health = strength;
         points = points - add;
 	System.out.println("-------------------------------");
         System.out.println("You still have " + points + " skill points available");
@@ -185,6 +186,7 @@ public class Character {
     public String getCharclass() {
 	return charclass;
     }
+
 
 }
 
