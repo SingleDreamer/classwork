@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Character {
     protected int health = 100, maxhealth=100;
-    protected int dexterity=10 , strength =10 , intelligence= 10;
+    protected int dexterity=8 , strength =8 , intelligence= 8;
     protected int experience = 0, level = 1;
     protected int gold = 100;
     protected String name;
@@ -45,8 +45,6 @@ public class Character {
     public int encounter(Character other) {
 	return 0;
     }
-
-
 
     public String getStatus() {
 	String cclass = "Character Class: " + charClass;
@@ -111,7 +109,7 @@ public class Character {
 
     public void setStat(){
 	System.out.print ("\n" + "Here are three stat points for you to add.");
-	int points = 3;
+	int points = 8;
 	points = setStrength (points);
 	System.out.print ("\n" + "There are " + points + " points left");
         if (points > 0){
@@ -124,6 +122,22 @@ public class Character {
 	}
 	if (points > 0){
 	    System.out.print ("\n" + "Due to failure to use all your points, they are now gone. -poof-" + "\n");
+	}
+    }
+
+    public void setClass(){
+        Scanner s = new Scanner (System.in);
+	System.out.print ("Are you a Wizard or a Warrior? Please type 'Wizard' or 'Warrior'");
+	String c = s.nextLine();
+	if (c.equals("Wizard")){
+	    charClass = "Wizard";
+	}
+	else if (c.equals("Warrior")){
+	    charClass = "Warrior";
+	}
+	else {
+	    System.out.print ("Silly player. That's not a choice. \n");
+	    setClass();
 	}
     }
 

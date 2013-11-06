@@ -10,13 +10,10 @@
 public class Driver {
 
     public static void main(String[] args) {
-        Character c = new Character();
-        System.out.println(c.getStatus());
-
-	
-	public String multStr(String str,int times) {
-	    
-
-	
+        Player a = new Player("Aida");
+        Ogre b = new Ogre();
+        //a.getStatus();	
+	//a.attack(b);
+	System.out.println(a.encounter(b));
     }
 }

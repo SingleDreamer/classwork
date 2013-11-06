@@ -46,12 +46,12 @@ public class Character {
 
     public void setHp(int hp){this.hp = hp;} //dunno if this will get used much
     public void hurt(int dam) {
-	if (dam<0) {System.out.println("DEBUG: Damage below 0?");}
-	this.hp = this.hp - dam;
+        if (dam<0) {System.out.println("DEBUG: Damage below 0?");}
+        this.hp = this.hp - dam;
     }
     public void heal(int dam) {
-	if (dam<0) {System.out.println("DEBUG: Negative healing?");}
-	this.hp = this.hp + dam;
+        if (dam<0) {System.out.println("DEBUG: Negative healing?");}
+        this.hp = this.hp + dam;
     }
 
     // I put roll method here because roll method is necessary in many 
@@ -59,10 +59,10 @@ public class Character {
 
     
     public void lightAttack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
+        /* do the attack:
+           print out the attempt and the result and update
+           all relavent variables
+        */
         int hitroll = this.roll(3,6);
         System.out.println(this.getName() + " rolled " + hitroll);
         System.out.println(this.getName() + "'s effDex + 1: " + (getEffDx()-1));
@@ -70,8 +70,8 @@ public class Character {
             other.hurt(1);
             System.out.println("Attack successful");
         } else {
-	    System.out.println("Attack missed");
-	}
+            System.out.println("Attack missed");
+        }
     }
 
     public void heavyAttack(Character other) {
@@ -81,18 +81,18 @@ public class Character {
         if (roll < this.getEffDx()-1){ //Minus 1 is to make this attack less accurate
             other.hurt(2);
             System.out.println("Heavy attack successful");
-	    System.out.println("*");
+            System.out.println("*");
         } else {
-	    System.out.println("Attack missed");
-	}
+            System.out.println("Attack missed");
+        }
     }
     
     // returns true if you succesfully flee, false otherwise
     public boolean flee() { //I don't see why you need Character other in parameter
-		boolean success = false;
-		if (this.roll(2, effDex/2) >= dexterity/2) {
-			success = true;
-		}
+                boolean success = false;
+                if (this.roll(2, effDex/2) >= dexterity/2) {
+                        success = true;
+                }
         return success;
     }
 
@@ -114,7 +114,7 @@ public class Character {
 
     */
     public int encounter(Character other,String command) {
-	boolean playerDied = false;
+        boolean playerDied = false;
         boolean opponentDied = false;
         if (command.equals("Light Attack")){
             this.lightAttack(other);
@@ -140,7 +140,7 @@ public class Character {
         System.out.println(this.getStatus());
         System.out.println("Other Character's status: ");
         System.out.println(other.getStatus());
-		
+                
         if (playerDied && opponentDied)
             return 4;
         else if (playerDied)
@@ -152,13 +152,13 @@ public class Character {
     }
 
     public String getStatus() {
-	String attrib1=String.format("Name:%s St: %d Dx: %d Iq: %d",
-				     name, st, dx, iq);
-	String attrib2=String.format("Exp: %d Health: %d of %d",
-				     exp,hp,st);
-	String locale = String.format("x: %5.2f y: %5.2f",x,y);
-	String whole=String.format("%s\n%s\n%s\n",
-				   attrib1,attrib2,locale);
-	return whole;
+        String attrib1=String.format("Name:%s St: %d Dx: %d Iq: %d",
+                                     name, st, dx, iq);
+        String attrib2=String.format("Exp: %d Health: %d of %d",
+                                     exp,hp,st);
+        String locale = String.format("x: %5.2f y: %5.2f",x,y);
+        String whole=String.format("%s\n%s\n%s\n",
+                                   attrib1,attrib2,locale);
+        return whole;
     }
 }
