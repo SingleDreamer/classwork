@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Driver {
     public static void main(String[] args) {
+	Character player,enemy;
 	Random r = new Random();
 	/*Character a,b;
 	a = new Character();
@@ -11,29 +12,29 @@ public class Driver {
 	*/
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Welcome to StuyabloII. \n Enter your name: ");
-	String name = sc.nextLine();
+	name = sc.nextLine();
 	System.out.println("Hello " + name);
 	System.out.println("-------------------------------");
 	
-	if (r.nextDouble > 0.5){
-	    Character player = new Warrior();}
+	if (r.nextDouble() > 0.5){
+	    player = new Warrior(name);}
 	else{
-	    Character player = new Wizard();}
-	if (r.nextDouble > 0.5){
-	    Character enemy = new Ogre();}
+	    player = new Wizard(name);}
+	if (r.nextDouble() > 0.5){
+	    enemy = new Ogre();}
 	else{
-	    Character enemy = new Undead();}
+	    enemy = new Undead();}
 	
 
 	System.out.println("-------------------------------");
-	System.out.println("It's "+ enemy.toString +"! \n What will you do?: ");
+	System.out.println("It's "+ enemy.toString() +"! \n What will you do?: ");
 	while (enemy.getHealth() > 0 && player.getHealth() > 0){
-	    System.out.print("Fight/Flee\n");
+	    System.out.print("(1)Fight or (2)Flee\n");
 	    String input = sc.nextLine();
-	    if (input.equalsIgnoreCase("Fight")){
+	    if (input == 1){
 		player.attack(enemy);
 		}
-	    else if (input.equalsIgnoreCase("Flee")){
+	    else if (input == 2){
 		System.out.println("You coward...");
 	    }
 	    else

@@ -5,7 +5,8 @@ public class Warrior extends Character {
     private int exp=0,lvl=1;
     private int wait;
 
-    public Warrior() {
+    public Warrior(String Name) {
+	name = Name;
 	strength = 12;
 	dexterity = 4;
 	setStat();
@@ -16,20 +17,20 @@ public class Warrior extends Character {
 
     public void attack(Character c) {
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Choose your attack!\n" + "(1) Poke, (2) Stab, (3) SUPERSLASH\n");
-	int atk = sc.nextInt();
+	System.out.print("\nChoose your attack!\n" + "(1) Poke, (2) Stab, (3) SUPERSLASH\n");
+	String atk = sc.nextLine();
 
-	if (atk == 1) {
+	if (atk.equals("1")) {
 	    poke(c);
 	}
-	else if (atk == 2) {
+	else if (atk.equals("2")) {
 	    stab(c);
 	}
-	else if (atk == 3) {
+	else if (atk.equals("3")) {
 	    superslash(c);
 	}
 	else {
-	    System.out.println("Silly " + name + ", you can't kiss them");
+	    System.out.println("\nSilly " + name + ", you can't kiss them");
 	    attack(c);
 	}
     }
@@ -48,13 +49,16 @@ public class Warrior extends Character {
 	Random r = new Random();
 	String atk = "poke";
 	int dmg = (int)(strength*r.nextDouble());
-
+	try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+            }
 	if (hit() == true) {
 	    c.health = c.health - dmg;
-	    System.out.println(name + " has hurt " + c + " with a " + atk + ".");
+	    System.out.println("\n" + name + " has hurt " + c + " with a " + atk + ".");
 	}
 	else {
-	    System.out.println(name + " missed " + c + ".");
+	    System.out.println("\n" + name + " missed " + c + ".");
 	}
 
 	if (wait > 0) {
@@ -65,40 +69,46 @@ public class Warrior extends Character {
     public void stab(Character c) {
 	Random r = new Random();
 	String atk = "stab";
-
+	try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+            }
 	if (wait == 0) {
 	    int dmg = (int)(strength*(0.5 + r.nextDouble()));
 	    if (hit()) {
 		c.health = c.health - dmg;
-		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
+		System.out.println("\n" + name + " has hurt " + c + " with a " + atk + ".");
 	    }
 	    else {
-		System.out.println(name + " missed " + c + ".");
+		System.out.println("\n" + name + " missed " + c + ".");
 	    }
 	    wait = 1;
 	}
 	else {
-	    System.out.println("Sorry, you're too tired to " + atk + ".");
+	    System.out.println("\nSorry, you're too tired to " + atk + ".");
 	}
     }
 
     public void superslash(Character c) {
 	Random r = new Random();
 	String atk = "superslash";
-
+		try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+            }
 	if (wait == 0) {
 	    int dmg = (int)(strength*(1 + r.nextDouble()));
 	    if (hit() == true) {
 		c.health = c.health - dmg;
-		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
+		System.out.println("\n" + name + " has hurt " + c + " with a " + atk + ".");
 		    }
 	    else {
-		System.out.println(name + " missed " + c + ".");
+		System.out.println("\n" + name + " missed " + c + ".");
 	    }
 	    wait = 2;
 	}
 	else {
-	    System.out.println("Sorry, you're too tired to " + atk + ".");
+	    System.out.println("\nSorry, you're too tired to " + atk + ".");
 	}
 
     }	    
