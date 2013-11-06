@@ -85,7 +85,7 @@ public class Character {
         if (c == 3)
             charClass="Ogre";
         if (c == 4)
-            charClass="Theif";
+            charClass="Thief";
 
 
     }
