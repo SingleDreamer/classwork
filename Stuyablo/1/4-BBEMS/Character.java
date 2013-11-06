@@ -1,33 +1,33 @@
 import java.util.*;
 
 public class Character {
+<<<<<<< HEAD
     private int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
+    protected int health, maxhealth, strength, intelligence, dexterity, experience, level, freezecount;
+=======
+    static int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
     protected int health, maxhealth, strength, intelligence, dexterity, experience, level;
+>>>>>>> 5999713c8527d9bfb036613a4bd54c639ee36bbc
     protected String name, characterClass;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
     
     // Constructors
     // This constructor is barebones and doesn't do jack. Someone just put it here to method overload the inherent version. I've one-lined it to clean it.
+    int freezecount = 0;
+
     public Character() {
-
+	
 	if (random.nextInt (3) < 2) {
-	health = maxhealth = strength;strength = random.nextInt (10);
-	intelligence = random.nextInt (10);
-	dexterity = random.nextInt (10);
-experience = 0;level = 1;name = "ANGRY ENEMY";characterClass = "No class";}
-
-    
-
-    else {health = maxhealth = strength;strength = random.nextInt (15);
-	intelligence = random.nextInt (15);
-	dexterity = random.nextInt (15);
-experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";}
-
-}
-
-
-
-
+	    health = maxhealth = strength;strength = random.nextInt (10);
+	    intelligence = random.nextInt (10);
+	    dexterity = random.nextInt (10);
+	    experience = 0;level = 1;name = "ANGRY ENEMY";characterClass = "No class";}
+	else {health = maxhealth = strength;strength = random.nextInt (15);
+	    intelligence = random.nextInt (15);
+	    dexterity = random.nextInt (15);
+	    experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";}
+	
+    }
     // Important constructor - includes scanner functions to prompt for configuration
     public Character (String name, String characterClass) {
 	this.characterClass = characterClass;
@@ -38,13 +38,13 @@ experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
 	if (getCharacterClass().equals ("Thief")) {this.setAttributes(8,4,12);}
 	Scanner scanner2 = new Scanner (System.in);
 	System.out.println ("\n" + "Now it's time to pick your attributes!" + "\n");
-	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+	delay();
 	System.out.println ("You have 8 points to assign among your three attributes: Strength, Dexterity and Intelligence." + "\n");
-	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+	delay();
         System.out.println ("Strength will be your warrior's and theives attack stat, while Intelligence defines your Wizard's prowess in battle." + "\n");
-	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+	delay();
 	System.out.println ("On the other hand, if you want to hit your opponent, then it might be worth investing in Dexterity." + "\n");
-	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+	delay();
         
 	int n = 8;
 	String attributer = "";
@@ -113,13 +113,16 @@ experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
     public void setLevel(int level) {this.level = level;}
     public void setName(String name) {this.name = name;}
     public void setCharacterClass(String characterClass) {this.characterClass = characterClass;}
-
     public void setAttributes(int strength,int intelligence,int dexterity) {this.strength = strength;this.intelligence = intelligence;this.dexterity = dexterity;}    
     public String toString() {
 	return name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
 	    "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity;
     }
     
+    public static void delay() {
+	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+    }	
+
     
     /* public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
 	//Assume attribute1 is vitality, attribute2 is strength, attribute3 is magic and attribute4 is attribute4
@@ -131,13 +134,13 @@ experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
     }
     */
 
-    public void attack(Character other){
+    public void attack(Character other, int damagesource){
 	int damage = 0;
 	int otherDamage = 0;
 	String firstHit = "";
 	// set the damage that is done by this character
 	if (getCharacterClass().equals("Wizard")){
-	    damage = intelligence - random.nextInt (10);
+	    damage = damagesource;
 	}
 	else if ((getCharacterClass().equals("Warrior")) || (getCharacterClass().equals("Thief"))){
 	    damage = strength - random.nextInt (10);
@@ -172,8 +175,8 @@ experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
 		int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled by this character
 		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled by this character
 		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled by this character
-		int sum = one + two + three; // this represents the sum of the results of the three di
-		if (sum <= this.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		int sum = one + two + three; // this represents the sum of the results of the three die
+		if (sum <= this.getDexterity() && this.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    other.setHealth(other.getHealth() - damage); 
 		    System.out.println(this.getName() + "hit" + other.getName());
 		}
@@ -185,7 +188,7 @@ experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
 		int five = random.nextInt(6) + 1; // this represents the number of the second dice that is rolled by other character
 		int six = random.nextInt(6) + 1; // this represents the number of the third dice that is rolled by other character
 		int sum2 = four + five + six; // this represents the sum of the three di
-		if (sum2 <= other.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		if (sum2 <= other.getDexterity()&& other.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    this.setHealth(this.getHealth() - otherDamage); 
 		    System.out.println(other.getName() + "hit" + this.getName());
 		}
@@ -198,7 +201,7 @@ experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
 		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled by other character
 		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled by other character
 		int sum = one + two + three; // this represents the sum of the results of the three di
-		if (sum <= other.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		if (sum <= other.getDexterity() && other.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    this.setHealth(this.getHealth() - otherDamage); 
 		    System.out.println(other.getName() + "hit" + this.getName());
 		}
@@ -210,7 +213,7 @@ experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
 		int five = random.nextInt(6) + 1; // this represents the number of the second dice that is rolled by this character
 		int six = random.nextInt(6) + 1; // this represents the number of the third dice that is rolled by this character
 		int sum2 = four + five + six; // this represents the sum of the three di
-		if (sum2 <= this.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		if (sum2 <= this.getDexterity()&& other.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    other.setHealth(other.getHealth() - damage); 
 		    System.out.println(this.getName() + "hit" + other.getName());
 		}
@@ -234,6 +237,15 @@ experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
 	    System.out.println("Intelligence: " + other.getIntelligence());
 	    System.out.println("Dexterity: " + other.getDexterity());
 	    System.out.println("Experience: " + other.getExperience());
+	    if (this.freezecount > 0) {
+		freezecount = freezecount - 1;
+	    }
+	    if (this.boostcount == 0) {
+		if (this.characterClass == "Wizard") {
+		    this.intelligence = this.intelligence * 0.4;
+		}
+		boostcount = -1;
+	    }
 	}
 	if (this.getHealth() == 0){
 	    System.out.println(this.getName() + "has been defeated by" + other.getName()); // maybe you guys would rather have the winner's name first as opposed to the loser's name first
@@ -251,4 +263,5 @@ experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
     //Also I did not know how to use distance for fighting battles because even if each character has a coordinate for x and a coordinate for y 
     //well it makes sense they the x and y values have to have a certain distance between them for attack to work and we can easily add that
     //I just don't know as the character progresses throughout the game how the x and y coordinates are suppose to adjust to his/her position   
+    
 }

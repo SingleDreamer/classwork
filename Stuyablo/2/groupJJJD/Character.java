@@ -11,13 +11,10 @@ public class Character {
     protected String name;
     protected String charClass;
     protected int roll;
-<<<<<<< HEAD
+
     protected int level;
-	protected double dmgdouble; 
-=======
-    protected int level,dmg;
-    protected double dmgdouble; 
->>>>>>> 82a05de6598f17e982fdf12cbe4ea796ccbd46d3
+	protected double dmg; 
+
  
     public void rollDice() { //a method to use roll the dice -jamesc
 	Random r = new Random();
@@ -49,7 +46,7 @@ public class Character {
 
 	public void calcDmg() {
 	
-	dmgdouble = (((2 * this.level / 5 + 2) * (this.intelligence/2) * this.strength) / 50);
+	dmg = (((2 * this.level / 5 + 2) * (this.intelligence/2) * this.strength) / 50);
 	
 	
 	}
@@ -58,7 +55,7 @@ public class Character {
     rollDice();
     if (roll > this.dexterity) {
     
-    other.health = other.health - this.dmg;
+    other.health = other.health - (int)this.dmg;
     System.out.println(this.toString() + "'s Health: " + this.health);
     System.out.println(other.toString() + "'s Health: " + other.health);
     System.out.println(this.toString() + "'s Damage: " + this.dmg);
@@ -75,7 +72,7 @@ public class Character {
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
    
-   if (this.intelligence > other.intelligence) {
+   if (this.intelligence >= other.intelligence) {
     return true;
     }
     
@@ -99,26 +96,33 @@ public class Character {
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
 
     */
-    public int encounter(Character other) {
+   public int encounter(Character other) {
     //random if other flees, for now, other never flees
-    
-    Scanner sc = new Scanner(System.in);
-    System.out.print("Do you want to flee? y/n");
-    String flee = sc.nextLine();
-    if (flee.equals("y")) {
-    	if (flee(other) == true) {
-			System.out.print("You have fled"); 
-			return 1;   	
-    	}
+	
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Do you want to flee? y/n");
+	String flee = sc.nextLine();
+	if (flee.equals("y")) {
+	    if (flee(other) == true) {
+		System.out.print("You have fled"); 
+		return 1;   	
+	    }
+	}
+    Scanner at= new Scanner(System.in);
+    while (health>0 && other.health>0){
+	System.out.println("Choose your attack ( Press 1 Its all you know) ");
+	String att= sc.nextLine();
+	    if (att.equals("1")){
+		this.attack(other);
+		if (other.health > 0) {
+		    other.attack(this);
+		}	
+	    }
+	    	    System.out.println("Your current Health : " +this.health);
+	    System.out.println("His current Health : " + other.health);}
+    return 0;
     }
-    this.attack(other);
-    if (other.health > 0) {
-    	other.attack(this);
-    }	
     
-	return 0;
-    }
-
 
 
     public String getStatus() {
