@@ -96,8 +96,8 @@ public class Warrior extends Character {
 	else{
 	    System.out.println("In that case, it looks likes you're going to attempt an attack.");
 	    this.attack(other);
-	    //  if (other.health > 0)
-	    //	other.attack(this);
+	      if (other.health > 0)
+	    	other.attack(this);
 	}
 	if (this.health == 0 && other.health == 0) {
 	    System.out.println(this + " and " + other + " died.");

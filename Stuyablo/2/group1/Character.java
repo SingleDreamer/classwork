@@ -6,7 +6,7 @@ public class Character {
     protected String name;
     protected String charclass="none";
     protected int health,maxHealth;
-    protected int dex,str,intelligence;
+    protected int dexterity,strength,intelligence;
     protected int points;
     protected int exp=0,lvl=1;
     protected int x,y;
@@ -119,7 +119,7 @@ public class Character {
 	    add = points;
 	    System.out.printf("Only able to add %d points\n",add);
 	}
-        str = str + add;
+        strength = strength + add;
         points = points - add;
 
         System.out.println("You still have " + points + " skill points available");
@@ -130,7 +130,7 @@ public class Character {
 	    System.out.printf("Only able to add %d points\n",add);
 	}
 
-	dex = dex + add;
+	dexterity = dexterity + add;
 	points = points - add;
 	
 	System.out.printf("%d points put into dexterity\n",add);
