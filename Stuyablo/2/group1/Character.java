@@ -45,7 +45,7 @@ public class Character {
 
     public String getStatus() {
       String attrib1=String.format("Str: %d Dex: %d Int: %d", strength, dexterity, intelligence);
-      String attrib2=String.format("Exp: %d Health: %d of %d", experience,health,maxhealth);
+      String attrib2=String.format("Exp: %d Health: %d of %d", exp,health,maxHealth);
       String locale = String.format("x: %5.2f y: %5.2f",x,y);
       String whole=String.format("%s\n%s\n%s\n%s\n", name,attrib1,attrib2,locale);
       return whole;
@@ -61,27 +61,31 @@ public class Character {
 	System.out.print("Welcome to StuyabloII.\nEnter your name: ");
 	name = sc.nextLine();
 	System.out.println("Hello " + name);
-	setStat();
+	setChar();
     }
 
-    //SETCLASS IS DEFINITELY NOT THE RIGHT WAY TO DO THIS
-    //
-    //public void setWarrior() {
-    //    strength = 12;
-    //    dexterity = 4;
-    //    health = strength;
-    //    Scanner sc = new Scanner(System.in);
-    //    System.out.println("Strength: " + strength);
-    //    System.out.println("Dexterity: " + dexterity);
-    //    setStat();
-    //}
+    public void setChar() {
+	Scanner sc = new Scanner(System.in);
+	System.out.print("What would you like to be? Warrior? Blah?");
+	if (sc.nextLine().equals("Warrior")) {
+	    Warrior w = new Warrior();
+	    System.out.println("Woo, You're a warrio");
+	}
+	else if (sc.nextLine().equals("Blah")) {
+	    System.out.println("Woo, you're a blah");
+	}
+	else {
+	    System.out.println("Silly you, ponies aren't a choice");
+	    setChar();
+	}
+    }
 
     public void setStat() {
 	points = 8;
 	Scanner sc = new Scanner(System.in);
 
 	System.out.println("You have " + points + " skill points available.");
-	System.out.print("Strength = 8 + :");
+	System.out.print("Strength + :");
 	int add = sc.nextInt();
 	if (add > points){
 	    add = points;
@@ -92,7 +96,7 @@ public class Character {
 
         System.out.println("You still have " + points + " skill points available");
 	add = sc.nextInt();
-	System.out.print("Dexterity = 8 + :");
+	System.out.print("Dexterity + :");
 	if (add > points) {
 	    add = points;
 	    System.out.printf("Only able to add %d points\n",add);
@@ -101,8 +105,6 @@ public class Character {
 	dexterity = dexterity + add;
 	points = points - add;
 	
-	System.out.printf("Remaining %d points put into intelligence",points);
-	intelligence += points;
     }
 
     public int getHealth() {
