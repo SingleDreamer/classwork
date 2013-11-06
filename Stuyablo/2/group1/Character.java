@@ -78,7 +78,7 @@ public class Character {
 	health = maxHealth = strength;
     }
 
-<<<<<<< HEAD
+
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
 	System.out.print("What would you like to be? Warrior? Blah?");
@@ -94,7 +94,7 @@ public class Character {
 	    setChar();
 	}
     }
-=======
+
     //SETCLASS IS DEFINITELY NOT THE RIGHT WAY TO DO THIS
     //
     //public void setWarrior() {
@@ -106,7 +106,7 @@ public class Character {
     //    System.out.println("Dexterity: " + dexterity);
     //    setStat();
     //}
->>>>>>> 62a3cda57438aa9c13ea33ff7b8bca6a52b810cd
+
 
     public void setStat() {
 	points = 8;
