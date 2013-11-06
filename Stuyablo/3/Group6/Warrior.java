@@ -14,6 +14,7 @@ public class Warrior extends Character {
 	dexterity = 4 + d;
 	strength = 15 + s;
 	health = strength;
+	maxhealth = health;
 	intelligence = 4 + i;
 	name = "Default Warrior";
 	charClass = "PC";
@@ -31,6 +32,7 @@ public class Warrior extends Character {
 	dexterity = 4 + d;
 	strength = 15 + s;
 	health = strength;
+	maxhealth = health;
 	intelligence = 4 + i;
 	name = n;
 	charClass = "PC";
