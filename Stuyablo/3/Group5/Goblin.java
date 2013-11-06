@@ -20,17 +20,29 @@ public class Goblin extends Character {
 
 
     public void attack(Character other) {
-	int dice = roll();
-	int attackDmg =(int) (strength / 3);
-	if (dexterity <= dice){
-	    System.out.println(name + " successfully slapped " + other);
-	    if (attackDmg > other.health)
-		other.health = 0;
-	    else
-		other.health = other.health - attackDmg;
+		int dice = roll();
+		int attackDmg =(int) (strength / 3);
+		if (dexterity <= dice){
+			try {
+				Thread.sleep(1500);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+		    System.out.println(name + " successfully slapped " + other);
+		    if (attackDmg > other.health)
+			other.health = 0;
+		    else
+			other.health = other.health - attackDmg;
+			}
+		else {
+			try {
+				Thread.sleep(1500);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+	
+			    System.out.println(name + " failed to slap " + other);
+    	}
 	}
-	else
-	    System.out.println(name + " failed to slap " + other);
-    }
 	   
 }
