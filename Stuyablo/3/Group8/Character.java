@@ -19,5 +19,8 @@ public class Character {
 	Health = 20;
     }
     
+    public void encounter {
+	
+    }
 }
 	

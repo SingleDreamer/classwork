@@ -2,32 +2,28 @@ import java.io.*;
 import java.util.*;
 public class Warrior extends Character{
     public Warrior(){//Richard added
-	health = 10;
-	maxhealth = 10;
-	dexterity = 10;
-	strength = 12;
+	health = 20;
+	maxhealth = 20;
+	dexterity = 8;
+	strength = 8;
 	intelligence = 8;
 	name = "Arthur";
 	charClass = "Warrior";
 	damage = strength;
     }
+    /* 
     public void attack(Character other) {
 	Random r=new Random();
-	int roll=r.nextInt(18); /*three six-sided die roll implementation by Ma\
-				  tthew*/
+	int roll=r.nextInt(18); //three six-sided die roll implementation by Matthew
         if (roll < dexterity) {
             System.out.println("A hit!");
-            loseHealth(other,(strength*3)/2);
-            /* do the attack:
-               print out the attempt and the result and update
-               all relavent variables
-	    */
+            loseHealth(other,(damage*3)/2);
         }
         else {
             System.out.println("A miss...");
         }
     }
-
+*/
     
 
 }
