@@ -61,10 +61,10 @@ public class Homework extends Character {
             return false; // Otherwise, die! 
         }
         System.out.println("You finish one homework...");
-        System.out.println("[" + name + " sacrifices 1HP.");
+        System.out.println("[" + name + " sacrifices 1HP.]");
         hp = hp * 2; 
         System.out.println("But your teachers simply assign more! The swarm grows.");
-        System.out.println("[" + name + " has doubled its HP to " + hp);
+        System.out.println("[" + name + " has doubled its HP to " + hp + "]");
         return true;        
     }
 
