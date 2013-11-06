@@ -52,6 +52,7 @@ This makes the choice to increase intelligence a much more difficult one that de
 It has four possible attacks, randomly selected.
 
 Probabilities of attacks:
+
 | Attack | Chance |
 | ------ | ------ |
 | Standard Attack | 50% | 
