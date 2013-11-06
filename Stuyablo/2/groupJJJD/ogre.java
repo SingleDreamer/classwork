@@ -1,7 +1,11 @@
 public class ogre extends Character{
     
-    public ogre(String name,int strClass,int dexClass,int intClass){
-	super(name,strClass,dexClass,intClass);
+    public ogre(){
+	strength = 8;
+	health= strength;
+	maxhealth=strength;
+	dexterity= 8;
+	intelligence = 8;
 	
 }
     
