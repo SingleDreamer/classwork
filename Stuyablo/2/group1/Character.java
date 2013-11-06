@@ -54,6 +54,7 @@ public class Character {
 	    String input = sc.nextLine();
 	    if (input.equals("1")){
 		this.attack(other);
+		other.attack(this);
 		}
 	    else if (input.equals("2")){
 		this.flee();
