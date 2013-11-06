@@ -9,6 +9,7 @@ public class Driver {
 	for(int turn = 1;w.Health>0 && a.Health>0;turn++) {
 	    System.out.println("Round " + turn);
 	    w.encounter(a);
+	    System.out.println("----------------------");
 	}
 	if (w.Health==0) {
 	    System.out.println("The enemy won!");
