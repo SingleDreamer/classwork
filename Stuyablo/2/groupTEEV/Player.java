@@ -174,7 +174,11 @@ public class Player extends Character {
 	if (ans == 1){
 	    if (health < maxhealth){
 		int amt = maxhealth - health;
-		gold = gold - (maxhealth - health);
+		if ((gold - (maxhealth - health)) >= 0)
+		    gold = gold - (maxhealth - health);
+		else{
+		    System.out.println("You do not have the gold for that.");
+		    action()
 		health = maxhealth;
 		System.out.println("Your health is now max. Used " + amt + " gold.\n");
 	    }
