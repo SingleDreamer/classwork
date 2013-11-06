@@ -172,9 +172,13 @@ public class Character {
     public void play(int n) {
 	while (n>0) {
 	    Ogre o=new Ogre();
-	    this.encounter(o);
+	    n=this.encounter(o);
+	    if (n==2) {
+		break;
+	    }
 	    n=n-1;
 	}
+	System.out.println("You lost");
     }
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",

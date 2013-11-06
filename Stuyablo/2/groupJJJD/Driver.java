@@ -1,9 +1,11 @@
-import java.util.*;
-import java.io.*;
-
 public class Driver {
     public static void main(String[] args) {
-	Character c = new Character();
-	System.out.println(c.getStatus());
+	Warrior w = new Warrior("James",5,2,1);
+	System.out.println(w.getStatus());
+	Warrior wbot = new Warrior("Bot",0,0,0);
+	System.out.println(wbot.getStatus());
+	
+	System.out.println(w.dmgdouble);
+	
     }
 }
