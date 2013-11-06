@@ -42,7 +42,7 @@ public class Character {
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
 
     */
-    public int encounter(Character other) {
+    public int encounter() {
 	return 0;
     }
 
