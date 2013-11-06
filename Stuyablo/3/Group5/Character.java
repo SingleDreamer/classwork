@@ -52,13 +52,13 @@ public class Character {
     }
 
     // returns true if you succesfully flee, false otherwise
-  public boolean flee() {
-    int roll = this.roll();
-    if (roll < this.dexterity && roll%2==0)
-      return true;
-    else
-      return false;
-  }
+    public boolean flee() {
+	int roll = this.roll();
+	if (roll < this.dexterity && roll%2==0)
+	    return true;
+	else
+	    return false;
+    }
 
 
     /*
@@ -72,7 +72,7 @@ public class Character {
       Otherwise, call attack on both sides:
       this.attack(other);
       if (other.health>0) 
-        other.attack(this);
+      other.attack(this);
 
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
 
@@ -89,9 +89,15 @@ public class Character {
 	}
 	System.out.println(c + " attacks " + other);
 	c.attack(other);
+	System.out.println(c + "'s current health:" + c.health);
+	System.out.println(other + "'s current health:" + other.health);
+	System.out.println("~~~~~~~~~~~~~~");
 	if (other.health > 0){
 	    System.out.println(other + " attacks " + c);
 	    other.attack(c);
+	    System.out.println(c + "'s current health:" + c.health);
+	    System.out.println(other + "'s current health:" + other.health);
+	    System.out.println("~~~~~~~~~~~~~~~~");
 	    if (c.health == 0) {
 		System.out.println(c + " dies");
 		other.experience();
@@ -104,7 +110,7 @@ public class Character {
 	    return 3;
 	}
 	return 5;
-  }
+    }
 
     public void experience(){
 	experience += 10;
@@ -125,19 +131,19 @@ public class Character {
 	}
     }
 
-  public String getStatus() {
-    String attrib1=String.format("Str: %d Dex: %d Int: %d",
-    			     strength, dexterity, intelligence);
-    String attrib2=String.format("Exp: %d Health: %d of %d",
-    			     experience,health,maxhealth);
-    String whole=String.format("%s\n%s\n%s\n",
-    			   name,attrib1,attrib2);
+    public String getStatus() {
+	String attrib1=String.format("Str: %d Dex: %d Int: %d",
+				     strength, dexterity, intelligence);
+	String attrib2=String.format("Exp: %d Health: %d of %d",
+				     experience,health,maxhealth);
+	String whole=String.format("%s\n%s\n%s\n",
+				   name,attrib1,attrib2);
 	return whole;
-  }
+    }
 
 
-  public String toString() {
-    return name;
-  }
+    public String toString() {
+	return name;
+    }
     
 }
