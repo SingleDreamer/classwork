@@ -97,10 +97,7 @@ public class Character {
 	    setChar();
 	}
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 7ed6de04bdaf0fd2d061de14999e36e417e4ba45
     //SETCLASS IS DEFINITELY NOT THE RIGHT WAY TO DO THIS
     //
     //public void setWarrior() {
@@ -112,10 +109,7 @@ public class Character {
     //    System.out.println("Dexterity: " + dexterity);
     //    setStat();
     //}
-<<<<<<< HEAD
-=======
 
->>>>>>> 7ed6de04bdaf0fd2d061de14999e36e417e4ba45
 
     public void setStat() {
 	points = 8;
