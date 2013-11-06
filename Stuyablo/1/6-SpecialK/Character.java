@@ -259,7 +259,7 @@ public class Character {
 		}
 	    }
 	}
-    }
+ 
 
      public void Battle(Character other){
 	int r = 20;
