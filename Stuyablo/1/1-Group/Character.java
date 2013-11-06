@@ -160,7 +160,7 @@ public class Character {
             }
             else {
                 delay (1000); 
-                say ("bullsh*it"); 
+                say ("bullsh*t"); 
                 this.attack(other);
             }
         }
