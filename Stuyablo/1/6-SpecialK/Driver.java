@@ -30,6 +30,7 @@ public class Driver {
 	    else if (choice.equalsIgnoreCase("d")){
 		System.out.println("Thanks for playing, fool");
 		break;
+	    }
 	    else {
 		System.out.println("You can't do that.");
 	    }
