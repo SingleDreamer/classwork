@@ -38,14 +38,14 @@ public class Driver {
             npc[i] = new Ogre("Ogre " + i, player);
         }
         npc[npc.length-1] = new MrMoran("BOSS: MR.MORAN", player);
-            
-        
+
         while (player.health > 0) {
-	    if ( player.exp >= 50 + 2 ** player.level ) {
-		player.lvl = player.lvl + 1;
-		player.exp = 0;
-		System.out.println ( "Congratulations! You have leveled up to level " + player.lvl )
-	    }
+            if (player.exp >= (50 + Math.pow(2, player.level))) {
+                player.level = player.level + 1;
+                player.exp = 0;
+                System.out.println ( "Congratulations! You have leveled up to level " + player.level );
+            }
+
             System.out.println ( "What would you line to do? (Attack nearest enemy(a), explore(e), or talk to friend(t)): ");
             String choice = sc.nextLine();
             if (choice.equalsIgnoreCase("e")) {
