@@ -154,17 +154,18 @@ public class Player extends Character {
 	
     public void action(){
 	Scanner s = new Scanner (System.in);
-	System.out.print("what would you like to do? \n 1: Heal yourself or 2: Fight enemies? or 3: Check Status");
+	System.out.print("what would you like to do? \n 1: Heal yourself or 2: Fight enemies? or 3: Check Status ");
         int ans = s.nextInt();
 	if (ans == 1){
 	    if (health < maxhealth){
 		int amt = maxhealth - health;
 		gold = gold - (maxhealth - health);
 		health = maxhealth;
-		System.out.println("Your health is now max. Used " + amt + " gold.");
+		System.out.println("Your health is now max. Used " + amt + " gold.\n");
 	    }
 	    else {
-		System.out.println("Your health is maxed already!");
+		System.out.println("Your health is maxed already!\n");
+		action();
 	    }
 	}
 	else if (ans == 2){
@@ -175,7 +176,7 @@ public class Player extends Character {
 	    action();
 	}
 	else {
-	    System.out.println("Silly player. That's not a command.");
+	    System.out.println("Silly player. That's not a command.\n");
 	    action();
 	}
     }

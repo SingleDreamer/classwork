@@ -34,7 +34,7 @@ public claass Nonplayer extends Character {
                 damage = strength + 20;
             }
             else {
-                damage = intelligence + 20;
+                damage = intelligence + 25;
             }
             cooldown = 5;
         }
