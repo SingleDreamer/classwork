@@ -92,8 +92,7 @@ Experience points necessary for leveling up are based on `stats`.
 
 | `stats` Reached | `ep` Required |
 | ------- | ------------- |
-| <= 36 | 125 |
-| 
+| <= 36 | 125 || 
 <= 40 | 250 |
 | <= 45 | 1000 |
 | <= 50 | 3000 |
