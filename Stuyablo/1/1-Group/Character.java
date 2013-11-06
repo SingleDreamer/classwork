@@ -31,11 +31,8 @@ public class Character {
         }
         dexterity=dex+8;
         strength=stren+8;
-<<<<<<< HEAD
         health=strength;
-=======
 	health=strength;
->>>>>>> 0eba4e1625531c5b99f732a37f0d6913856d0658
         maxhealth=strength;
         intelligence=intell+8;
     }
@@ -46,12 +43,12 @@ public class Character {
         answerChoice=false;
         while (!answerChoice){
 
-        System.out.println("Press 1 to be a WARRIOR");
-        System.out.println("Press 2 to be a WIZARD");
-        System.out.println("Press 3 to be an OGRE ");
-        System.out.println("Press 4 to be a THIEF");
+	    System.out.println("Press 1 to be a WARRIOR");
+	    System.out.println("Press 2 to be a WIZARD");
+	    System.out.println("Press 3 to be an OGRE ");
+	    System.out.println("Press 4 to be a THIEF");
 
-        int answer=sc.nextInt();
+	    int answer=sc.nextInt();
 
 
             if (answer == 1){
@@ -117,7 +114,6 @@ public class Character {
         } 
     }
     public void intimidate(Character other){
-<<<<<<< HEAD
         Random r = new Random();
         if (intelligence >= other.intelligence){
             int intdif = intelligence - other.intelligence;
@@ -131,10 +127,8 @@ public class Character {
             if (intdif >= 3)
                 health = health - 2;
         }
-    }
-                
-            
-=======
+    
+   
 	Random r = new Random();
 	if (intelligence >= other.intelligence){
 	    int intdif = intelligence - other.intelligence;
@@ -149,9 +143,7 @@ public class Character {
 		health = health - 2;
 	}
     }
-		
-	    
->>>>>>> 0eba4e1625531c5b99f732a37f0d6913856d0658
+	        
 
     public void talk(Character other){
         Scanner sc = new Scanner(System.in);
@@ -174,58 +166,49 @@ public class Character {
 
             if (x) {
                 delay (1000); 
+		say ("Your enemy says:");
                 say ("Sure");
                 say ("you walk off into the sunset with your enemy")
             }        
             else {
                 delay (1000);
+		say ("Your enemy says:");
                 say ("no way you freak!");
-<<<<<<< HEAD
                 intimidate(other);
                 dexterity = dexterity + (r.nextInt(3) - 2);
-=======
-		intimidate(other);
-		dexterity = dexterity + (r.nextInt(3) - 2);
->>>>>>> 0eba4e1625531c5b99f732a37f0d6913856d0658
-                this.attack(other);
+		this.attack(other);
             }
 
         }
         if (answer == 2) {
             if (x) {
                 delay (1000); 
+		say ("Your enemy says:");
                 say ("sh*t");
                 other.flee(this);
             }
             else {
-                delay (1000); 
-<<<<<<< HEAD
+                delay (1000);
                 dexterity = dexterity + (r.nextInt(5) - 2);
                 intimidate(other);
-=======
-		dexterity = dexterity + (r.nextInt(5) - 2);
-		intimidate(other);
->>>>>>> 0eba4e1625531c5b99f732a37f0d6913856d0658
-                say ("bullsh*t"); 
+		say ("Your enemy says:");		
+		say ("bullsh*t"); 
                 this.attack(other);
             }
         }
         if (answer == 3) {
             if (x) {
                 delay (1000); 
+		say ("Your enemy says:");
                 say ("...you're a riot, kid. and an idiot");
                 say("your enemy has left")
             }
             else {
                 delay (1000);
+		say ("Your enemy says:");
                 say ("are you serious?");
-<<<<<<< HEAD
                 dexterity = dexterity + (r.nextInt(4) - 2);
                 intimidate(other);
-=======
-		dexterity = dexterity + (r.nextInt(4) - 2);
-		intimidate(other);
->>>>>>> 0eba4e1625531c5b99f732a37f0d6913856d0658
                 this.attack(other);
             }
         }
@@ -309,11 +292,7 @@ public class Character {
         Random x = new Random();
         if (x.nextInt(intelligence) >= intelligence/2){
             say(this + " has fled");
-<<<<<<< HEAD
             strength = strength - 1;
-=======
-	    strength = strength - 1;
->>>>>>> 0eba4e1625531c5b99f732a37f0d6913856d0658
             other.takegold(this);
             loosegold();
             return true;
