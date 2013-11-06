@@ -29,14 +29,20 @@ public class Warrior extends PC {
 	int weapon = sc.nextInt();
 	if (weapon == 1) {
 	    System.out.println("Pierce!");
-	    Thread.sleep(1000);
+	    try {Thread.sleep(200);
+	    } catch (Exception e){
+		//
+	    }
 	    System.out.println(name + " pierces the " + other.name+"!");
 	    other.health = other.health-strength+defense/2;
 	    System.out.println(name + " deals "+ (strength-defense/2) +" damage!");
 	}
 	else if (weapon ==2) {
 	    System.out.println("Slash!");
-	    Thread.sleep(1000);
+	    try {Thread.sleep(200);
+	    } catch (Exception e){
+		//
+	    }
 	    if (dexterity > roll()) {
 		System.out.println(name + " slashes the " + other.name+"!");
 		other.health = other.health-strength;
