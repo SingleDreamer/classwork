@@ -94,35 +94,6 @@ public class Character {
     }
     */
 
-    public void setChar() {
-	Scanner sc = new Scanner(System.in);
-<<<<<<< HEAD
-	System.out.print("What would you like to be? Warrior? Wizard? ");
-	if (sc.nextLine().equals("Warrior")) {
-=======
-	System.out.print("What would you like to be? Warrior? Wizard?\n");
-	String input = sc.nextLine();
-	if (input.equals("Warrior")) {
-	    Warrior w = new Warrior(name);
->>>>>>> ef390c44a389a69826bae6a12f99a52ebb10f42d
-	    System.out.println("Woo, You're a warrior");
-	    Warrior w = new Warrior(name);
-	}
-<<<<<<< HEAD
-	else if (sc.nextLine().equals("Wizard")) {
-=======
-	else if (input.equals("Wizard")) {
-	    Wizard w = new Wizard(name);
->>>>>>> ef390c44a389a69826bae6a12f99a52ebb10f42d
-	    System.out.println("Woo, you're a Wizard");
-	    Wizard w = new Wizard(name);
-	}
-	else {
-	    System.out.println("Silly you, ponies aren't a choice");
-	    setChar();
-	}
-    }
-
     //SETCLASS IS DEFINITELY NOT THE RIGHT WAY TO DO THIS
     //
     //public void setWarrior() {
