@@ -4,6 +4,9 @@ import java.util.*;
 public class Driver {
 
     public static void main (String[] args) {
+
+        Character[] npc;
+        Random r = new Random();
         Scanner sc = new Scanner(System.in);
      
         System.out.print("Enter your name: ");
@@ -29,8 +32,20 @@ public class Driver {
             }
             else System.out.println ("Misspelled character type");
         }
+
+        npc = new Character[r.nextInt(6) + 5];
+        for (int i=0; i<npc.length-1; i++) {
+            npc[i] = new Ogre("Ogre " + i, player);
+        }
+        npc[npc.length-1] = new MrMoran("BOSS: MR.MORAN", player);
+            
         
         while (player.health > 0) {
+	    if ( player.exp >= 50 + 2 ** player.level ) {
+		player.lvl = player.lvl + 1;
+		player.exp = 0;
+		System.out.println ( "Congratulations! You have leveled up to level " + player.lvl )
+	    }
             System.out.println ( "What would you line to do? (Attack nearest enemy(a), explore(e), or talk to friend(t)): ");
             String choice = sc.nextLine();
             if (choice.equalsIgnoreCase("e")) {

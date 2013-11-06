@@ -8,7 +8,8 @@ public class Character {
     protected int strength; // effects strength of hits
     protected int charm; // effects who goes attempts to hit first in a battle
     protected String name;
-    protected String charType; 
+    protected String charType;
+    protected String winner;
 
     protected void init(String n, String c, int s, int dex, int def, int ch){
 	name = n;
@@ -341,9 +342,27 @@ public class Character {
         else{
 	    this.Battle(other);
 		if (this.getHealth()<=0){
-		    System.out.println("You died.");}
+		    System.out.println("You died.");
+		}
 		else{
-		    System.out.println("You triumphed.");}
+		    System.out.println("You triumphed.");
+		    Random a = new Random();
+		    if (other.getStrength()>0){
+			this.setStrength(this.getStrength() + ((other.getStrength()/10)+1));
+		    }
+		    if (other.getDexterity()>0)
+		    {
+			this.setDexterity(this.getDexterity()+((other.getDexterity()/10)+1));
+		    }
+		    if (other.getDefense()>0){
+			this.setDefense(this.getDefense()+((other.getDefense()/10)+1));
+		    }
+		    this.setHealth(this.getHealth()+2);
+		    if (this.getHealth()>this.getMaxHealth()){
+			this.setHealth(this.getMaxHealth());
+		    }
+		    System.out.println(this.getStatus());
+		}
 	    }
     }   
      public String getStatus() {

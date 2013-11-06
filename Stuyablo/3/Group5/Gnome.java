@@ -1,29 +1,20 @@
 import java.util.*;
 import java.io.*;
 
-public class Player extends Character{
+public class Gnome extends Character{
 
-    public Player(String name){
+    public Gnome(String name){
 	this.name = name;
 	health = 8;
-	dexterity = 8;
-	strength = 8;
-	experience = 0	
+	dexterity = 12;
+	strength = 4;
+	experience = 0;
+	
+	
     }
     
     public boolean flee(){
-	boolean result;
-	Scanner sc = new Scanner(System.in);
-	System.out.println("You have encountered a creature! Press 1 to flee, press 2 to attack");
-	String response = sc.nextLine();
-	if (response.equals("2")){
-	    result = false;
-	    System.out.println("You have decided to attack");
-	} else{
-	    result = true;
-	    System.out.println("Your flight was successful");
-	}
-	return result;
+        return super.flee();
     }
     
     public int encounter(Character other){
@@ -61,7 +52,4 @@ public class Player extends Character{
 
 }
 
-<<<<<<< HEAD
-//Written by Rebecca
-=======
->>>>>>> 7b32cf060ad09ac5aab6eef9c9a6f4add098b39d
+//Written by Claire

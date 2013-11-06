@@ -8,10 +8,11 @@ public class Character {
     protected String charClass;
     protected int xcor, ycor;
     protected int str, dex, iq, health;
-    protected int lvl, exp, skills;
+    protected int level, exp, skills;
     protected int[] weapons = new int[1];
     protected int currentWeapon = 0;
-    protected int armor;
+    protected int[] armors = new int[1];
+    protected int currentArmor = 0;
 
     private Character currentEnemy;
 
@@ -19,8 +20,6 @@ public class Character {
 
     public Character(String n) {
         name = n;
-        xcor = (int) (Math.random() * gridRange * 2 - gridRange);
-        ycor = (int) (Math.random() * gridRange * 2 - gridRange);
         str = dex = iq = health = 8;
         skills = 8;
     }
@@ -28,10 +27,15 @@ public class Character {
     public void playerInit() {
         xcor = 0;
         ycor = 0;
+        armors = new int[] {1}; // Has mama's rags
+        level = 1;
     }
 
-    public void npcInit() {
-
+    public void npcInit(Character player) {
+        this.level = player.level;
+        xcor = (int) (Math.random() * gridRange * 2 - gridRange);
+        ycor = (int) (Math.random() * gridRange * 2 - gridRange);
+        armors = new int[] {r.nextInt(3)};
     }
 
     public String toString() {
@@ -51,16 +55,16 @@ public class Character {
         int dice = r.nextInt(6) + r.nextInt(6) + r.nextInt(6) + 3;
         if (dice == 3) {
             damage *= 3;
-            damage -= currentEnemy.armor;
+            damage -= currentEnemy.armors[currentArmor];
             System.out.println(String.format("You successfully hit %s for %d damage!", currentEnemy, damage));
         }
         else if (dice == 4) {
             damage *= 2;
-            damage -= currentEnemy.armor;
+            damage -= currentEnemy.armors[currentArmor];
             System.out.println(String.format("You successfully hit %s for %d damage!", currentEnemy, damage));
         }
         else if (dice == 5) {
-            damage -= currentEnemy.armor;
+            damage -= currentEnemy.armors[currentArmor];
             System.out.println(String.format("You successfully hit %s for %d damage!", currentEnemy, damage));
         }
         else if (dice == 18) {
@@ -79,7 +83,7 @@ public class Character {
             int yourTestDex = (int) (dex / (Math.random() + 1));
             double chance = yourTestDex / currentEnemy.dex;
             if (chance > 1 || Math.random() < chance) {
-                damage -= currentEnemy.armor;
+                damage -= currentEnemy.armors[currentArmor];
                 System.out.println(String.format("You successfully hit %s for %d damage!", currentEnemy, damage));
             }
             else {
