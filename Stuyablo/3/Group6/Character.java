@@ -8,17 +8,46 @@ public class Character {
     protected double x, y, distance;
     protected String name, charClass;
 
+    // remember to print out players' stats regularly during battle
 
     public Character() {
-	dexterity = 8;
-	strength = 8;
-	intelligence = 8;
+	Random r = new Random();
+	int j = 8;
+	int d = r.nextInt(j);
+	j = j - d;
+	int s = r.nextInt(j);
+	j = j - s;
+	int i = j;
+	dexterity = 8 + d;
+	strength = 8 + s;
+	intelligence = 8 + i;
 	health = strength;
 	maxhealth = 50;
 	experience = 0; 
 	gold = 0;
-	distance = 0;
-	name = "Unnamed Character";
+	//distance = 0;
+	name = "Default Character";
+	charClass = "PC or NPC";
+    }
+
+
+    public Character(String n) {
+	Random r = new Random();
+	int j = 8;
+	int d = r.nextInt(j);
+	j = j - d;
+	int s = r.nextInt(j);
+	j = j - s;
+	int i = j;
+	dexterity = 8 + d;
+	strength = 8 + s;
+	intelligence = 8 + i;
+	health = strength;
+	maxhealth = 50;
+	experience = 0; 
+	gold = 0;
+	//distance = 0;
+	name = n;
 	charClass = "PC or NPC";
     }
  
@@ -35,31 +64,31 @@ public class Character {
 
 
     public void attack(Character other) {
-	System.out.println(this.name + " tried to attack " + other.name + ".");
+	System.out.println(this + " tried to attack " + other + ".");
 	boolean hitsuccess = this.roll();
-	if (hitsuccess == false)
+	if (hitsuccess == false) {
 	    System.out.println("Attack failed.");
+	}
 	if (hitsuccess == true) {
 	    int damage = strength / 2; // damage is half that of strength
 	    System.out.println("Attack succeeded.");
 	    if (other.health <= damage) {
 		other.health = 0;
 		this.experience += other.experience;
-		System.out.println("Opponent defeated.  Experience increased by " + other.experience + "points.");
+		System.out.println(other + " defeated.  " + this + "'s experience increased by " + other.experience + " points.");
 	    }
 	    else
 		other.setHealth(other.health - damage);
-	    System.out.println("Opponent's health has decreased to " + other.getHealth());
+	    System.out.println(other + "'s health has decreased to " + other.getHealth() + ".");
 	    this.experience += 1;
-	    System.out.println("Experience increased by 1 point.");
-	    System.out.println();	    
+	    System.out.println(this + "'s experience increased by 1 point.");
 	}
     }
 
 
     public boolean flee(Character other) {
-	Random r = new Random();
-	if  (distance > (r.nextInt(10) - 5 + distance))
+	// this doesn't incorporate distance (not yet, anyway)
+	if (0.5 > Math.random() && this.dexterity > other.dexterity) // there's a 50% chance this character wants to flee, and it will be successful if it's fast enough
 	    return true;
 	else
 	    return false;
@@ -68,27 +97,45 @@ public class Character {
 
     public int encounter(Character other) {
 	if (0.5  > Math.random()) {
+	    System.out.println(this + " tried to flee.");
 	    boolean fleesuccess = other.flee(other);
 	    if (fleesuccess == true) {
-		other.experience += 1;
+		this.experience += 1;
+		System.out.println("Fleed successfully.");
+		System.out.println();
 		return 0;
 	    }
-	    if (fleesuccess == false)
+	    if (fleesuccess == false) {
+		System.out.println("Failed to flee.");
+		System.out.println();
 		return 1;
+	    }
 	}
 	else {
 	    this.attack(other);
 	    if (other.health > 0)
 		other.attack(this);
 	}
-	if (this.health == 0 && other.health <= 0)
+	if (this.health == 0 && other.health == 0) {
+	    System.out.println(this + " and " + other + " died.");
+	    System.out.println();
 	    return 4;
-	else if (this.health == 0)
+	}
+	else if (this.health == 0) {
+	    System.out.println(this + " died.");
+	    System.out.println();
 	    return 2;
-	else if (other.health == 0)
+	}
+	else if (other.health == 0) {
+	    System.out.println(other + " died.");
+	    System.out.println();
 	    return 3;
-	else
+	}
+	else {
+	    System.out.println("No character killed.  Battle continues.");
+	    System.out.println();
 	    return 5;
+	}
     }
 
 
@@ -98,9 +145,9 @@ public class Character {
 				     strength, dexterity, intelligence);
 	String attrib2=String.format("Exp: %d Health: %d of %d",
 				     experience,health,maxhealth);
-	String locale = String.format("x: %5.2f y: %5.2f",x,y);
-	String whole=String.format("%s\n%s\n%s\n%s\n",
-				   name,attrib1,attrib2,locale);
+	//String locale = String.format("x: %5.2f y: %5.2f",x,y);
+	String whole=String.format("\t%s\n\t%s\n\t%s\n",
+				   name,attrib1,attrib2);//locale);
 	return whole;
     }
 

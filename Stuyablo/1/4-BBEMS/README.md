@@ -2,13 +2,11 @@
 
 Period 1 - Group 4
 
-## Team Members
-
-* Ben Rothman
-* Brian
+* Benjamin Rothman
+* Brian ???
 * Eugene Lee
 * Maria Kollaros
-* Sean
+* Sean Yip
 
 ## Gameplay
 
