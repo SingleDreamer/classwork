@@ -11,7 +11,7 @@ We also put a lot more health than just strength, because characters died a bit 
 It will be multiplied by a factor that will be specific to the characters.
 
 STR (Strength)
---------------
+===============
 
 Decides if you can use certain weapons. Weapons will not be stored by
 name, but rather by value of their damage. To use a weapon of certain damage,
@@ -21,21 +21,21 @@ you must have strength of at least half that damage, with a deviation of
 We haven't implemented weapons yet, but this is a future idea for development.
 
 DEX {Dexterity)
----------------
+===============
 
 Decides whether you hit or miss. Three six-sided die are rolled, if your
 DEX is greater than or equal to the sum of the values rolled, your hit
 will hit, otherwise it will miss. 
 
 IQ
---
+==
 
 For wizards exclusively, this is their ability to learn spells. To learn
 a certain spell, you must have an IQ great enough to use it.
 You can put stat points on it, but it will not have any effect if you are not a mage.
 
 EXPERIENCE
-----------
+==========
 
 You gain 1 exp for each point of damage dealt to the enemy. You require more
 and more points to level each time, and you acquire one point each time you
@@ -59,6 +59,14 @@ The enemy will gain exp upon your fleeing and vice versa.
 ENCOUNTER
 ========
 Although it returns the integer types for the various encounters, we have moved the printline of the fleeing to the flee() method for convenience.
+
+LEVEL UP
+========
+
+After you reach a certain experience, you will level up and you may distribute the point to any of the stats.
+NPCs will do that randomly.
+Health will be replenished.
+Exp requirement will grow each time by 5.
 
 =========================================================================================================================================================================
 
