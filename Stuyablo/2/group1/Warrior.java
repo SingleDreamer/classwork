@@ -5,16 +5,16 @@ public class Warrior extends Character {
     private int exp=0,lvl=1;
     private int wait;
 
-    public Warrior() {
-	str = 12;
-	dex = 4;
-	setStat();
-	health = str;
-	System.out.println("Strength: " + str);
-	System.out.println("Dexterity: " + dex);
+    public void Warrior() {
+	strength = 12;
+	dexterity = 4;
+	super.setStat();
+	health = strength;
+	System.out.println("Strength: " + strength);
+	System.out.println("Dexterity: " + dexterity);
     }
 
-    public void attack(Character c) {
+    public void attack(NPC c) {
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Choose your attack!\n" + "(1) Poke, (2) Stab, (3) SUPERSLASH");
 	int atk = sc.nextInt();
@@ -41,13 +41,13 @@ public class Warrior extends Character {
 	d2 = r.nextInt(6) + 1;
 	d3 = r.nextInt(6) + 1;
 	sum = d1 + d2 + d3;
-	return (sum <= dex);
+	return (sum <= dexterity);
     }
 
-    public void poke(Character c) {
+    public void poke(NPC c) {
 	Random r = new Random();
 	String atk = "poke";
-	int dmg = (int)(str*r.nextDouble());
+	int dmg = (int(str*r.nextdouble()));
 
 	if (hit()) {
 	    c.health = c.health - dmg;
@@ -62,16 +62,16 @@ public class Warrior extends Character {
 	}
     }
 
-    public void stab(Character c) {
+    public void stab(NPC c) {
 	Random r = new Random();
 	String atk = "stab";
 
 	if (wait == 0) {
-	    int dmg = (int)(str*(0.5 + r.nextDouble()));
+	    int dmg = (int(str*(0.5 + r.nextDouble())));
 	    if (hit()) {
 		c.health = c.health - dmg;
-		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
-	    }
+		System.out.println(name + " has hurt " + c + " with a " + atk + ".")
+		    }
 	    else {
 		System.out.println(name + " missed " + c + ".");
 	    }
@@ -82,15 +82,15 @@ public class Warrior extends Character {
 	}
     }
 
-    public void superslash(Character c) {
+    public void superslash(NPC c) {
 	Random r = new Random();
 	String atk = "superslash";
 
 	if (wait == 0) {
-	    int dmg = (int)(str*(1 + r.nextDouble()));
+	    int dmg = (int(str*(1 + r.nextDouble())));
 	    if (hit()) {
 		c.health = c.health - dmg;
-		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
+		System.out.println(name + " has hurt " + c + " with a " + atk + ".")
 		    }
 	    else {
 		System.out.println(name + " missed " + c + ".");

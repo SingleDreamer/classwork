@@ -8,7 +8,6 @@ public class Character {
     protected String charClass;
     protected int xcor, ycor;
     protected int str, dex, iq, health;
-    protected int str, dex, intel, health;
     protected int lvl, exp, skills;
     protected int[] weapons = new int[1];
     protected int currentWeapon = 0;
@@ -22,7 +21,7 @@ public class Character {
         name = n;
         xcor = (int) (Math.random() * gridRange * 2 - gridRange);
         ycor = (int) (Math.random() * gridRange * 2 - gridRange);
-        str = dex = iq = health 8;
+        str = dex = iq = health = 8;
         skills = 8;
     }
 
