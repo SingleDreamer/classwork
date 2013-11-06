@@ -14,6 +14,13 @@ public class Driver {
 	    p = new Rogue();
 	else 
 	    p = new Warrior();
+	String inp = sc.next();
+	if (inp.equals("Rogue")) {
+		Rogue p = new Rogue();
+	}
+	else {
+		Warrior p = new Warrior();
+	}
 	for (int z = 0; z < 50; z ++){
 	    if (r.nextInt(2) < 1){
 		System.out.println("You've encountered something!");
