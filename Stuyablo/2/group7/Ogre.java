@@ -4,7 +4,8 @@ import java.util.*;
 public class Ogre extends Character {
 
     public Ogre(String name) {
-	this.name = name;
+		super(name,10, 6, 4, false);
+	/*this.name = name;
 	Random r = new Random();
 	int str, dex, intel;
 	str = r.nextInt(8);
@@ -15,8 +16,6 @@ public class Ogre extends Character {
 	intelligence = 4 + intel;
 	maxhealth = strength * 10;
 	health = maxhealth;
-    }
-
-
-
+    */
+	}
 }
