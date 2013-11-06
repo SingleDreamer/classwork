@@ -4,6 +4,10 @@ import java.math.*;
 
 public class Npc extends Character {
 
+    public void changeEP(int n) {
+	ep = ep;
+    }
+
     public Npc(String nm, int lv) {
 	name = nm;
 	dexterity = 8;
