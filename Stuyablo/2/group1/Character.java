@@ -121,7 +121,7 @@ public class Character {
 	}
         strength = strength + add;
         points = points - add;
-
+	System.out.println("-------------------------------");
         System.out.println("You still have " + points + " skill points available");
 	System.out.print("Dexterity = 8 + :\n");
 	add = sc.nextInt();
@@ -134,6 +134,7 @@ public class Character {
 	points = points - add;
 	
 	System.out.printf("%d points put into dexterity\n",add);
+	System.out.println("-------------------------------");
 	System.out.printf("Remaining %d points put into intelligence\n",points);
 	intelligence += points;
     }

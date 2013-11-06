@@ -12,22 +12,26 @@ public class Driver {
 	System.out.print("Welcome to StuyabloII. \n Enter your name: ");
 	String name = sc.nextLine();
 	System.out.println("Hello " + name);
+	System.out.println("-------------------------------");
 	
 	Character player = new Warrior();
 
 	Character enemy = new Ogre();
+	System.out.println("-------------------------------");
 	System.out.println("It's an ogre! \n What will you do?: ");
 	while (enemy.getHealth() > 0 && player.getHealth() > 0){
 	    System.out.print("Fight/Flee\n");
-	    if (sc.nextLine().equals("Fight")){
+	    String input = sc.nextLine();
+	    if (input.equals("Fight")){
 		player.attack(enemy);
 		}
-	    else if (sc.nextLine().equals("Flee")){
+	    else if (input.equals("Flee")){
 		System.out.println("You coward...");
 	    }
 	    else
 		System.out.println("Invalid choice");
 	    System.out.println(enemy.getHealth());
+	    System.out.println("-------------------------------");
 	}
 	System.out.println("Someone died...");
     }
