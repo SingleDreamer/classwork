@@ -113,7 +113,7 @@ public class Character {
 	Scanner sc = new Scanner(System.in);
 
 	System.out.println("You have " + points + " skill points available.");
-	System.out.print("Strength = 8 + :");
+	System.out.print("Strength = 8 + :\n");
 	int add = sc.nextInt();
 	if (add > points){
 	    add = points;
@@ -123,7 +123,7 @@ public class Character {
         points = points - add;
 
         System.out.println("You still have " + points + " skill points available");
-	System.out.print("Dexterity = 8 + :");
+	System.out.print("Dexterity = 8 + :\n");
 	add = sc.nextInt();
 	if (add > points) {
 	    add = points;
