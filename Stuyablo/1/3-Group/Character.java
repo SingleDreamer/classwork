@@ -2,60 +2,43 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int health, maxhealth;
+    protected int health, maxhealth; 
     protected int dexterity, strength, intelligence;
-    protected int experience;
-    protected int gold;
+    //determined through npc and pc constructors
+    protected int experience = 0;
+    protected int gold = 0;
     protected double x,y,distance;
+    //determined at start of battle
     protected String name;
+    //constructors
     protected String charClass;
-    protected int damage;//Richard added
-    public Character(){
-	experience = 0;
-	gold = 0;
-    }
+    
     public int getHealth() {
 	return health;
     }
-    public String getName() {
-	return name;
+    public int getDex() {
+	return dexterity;
     }
-    public void setHealth(int n) { 
-	health=n; 
+    public int getStr() {
+	return strength;
     }
-    public void loseHealth(Character other, int i){//Richard added
-	if (i > other.getHealth()){//make it so that i will print appropriately
-	    i = other.getHealth();
-	}
-	other.setHealth( other.getHealth() - i);
-	System.out.println(other.getName()+ " has lost " + i + "health");
-	System.out.println(other.getName()+ " has " + other.getHealth() + " health left.");
-	System.out.println("---------------------------------------------------------------");
+    public int getInt() {
+	return intelligence;
     }
-
-    /* You have to provide other needed get/set methods */
-
+    public int getExp(){
+	return experience;
+    }
 
     public void attack(Character other) {
-	Random r= new Random();
-	int roll=r.nextInt(18); /*three six-sided die roll implementation by Matthew*/
-	if (roll < dexterity) {
-	    System.out.println("A hit!");
-	    loseHealth(other,damage);
-	    /* do the attack:
-	       print out the attempt and the result and update
-	       all relavent variables
-	    */
-	}
-	else {
-	    System.out.println("A miss...");
-	}
+	//nothing so far
     }
 
     // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
-	return true;
+    /*
+      public boolean flee(Character other) {
+	return false;
     }
+    */
 
 
     /*
@@ -75,9 +58,14 @@ public class Character {
 
     */
     public int encounter(Character other) {
+	//the encounter system wil start with s.o.p
+	//System.out.println(this.name + "has encountered a" + other.name);
+	
 	return 0;
     }
-    
+
+
+
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);
@@ -88,9 +76,10 @@ public class Character {
 				   name,attrib1,attrib2,locale);
 	return whole;
     }
-    
+
+
     public String toString() {
-	return name + charClass;
+	return name;
     }
     
 }

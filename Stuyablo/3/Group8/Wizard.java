@@ -8,24 +8,27 @@ public class Wizard extends Character {
     public Wizard () {
 	System.out.println("Your name is:");
 	Name = sc.nextLine();
-	Level = 1
+	Level = 1;
 	Health = 10;
 	Intelligence = 8;
+	Strength = 8;
 	Dexterity = 10;
 	Mana = 12;
     }
 
-    public void attack () {
-	int hit = Mana - 8;
-	//this hit should take into account weapon choice
-	boolean damage = true;
-	Random r = new Random();
-	if (r.nextInt() < 0.5) {
-	    damage = true;
+    public void experience () {
+	if (Level == 10) {
+	    experience = 0;
 	} else {
-	    damage = false;
+	    experience = experience + 5;
+	    if (experience == 100) {
+		Level = Level + 1;
+		Health = Health + 3;
+		Mana = Mana + 2;
+		Dexterity = Dexterity + 1;
+		Intelligence = Intelligence + 1;
+		experience = 0;
+	    }
 	}
-	if (damage==true)
-	    enemy.Health = enemy.Health - hit;
-
+    }
 }

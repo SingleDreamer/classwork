@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Character {
     protected int health = 100, maxhealth=100;
-    protected int dexterity=10 , strength =10 , intelligence= 10;
+    protected int dexterity=8 , strength =8 , intelligence= 8;
     protected int experience = 0, level = 1;
     protected int gold = 100;
     protected String name;
@@ -12,41 +12,6 @@ public class Character {
     public int getHealth() {
 	return health;
     }
-
-    public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
-    }
-
-    // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
-	return false;
-    }
-
-
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
-    public int encounter(Character other) {
-	return 0;
-    }
-
-
 
     public String getStatus() {
 	String cclass = "Character Class: " + charClass;
@@ -66,9 +31,12 @@ public class Character {
 	Scanner s = new Scanner (System.in);
 	System.out.print (" \n" + "Strength: + ");
 	int strengthboost = s.nextInt();
-	if (strengthboost <= points){
+	if ((strengthboost <= points)&&(strengthboost>=0)){
 	    strength = strength + strengthboost;
 	    p = points - strengthboost;
+	}
+	else if (strengthboost < 0){
+	    System.out.print("I'm sorry, but you can't refund points");
 	}
 	else {
 	    System.out.print("Getting a little greedy now?");
@@ -82,9 +50,12 @@ public class Character {
 	Scanner s = new Scanner (System.in);
 	System.out.print (" \n" + "Dexterity: + ");
 	int dexboost = s.nextInt();
-	if (dexboost <= points){
+	if ((dexboost <= points)&&(dexboost >=0)){
 	    dexterity = dexterity + dexboost;
 	    p = points - dexboost;
+	}
+	else if (dexboost < 0){
+	    System.out.print("I'm sorry, but you can't refund points");
 	}
 	else {
 	    System.out.print("Getting a little greedy now?");
@@ -97,9 +68,12 @@ public class Character {
 	Scanner s = new Scanner (System.in);
 	System.out.print (" \n" + "Intelligence: + ");
 	int intboost = s.nextInt();
-	if (intboost <= points){
+	if ((intboost <= points)&&(intboost>=0)){
 	    intelligence = intelligence + intboost;
 	    p = points - intboost;
+	}
+	else if (intboost < 0){
+	    System.out.print("I'm sorry, but you can't refund points");
 	}
 	else {
 	    System.out.print("Getting a little greedy now?");
@@ -111,7 +85,7 @@ public class Character {
 
     public void setStat(){
 	System.out.print ("\n" + "Here are three stat points for you to add.");
-	int points = 3;
+	int points = 8;
 	points = setStrength (points);
 	System.out.print ("\n" + "There are " + points + " points left");
         if (points > 0){
@@ -127,14 +101,28 @@ public class Character {
 	}
     }
 
-    public int getExperience(){
-	return experience;
+    public void setClass(){
+        Scanner s = new Scanner (System.in);
+	System.out.print ("Are you a Wizard or a Warrior? Please type 'Wizard' or 'Warrior'");
+	String c = s.nextLine();
+	if (c.equals("Wizard")){
+	    charClass = "Wizard";
+	}
+	else if (c.equals("Warrior")){
+	    charClass = "Warrior";
+	}
+	else {
+	    System.out.print ("Silly player. That's not a choice. \n");
+	    setClass();
+	}
     }
 
     public String toString() {
 	return name;
     }
     
-
+    public void loseHealth(int n){
+	health = health - n;
+    }
 
 }

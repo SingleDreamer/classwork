@@ -1,5 +1,5 @@
 public class Enemy extends Character {
     public Enemy() {
-	super("Goblin");
+        super("Goblin");
     }
 }

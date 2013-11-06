@@ -14,6 +14,7 @@ public class Character {
     protected int skills;
     protected boolean pc;
     protected int movement;
+    protected boolean here;
 
     private Scanner sc = new Scanner(System.in);
     private Random r = new Random();
@@ -32,6 +33,7 @@ public class Character {
 	skills = 0;
 	pc = playable;
 	movement = 10;
+	here = true;
     }
 
     public Character(String name, int limit) {
@@ -92,7 +94,11 @@ public class Character {
 		    System.out.println("That is not a valid option. Please say <y> or <n>.");
 	    }
 	}
-	    
+	try {
+	    Thread.sleep(2000);
+	} catch (Exception e){
+	    //do nothing here
+	}
 	System.out.println("Your Character " + name + " has been created!");
 	init(name,50,100,str,dex,inte,0,0.0,0.0,true);
     }
@@ -102,24 +108,32 @@ public class Character {
     }
 
     public void battle(Character c2, Character c1) {
-	while (c1.health > 0 && c2.health > 0) {
+	while (c1.health > 0 && c2.health > 0 && c1.here && c2.here) {
 	    if (c1.dexterity >= c2.dexterity) {
 		c1.action(c1, c2);
+		if (c1.here && c2.health > 0)
 		c2.action(c2, c1);
 		System.out.println(c1.name + "'s hp: " + c1.health);
 		System.out.println(c2.name + "'s hp: " + c2.health);
 	    }
 	    else {
 		c2.action(c2, c1);
+		if (c2.here  && c1.health > 0)
 		this.action(c1, c2);
 		System.out.println(c2.name + "'s hp: " + c2.health);
 		System.out.println(c1.name + "'s hp: " + c1.health);
 	    }
 	}
-	if (c1.health <= 0)
-	    System.out.println(c1.name + " has died!");
-	else
-	    System.out.println(c2.name + " has died!");
+	if (c1.health <= 0) {
+	    c2.experience = c2.experience + (int)(50 * ((c1.dexterity + c1.strength + c1.intelligence)/(c2.dexterity + c2.strength + c2.intelligence)));	
+	    System.out.println(c1.name + " has died!"); }
+	else if (!c1.here)
+	    System.out.println(c1.name + " ran away!");
+	else if (!c2.here)
+	    System.out.println(c2.name + " ran away!");
+	else {
+	    c1.experience = c1.experience + (int)(50 * ((c2.dexterity + c2.strength + c2.intelligence)/(c1.dexterity + c1.strength + c1.intelligence)));
+	    System.out.println(c2.name + " has died!"); }
     }	
 
     //flee called in battle
@@ -129,12 +143,16 @@ public class Character {
 	}
 	return false;
     }
-
-    public String talk(Character c){
+        public String talk(Character c){
 	System.out.println("Choices: 1. Say something nice 2. Say something evil 3. Say nothing");
 	int choice = sc.nextInt();
+	try {
+	    Thread.sleep(2000); // how many milliseconds to pause
+	} catch (Exception e) {
+	    // do nothing here 
+	}
 	respond(choice,c);
-
+	
 	return "Generic talk";
     }
 
@@ -278,8 +296,13 @@ public class Character {
 	    switch(command) {
 	    case 1:
 		if (c1.pc) {
-		    System.out.println("Choose an attack: ");
+		    System.out.println("Choose an attack. Enter 1, 2, or 3 (Wizards may also enter 0): ");
 		    c2.health = c2.health - c1.attack(sc.nextInt(),c2);
+		    try {
+			Thread.sleep(2000); // how many milliseconds to pause
+		    } catch (Exception e) {
+			// do nothing here 
+		    }
 		}
 		else
 		    c2.health = c2.health - c1.attack(AIAttack(c2),c2);
@@ -329,12 +352,15 @@ public class Character {
 
 	    case 3:
 		if(flee(c2)){
+		    c2.experience = c2.experience + (int)(50 * ((c1.dexterity + c1.strength + c1.intelligence)/(c2.dexterity + c2.strength + c2.intelligence))*((c1.health/(2*c1.maxHealth))));
 		    System.out.println(c1 + " was able to flee!");
-		    turn();
+		    here = false;
+		    turn = false;
 		}
 		else{
 		    System.out.println(c1 + " was unable to flee!");
-		}
+		    turn = false;
+			}
 		break;
 	    }
 	}
@@ -488,6 +514,7 @@ public class Character {
     }
 
     public void turn(){
+	here = true;
 	int x = 0;
 	Character c;
 
@@ -497,6 +524,11 @@ public class Character {
 	else
 	    c = new Wizard("Enemy", counter);
 
+	if (experience >= 100) {
+	experience = experience - 100;
+	this.level(); }
+	
+
 	System.out.println("You have approached a character. Please choose whether to 1. Initiate battle or 2. Initiate conversation.");
 	while (x != 1 && x != 2) {
 	    x = sc.nextInt();
@@ -504,6 +536,7 @@ public class Character {
 		battle(c, this);
 	    else if (x == 2)
 		talk(c);
+	    
 	    else
 		System.out.println("That is not a valid option");
 	}
@@ -524,4 +557,35 @@ public class Character {
 	else
 	    return 2;
     }
+
+    public void level() {
+	System.out.println("Choose a stat to increase. 1 for Strength, 2 for Dexterity, 3 for Intelligence");
+	boolean valid = false;
+	String stat;
+	while (!valid) {
+	stat = sc.next();
+	if (stat.equals("1")) {
+	strength = strength + 1;
+	maxHealth = strength * 10; 
+	valid = true;}
+	else if (stat.equals("2")) {
+	dexterity = dexterity + 1;
+	valid = true;}
+	else if (stat.equals("3")) {
+	intelligence = intelligence + 1;
+	valid = true;}
+	else if (stat.equals("upupdowndownleftrightleftrightBA")) {
+	System.out.println("Oh, so you know the Konami Code? Good Job. Enjoy God Mode");
+	intelligence = intelligence + 50;
+	strength = strength + 50;
+	maxHealth = strength * 10;
+	health = maxHealth;
+	dexterity = dexterity + 50;
+	movement = 100;
+	valid = true;}
+	else
+	System.out.println("That is not a valid option. Please choose 1,2, or 3");
+	    }
+	}
+	
 }

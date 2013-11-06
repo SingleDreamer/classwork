@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 public class Wizard extends Character {
-    Scanner sc = new Scanner();
 
     public Wizard(String n) {
 	Random r = new Random();
@@ -60,6 +59,7 @@ public class Wizard extends Character {
     }
 
     public int encounter(Character other) {
+	Scanner sc = new Scanner(System.in);
 	if (other.flee(this)) {
 	    experience = experience + 1;
 	    if (experience == 10) {
@@ -75,13 +75,17 @@ public class Wizard extends Character {
 	    }
 	    return 0;
 	}
-	else if (other.strength>=this.strength || other.health>=this.health) {
+	System.out.print("Do you want to flee or attack?");
+	String answer = sc.nextLine();
+	if (answer == "flee") {
 	    if (flee(other))
 		return 1;
-		    }
-	this.attack(other);
-	if (other.health > 0)
-	    other.attack(this);
+	}
+	else if (answer == "attack") {
+	    this.attack(other);
+	    if (other.health > 0)
+		other.attack(this);
+	}
 	if (health == 0)
 	    return 2;
 	else if (other.health == 0)

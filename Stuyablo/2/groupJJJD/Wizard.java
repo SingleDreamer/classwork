@@ -15,5 +15,6 @@ public class Wizard extends Character{
 	dexterity=8;
 	intelligence=8;
     }
+
     
 }
