@@ -210,7 +210,7 @@ public class Player extends Character {
 	else{
 	    experience = 0;
 	}
-	System.out.println ("Coward! You have fleed! Lost 20 experience. \n");
+	System.out.println ("Coward! You have fled! Lost 20 experience. \n");
     }
 
     public void encounter(){
@@ -229,7 +229,7 @@ public class Player extends Character {
 		action();
 	    }
 	    else{
-		System.out.println("Invalid response, the enemy has ran away.\n");
+		System.out.println("Invalid response, the enemy has run away.\n");
 	    }
 	}
 	else {
@@ -244,7 +244,7 @@ public class Player extends Character {
 		action();
 	    }
 	    else{
-		System.out.println("Invalid response, the enemy has ran away.\n");
+		System.out.println("Invalid response, the enemy has run away.\n");
 		action();
 	    }
 	}
