@@ -16,11 +16,11 @@ public class Driver {
 	System.out.println("Hello " + name);
 	System.out.println("-------------------------------");
 	
-	if (r.nextDouble > 0.5){
+	if (r.nextDouble() > 0.5){
 	    player = new Warrior();}
 	else{
 	    player = new Wizard();}
-	if (r.nextDouble > 0.5){
+	if (r.nextDouble() > 0.5){
 	    enemy = new Ogre();}
 	else{
 	    enemy = new Undead();}

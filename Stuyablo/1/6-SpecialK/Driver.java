@@ -29,7 +29,8 @@ public class Driver {
 		System.out.println(n.getStatus());}
 	    else if (choice.equalsIgnoreCase("d")){
 		System.out.println("Thanks for playing, fool");
-		break;}
+		break;
+	    }
 	    else {
 		System.out.println("You can't do that.");
 	    }
