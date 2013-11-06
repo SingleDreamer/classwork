@@ -369,6 +369,10 @@ public class Character {
             else 
                 return 3;
         }
+        else {
+        	say ("that is not a valid input, please try again");
+        	this.encounter(other);
+        }
         return 5;
            
     }
