@@ -9,7 +9,7 @@ public class Driver {
 	System.out.println("What class would you like to be?(o for ogre, w for wizard)");
 	String character = sc.nextLine();
 	System.out.println(character);
-	if (character == "o"){
+	if (character.equals("o")){
             c = new OgrePC();
 	    System.out.println("You have chosen to be an ogre");
 	}

@@ -2,8 +2,8 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int health = 100, maxhealth=100;
-    protected int dexterity=8 , strength =8 , intelligence= 8;
+    protected int health=100, maxhealth=100;
+    protected int dexterity=8 , strength=8 , intelligence=8;
     protected int experience = 0, level = 1;
     protected int gold = 100;
     protected String name;
@@ -30,14 +30,13 @@ public class Character {
 	int p = points;
 	Scanner s = new Scanner (System.in);
 	System.out.print (" \n" + "Strength: + ");
-	int strengthboost = s.nextInt();
-	if ((strengthboost <= points)&&(strengthboost>=0)){
-	    strength = strength + strengthboost;
-	    p = points - strengthboost;
+	int strboost = s.nextInt();
+	if ((strboost <= points)&&(strboost>=0)){
+	    strength = strength + strboost;
+	    p = points - strboost;
 	}
-	else if (strengthboost < 0){
+	else if (strengthboost < 0)
 	    System.out.print("I'm sorry, but you can't refund points");
-	}
 	else {
 	    System.out.print("Getting a little greedy now?");
 	    p = this.setStrength(points);
@@ -54,9 +53,8 @@ public class Character {
 	    dexterity = dexterity + dexboost;
 	    p = points - dexboost;
 	}
-	else if (dexboost < 0){
+	else if (dexboost < 0)
 	    System.out.print("I'm sorry, but you can't refund points");
-	}
 	else {
 	    System.out.print("Getting a little greedy now?");
 	    p = this.setDexterity(points);
@@ -72,9 +70,8 @@ public class Character {
 	    intelligence = intelligence + intboost;
 	    p = points - intboost;
 	}
-	else if (intboost < 0){
+	else if (intboost < 0)
 	    System.out.print("I'm sorry, but you can't refund points");
-	}
 	else {
 	    System.out.print("Getting a little greedy now?");
 	    p = this.setIntelligence(points);
@@ -105,12 +102,10 @@ public class Character {
         Scanner s = new Scanner (System.in);
 	System.out.print ("Are you a Wizard or a Warrior? Please type 'Wizard' or 'Warrior'");
 	String c = s.nextLine();
-	if (c.equals("Wizard")){
+	if (c.equals("Wizard"))
 	    charClass = "Wizard";
-	}
-	else if (c.equals("Warrior")){
+	else if (c.equals("Warrior"))
 	    charClass = "Warrior";
-	}
 	else {
 	    System.out.print ("Silly player. That's not a choice. \n");
 	    setClass();

@@ -11,8 +11,31 @@ public class Driver {
 	    Scanner a = new Scanner(System.in);
 	    String choice = a.nextLine();
 	    if (choice.equalsIgnoreCase("a")){
-		Character p = new Character("Enemy", "Bot", e.nextInt(10)+10, e.nextInt(10), e.nextInt(18), e.nextInt(5));
-		n.encounter(p);
+		Random s = new Random();
+		int x=s.nextInt(4);
+		if (x == 1){ 
+		    Character p = new Character("Moron", "Moran", 11 + e.nextInt(5), 8 + e.nextInt(5), 10 + e.nextInt(5), e.nextInt(1));
+		    n.encounter(p);
+		}
+
+		else if (x==2){
+		    Character p = new Character("Gandolf", "Wizard", 10 + e.nextInt(5), 11 + e.nextInt(5), 6 + e.nextInt(5), e.nextInt(2));
+		    n.encounter(p);
+		}
+
+		else if (x==3){
+		    Character p = new Character("Warren", "Warrior", 11 + e.nextInt(5), 6 + e.nextInt(5), 9 + e.nextInt(5), e.nextInt(2));
+		    n.encounter(p);
+		}
+
+		else if (x==0){
+		     Character p = new Character("Xie", "Zhang", 9 + e.nextInt(5), 6 + e.nextInt(5), 11 + e.nextInt(5), e.nextInt(3));
+		     n.encounter(p);
+		}
+		else{
+		     Character p = new Character("Boss Moron", "Boss Moran", 15 + e.nextInt(5), 10 + e.nextInt(5), 14 + e.nextInt(5), e.nextInt(5));
+		     n.encounter(p);
+		}
 	    }
 	    else if (choice.equalsIgnoreCase("b")){
 		String[] chat = new String[6];
@@ -26,7 +49,9 @@ public class Driver {
 		System.out.println("NPC: " + chat[num.nextInt(6)]);
 	    }
 	    else if (choice.equalsIgnoreCase("c")){
-		System.out.println(n.getStatus());}
+		System.out.println(n.getStatus());
+		System.out.println(n.getWins());
+	    }
 	    else if (choice.equalsIgnoreCase("d")){
 		System.out.println("Thanks for playing, fool");
 		break;
