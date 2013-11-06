@@ -70,7 +70,7 @@ public class Character {
 	    int Dice = r.nextInt(18);
 	    if (Dice <= this.Dexterity) {
 		this.attack(other);
-		System.out.println("You attacked" + other.toString() + "!");
+		System.out.println("You attacked " + other.toString() + "!");
 		this.experience();
 	        if (other.getHealth() > 0) {
 		    other.attack(this);
