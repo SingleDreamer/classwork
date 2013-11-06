@@ -16,23 +16,23 @@ public class Elf extends Character{
 		Random r = new Random();
 		int rollDie = r.nextInt(18) + 1;
 		if (rollDie <= dexterity) {
-			System.out.println("Elf successfully hit " + other);
+			System.out.println("Elf successfully hit the attacker");
 			//enemy loses health
 		}
 		else
 			System.out.println("Elf missed!");
 	}
 
-	public boolean flee(Character other);
-		Random r = new Random();
-		int rollDie = r.nextInt(18) + 1;
-		if (rollDie <= other.dexterity)
-			return false;
-		else
-			return true;
+    public boolean flee(Character other){
+	Random r = new Random();
+	int rollDie = r.nextInt(18) + 1;
+	if (rollDie <= other.dexterity)
+		return false;
+	else
+		return true;
 	}
 
-	public int encounter(character other) {
+	public int encounter(Character other) {
 		//need to figure out if other wants flee
 		if (other.strength + other.dexterity > strength + dexterity) {
 			if (flee(other))
@@ -48,13 +48,15 @@ public class Elf extends Character{
 				return 3;
 			else
 				return 4;
+		}
 		else
 			return 5;
 	}
 		
 
-
-
+    public int getHealth(){
+	return health;
+    }
 
 
 

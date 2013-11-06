@@ -19,7 +19,7 @@ public class Warrior extends Character{
 		} catch(InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}
-		System.out.println("You have 8 points to alot to either strength or dexterity. Please type and number between 0 and 8.");
+		System.out.println("You have 8 points to allot to either strength or dexterity. Please type and number between 0 and 8.");
 		try {
 		Thread.sleep(2000);
 		} catch(InterruptedException ex) {
@@ -63,7 +63,7 @@ public class Warrior extends Character{
 			}
 
 			System.out.println();
-		    System.out.println("You succesfuly attacked " + other.name);
+		    System.out.println("You succesfully attacked " + other.name);
 
 		    if (attackDmg > other.health) {
 				other.health = 0;
@@ -144,7 +144,7 @@ public class Warrior extends Character{
 		    	System.out.println("You were unable to flee.");
 		}
 		
-		System.out.println("You will now attack " + other);
+		System.out.println("You will now attack " + other +"!");
 		this.attack(other);
 		System.out.println();
 		try {
@@ -153,7 +153,7 @@ public class Warrior extends Character{
 			Thread.currentThread().interrupt();
 		}
 
-		System.out.println("Your current health:" + this.health);
+		System.out.println("Your current health: " + this.health);
 		
 		try {
 		Thread.sleep(2000);
@@ -161,7 +161,7 @@ public class Warrior extends Character{
 			Thread.currentThread().interrupt();
 		}
 
-		System.out.println(other + "'s current health:" + other.health);
+		System.out.println(other + "'s current health: " + other.health);
 		System.out.println();
 		System.out.println("~~~~~~~~~~~~~~");
 		System.out.println();
@@ -176,7 +176,7 @@ public class Warrior extends Character{
 				Thread.currentThread().interrupt();
 			}
 
-		    System.out.println("Your current health:" + this.health);
+		    System.out.println("Your current health: " + this.health);
 
 			try {
 			Thread.sleep(2000);
@@ -184,7 +184,7 @@ public class Warrior extends Character{
 				Thread.currentThread().interrupt();
 			}
 
-		    System.out.println(other + "'s current health:" + other.health);
+		    System.out.println(other + "'s current health: " + other.health);
 		    System.out.println();
 		    System.out.println("~~~~~~~~~~~~~~~~");
 			System.out.println();
@@ -196,7 +196,7 @@ public class Warrior extends Character{
 					Thread.currentThread().interrupt();
 				}
 
-				System.out.println("You were defeated. You are dead");
+				System.out.println("You were defeated. You are dead :(");
 				other.experience();
 				other.level();
 				return 2;

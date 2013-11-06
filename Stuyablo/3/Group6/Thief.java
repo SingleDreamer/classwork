@@ -64,11 +64,11 @@ public class Thief extends Character{
 	else {
 	    this.attack(other);
 	    if(other.health == 0)
-		return 2;
+		return 2;//other has died
 	    other.attack(this);
 	    if(this.health == 0)
-		return 3;
-	    return 4;
+		return 3;//Thief has died
+	    return 4;//battle continues
 	}
 	return 5;
     }
