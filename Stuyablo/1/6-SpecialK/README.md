@@ -4,23 +4,21 @@ GROUP 6 - SPECIAL K
 //CHARACTER REPRESENTATION
 We will have 5 different characters, each with different specialities
    aka. certain attributes will be higher than others in the beginning
-They will have dexterity, strength, and defense (and intelligence?), starting at a minimum of 8 each. 8 additional points will vary based on the character.
-These characters have different weapons, which they can use depending on whether or not their strength is high enough to use these weapons.
+They will have dexterity, strength, and defense, starting at a minimum of 8 each. 8 additional points will vary based on the character.
+They will also have 8 points to assign - this is for the player to decide.
+The damage output of the character will be the attack power/4, or a larger amount if the character crit strikes. 
 
-The damage output of the character will be the attack power of the weapon wielded. Similarly, the defense will be the defense-item wielded, which is dependent on whether or not the player has the required defense attribute.
-
-Nothing has been decided as to healing or death
-	- maybe the character loses a bit of each attribute upon death?
-	- characters could be restored to max health upon the end of a fight
+The characters gain health and certain attributes upon ending a battle. When they die, the game ends.
 
 Upon defeat of an opponent, the player will gain attributes depending on the attribute that the opponent specialized in.
-     The amount will be a percentage of the player's current attribute(?)
 
-COMBAT
-To simulate the three six sided dice, there will be three Random numbers generated, each with a value from 0-5. If the sum of these rolls is less than the player's dexterity, they will hit.
-   dexterity will be decreased based on the distance between the two characters
-   BUT, we haven't decided on incorporating xy positioning, since...
+//COMBAT
+To simulate the three six sided dice, there will be three Random numbers generated, each with a value from 0-5. 
+These numbers will decide if the player gets a crit strike, or even hits at all.
 
-There will be an explore method, which allows players to randomly come accross enemies.
+The player can choose to talk to the enemy during the fight (though they don't gain anything other than time from doing this..)
 
-They will have options of battling, running away (based on dexterity), and talking(?)
+Or, they can TRY to flee
+
+//ETC
+There are options to talk to the nearest NPC, see current stats, and exit the game.
