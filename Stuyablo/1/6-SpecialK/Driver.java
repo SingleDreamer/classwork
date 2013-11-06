@@ -7,7 +7,7 @@ public class Driver {
 	System.out.println(n.getStatus());
 	Random e = new Random();
 	while (n.getHealth()>0){
-	    System.out.println("What would you like to do next?...(a)fight the nearest enemy or (b)talk to the nearest NPC?");
+	    System.out.println("What would you like to do next?...(a)fight the nearest enemy or (b)talk to the nearest NPC? or (c)See your stats?");
 	    Scanner a = new Scanner(System.in);
 	    String choice = a.nextLine();
 	    if (choice.equalsIgnoreCase("a")){
@@ -25,6 +25,8 @@ public class Driver {
 		Random num = new Random();
 		System.out.println("NPC: " + chat[num.nextInt(6)]);
 	    }
+	    else if (choice.equalsIgnoreCase("c")){
+		System.out.println(n.getStatus());}
 	    else {
 		System.out.println("You can't do that.");
 	    }
