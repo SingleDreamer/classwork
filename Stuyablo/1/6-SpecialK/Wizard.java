@@ -26,6 +26,7 @@ public class Wizard extends Character {
             if (inputs.equals("0")){
                     strength += 1;
                     maxhealth += 1;
+		    health += 1;
                 }
 
             else if (inputs.equals("1")){
@@ -46,6 +47,7 @@ public class Wizard extends Character {
                  if (k==0){
                      strength += 1;
                      maxhealth += 1;
+		     health += 1;
                  }
 
                  else if (k == 1){
