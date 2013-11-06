@@ -232,7 +232,7 @@ public class Character {
     }
 
     public int  attack(Character other) {
-        while (this.health > 0 || other.health > 0){
+        while (this.health > 0 && other.health > 0){
             if (dexterity <= roll()){
                 other.takedamage(this.strength);
                 say (other + " has lost " + strength + " health points and has "+other.getHealth()+" health points left");
@@ -253,18 +253,19 @@ public class Character {
                 
                 } 
             }
-            if (this.health <= 5){
-                if (this.flee(other)){
-                    return 0;
-                }
-            }
-            if (other.health <= 5){
-                if (other.flee(this)){
-                    return 1;
-                }
-            }
+	}
+	if (this.health <= 5){
+	    if (this.flee(other)){
+		return 0;
+	    }
+	}
+	if (other.health <= 5){
+	    if (other.flee(this)){
+		return 1;
+	    }
+	}
                 
-        }
+        
         if (this.health <= 0){
             this.die();
             return 2;
