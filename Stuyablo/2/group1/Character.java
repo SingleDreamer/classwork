@@ -8,7 +8,6 @@ public class Character {
     protected int health,maxHealth;
     protected int dex,str;
     protected int points;
-    protected int exp=0,lvl=1;
 	   
     public void attack(Character other) {
         /* do the attack:
