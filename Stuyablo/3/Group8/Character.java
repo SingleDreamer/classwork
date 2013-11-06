@@ -73,7 +73,6 @@ public class Character {
     }
 
     public int encounter (Character other) {
-<<<<<<< HEAD
 	if (other.flee() == true){
 	    other.experience();
 	    return 0;}
@@ -98,6 +97,8 @@ public class Character {
 	else if (other.getHealth() <= 0) return 3;
 	else if (this.getHealth() <= 0 && other.Health <= 0) return 4;
 	else return 5;
+<<<<<<< HEAD
+=======
 =======
         if (other.flee() == true){
             other.experience();
@@ -124,6 +125,7 @@ public class Character {
         else if (this.getHealth() <= 0 && other.Health <= 0) return 4;
         else return 5;
 >>>>>>> f85b12f9d35f54e8e4159988614ab402c70eb41e
+>>>>>>> a5bd770ddc019c9fd9b58b60721c8917611d2564
     }
 
       public void attack (Character other) {
@@ -153,7 +155,11 @@ public class Character {
                 Level = Level + 1;            
                 experience = 0;
 		for (int i=2;i>0;i--) {
+<<<<<<< HEAD
+		    System.out.print("You have " + i + " points to distribute. Where would you like to upgrade? (enter s for Strength, i for Intelligence, d for Dexterity");
+=======
 		    System.out.print("You have " + i + " points to distribute. Where would you like to upgrade? (enter s for Strength, i for Intelligence, d for Dexterity) ");
+>>>>>>> a5bd770ddc019c9fd9b58b60721c8917611d2564
 		    String pt = sc1.nextLine();
 		    if (pt.equals("s")) {
 			Strength = Strength + 1;
