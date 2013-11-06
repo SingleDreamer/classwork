@@ -13,4 +13,6 @@ public class Ogre extends Character {
 	health = r.nextInt(8) + 4;
 	maxHealth = 16;
     }
+
+    // public string ASCIIOgre(){}
 }
