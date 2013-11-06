@@ -151,15 +151,6 @@ public class Character {
                 this.attack(other);
             }
 
-	    if (x) {
-		delay (1000); 
-		say ("Sure");
-	    }        
-	    else {
-		delay (1000);
-		say ("no way you freak!"); 
-		this.attack(other);
-	    }
         }
         if (answer == 2) {
             if (x) {
