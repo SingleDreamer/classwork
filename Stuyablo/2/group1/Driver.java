@@ -20,12 +20,12 @@ public class Driver {
 	System.out.println("-------------------------------");
 	System.out.println("It's an ogre! \nEnemy health: " + enemy.getHealth() + "\nWhat will you do?: ");
 	while (enemy.getHealth() > 0 && player.getHealth() > 0){
-	    System.out.print("Fight/Flee\n");
+	    System.out.print("Fight(1)/Flee(2)\n");
 	    String input = sc.nextLine();
-	    if (input.equals("Fight")){
+	    if (input.equals("1")){
 		player.attack(enemy);
 		}
-	    else if (input.equals("Flee")){
+	    else if (input.equals("2")){
 		System.out.println("You coward...");
 	    }
 	    else
