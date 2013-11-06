@@ -48,7 +48,7 @@ public class Character {
     		this.strength = baseStr + eStr;
     		this.intelligence = baseInt + eInt;
         }
-    	this.maxhealth = this.strength * 3;
+    	this.maxhealth = this.strength * 5;
     	this.health = this.maxhealth;
 	}
 

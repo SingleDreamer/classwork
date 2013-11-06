@@ -19,7 +19,6 @@ public class Driver {
             System.out.print(">");
             int enemy = sc.nextInt();
             c1 = c1.createNew();
-            int enemy = sc.nextInt();
             if (enemy == 2) {
                 c2 = new MrMoran();
             }
