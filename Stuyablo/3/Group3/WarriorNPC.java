@@ -11,7 +11,7 @@ protected int attackRange;
 public WarriorNPC() {
 	strength = 10;
 	health = strength;
-	maxhealth = 20;
+	maxhealth = health;
 	dexterity = 6;
 	attackRange = 7;
 	experience = 4;
