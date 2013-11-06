@@ -72,11 +72,6 @@ public class Warrior extends Character {
 		c.health = c.health - dmg;
 		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
 	    }
-	    int dmg = (int(str*(0.5 + r.nextDouble())));
-	    if (hit() == true) {
-		c.health = c.health - dmg;
-		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
-		    }
 	    else {
 		System.out.println(name + " missed " + c + ".");
 	    }
@@ -93,8 +88,6 @@ public class Warrior extends Character {
 
 	if (wait == 0) {
 	    int dmg = (int)(str*(1 + r.nextDouble()));
-	    if (hit()) {
-	    int dmg = (int(str*(1 + r.nextDouble())));
 	    if (hit() == true) {
 		c.health = c.health - dmg;
 		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
