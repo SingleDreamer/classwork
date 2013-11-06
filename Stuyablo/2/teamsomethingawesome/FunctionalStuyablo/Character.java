@@ -18,9 +18,6 @@ public class Character {
     public int getHealth() {
 	return health;
     }
-    public int getMaxHealth(){
-	return maxhealth;
-    }
     public String getName() {
 	return name;
     }
@@ -76,7 +73,7 @@ public class Character {
     public void attack(Character other) {
 	h.pause();
 	Random r= new Random();
-	int roll=r.nextInt(6) + r.nextInt(6)+ r.nextInt(6); /*three six-sided die roll implementation by Matthew*/
+	int roll=r.nextInt(6) + r.nextInt(6)+ r.nextInt(6)+3; /*three six-sided die roll implementation by Matthew*/
 	if (roll < this.getDex()) {
 	    System.out.println("A hit!");
 	    loseHealth(other,damage);
@@ -90,11 +87,11 @@ public class Character {
 	}
     }
 
-    // returns true if you succesfully flee, false otherwise SIKE
+    // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other){
-	h.pause();
 	Random r= new Random();
-	if (r.nextInt(6) + r.nextInt(6)+ r.nextInt(6) +r.nextInt(6) < other.getDex()){       // if the sum of the outcomes of four dice is less than your dexterity, then you escape.
+	int roll=r.nextInt(6) + r.nextInt(6)+ r.nextInt(6) +r.nextInt(6)+4;
+	if (roll< this.getDex()){       // if the sum of the outcomes of four dice is less than your dexterity, then you escape.
 	    return true;
 	}
 	else { 
@@ -107,7 +104,7 @@ public class Character {
       so, and if it's succesful it should adjust experience and or
       gold as needed and return a 0.
 
-      Then, it should decide if this character tries to flee.
+      Then, it should decide if this character tries to flee. 
       If so and it's succesful, return a 1;
       
       Otherwise, call attack on both sides:
@@ -117,79 +114,68 @@ public class Character {
 
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
     */
-<<<<<<< HEAD
-    
-    public int encounter(Character other, String fightInput) {
-	boolean failFlee = false;
-        if (other.getHealth() < other.getMaxHealth()/2){
-	    if (other.flee(this)){
-		System.out.println("The ogre has fled!");
-		this.setExp(other.getExp());
-		this.setGold(other.getGold());
-		return 0;
-	    }
-	    else{
-		System.out.println("The ogre failed to flee!\n---------------------------------------------------------------");
-		failFlee = true;
-	    }
-	}
-	if (fightInput.equals("Flee")){
-	    if (this.flee(other)){
-		System.out.println("You have fled");
-		return 1;
-	    }
-	    else{
-		System.out.println("You failed to flee\n---------------------------------------------------------------");
-		other.attack(this);
-	    }
-	}
-	if (fightInput.equals("Attack")){
-	    this.attack(other);
-	    if (other.getHealth()>0 && !failFlee){
-		other.attack(this);
-	    }
-	    if (this.getHealth()==0)
-		return 2;
-	    if (other.getHealth()==0)
-		return 3;
-	}
-	return 5;    
-    }
-    
-=======
-
     public int encounter(Ogre other) {
-	System.out.println("You are now facing an ogre! Its stats are: " + other.getStatus());
-	
-	if (other.flee(this)==true) {
-	    experience = other.getExp();
-	    gold = gold + other.getGold();
-	    return 0;
-		 }
-			   
-	else if (this.flee(other)==true) {
-	    return 1;
-	}
+	Scanner sc = new Scanner(System.in);
+	h.pause();
+	System.out.println("\nCAUTION!!!!!\n\n");
+        System.out.println("You have encountered a burly ogre!\n");
+        h.pause();
+	Random r = new Random();
+        String choice = "";
+        while ((this.getHealth() > 0) && (other.getHealth() > 0)){
+            //System.out.println("\n");
+            System.out.println(this.getStatus());
+            System.out.println("What will you do?: Attack Flee");
+	    choice = sc.nextLine();
+            if (choice.equals("Attack")){
+                System.out.println("---------------------------------------------------------------");
+                if (this.getDex()>other.getDex()){
+                    this.attack(other);
+                    if (other.getHealth() > 0)
+                        other.attack(this);
+                }
+                else{
+                    other.attack(this);
+                    if (this.getHealth() > 0)
+                        this.attack(other);
+		}
+            }
+            else if (choice.equals("Flee")){
+		if (this.flee(other)==true){
+		    System.out.println("\nYou have escaped this ogre!");
+		    h.pause();
+		    break;
+		}
+		else {
+		    System.out.println("\nYou did not escape...");
+		    System.out.println("---------------------------------------------------------------");
 
-	else {
-	    this.attack(other);
-	    other.attack(this);
-	    if (this.health <= 0){
-		return 2;
+		    other.attack(this);
+		    h.pause();
+		}
 	    }
-	    else if (other.health <= 0){
+            if (other.getHealth() <= 0){
+                System.out.println("You have slain the ogre!");
+                this.setExp(other.getExp());
+                this.setGold(other.getGold());
 		return 3;
-	    }
-	    else if (other.health <= 0 && this.health <= 0){
-		return 4;
-	    }
-	    else {
-		return 5;
-	    }
+            }
+            if (this.getHealth() <= 0){
+                System.out.println("Your adventure ends here...");
+		return 2;
+            }
+	    
+	}
+        System.out.println("\n");
+	return 5;
     }
+    public void play(int n) {
+	while (n>0) {
+	    Ogre o=new Ogre();
+	    this.encounter(o);
+	    n=n-1;
+	}
     }
-
->>>>>>> 1f86ccfc8fb294e2cf7929d792b46d51ea9621a9
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);

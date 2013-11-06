@@ -1,4 +1,4 @@
-public Nonplayer extends Character {
+public class Nonplayer extends Character {
 
     public void attack(){
 	//stuff
@@ -12,7 +12,7 @@ public Nonplayer extends Character {
 	health = health + n;
     }
     
-    public void giveExp(Character c, int n){
+    public void giveExp(Player c, int n){
 	c.gainExp(n);
     }
 

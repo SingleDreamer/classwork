@@ -3,9 +3,9 @@ public class Driver {
 	Goblin c = new Goblin("Bob");
 	Goblin a = new Goblin("Gob");
 	while (c.encounter(c,a) == 5){
-	    System.out.println(c.getHealth());
-	    System.out.println(a.getHealth());
-
+	    System.out.println("#################");
 	}
+
     }
 }
+

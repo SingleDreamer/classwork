@@ -3,6 +3,11 @@ public class Driver {
 	Warrior wa1 = new Warrior(); //Player
 	wa1.getInfo();
 	System.out.println("_________________");
+	try {
+	    Thread.sleep(2000); // how many milliseconds to pause
+	} catch (Exception e) {
+	    // do nothing here 
+	}
         wa1.play();
 
 	//Wizard wi = new Wizard("tom", 8);
