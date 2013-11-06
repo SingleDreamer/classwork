@@ -72,6 +72,7 @@ public class Ogre extends Character {
 		  System.out.println("\n" + name + " missed!");
 	      }
 	}
+
 	else { // ogre is an NPC
 	    if (hasWeapon) {
 		Random r = new Random();
