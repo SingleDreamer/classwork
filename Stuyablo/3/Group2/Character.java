@@ -123,6 +123,15 @@ public class Character {
     public void changeEP(int n) {
 	ep = ep + n;
     }
+
+    public boolean changeStrength(int n) {
+        if (strength >= n) {
+            Strength = Strength - n
+            return true;
+		} else {
+		    Strength = 0;
+		}
+    }
 	
 
     public boolean attack(Character other) {

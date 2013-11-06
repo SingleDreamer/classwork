@@ -133,7 +133,7 @@ public class Student extends Character {
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        if (((strength/3) - (intellegence/4)) > 0) {
+        if (((strength/2) - (intellegence/4)) > 0) {
             changeAmount = intellgence/4;
         } else {
             changeAmount = 0; // avoid subtracting negative number later
