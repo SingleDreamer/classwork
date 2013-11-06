@@ -24,6 +24,6 @@ public class Driver {
 	if (choice == 0)
 	    c.startEncounter(w);
 	else
-	    c.startEncounter(t);	
+	    c.startEncounter(t);
     }
 }

@@ -67,15 +67,15 @@ public void attack(Character other){
                         distance = distance - 1;
                         }
                 else {
-                        //If warrior roles less than its strength, it hits the attack!
+                        //If roles less than its strength, it hits the attack!
                         if (dieRoll <= strength) {
-                                System.out.println ("You just got attacked by the warrior!");
+                                System.out.println ("You successfully attacked!");
                                 experience = experience + 1;
                                 other.health = other.health - 1;
                                 }
-                        //If warrior roles more than its strength, it misses the attack!
+                        //If roles more than its strength, it misses the attack!
                         else {
-                                System.out.println ("The warrior tried attacking you but missed!");
+                                System.out.println ("The attack was missed!");
                         }
                 }
 	}
