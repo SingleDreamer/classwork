@@ -3,29 +3,83 @@ import java.util.*;
 
 public class Character {
     protected int health, maxhealth;
-    protected int dexterity, strength, intelligence;
+    protected int dexterity, strength, intelligence; 
+    //dexterity will be our accuracy, intelligence will be bonus hit (crit) and flee factor - jamesc
     protected int experience;
     protected int gold;
     protected double x,y,distance;
     protected String name;
     protected String charClass;
+    protected int roll;
+<<<<<<< HEAD
+    protected int level;
+	protected double dmgdouble; 
+=======
+    protected int level,dmg;
+    protected double dmgdouble; 
+>>>>>>> 82a05de6598f17e982fdf12cbe4ea796ccbd46d3
  
+    public void rollDice() { //a method to use roll the dice -jamesc
+	Random r = new Random();
+	roll = r.nextInt(18);
+	
+	}
+	
+	public Character(String name, int strClass, int dexClass, int intClass) {
+	//this will be our base but all the parameters will be specific to each race/class - jamesc
+	this.name = name;
+	this.strength = 8 + strClass;
+	this.dexterity = 8 + dexClass;
+	this.intelligence = 8 + intClass; 
+	this.health = this.strength;
+	this.maxhealth = this.strength;
+	this.experience = 0;
+	this.level = 1;
+	
+	
+    }
+	
+	
+	
     public int getHealth() {
 	return health;
     }
 
     /* You have to provide other needed get/set methods */
 
+	public void calcDmg() {
+	
+	dmgdouble = (((2 * this.level / 5 + 2) * (this.intelligence/2) * this.strength) / 50);
+	
+	
+	}
 
     public void attack(Character other) {
+    rollDice();
+    if (roll > this.dexterity) {
+    
+    other.health = other.health - this.dmg;
+    System.out.println(this.toString() + "'s Health: " + this.health);
+    System.out.println(other.toString() + "'s Health: " + other.health);
+    System.out.println(this.toString() + "'s Damage: " + this.dmg);
+    System.out.println(other.toString() + "'s Damage: " + other.dmg);
+    }
+    
+    }
 	/* do the attack:
 	   print out the attempt and the result and update
 	   all relavent variables
 	*/
-    }
+    
 
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
+   
+   if (this.intelligence > other.intelligence) {
+    return true;
+    }
+    
+    else return false;
     }
 
 
@@ -46,6 +100,22 @@ public class Character {
 
     */
     public int encounter(Character other) {
+    //random if other flees, for now, other never flees
+    
+    Scanner sc = new Scanner(System.in);
+    System.out.print("Do you want to flee? y/n");
+    String flee = sc.nextLine();
+    if (flee.equals("y")) {
+    	if (flee(other) == true) {
+			System.out.print("You have fled"); 
+			return 1;   	
+    	}
+    }
+    this.attack(other);
+    if (other.health > 0) {
+    	other.attack(this);
+    }	
+    
 	return 0;
     }
 
@@ -67,4 +137,6 @@ public class Character {
 	return name;
     }
     
-}
+    }
+    
+

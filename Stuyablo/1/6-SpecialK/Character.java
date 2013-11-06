@@ -40,7 +40,7 @@ public class Character {
             // intentionally empty...nothing happens
         }
 
-        System.out.println("Ms. Zhang has very weak dexterity, but her defenses are top notch. \n Now you have 8 points. You can either make certain attributes amazing, or balance them out to create a more well rounded character. She has a high charm, increasing the chances of going first in an attack bout");
+        System.out.println("Ms. Zhang has very weak dexterity, but her defenses are top notch. She has a high charm, increasing the chances of going first in an attack bout");
 
         try {
             Thread.sleep(2000); // pauses for 2 seconds
@@ -49,17 +49,13 @@ public class Character {
             // intentionally empty...nothing happens
         }
 	System.out.println("Warriors have high strength and good defense, but low dexterity. As for students... you'll have to guess the stats.");
-
+	int s, dex, def, mh, ch;
 	Scanner sc = new Scanner (System.in);
 	System.out.println("Enter your name: ");
 	name = sc.next();
 	System.out.println("Choose your class. 1-Moran, 2-Wizard, 3-Zhang, 4- Warrior, Any other number- Student ");
 	int cl = sc.nextInt();
-	int s = 0;
-	int dex = 0;
-	int def = 0;
-	int mh = 0;
-	int ch = 0;
+	
 	if (cl == 1){
 	    charType="Moran";
 	    s = 12;
@@ -100,7 +96,7 @@ public class Character {
 	    mh = s;
 	    ch = 2;
 	}
-
+	init(name, charType, s, dex, def, ch);
 	Scanner scanner = new Scanner (System.in);
 	
 	int i = 8;
@@ -109,59 +105,58 @@ public class Character {
 	
 	while (i > 0){
 	    System.out.println("\n Right now you have:");
-	    System.out.println("\n Strength: " + s);
-	    System.out.println("\n Dexterity: " + dex);
-	    System.out.println("\n Defense: " + def);
-	    System.out.println("\n Maximum Health: " + s);
-	    System.out.println("\n Charm: " + ch);
+	    System.out.println("\n Strength: " + strength);
+	    System.out.println("\n Dexterity: " + dexterity);
+	    System.out.println("\n Defense: " + defense);
+	    System.out.println("\n Maximum Health: " + strength);
+	    System.out.println("\n Charm: " + charm);
 	    
 	    System.out.println("Select one to increment: 0 - Strength, 1 - Dexterity, 2 - Defense, 3 - Charm, 4 - Random");
 
 	    inputs = (scanner.nextLine());
 
 	    if (inputs.equals("0")){
-		    s += 1;
-		    mh += 1;
+		    strength += 1;
+		    maxhealth += 1;
 		}
 
-	    if (inputs.equals("1")){
-		    dex += 1;
+	    else if (inputs.equals("1")){
+		    dexterity += 1;
 		}
 
-	    if (inputs.equals("2")){
-		    def += 1;
+	    else if (inputs.equals("2")){
+		    defense += 1;
 		}
 
-	    if (inputs.equals("3")){
-		    ch += 1;
+	    else if (inputs.equals("3")){
+		    charm += 1;
 		}
 
-	     if (inputs.equals("4")){
+	    else if (inputs.equals("4")){
 		 Random r1 = new Random();
 		 int k = r1.nextInt(4);
 		 if (k==0){
-		     s += 1;
-		     mh += 1;
+		     strength += 1;
+		     maxhealth += 1;
 		 }
 
-		 if (k == 1){
-		     dex += 1;
+		 else if (k == 1){
+		     dexterity += 1;
 		 }
 
-		 if (k==2){
-		     def += 1;
+		 else if (k==2){
+		     defense += 1;
 		 }
-		 if (k == 3){
-		     ch += 1;
+		 else{
+		     charm += 1;
 		 }
-
-	     }
+	    }
 	     else {
 		 System.out.println("You can't do that.");
+		 i = i + 1;
 	     }
 	      i = i - 1;
 	}
-	init (name, charType, s, dex, def, ch);
     }
 
     public int getHealthPer(){
@@ -203,6 +198,12 @@ public class Character {
     public void setDexterity(int d){
 	dexterity = d;
     }
+    public void setStrength(int s){
+	strength = s;
+    }
+    public void setDefense(int d){
+	defense = d;
+    }
 
     public boolean flee(Character other){
 	if (this.getDexterity() > other.getDexterity()){
@@ -222,12 +223,13 @@ public class Character {
 
     public void attack(Character other){
 	int damage = (this.getStrength()/4 - other.getDefense()/4);
-	    Random r = new Random();
-		int luck = (r.nextInt(6) + r.nextInt(6) + r.nextInt(6)); //3 6-sided die
+	Random r = new Random();
+	int luck = (r.nextInt(6) + r.nextInt(6) + r.nextInt(6)); //3 6-sided die
  // can potentially give random bonuses
 		if (luck > dexterity){
 		    System.out.println("You missed.");
-		if (luck == dexterity -1){ 
+		}
+		    else if (luck == dexterity -1){ 
 		    damage = this.getStrength() - other.getDefense()/4;
 		    if (damage > 0){
 			    other.setHealth(other.getHealth()-damage);
@@ -236,9 +238,9 @@ public class Character {
 		    else {
 			System.out.println("You hit but did not deal enough power to damage your opponent");
 			    }
-		}
+	   }
 
-		if (luck == dexterity - 2){ // potential random bonus
+	   else if (luck == dexterity - 2){ // potential random bonus
 		    damage = this.getStrength()*2 - other.getDefense()/4;
 		    if (damage > 0){
 			    other.setHealth(other.getHealth()-damage);
@@ -249,12 +251,12 @@ public class Character {
 			    }
 		}
 
-		if (luck == dexterity - 3) {
+	   else if (luck == dexterity - 3) {
 		    System.out.println("You missed your attack, and ended up accidently curing a disease your opponent had");
 		    other.setHealth(other.getHealth()+1);
 		}
 
-		else {
+	    else {
 		    if (damage > 0) {
 			other.setHealth(other.getHealth()-damage);
 			System.out.println("You hit with a no bonus, dealing " + damage + " damage to your oponent.");
@@ -262,10 +264,8 @@ public class Character {
 		    else {
 			System.out.println("You hit but did not have enough power to damage your opponent");
 		    }
-		}
 	    }
-	}
- 
+    }
 
      public void Battle(Character other){
 	int r = 20;

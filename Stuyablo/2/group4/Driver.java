@@ -15,9 +15,13 @@ public class Driver {
 	String name = sc.nextLine();
 	Player a = new Player(name);
         Ogre b = new Ogre();
+<<<<<<< HEAD
 	System.out.println("Welcome to the battlefield, " + name + "!");
         //a.getStatus();	
 	//a.attack(b);
 	System.out.println(a.encounter(b));
+=======
+        a.encounter(b);
+>>>>>>> 50fbeedf651570d32692b89270d46fc943e60d66
     }
 }
