@@ -99,19 +99,19 @@ public void attack(Character other) {
 
     // returns true if you succesfully flee, false otherwise
 public boolean flee(Character other) {
-	int[] a = other.getStat();
-	if (health < 10) {
-		health = health + 10;
+	Scanner s = new Scanner(System.in);
+	System.out.println("Will " + name +" fight? \n1. Yes\n2. No");
+	int i = s.nextInt();
+	if (i == 1) {
+		System.out.println(name + " ran away! \n\n");
+		System.out.println("----------------------------------------------------------------");
 		return true;
 	}
-	if (distance < 11 || distance > -11)
-		return false;
-	if (dexterity < a[0])
-		return false;
 	else
-		return true;
+		return false;
+		
+	}
 	
-}
 
 
     /*
@@ -138,16 +138,14 @@ public boolean flee(Character other) {
     	} catch(InterruptedException ex) {
     	    Thread.currentThread().interrupt();
     	}
-	if (other.flee(this) == true) {
-		System.out.println("Enemy has run away! \n\n");
-		System.out.println("----------------------------------------------------------------");
+    	boolean b1 = other.flee(this);
+	if (b1 == true) {
 		level(3);
 		gold = gold + 10;
 		return 0;
 	}
-	if (flee(other) == true) {
-		System.out.println(name + " ran away! \n\n");
-		System.out.println("----------------------------------------------------------------");
+	boolean b2 = flee(other);
+	if (b2 == true) {
 		return 1;
 	}
 	else {
@@ -224,8 +222,6 @@ public void level(int exp) {
         while (health>0) {
             playmore = encounter(other);
             if (playmore !=1 || playmore !=2 || playmore !=3 || playmore !=4 ||playmore !=5) {
-            	System.out.println(getStatus());
-            	System.out.println(other.getStatus());
             	return playmore;
             }
             if (playmore == 3 )

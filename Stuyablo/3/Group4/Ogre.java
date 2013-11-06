@@ -30,8 +30,6 @@ public void level(int exp) {
 	experience = experience + exp;
 	if (experience > experienceneeded) {
 		level = level + 1;
-		System.out.println("You leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3.Intelligence");
-		
 	
 	Scanner s = new Scanner(System.in);
 	int i = s.nextInt();
@@ -56,15 +54,22 @@ public void level(int exp) {
 public boolean flee(Character other) {
 	int[] a = other.getStat();
 	if (health < 12) {
-		health = health + 8;
+		health = health + 10;
+		System.out.println(name + " ran away! \n\n");
+		System.out.println("----------------------------------------------------------------");
 		return true;
+		
 	}
 	if (distance < 11 || distance > -11)
 		return false;
 	if (dexterity < a[0])
 		return false;
-	else
+	else {
+		System.out.println(name + " ran away! \n\n");
+		System.out.println("----------------------------------------------------------------");
 		return true;
+		
+	}
 	
 }
 
