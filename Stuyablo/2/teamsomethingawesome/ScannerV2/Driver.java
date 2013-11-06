@@ -8,6 +8,7 @@ public class Driver {
 	//PLEASE KEEP INPUT=The user input and PROMPT=What we print out
 	Helper h = new Helper();
 	Warrior w = new Warrior();
+	int e; //for encounters
 	//System.out.println(w.getStatus()); Testing
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Whatst isst thoust's namest: ");
@@ -49,28 +50,21 @@ public class Driver {
 	    System.out.println(w.getStatus());
 	    System.out.println("What will you do?: Attack Flee");
 	    fightInput = sc.nextLine();
-	    if (fightInput.equals("Attack")){
+	    if (fightInput.equals("Attack") || fightInput.equals("Flee")){
 		System.out.println("---------------------------------------------------------------");
-		if (w.getDex()>o.getDex()){
-		    w.attack(o);
-		    if (o.getHealth() > 0)
-			o.attack(w);
-		}
-		else{
-		    o.attack(w);
-		    if (w.getHealth() > 0)
-			w.attack(o);
-		}
+		e = w.encounter(o, fightInput);
+		if (e == 0)
+		    o.setHealth(0);
+		if (e == 1)
+		    w.setHealth(0);
+		if (e == 2)
+		    System.out.println("Your adventure ends here...");
+		if (e == 3)
+		    System.out.println("You have slain the ogre");
 	    }
-	    else{}
-	    if (o.getHealth() <= 0){
-		System.out.println("You have slain the ogre!");
-		w.setExp(o.getExp());
-		w.setGold(o.getGold());
-	    }
-	    if (w.getHealth() <= 0){
-		System.out.println("Your adventure ends here...");
-	    }
+	    
+      
+	    
 	}
 	System.out.println("\n");
     }
