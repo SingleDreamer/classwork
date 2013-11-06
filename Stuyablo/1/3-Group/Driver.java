@@ -8,17 +8,16 @@ public class Driver {
 	NPC x = new NPC();
 	System.out.println(c.getStatus());
 	Random r = new Random();
-	for (n = 0, n < 50, n ++){
+	for (n = 0; n < 50; n ++){
 	    if (r.nextInt(2) < 1){
 		System.out.println("You've encountered something!");
-		if (r.nextInt(2)<1){
-		    
-
+		NPC x = new NPC();
+		c.encounter(x);
 	    }
 	    else{
 		System.out.println("You walk merrily onwards");
 	    }
 	}
-	System.out.println("Congratulations! You've made it to the end!")
+	System.out.println("Congratulations! You've made it to the end!");
     }
 }

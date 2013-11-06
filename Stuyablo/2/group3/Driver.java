@@ -31,6 +31,11 @@ public class Driver {
         }
         
         while (player.health > 0) {
+	    if ( player.exp >= 50 + 2 ** player.level ) {
+		player.lvl = player.lvl + 1;
+		player.exp = 0;
+		System.out.println ( "Congratulations! You have leveled up to level " + player.lvl )
+	    }
             System.out.println ( "What would you line to do? (Attack nearest enemy(a), explore(e), or talk to friend(t)): ");
             String choice = sc.nextLine();
             if (choice.equalsIgnoreCase("e")) {
