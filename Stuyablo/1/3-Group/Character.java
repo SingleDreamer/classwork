@@ -41,9 +41,9 @@ public class Character {
     */
     
     
-    public void encounter(Character other) {
+    public void encounter(NPC other) {
         Random r = new Random();
-	x = r.nextInt(8);
+	x = r.nextInt(8);x
 	y = r.nextInt(8);
 	other.x = r.nextInt(8);
 	other.y = r.nextInt(8);

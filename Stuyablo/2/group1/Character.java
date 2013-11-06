@@ -28,9 +28,17 @@ public class Character {
 		    health = 0;
     }
 
-    // returns true if you succesfully flee, false otherwise
+// returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
-	return true;
+	    Random r = new Random();
+	    if(r.nextFloat() > 0.35)
+	    {
+		    System.out.println("Got away safely");
+		    return true;
+	    }
+	    System.out.println("Failed to escape");
+	    return false;
+	
     }
 
 
