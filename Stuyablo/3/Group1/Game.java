@@ -14,7 +14,7 @@ public class Game{
 	turn() signifies the player's turn.
 	*/
 	
-	public void Turn(Character player, player2) {
+	public boolean Turn(Character player, player2) {
 		turn = true;
 		while (turn == true) {
 			System.out.println("Commands:");
@@ -29,14 +29,17 @@ public class Game{
 			//battle commands
 			if (select == 0) {
 				player.encounter(player2, "Light Attack");
+				turn = false;
 			}
 			if (select == 1) {
 				player.encounter(player2, "Heavy Attack");
+				turn = false;
 			}
 			if (select == 4) {
 				turn = !player.flee();
 			}
 			
 		}
+		return turn;
 	}
 }

@@ -30,13 +30,31 @@ public class Character {
     public int getHealth() {
 	return health;
     }
-
+	public int geteffStr(){
+    return effStr;
+    }
+	public int geteffDex(){
+    return effDex;
+    }
+	public int geteffInt(){
+    return effInt;
+    }
+	
     public String getName(){
         return name;
     }
 
     public void setHealth(int health){
         this.health = health;
+    }
+	public void seteffStr(int Str){
+        this.effStr = Str;
+    }
+	public void seteffDex(int Dex){
+        this.effDex = effDex;
+    }
+	public void seteffInt(int Int){
+        this.effInt = effInt;
     }
 
     // I put roll method here because roll method is necessary in many methods in this class
