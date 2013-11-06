@@ -11,11 +11,11 @@ public class Driver {
 	System.out.println("Greetings, player! There are many paths to take in this adventure! Which kind of character do you wish to be? [Type only the character class]");
 	System.out.println("1. Rogue");
 	System.out.println("2. Warrior");
-	int inp = sc.next();
-	if (inp==1) {
+	String inp = sc.next();
+	if (inp.equals("1")) {
 	    Rogue p = new Rogue();
 	}
-	else if (inp==2){
+	else if (inp.equals("2")){
 	    Warrior p = new Warrior();
 	}
 	for (int z = 0; z < 50; z ++){
