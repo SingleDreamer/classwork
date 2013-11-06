@@ -73,7 +73,6 @@ public class Character {
     }
 
     public int encounter (Character other) {
-<<<<<<< HEAD
 	if (other.flee() == true){
 	    other.experience();
 	    return 0;}
@@ -98,32 +97,6 @@ public class Character {
 	else if (other.getHealth() <= 0) return 3;
 	else if (this.getHealth() <= 0 && other.Health <= 0) return 4;
 	else return 5;
-=======
-        if (other.flee() == true){
-            other.experience();
-            return 0;}
-        if (this.flee() == true){
-            this.experience();
-            return 1;
-        } else {
-            Random r = new Random();
-            int Dice = r.nextInt(6) + r.nextInt(6) + r.nextInt(6);
-            if (Dice <= this.Dexterity) {
-                this.attack(other);
-                System.out.println("You attacked" + other.toString() + "!");
-                this.experience();
-                if (other.getHealth() > 0) {
-                    other.attack(this);
-                }
-            } else {
-                System.out.println("You missed!");
-            }
-        }
-        if (this.getHealth() <= 0) return 2;
-        else if (other.getHealth() <= 0) return 3;
-        else if (this.getHealth() <= 0 && other.Health <= 0) return 4;
-        else return 5;
->>>>>>> f85b12f9d35f54e8e4159988614ab402c70eb41e
     }
 
       public void attack (Character other) {
@@ -154,7 +127,7 @@ public class Character {
                 experience = 0;
 		for (int i=2;i>0;i--) {
 		    System.out.print("You have " + i + " points to distribute. Where would you like to upgrade? (enter s for Strength, i for Intelligence, d for Dexterity");
-		    String pt = s.nextLine();
+		    String pt = sc1.nextLine();
 		    if (pt.equals("s")) {
 			Strength = Strength + 1;
 		    } else if (pt.equals("i")) {
