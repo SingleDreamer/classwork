@@ -6,12 +6,12 @@ public class Warrior extends Character {
     private int wait;
 
     public void Warrior() {
-	strength = 12;
-	dexterity = 4;
+	str = 12;
+	dex = 4;
 	super.setStat();
-	health = strength;
-	System.out.println("Strength: " + strength);
-	System.out.println("Dexterity: " + dexterity);
+	health = str;
+	System.out.println("Strength: " + str);
+	System.out.println("Dexterity: " + dex);
     }
 
     public void attack(NPC c) {
@@ -41,13 +41,13 @@ public class Warrior extends Character {
 	d2 = r.nextInt(6) + 1;
 	d3 = r.nextInt(6) + 1;
 	sum = d1 + d2 + d3;
-	return (sum <= dexterity);
+	return (sum <= dex);
     }
 
     public void poke(NPC c) {
 	Random r = new Random();
 	String atk = "poke";
-	int dmg = (int(str*r.nextdouble()));
+	int dmg = (int)(str*r.nextDouble());
 
 	if (hit()) {
 	    c.health = c.health - dmg;
@@ -67,11 +67,11 @@ public class Warrior extends Character {
 	String atk = "stab";
 
 	if (wait == 0) {
-	    int dmg = (int(str*(0.5 + r.nextDouble())));
+	    int dmg = (int)(str*(0.5 + r.nextDouble()));
 	    if (hit()) {
 		c.health = c.health - dmg;
-		System.out.println(name + " has hurt " + c + " with a " + atk + ".")
-		    }
+		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
+	    }
 	    else {
 		System.out.println(name + " missed " + c + ".");
 	    }
@@ -87,10 +87,10 @@ public class Warrior extends Character {
 	String atk = "superslash";
 
 	if (wait == 0) {
-	    int dmg = (int(str*(1 + r.nextDouble())));
+	    int dmg = (int)(str*(1 + r.nextDouble()));
 	    if (hit()) {
 		c.health = c.health - dmg;
-		System.out.println(name + " has hurt " + c + " with a " + atk + ".")
+		System.out.println(name + " has hurt " + c + " with a " + atk + ".");
 		    }
 	    else {
 		System.out.println(name + " missed " + c + ".");

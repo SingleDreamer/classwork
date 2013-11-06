@@ -6,7 +6,7 @@ public class Character {
     protected String name;
     protected String charclass="none";
     protected int health,maxHealth;
-    protected int dexterity,strength,intelligence;
+    protected int dex,str,intelligence;
     protected int points;
     protected int exp=0,lvl=1;
     protected int x,y;
@@ -43,6 +43,7 @@ public class Character {
         return 0;
     }
 
+    /*
     public String getStatus() {
       String attrib1=String.format("Str: %d Dex: %d Int: %d", strength, dexterity, intelligence);
       String attrib2=String.format("Exp: %d Health: %d of %d", exp,health,maxHealth);
@@ -50,6 +51,7 @@ public class Character {
       String whole=String.format("%s\n%s\n%s\n%s\n", name,attrib1,attrib2,locale);
       return whole;
     }
+    */
 
 
     public String toString() {
@@ -91,7 +93,7 @@ public class Character {
 	    add = points;
 	    System.out.printf("Only able to add %d points\n",add);
 	}
-        strength = strength + add;
+        str = str + add;
         points = points - add;
 
         System.out.println("You still have " + points + " skill points available");
@@ -102,7 +104,7 @@ public class Character {
 	    System.out.printf("Only able to add %d points\n",add);
 	}
 
-	dexterity = dexterity + add;
+	dex = dex + add;
 	points = points - add;
 	
     }
