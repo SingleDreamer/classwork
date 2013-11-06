@@ -8,7 +8,7 @@ public class Undead extends Character{
 	super.setStat();
         name = "The Lich King";
         maxHealth = 6 + r.nextInt(5);
-        health = maxHealth
+        health = maxHealth;
         strength = maxHealth;
         dexterity = 8 - r.nextInt(5);
 	intelligence = 8 + r.nextInt(5);
