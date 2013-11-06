@@ -16,7 +16,7 @@ public class Elf extends Character{
 		Random r = new Random();
 		int rollDie = r.nextInt(18) + 1;
 		if (rollDie <= dexterity) {
-			System.out.println("Elf successfully hit " + other);
+			System.out.println("Elf successfully hit the attacker");
 			//enemy loses health
 		}
 		else
@@ -54,8 +54,9 @@ public class Elf extends Character{
 	}
 		
 
-
-
+    public int getHealth(){
+	return health;
+    }
 
 
 
