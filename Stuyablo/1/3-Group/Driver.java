@@ -26,7 +26,7 @@ public class Driver {
 		System.out.println("1. Attack \n 2.Talk \n 3.Ignore");
 		int x = inp.nextInt();
 		if (x == 1){
-		    c.encounter(x)
+		    c.encounter(x);
 		}
 		else if (x == 2){
 		    other.talk();
