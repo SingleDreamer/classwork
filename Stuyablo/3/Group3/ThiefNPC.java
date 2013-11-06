@@ -1,23 +1,18 @@
 import java.io.*;
 import java.util.*;
 
-public class WarriorNPC extends Character {
+public class ThiefNPC extends Character {
 
-protected int distance;
 protected int dieRoll;
 protected int attackRange;
 
-/* Constructor for WarriorNPC */
-public WarriorNPC() {
-	strength = 10;
+/* Constructor for ThiefNPC*/
+public ThiefNPC() {
+	strength = 6;
 	health = strength;
-<<<<<<< HEAD
-	maxhealth = health;
-=======
->>>>>>> f9cd8e0167a0d06c1ad08a81cb538990a2a7a0ae
-	dexterity = 6;
-	attackRange = 7;
-	experience = 4;
+	dexterity = 14;
+	attackRange = 4;
+	experience = 0;
 }
 
 Random generator = new Random();
@@ -35,12 +30,12 @@ public boolean flee(){
 		DieRoll();
 		//if warrior rolls less that dexterity, it gets away!!
 		if (dieRoll <= dexterity) {
-			System.out.println("The warrior just fled");
+			System.out.println("The thief just fled");
 			isHere = false;
 			return true;
 		}
 		else {
-			System.out.println("The warrior tried to flee but wasn't fast enough!");
+			System.out.println("The theif tried to flee but wasn't fast enough!");
 			return false;
 		}
 }
@@ -48,21 +43,21 @@ public boolean flee(){
 public void attack(Character other){
 		DieRoll();
 		//If warrior roles less than its strength, it hits the attack!
-		if (dieRoll <= strength) {
-			System.out.println ("You just got attacked by the warrior!");
+		if (dieRoll <= dexterity) {
+			System.out.println ("You just got attacked by the thief!");
 			health = health + 1;
 			experience = experience + 1;
 			other.health = other.health - 1;
 		}
 		//If warrior roles more than its strength, it misses the attack!
 		else {
-			System.out.println ("The warrior tried attacking you but missed!");
+			System.out.println ("The theif tried attacking you but missed!");
 			other.experience = other.experience + 1;
 		}
 }
 
 public String getName() {
-	return "warrior";
+	return "thief";
 }
 
 
