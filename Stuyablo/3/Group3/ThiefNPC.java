@@ -26,19 +26,6 @@ public int DieRoll(){
 	return dieRoll;
 }
 
-public boolean flee(){
-		DieRoll();
-		//if warrior rolls less that dexterity, it gets away!!
-		if (dieRoll <= dexterity) {
-			System.out.println("The thief just fled");
-			isHere = false;
-			return true;
-		}
-		else {
-			System.out.println("The theif tried to flee but wasn't fast enough!");
-			return false;
-		}
-}
 
 public void attack(Character other){
 		DieRoll();
