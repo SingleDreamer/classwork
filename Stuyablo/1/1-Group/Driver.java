@@ -26,24 +26,25 @@ public class Driver {
 	    c=war;
 	}
 
-	if (b.equals("Warrior")){
-	    Warrior war2 = new Warrior(name);
-	    c2=war2;
+	//	if (b.equals("Warrior")){
+	//  Warrior war2 = new Warrior(name);
+	//  c2=war2;
 
-	    if (a.equals("Wizard")){
-		Wizard wiz = new Wizard(name);
-		c=wiz;
-	    }
+	//	}
+	if (a.equals("Wizard")){
+	    Wizard wiz = new Wizard(name);
+	    c=wiz;
+	}
 
-	    if (b.equals("Wizard")){
-		Wizard wiz2 = new Wizard(name);
-		c2=wiz2;
-	    }
+    //if (b.equals("Wizard")){
+    //	    Wizard wiz2 = new Wizard(name);
+    //	    c2=wiz2;
+    //	}
        
-	    //up to here
+	//up to here
 
     
-	    c.encounter(c2);
-	}
+	c.encounter(c2);
     }
 }
+

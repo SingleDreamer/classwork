@@ -39,6 +39,7 @@ public class Warrior extends Character{
             }
             else {
                 System.out.println(this.name + "'s attack failed!");
+		return super.attack(other);
             }
         }
      
