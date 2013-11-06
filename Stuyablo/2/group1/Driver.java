@@ -9,7 +9,7 @@ public class Driver {
 	a.attack(b);
 	*/
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Welcome to StuyabloII. \n Enter your name: ");
+	System.out.print("Welcome to StuyabloII. \nEnter your name: ");
 	String name = sc.nextLine();
 	System.out.println("Hello " + name);
 	System.out.println("-------------------------------");
@@ -18,7 +18,7 @@ public class Driver {
 
 	Character enemy = new Ogre();
 	System.out.println("-------------------------------");
-	System.out.println("It's an ogre! \n What will you do?: ");
+	System.out.println("It's an ogre! \nEnemy health: " + enemy.getHealth() + "\nWhat will you do?: ");
 	while (enemy.getHealth() > 0 && player.getHealth() > 0){
 	    System.out.print("Fight/Flee\n");
 	    String input = sc.nextLine();
@@ -30,7 +30,7 @@ public class Driver {
 	    }
 	    else
 		System.out.println("Invalid choice");
-	    System.out.println(enemy.getHealth());
+	    System.out.println("Enemy health: " + enemy.getHealth());
 	    System.out.println("-------------------------------");
 	}
 	System.out.println("Someone died...");
