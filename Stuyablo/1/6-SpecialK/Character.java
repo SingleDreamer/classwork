@@ -254,7 +254,7 @@ public class Character {
 		    else {
 			System.out.println("You hit but did not deal enough power to damage your opponent");
 			    }
-		}
+	   }
 
 	   else if (luck == dexterity - 3) {
 		    System.out.println("You missed your attack, and ended up accidently curing a disease your opponent had");
@@ -272,12 +272,58 @@ public class Character {
 	    }
     }
 
+    public void attackm(Character other){
+	int damage = (this.getStrength()/4 - other.getDefense()/4);
+	Random r = new Random();
+	int luck = (r.nextInt(6) + r.nextInt(6) + r.nextInt(6)); //3 6-sided die
+ // can potentially give random bonuses
+		if (luck > dexterity){
+		    System.out.println("Your opponent missed.");
+		}
+		    else if (luck == dexterity -1){ 
+		    damage = this.getStrength() - other.getDefense()/4;
+		    if (damage > 0){
+			    other.setHealth(other.getHealth()-damage);
+			    System.out.println("Your opponent hit you with a four times bonus, dealing " + damage + " damage to you.");
+			}
+		    else {
+			System.out.println("Your opponent hit but did not deal enough power to damage you");
+			    }
+	   }
+
+	   else if (luck == dexterity - 2){ // potential random bonus
+		    damage = this.getStrength()*2 - other.getDefense()/4;
+		    if (damage > 0){
+			    other.setHealth(other.getHealth()-damage);
+			    System.out.println("Your opponent hit with a eight times bonus, dealing " + damage + " damage to you.");
+			}
+		    else {
+			System.out.println("Your oppponent hit but did not deal enough power to damage you");
+			    }
+	   }
+
+	   else if (luck == dexterity - 3) {
+		    System.out.println("Your opponent missed you, and ended up accidently curing a disease you had");
+		    other.setHealth(other.getHealth()+1);
+		}
+
+	    else {
+		    if (damage > 0) {
+			other.setHealth(other.getHealth()-damage);
+			System.out.println("Your opponent hit with  no bonus, dealing " + damage + " damage to you.");
+			}
+		    else {
+			System.out.println("Your opponent hit but did not have enough power to damage you");
+		    }
+	    }
+    }
+
      public void Battle(Character other){
 	int r = 20;
         while (r>0 && this.getHealth()>0 && other.getHealth()>0){
 	    this.attack(other);
 	    if (other.getHealth()>0){
-		    other.attack(this);}
+		    other.attackm(this);}
 	    r +=1;
 		}
      }
