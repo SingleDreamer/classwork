@@ -85,7 +85,7 @@ public class Character {
         if (c == 3)
             charClass="Ogre";
         if (c == 4)
-            charClass="Theif";
+            charClass="Thief";
 
 
     }
@@ -113,14 +113,6 @@ public class Character {
         } 
     }
 
-
-    public void talk1(Character other){
-	System.out.println("herro there");
-    }
-
-
-
-
     public void talk(Character other){
 	Scanner sc = new Scanner(System.in);
 	Random r = new Random(); 
@@ -143,23 +135,15 @@ public class Character {
             if (x) {
                 delay (1000); 
                 say ("Sure");
-                //end turn
+                return 5;
             }        
             else {
                 delay (1000);
-                say ("no way you freak!"); 
+                say ("no way you freak!");
+		strength = strength + (r.nextInt(6) - 2);
                 this.attack(other);
             }
 
-	    if (x) {
-		delay (1000); 
-		say ("Sure");
-	    }        
-	    else {
-		delay (1000);
-		say ("no way you freak!"); 
-		this.attack(other);
-	    }
         }
         if (answer == 2) {
             if (x) {
@@ -169,7 +153,12 @@ public class Character {
             }
             else {
                 delay (1000); 
+<<<<<<< HEAD
                 say ("bullsh*it"); 
+		strength = strength + (r.nextInt(5) - 2);
+=======
+                say ("bullsh*t"); 
+>>>>>>> e7f70d66df334d07f5a97cb3bdedc1f71e0d5636
                 this.attack(other);
             }
         }
@@ -177,11 +166,12 @@ public class Character {
             if (x) {
                 delay (1000); 
                 say ("...you're a riot, kid. and an idiot");
-                //end turn
+                return 5;
             }
             else {
                 delay (1000);
                 say ("are you serious?");
+		strength = strength + (r.nextInt(4) - 2);
                 this.attack(other);
             }
         }

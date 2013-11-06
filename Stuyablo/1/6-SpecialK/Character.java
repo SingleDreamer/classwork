@@ -51,10 +51,15 @@ public class Character {
 	System.out.println("Warriors have high strength and good defense, but low dexterity. As for students... you'll have to guess the stats.");
 
 	Scanner sc = new Scanner (System.in);
-	System.out.println("Enter your name:");
+	System.out.println("Enter your name: ");
 	name = sc.next();
-	System.out.println("Choose your class. 1-Moran, 2-Wizard, 3-Zhang, 4- Warrior, Any other number- Student");
+	System.out.println("Choose your class. 1-Moran, 2-Wizard, 3-Zhang, 4- Warrior, Any other number- Student ");
 	int cl = sc.nextInt();
+	int s = 0;
+	int dex = 0;
+	int def = 0;
+	int mh = 0;
+	int ch = 0;
 	if (cl == 1){
 	    charType="Moran";
 	    s = 12;
@@ -95,8 +100,7 @@ public class Character {
 	    mh = s;
 	    ch = 2;
 	}
-    }
-    public void setStats(){
+
 	Scanner scanner = new Scanner (System.in);
 	
 	int i = 8;
@@ -157,6 +161,7 @@ public class Character {
 	     }
 	      i = i - 1;
 	}
+	init (name, charType, s, dex, def, ch);
     }
 
     public int getHealthPer(){
@@ -221,7 +226,7 @@ public class Character {
 		int luck = (r.nextInt(6) + r.nextInt(6) + r.nextInt(6)); //3 6-sided die
  // can potentially give random bonuses
 		if (luck > dexterity){
-		    System.out.println("You missed.")
+		    System.out.println("You missed.");
 		if (luck == dexterity -1){ 
 		    damage = this.getStrength() - other.getDefense()/4;
 		    if (damage > 0){
@@ -260,15 +265,15 @@ public class Character {
 		}
 	    }
 	}
-    }
+ 
 
      public void Battle(Character other){
 	int r = 20;
         while (r>0 && this.getHealth()>0 && other.getHealth()>0){
 	    this.attack(other);
-	    if other.getHealth()>0{
+	    if (other.getHealth()>0){
 		    other.attack(this);}
-	    r +=1
+	    r +=1;
 		}
      }
     public void encounter(Character other) {

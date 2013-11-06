@@ -94,6 +94,7 @@ public class Character {
     public void setLevel(int level) {this.level = level;}
     public void setName(String name) {this.name = name;}
     public void setCharacterClass(String characterClass) {this.characterClass = characterClass;}
+
     public void setAttributes(int strength,int intelligence,int dexterity) {this.strength = strength;this.intelligence = intelligence;this.dexterity = dexterity;}    
     public String toString() {
 	return name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
@@ -101,7 +102,7 @@ public class Character {
     }
     
     
-    public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
+    /* public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
 	//Assume attribute1 is vitality, attribute2 is strength, attribute3 is magic and attribute4 is attribute4
 	int damage = strength; //equation subject to change
 	if ((dexterity >= other.getDexterity()) || ((dexterity < other.getDexterity()) && (random.nextDouble() > 0.5))) { //hit rate subject to change
@@ -109,102 +110,125 @@ public class Character {
 	    System.out.println("Hit! " + damage + " damage.");}
 	else {System.out.println("Miss!");}
     }
-    
-    
-    /*    public void attack(Character other){
-	  int damage = strength;
-	  while (this.getHealth() > 0 && other.getHealth() > 0){ //the hits and battle continue until one character's health reaches zero
-	  if (this.getDexterity() > other.getDexterity()){ // I am allowing the player with the higher dexterity to attempt to hit first
-	  int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled
-	  int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled
-	  int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled
-	  int sum = one + two + three; // this represents the sum of the results of the three di
-	  if (sum == 4){
-	  other.setHealth(other.getHealth() - (2 * damage)); // a roll of 4 is an auto hit with double the damage
-	  System.out.println(this.getName() + "hit" + other.getName());
-	  }
-	  else if (sum == 3){
-	  other.setHealth(other.getHealth() - (3 * damage)); // a roll of 3 is an auto hit with triple the damage
-	  System.out.println(this.getName() + "hit" + other.getName());
-	  }
-	  else if (sum <= 5){
-	  other.setHealth(other.getHealth() - damage); // a roll of 5 or less is an auto hit
-	  System.out.println(this.getName() + "hit" + other.getName());
-	  }
-	  else if (sum >= 16){
-	  System.out.println(this.getName() + "missed the hit"); // a roll of 16 or more is an auto miss
-	  }
-	  else if (sum <= this.dexterity){ //the character needs to roll an amount equivalent or less than the dexterity to hit
-	  int four = random.nextInt(2); // but because no auto hit I use a one half probablity to see if there will be a hit or not
-	  if (four == 1){
-	  other.setHealth(other.getHealth() - damage); 
-	  System.out.println(this.getName() + "hit" + other.getName());
-	  }
-	  else{ 
-	  System.out.println(this.getName() + "missed the hit");
-	  }
-	  }
-	  else { //I'm not sure what happens because the rules don't specify, in the case where the role is greater than the dexterity but less than sixteen
-	  System.out.println("something");
-	  }
-	  }
-	  else if (other.getDexterity() > this.getDexterity()){
-	  int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled
-	  int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled
-	  int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled
-	  int sum = one + two + three; // this represents the sum of the results of the three di
-	  if (sum == 4){
-	  this.setHealth(this.getHealth() - (2 * damage)); // a roll of 4 is an auto hit with double the damage
-	  System.out.println(other.getName() + "hit" + this.getName());
-	  }
-	  else if (sum == 3){
-	  this.setHealth(other.this() - (3 * damage)); // a roll of 3 is an auto hit with triple the damage
-	  System.out.println(other.getName() + "hit" + this.getName());
-	  }
-	  else if (sum <= 5){
-	  this.setHealth(this.getHealth() - damage); // a roll of 5 or less is an auto hit
-	  System.out.println(other.getName() + "hit" + this.getName());
-	  }
-	  else if (sum >= 16){
-	  System.out.println(other.getName() + "missed the hit"); // a roll of 16 or more is an auto miss
-	  }
-	  else if (sum <= other.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
-	  int four = random.nextInt(2); // but because no auto hit uses a one half probablity to see if there will be a hit or not
-	  if (four == 1){
-	  this.setHealth(other.getHealth() - damage); 
-	  System.out.println(other.getName() + "hit" + this.getName());
-	  }
-	  else{ 
-	  System.out.println(other.getName() + "missed the hit");
-	  }
-	  }
-	  else { //I'm not sure what happens because the rules don't specify, in the case where the role is greater than the dexterity but less than sixteen
-	  System.out.println("something");
-	  }
-	  }
-	  else{ // in the case if the two dexterity's are the same this one half probability will determine who should have the greater dexterity
-	  int five = random.nextInt(2);
-	  if (five == 1){
-	  this.getDexterity() = this.getDexterity() + 1;
-	  }
-	  else{
-	  other.getDexterity() = other.getDexterity() + 1;
-	  }
-	  }
-	  }
-	  if (this.getHealth() == 0){
-	  System.out.println(this.getName() + "has been defeated by" + other.getName()); // maybe you guys would rather have the winner's name first as opposed to the loser's name first
-	  other.setExperience(other.getExperience() + 10); // the experience points are subject to change
-	  }
-	  else{
-	  System.out.println(other.getName() + "has been defeated by" + this.getName());
-	  this.setExperience(this.getExperience() + 10); 
-	  }
-	  }
     */
+
+    public void attack(Character other){
+	int damage = 0;
+	int otherDamage = 0;
+	String firstHit = "";
+	// set the damage that is done by this character
+	if (getCharacterClass().equals("Wizard")){
+	    damage = intelligence;
+	}
+	else if ((getCharacterClass().equals("Warrior")) || (getCharacterClass().equals("Thief"))){
+	    damage = strength;
+	}
+	// set the damage done by other character
+	if (other.getCharacterClass().equals("Wizard")){
+	    otherDamage = other.getIntelligence();
+	}
+	else if ((other.getCharacterClass().equals("Warrior")) || (other.getCharacterClass().equals("Thief"))){
+	    otherDamage = other.getStrength();
+	}
+
+	if (this.getDexterity() == other.getDexterity()){ // in case the dexterity's of the two characters are equal we randomly increase one by 1 so we can determine who will hit first
+	  int prob = random.nextInt(2);
+	  if (prob == 1){
+	      this.setDexterity(this.getDexterity() + 1);
+	  }
+	  else{
+	      other.setDexterity(other.getDexterity() + 1);
+	  }
+	}
+	if (this.getDexterity() > other.getDexterity()){ // I am allowing the player with the higher dexterity to attempt to hit first
+	    firstHit = this.getName();
+	}
+	else if (other.getDexterity() > this.getDexterity()){
+	    firstHit = other.getName();
+	}
+	
+	    
+	while (this.getHealth() > 0 && other.getHealth() > 0){ //the hits and battle continue until one character's health reaches zero
+	    if (firstHit.equals(this.getName())){ // if this character has the higher dexterity he hits first
+		int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled by this character
+		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled by this character
+		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled by this character
+		int sum = one + two + three; // this represents the sum of the results of the three di
+		if (sum <= this.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		    other.setHealth(other.getHealth() - damage); 
+		    System.out.println(this.getName() + "hit" + other.getName());
+		}
+		else{ 
+		    System.out.println(this.getName() + "missed the hit");
+		}
+		//now it is other character's chance to hit
+		int four = random.nextInt(6) + 1; // this represents the number of the first dice that is rolled by other character
+		int five = random.nextInt(6) + 1; // this represents the number of the second dice that is rolled by other character
+		int six = random.nextInt(6) + 1; // this represents the number of the third dice that is rolled by other character
+		int sum2 = four + five + six; // this represents the sum of the three di
+		if (sum2 <= other.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		    this.setHealth(this.getHealth() - otherDamage); 
+		    System.out.println(other.getName() + "hit" + this.getName());
+		}
+		else{ 
+		    System.out.println(other.getName() + "missed the hit");
+		}
+	    }
+	    else{ // if other character has the higher dexterity he hits first
+		int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled by other character
+		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled by other character
+		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled by other character
+		int sum = one + two + three; // this represents the sum of the results of the three di
+		if (sum <= other.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		    this.setHealth(this.getHealth() - otherDamage); 
+		    System.out.println(other.getName() + "hit" + this.getName());
+		}
+		else{ 
+		    System.out.println(other.getName() + "missed the hit");
+		}
+		//now it is this character's chance to hit
+		int four = random.nextInt(6) + 1; // this represents the number of the first dice that is rolled by this character
+		int five = random.nextInt(6) + 1; // this represents the number of the second dice that is rolled by this character
+		int six = random.nextInt(6) + 1; // this represents the number of the third dice that is rolled by this character
+		int sum2 = four + five + six; // this represents the sum of the three di
+		if (sum2 <= this.getDexterity()){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		    other.setHealth(other.getHealth() - damage); 
+		    System.out.println(this.getName() + "hit" + other.getName());
+		}
+		else{ 
+		    System.out.println(this.getName() + "missed the hit");
+		}
+	    }
+
+	    //Ben's idea
+	    //after every hit we show the stats for both Character's even though the only one as of now that is changing every so often if health
+	    System.out.println(this.getName());
+	    System.out.println("Health: " + this.getHealth());
+	    System.out.println("Strength: " + this.getStrength());
+	    System.out.println("Intelligence: " + this.getIntelligence());
+	    System.out.println("Dexterity: " + this.getDexterity());
+	    System.out.println("Experience: " + this.getExperience());
+
+	    System.out.println(other.getName());
+	    System.out.println("Health: " + other.getHealth());
+	    System.out.println("Strength: " + other.getStrength());
+	    System.out.println("Intelligence: " + other.getIntelligence());
+	    System.out.println("Dexterity: " + other.getDexterity());
+	    System.out.println("Experience: " + other.getExperience());
+	}
+	if (this.getHealth() == 0){
+	    System.out.println(this.getName() + "has been defeated by" + other.getName()); // maybe you guys would rather have the winner's name first as opposed to the loser's name first
+	    other.setExperience(other.getExperience() + 50); // the experience points are subject to change
+	}
+	else{
+	    System.out.println(other.getName() + "has been defeated by" + this.getName());
+	    this.setExperience(this.getExperience() + 50); 
+	}
+    }
+
     
     // I'm not sure how to code the leveling up based on the experience points
-    //Also the code rules mention that characters play with weapons and those determine the damage. I just left out weapons and dealth with strength because that seemed easier.
+    //Also the code rules mention that characters play with weapons and spells and those determine the damage. I wasn't sure how to deal with weapons and spells so for now I just dealth with strength, dexterity, and inteligence as mentioned above in the comments. 
     //Also I did not know how to use distance for fighting battles because even if each character has a coordinate for x and a coordinate for y 
     //well it makes sense they the x and y values have to have a certain distance between them for attack to work and we can easily add that
     //I just don't know as the character progresses throughout the game how the x and y coordinates are suppose to adjust to his/her position   
