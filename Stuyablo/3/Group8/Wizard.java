@@ -15,8 +15,8 @@ public class Wizard extends Character {
 	Mana = 12;
     }
 
-    public void attack () {
-	int hit = Mana - 8;
+    public void attack (Character other) {
+	int hit = 1;
 	//this hit should take into account weapon choice
 	boolean damage = true;
 	Random r = new Random();
@@ -26,6 +26,16 @@ public class Wizard extends Character {
 	    damage = false;
 	}
 	if (damage==true)
-	    enemy.Health = enemy.Health - hit;
+	    other.Health = other.Health - hit;
+	this.experience();
+    }
+
+    public void encounter {
+	Random r = new Random();
+	if (r.nextInt() < 0.5) {
+	    this.attack(other);
+	} else {
+	    System.out.println("You attacked" + other.toString());
+    }
 
 }
