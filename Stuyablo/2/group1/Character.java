@@ -61,27 +61,31 @@ public class Character {
 	System.out.print("Welcome to StuyabloII.\nEnter your name: ");
 	name = sc.nextLine();
 	System.out.println("Hello " + name);
-	setStat();
+	setChar();
     }
 
-    //SETCLASS IS DEFINITELY NOT THE RIGHT WAY TO DO THIS
-    //
-    //public void setWarrior() {
-    //    strength = 12;
-    //    dexterity = 4;
-    //    health = strength;
-    //    Scanner sc = new Scanner(System.in);
-    //    System.out.println("Strength: " + strength);
-    //    System.out.println("Dexterity: " + dexterity);
-    //    setStat();
-    //}
+    public void setChar() {
+	Scanner sc = new Scanner(System.in);
+	System.out.print("What would you like to be? Warrior? Blah?");
+	if (sc.nextLine().equals("Warrior")) {
+	    Warrior w = new Warrior();
+	    System.out.println("Woo, You're a warrio");
+	}
+	else if (sc.nextLine().equals("Blah")) {
+	    System.out.println("Woo, you're a blah");
+	}
+	else {
+	    System.out.println("Silly you, ponies aren't a choice");
+	    setChar();
+	}
+    }
 
     public void setStat() {
 	points = 8;
 	Scanner sc = new Scanner(System.in);
 
 	System.out.println("You have " + points + " skill points available.");
-	System.out.print("Strength = 8 + :");
+	System.out.print("Strength + :");
 	int add = sc.nextInt();
 	if (add > points){
 	    add = points;
@@ -92,7 +96,7 @@ public class Character {
 
         System.out.println("You still have " + points + " skill points available");
 	add = sc.nextInt();
-	System.out.print("Dexterity = 8 + :");
+	System.out.print("Dexterity + :");
 	if (add > points) {
 	    add = points;
 	    System.out.printf("Only able to add %d points\n",add);
@@ -101,8 +105,6 @@ public class Character {
 	dexterity = dexterity + add;
 	points = points - add;
 	
-	System.out.printf("Remaining %d points put into intelligence",points);
-	intelligence += points;
     }
 
     public int getHealth() {

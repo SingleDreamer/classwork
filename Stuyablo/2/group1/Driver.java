@@ -1,9 +1,6 @@
 public class Driver {
     public static void main(String[] args) {
-	Character a,b;
+	Character a;
 	a = new Character();
-	b = new Character();
-	a.attack(b);
-
     }
 }
