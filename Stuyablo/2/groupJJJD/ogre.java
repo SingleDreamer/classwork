@@ -19,12 +19,12 @@ public class ogre extends Character{
 	    rollDice();
 	    if (roll > this.dexterity) {
 		
-		other.health = other.health - (this.dmg + 1);
+		other.health = other.health - (this.dmgdouble + 1);
 		//Ogre picks up random tree, does more damage
 		System.out.println(this.toString() + "'s Health: " + this.health);
 		System.out.println(other.toString() + "'s Health: " + other.health);
-		System.out.println(this.toString() + "'s Damage: " + this.dmg);
-		System.out.println(other.toString() + "'s Damage: " + other.dmg);
+		System.out.println(this.toString() + "'s Damage: " + this.dmgdouble);
+		System.out.println(other.toString() + "'s Damage: " + other.dmgdouble);
 	    }
 		
 	}
