@@ -8,16 +8,8 @@ public class Character {
     protected int Strength;
     protected int Intelligence;
     protected int Dexterity;
-    protected int Level;
-
-    public Character(String name, int Level) {
-	Name = name;
-	Level = level;
-	Strength = 8;
-	Intelligence = 8;
-	Dexterity = 8;
-	Health = 16;
-    }
+    protected int Level = 1;
+    protected int experience = 0;
 
     public String getStatus() {
         String attrib1=String.format("Str: %d Dex: %d Int: %d",
@@ -31,15 +23,25 @@ public class Character {
     }
 
     public String toString() {
-        return name;
+        return Name;
     }
 
     public int getHealth() {
-        return health;
+        return Health;
+    }
+
+    public boolean flee () {
+	int Dice = r.nextInt(18);
+	if (Dice <= this.Dexterity) {
+	    System.out.println("You escaped!");
+	    return true;
+	} else {
+	    return false;}
+	return true;
     }
 
     public void encounter (Character other) {
-	if (this.flee == true)
+	if (this.flee() == true)
 	    this.experience();
 	else {
 	    Random r = new Random();
@@ -48,6 +50,25 @@ public class Character {
 		this.attack(other);
 		System.out.println("You attacked" + other.toString() + "!");
 	    }
+	}
+    }
+
+      public void attack (Character other) {
+	int hit = 1;
+	//this hit should take into account weapon choice
+	boolean damage = true;
+	Random r = new Random();
+	int Dice = r.nextInt(18);
+	if (Dice <= this.Dexterity) {
+	    damage = true;
+	} else {
+	    damage = false;
+	}
+	if (damage==true) {
+	    other.Health = other.Health - hit;
+	    this.experience();
+	}else {
+	    System.out.println("You missed!");
 	}
 }
 	
