@@ -4,7 +4,7 @@ import java.util.*;
 public class Character {
     protected int health, maxhealth;
     protected int dexterity, strength, intelligence;
-    protected int experience,expBase, expReq, level;
+    protected int experience,expBase, expReq, level; //added instance v's for leveling/experience -A
     protected String name;
     protected String charClass;
 
@@ -36,9 +36,9 @@ public class Character {
 	return die1 + die2 + die3;
     }
 
-    public void attack(Character other) {
+    public void attack(Character other) { //attack calls roll(), then takes off health accordingly -A
 	int dice = roll();
-	int attackDmg =(int) (strength / 3);
+	int attackDmg =(int) (strength / 4);
 	if (dexterity <= dice){
 	    System.out.println("Successful Attack!");
 	    if (attackDmg > other.health)
@@ -60,7 +60,6 @@ public class Character {
 	    return false;
     }
 
-
     /*
       this routine will decide first ask if other tries to flee. If
       so, and if it's succesful it should adjust experience and or
@@ -78,22 +77,24 @@ public class Character {
 
       (they would never be both dead.)
     */
+
+    //Encounter: if other decides to flee, this gets experience, and encounter ends... if this decides to flee, other gets experience and encounter ends... otherwise, fight fight fight!! -A
     public int encounter(Character c, Character other) {
 	if (other.flee() == true){
 	    c.experience ++;
+	    System.out.println(other + " has fled.");
 	    return 0;
 	}
 	if (c.flee() == true){
 	    other.experience ++;
+	    System.out.println(c + " has fled.");
 	    return 1;
 	}
-	System.out.println(c + " attacks " + other);
 	c.attack(other);
 	System.out.println(c + "'s current health:" + c.health);
 	System.out.println(other + "'s current health:" + other.health);
 	System.out.println("~~~~~~~~~~~~~~");
 	if (other.health > 0){
-	    System.out.println(other + " attacks " + c);
 	    other.attack(c);
 	    System.out.println(c + "'s current health:" + c.health);
 	    System.out.println(other + "'s current health:" + other.health);
@@ -147,3 +148,6 @@ public class Character {
     }
     
 }
+
+
+//hey guys! finished Character and added attack() and combat(); these are generic methods so feel free to change them for specific classes! -Angela
