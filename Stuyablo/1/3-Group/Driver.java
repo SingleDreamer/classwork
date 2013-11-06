@@ -9,7 +9,7 @@ public class Driver {
 	System.out.println(c.getStatus());
 	Random r = new Random();
 	for (n = 0, n < 50, n ++){
-	    if (r.nextInt(100) < 50){
+	    if (r.nextInt(2) < 1){
 		System.out.println("You've encountered something!");
 	    }
 	    else{
