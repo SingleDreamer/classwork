@@ -1,11 +1,11 @@
 import java.util.*;
 import java.io.*;
 
-public class Wizard extends Character {
+public class Warrior extends Character {
 
     private Scanner sc = new Scanner(System.in);
     
-    public Wizard() {
+    public Warrior() {
 	System.out.print("What's your name? ");
 	Name = sc.nextLine();
 	Level = 1;
@@ -33,3 +33,4 @@ public class Wizard extends Character {
 	}
     }
 }
+

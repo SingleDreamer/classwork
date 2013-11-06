@@ -3,19 +3,20 @@ import java.util.*;
 
 
 public class Wizard extends Character {
-    protected double spelldamage;
-    protected Random r;
+    protected int spelldamage;
     protected int boostcount;
 
 
     public Wizard () {
 	super("New character", "Wizard");
+	spelldamage = 0;
+	boostcount = 0;
     }
 
     public Wizard (String name) {
-
 	super (name, "Wizard");
-
+	boostcount = 0;
+	spelldamage = 0;
     }
 
     public void attack (Character other){
@@ -35,39 +36,37 @@ public class Wizard extends Character {
 		System.out.println("6. Final Flame");
 		int spell = sc.nextInt();
 		if (spell == 1) {
-		    spelldamage = (this.intelligence * 1.5) - r.nextInt(4);
-		    super.attack(other, spelldamage);
+		    spelldamage = (this.intelligence + 7) - random.nextInt(4);
 		    System.out.println(other.getName() + "was hit by a fireball");
 		}
-		if (spell == 2) {
+		else if (spell == 2) {
 		    this.health = this.health + 30;
 		    System.out.println(super.getName() + "cast heal");
 		}
-		if (spell == 3) {
-		    spelldamage = (this.intelligence * 1.1);
-		    super.attack(other,spelldamage);
+		else if (spell == 3) {
+		    spelldamage = (this.intelligence) - random.nextInt(3);
 		    System.out.println(other.getName() + "was hit by ice");
 		    if (Math.random() < 0.4) {
 			other.freezecount  = 2;
 			System.out.println (other.getName() + "was frozen");
 		    }
 		}
-		if (spell == 4) {
-		    this.intelligence = this.intelligence * 2.5;
+		else if (spell == 4) {
+		    this.intelligence = this.intelligence * 2;
 		    this.boostcount = 2;
 		    System.out.println(this.getName() + "has increased their intelligence");
 		}
-		if (spell == 5) {
+		else if (spell == 5) {
 		    other.freezecount = 3;
 		    System.out.println (other.getName() + "is asleep");
 		}
 		
-		if (spell == 6) {
-		    spelldamage = this.intelligence * 3 - r.nextInt(10);
-		    super.attack(other,spelldamage);
-		    Sysetm.out.println (other.getName() + "has been hit by the final flame");
+		else if (spell == 6) {
+		    spelldamage = this.intelligence * 3 - random.nextInt(10);
+		    System.out.println (other.getName() + "has been hit by the final flame");
 		}
 		else {
+		    System.out.println(spell);
 		    System.out.println("Invalid spell, you will now perform a basic attack");
 		}
 	    }
@@ -86,7 +85,7 @@ public class Wizard extends Character {
 	    boostcount = boostcount - 1;
 	}
 	if (boostcount == 0) {
-	    this.intelligence = this.intelligence * 0.4;
+	    this.intelligence = this.intelligence / 2;
 	    boostcount = boostcount - 1;
 	}
     }

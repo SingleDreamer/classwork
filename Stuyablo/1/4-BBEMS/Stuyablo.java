@@ -80,7 +80,7 @@ public class Stuyablo {
 	    }
 
 	    System.out.println (player);
-	    Sytsem.out.println ("You have killed" + player.getOpponentsDefeated() + "opponents!");
+	    System.out.println ("You have killed" + player.getOpponentsDefeated() + "opponents!");
 	    
 	    
 	    System.out.println("\nProgram terminated.");

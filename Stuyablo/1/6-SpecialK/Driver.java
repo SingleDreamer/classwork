@@ -7,7 +7,7 @@ public class Driver {
 	System.out.println(n.getStatus());
 	Random e = new Random();
 	while (n.getHealth()>0){
-	    System.out.println("What would you like to do next?...(a)fight the nearest enemy or (b)talk to the nearest NPC? or (c)See your stats?");
+	    System.out.println("What would you like to do next?...(a)fight the nearest enemy or (b)talk to the nearest NPC? or (c)See your stats? or (d)Quit the game :(");
 	    Scanner a = new Scanner(System.in);
 	    String choice = a.nextLine();
 	    if (choice.equalsIgnoreCase("a")){
@@ -16,7 +16,7 @@ public class Driver {
 	    }
 	    else if (choice.equalsIgnoreCase("b")){
 		String[] chat = new String[6];
-		chat[0] = "Hello. It's a sunny day.";
+		chat[0] = "Get off the bridge.";
 		chat[1] = "Make sure you get at least 24 hours of sleep daily.";
 		chat[2] = "You're not allowed on floors 1-10.";
 		chat[3] = "Should I confiscate that?...";
@@ -27,6 +27,10 @@ public class Driver {
 	    }
 	    else if (choice.equalsIgnoreCase("c")){
 		System.out.println(n.getStatus());}
+	    else if (choice.equalsIgnoreCase("d")){
+		System.out.println("Thanks for playing, fool");
+		break;
+	    }
 	    else {
 		System.out.println("You can't do that.");
 	    }

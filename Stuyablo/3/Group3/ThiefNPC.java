@@ -11,7 +11,7 @@ public ThiefNPC() {
 	strength = 6;
 	health = strength;
 	dexterity = 14;
-	attackRange = 4;
+	attackRange = 5;
 	experience = 0;
 }
 
@@ -26,33 +26,24 @@ public int DieRoll(){
 	return dieRoll;
 }
 
-public boolean flee(){
-		DieRoll();
-		//if warrior rolls less that dexterity, it gets away!!
-		if (dieRoll <= dexterity) {
-			System.out.println("The thief just fled");
-			isHere = false;
-			return true;
-		}
-		else {
-			System.out.println("The theif tried to flee but wasn't fast enough!");
-			return false;
-		}
-}
 
 public void attack(Character other){
-		DieRoll();
-		//If warrior roles less than its strength, it hits the attack!
-		if (dieRoll <= dexterity) {
-			System.out.println ("You just got attacked by the thief!");
-			health = health + 1;
-			experience = experience + 1;
-			other.health = other.health - 1;
-		}
-		//If warrior roles more than its strength, it misses the attack!
+	int dice = DieRoll();
+		//If the distance is greater than the attack range, move closer by one
+		if (attackRange < distance) {
+			distance = distance - 1;
+			}
 		else {
-			System.out.println ("The theif tried attacking you but missed!");
-			other.experience = other.experience + 1;
+			//If thief roles less than its dexterity, it hits the attack!
+			if (dice <= dexterity) {
+				System.out.println ("You just got attacked by the thief!");
+				experience = experience + 1;
+				other.health = other.health - 1;
+				}
+			//If thief roles more than its dexterity, it misses the attack!
+			else {
+					System.out.println ("The theif tried attacking you but missed!");
+			}
 		}
 }
 

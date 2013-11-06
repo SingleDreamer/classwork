@@ -25,8 +25,68 @@ public Ogre(int level) {
 	maxhealth = strength;
 	health = maxhealth;
 	}
-}
 
+public void level(int exp) {
+	experience = experience + exp;
+	if (experience > experienceneeded) {
+		level = level + 1;
+		System.out.println("You leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3.Intelligence");
+		
+	
+	Scanner s = new Scanner(System.in);
+	int i = s.nextInt();
+	if (i == 1) {
+		dexterity = dexterity + 1;
+		experienceneeded = experienceneeded + 5 * (level - 1);
+	}
+	if (i == 2) {
+		strength = strength + 1;
+		experienceneeded = experienceneeded + 5 * (level - 1);
+	}
+	else {
+		intelligence = intelligence + 1;
+		experienceneeded = experienceneeded + 5 * (level - 1); /*Increases exp needed to level up by 5 per level, so its 10, 15, 25, 40, 60 Consider that you get 10 exp + enemies health per each kill.*/
+	}
+	maxhealth = strength;
+	health = maxhealth; //health regeneration
+	}
+	
+
+} 
+
+public void attack(Character other) {
+	System.out.println(getStatus());
+	System.out.println(other.getStatus());
+	try {
+	    Thread.sleep(2000);
+	} catch(InterruptedException ex) {
+	    Thread.currentThread().interrupt();
+	}
+	if (health < 4)
+		System.out.println("Cannot attack!");
+	else {
+/* do the attack:
+	   print out the attempt and the result and update
+	   all relavent variables
+	*/
+	Random r = new Random();
+	int roll = r.nextInt(16) + 3;
+	if (dexterity >= roll) {
+		other.damage(strength);
+		System.out.println("You have dealt " + strength + " damage to your enemy!");
+	}
+	else 
+		System.out.println("You missed!");
+		if (other.getStat()[0] >= roll) {
+		damage(other.getStat()[1]);
+		System.out.println("Your enemy has dealt " + other.getStat()[1] + " damage to you!");
+		} else {
+		System.out.println("Your enemy missed!");
+		}
+
+	}
+}
+}
 /* We do not need this method, but if we ever do, it will be useful.
 public void move() {
 	Scanner s = new Scanner(System.in);

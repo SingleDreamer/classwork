@@ -3,7 +3,7 @@ import java.util.*;
 
 public class PC extends Character{
     
-    public Character(){
+    public PC(){
 	dexterity = 8;
 	strength = 8;
 	intelligence = 8;
@@ -54,6 +54,5 @@ public class PC extends Character{
 	
 	health = 50 + ((strength - 8)*4);
     }	
-    
 }
 

@@ -332,7 +332,7 @@ public class Character {
      }
     public void encounter(Character other) {
 	System.out.println("" + other.getStatus());
-	System.out.println("Enter 1 to flee, any other number to fight");
+	System.out.println("Enter 1 to flee, 2 to talk, any other number to fight");
             Scanner sc = new Scanner(System.in);
 	int response = sc.nextInt();
 	Random x = new Random();
@@ -341,6 +341,20 @@ public class Character {
 	    System.out.println("Enemy fled.");}
         else if (response==1 && this.flee(other)){
 	    System.out.println("You fled.");}
+	else if (response == 2){
+	    System.out.println("Speak your mind: ");
+	    Scanner sc1 = new Scanner(System.in);
+	   
+	    if (sc1.equals("")){
+		System.out.println("What are your thoughts!");
+	    }
+	    else{
+		System.out.println("Your words will be ignored! Don't even try.  How dare you try to negotiate, this is not the UN"); // this will be printed no matter what, because they have no time to enter something to say
+		other.setHealth(other.getMaxHealth());
+		this.encounter(other);
+	    }
+	
+	}
         else{
 	    this.Battle(other);
 		if (this.getHealth()<=0){
@@ -367,6 +381,7 @@ public class Character {
 		}
 	    }
     }   
+
      public String getStatus() {
         String attrib1=String.format("Str: %d Dex: %d Def: %d Chr: %d",
                                      strength, dexterity, defense, charm);

@@ -22,7 +22,7 @@ public class Character {
 	strength = 8 + s;
 	intelligence = 8 + i;
 	health = strength;
-	maxhealth = health;
+	maxhealth = 50;
 	experience = 0; 
 	gold = 0;
 	//distance = 0;
@@ -43,7 +43,7 @@ public class Character {
 	strength = 8 + s;
 	intelligence = 8 + i;
 	health = strength;
-	maxhealth = health;
+	maxhealth = 50;
 	experience = 0; 
 	gold = 0;
 	//distance = 0;
