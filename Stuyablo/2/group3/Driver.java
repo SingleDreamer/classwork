@@ -40,47 +40,45 @@ public class Driver {
         }
         npc[npc.length-1] = new MrMoran("BOSS: MR.MORAN", player);
 
-	int[] xArray = new int [ npc.length - 1 ];
-	int[] yArray = new int [ npc.length - 1 ];
-	for ( int j = 0 ; j < npc.length - 1 ; j++ ) {
-	    xArray [ j ] = npc [ j ].xcor;
-	    yArray [ j ] = npc [ j ].ycor;
-	}
-
+        int[] xArray = new int [ npc.length - 1 ];
+        int[] yArray = new int [ npc.length - 1 ];
+        for ( int j = 0 ; j < npc.length - 1; j++ ) {
+            xArray [ j ] = npc [ j ].xcor;
+            yArray [ j ] = npc [ j ].ycor;
+        }
         while (player.health > 0) {
             String map = new String();
             containsI p = new containsI();
 
             for ( int i = 0 ; i < xArray.length ; i++ )
-            System.out.println ( xArray[i] + ", " + yArray [ i ] );
+                System.out.println ( npc[i] + ": " + xArray[i] + ", " + yArray [ i ] );
 
-            for ( int k = 10 ; k >= -10 ; k-- ) {
-            if ( p.containsInt ( yArray, k ) ) {
-                int index = p.findInt ( yArray ,k );
-                int other = xArray [ index ];
-                for ( int l = -10 ; l < other ; l++ ) {
-                map = map + "-";
+            for ( int k = player.gridRange ; k >= (-1 * player.gridRange) ; k-- ) {
+                if ( p.containsInt ( yArray, k ) ) {
+                    int index = p.findInt ( yArray ,k );
+                    int other = xArray [ index ];
+                    for ( int l = (-1 * player.gridRange) ; l < other ; l++ ) {
+                        map = map + "-";
+                    }
+                    map = map + "E";
+                    for ( int m = other + 1 ; m <= player.gridRange ; m++ ) {
+                        map = map + "-";
+                    }
                 }
-                map = map + "E";
-                for ( int m = other + 1 ; m <= 10 ; m++ ) {
-                map = map + "-";
+                else {
+                    for ( int i = (-1 * player.gridRange) ; i <= player.gridRange ; i++ ) {
+                        map = map + "-";
+                    }
                 }
-            }
-            else {
-                for ( int i = -10 ; i <= 10 ; i++ ) {
-                    map = map + "-";
-                }
-            }
-            map = map + "\n";
+                map = map + "\n";
             }
             System.out.println ( player.xcor + ", " + player.ycor );
             //System.out.println ( map );
-            int row = 10 - player.ycor;
-            int column = 11 + player.xcor;
-            String map1 = map.substring ( 0 , row * 22 + column - 1 );
-            String map2 = map.substring ( row * 22 + column );
+            int row = player.gridRange - player.ycor;
+            int column = player.gridRange + 1 + player.xcor;
+            String map1 = map.substring ( 0 , row * (player.gridRange * 2 + 2) + column - 1 );
+            String map2 = map.substring ( row * (player.gridRange * 2 + 2) + column );
             System.out.println ( map1 + "Y" + map2 );
-            System.out.println ( map.substring ( 1 , 25 ) );
 
             if (player.exp >= (50 + Math.pow(2, player.level))) {
                 player.level = player.level + 1;
