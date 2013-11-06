@@ -1,6 +1,9 @@
+import java.io.*;
+import java.util.*;
+
 public class Wizard extends Character{
 	public Wizard(String name) {
-		super(name, 8, 8, 8, true);
+		super(name, 6, 8, 10, true);
 	}
 
 	
@@ -16,8 +19,8 @@ public class Wizard extends Character{
 				System.out.print(">");
 				int weapon = sc.nextInt();
 				if (weapon == 1) {
-					dist = getDistance(other);
-					dexterity = dexterity - Math.round(dist);
+					dist = (int)Math.round(getDistance(other));
+					dexterity = dexterity - dist;
 					mult = 2;
 				}
 				else if (weapon == 2) {

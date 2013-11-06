@@ -6,7 +6,7 @@ public class Ogre extends Character{
 	maxhealth = 14 + (r.nextInt(6) - 2);
 	health = maxhealth;
 	strength = 8 + (r.nextInt(6) - 2);
-	dexterity = 8 + (r.nextInt(6) - 2);
+	dexterity = 10 + (r.nextInt(6) - 2);
 	intelligence = 5 + (r.nextInt(6) - 2);
 	damage = strength;
 	experience = 10;
