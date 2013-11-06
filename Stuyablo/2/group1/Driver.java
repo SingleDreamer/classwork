@@ -9,25 +9,29 @@ public class Driver {
 	a.attack(b);
 	*/
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Welcome to StuyabloII. \n Enter your name: ");
+	System.out.print("Welcome to StuyabloII. \nEnter your name: ");
 	String name = sc.nextLine();
 	System.out.println("Hello " + name);
+	System.out.println("-------------------------------");
 	
 	Character player = new Warrior();
 
 	Character enemy = new Ogre();
-	System.out.println("It's an ogre! \n What will you do?: ");
+	System.out.println("-------------------------------");
+	System.out.println("It's an ogre! \nEnemy health: " + enemy.getHealth() + "\nWhat will you do?: ");
 	while (enemy.getHealth() > 0 && player.getHealth() > 0){
-	    System.out.print("Fight/Flee\n");
-	    if (sc.nextLine().equals("Fight")){
+	    System.out.print("Fight(1)/Flee(2)\n");
+	    String input = sc.nextLine();
+	    if (input.equals("1")){
 		player.attack(enemy);
 		}
-	    else if (sc.nextLine().equals("Flee")){
+	    else if (input.equals("2")){
 		System.out.println("You coward...");
 	    }
 	    else
 		System.out.println("Invalid choice");
-	    System.out.println(enemy.getHealth());
+	    System.out.println("Enemy health: " + enemy.getHealth());
+	    System.out.println("-------------------------------");
 	}
 	System.out.println("Someone died...");
     }
