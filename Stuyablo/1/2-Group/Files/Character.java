@@ -296,7 +296,7 @@ public class Character {
 	    switch(command) {
 	    case 1:
 		if (c1.pc) {
-		    System.out.println("Choose an attack. Enter 1, 2, or 3: ");
+		    System.out.println("Choose an attack. Enter 1, 2, or 3 (Wizards may also enter 0): ");
 		    c2.health = c2.health - c1.attack(sc.nextInt(),c2);
 		    try {
 			Thread.sleep(2000); // how many milliseconds to pause
