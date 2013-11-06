@@ -7,14 +7,14 @@ public class Player extends Character {
 
     public void attack(Character c){
 	Scanner s = new Scanner (System.in);
-	System.out.print ("How would you like to fight?" + "\n" + "1 : Basic Attack, 2: Special Attack 1, 3: Special Attack 2");
+	System.out.print ("How would you like to fight?" + "\n" + "1 : Basic Attack, 2: Special Attack 1, 3: Special Attack 2 ");
 	int attack = s.nextInt();
 	if (attack == 1){
 	    basicattack(c);
 	}
 	else if (attack == 2){
 	    if (cooldown > 0){
-		System.out.println("You do not have the energy for that");
+		System.out.println("You do not have the energy for that ");
 		attack(c);
 	    }
 	    else
@@ -22,7 +22,8 @@ public class Player extends Character {
 	}
 	else if (attack == 3){
 	    if (cooldown > 0){
-		System.out.println("You do not have the energy for that");
+		System.out.println("You do not have the energy for that ");
+		attack (c);
 	    }
 	    else
 		specialattack2(c);
@@ -149,8 +150,8 @@ public class Player extends Character {
 	if (other.getHealth() > 0){
 	    other.attack(this);
 	}
-	System.out.print(this + " : " +  health);
-	System.out.print(other + " : " + other.getHealth());
+	System.out.print(this + " : " +  health + " \n");
+	System.out.print(other + " : " + other.getHealth()+ " \n");
 	if ((health > 0) && (other.getHealth() > 0)){
 	    this.battle(other);
 	}
@@ -159,7 +160,9 @@ public class Player extends Character {
 		System.out.print("GAME OVER!");
 	    }
 	    else {
-		System.out.print("You have won the fight! \n");
+		System.out.print("You have won the fight! Gained 300 gold and 30 experience. \n");
+		gold = gold + 300;
+		experience = experience + 30;
 		action();
 	    }
 	}
@@ -172,9 +175,15 @@ public class Player extends Character {
 	if (ans == 1){
 	    if (health < maxhealth){
 		int amt = maxhealth - health;
-		gold = gold - (maxhealth - health);
+		if ((gold - (maxhealth - health)) >= 0)
+		    gold = gold - (maxhealth - health);
+		else{
+		    System.out.println("You do not have the gold for that.");
+		    action();
 		health = maxhealth;
 		System.out.println("Your health is now max. Used " + amt + " gold.\n");
+		action();
+		}
 	    }
 	    else {
 		System.out.println("Your health is maxed already!\n");
@@ -193,4 +202,52 @@ public class Player extends Character {
 	    action();
 	}
     }
+
+    public void flee(){
+	if (experience >= 20){
+	    experience = experience - 20;
+	}
+	else{
+	    experience = 0;
+	}
+	System.out.println ("Coward! You have fleed! Lost 20 experience. \n");
+    }
+
+    public void encounter(){
+	Random r = new Random();
+	String ans;
+	Scanner s = new Scanner (System.in);
+	if (r.nextInt(3)== 2){
+	    System.out.println("You have encountered Mr. Moran! Fight like a hero or flee like a coward? Input 'Fight' or 'Flight'\n");
+	    ans = s.nextLine();
+	    if (ans.equals("Fight")){
+		Nonplayer enemy = new Nonplayer("Mr.Moran");
+	        battle (enemy);
+	    }
+	    else if (ans.equals("Flight")){
+		flee();
+		action();
+	    }
+	    else{
+		System.out.println("Invalid response, the enemy has ran away.\n");
+	    }
+	}
+	else {
+	    System.out.println("You have encountered an ogre! Fight like a hero or flee like a coward? Input 'Fight' or 'Flight'\n");
+	    ans = s.nextLine();
+	    if (ans.equals("Fight")){
+		Nonplayer enemy = new Nonplayer("Ogre");
+	        battle (enemy);
+	    }
+	    else if (ans.equals("Flight")){
+		flee();
+		action();
+	    }
+	    else{
+		System.out.println("Invalid response, the enemy has ran away.\n");
+		action();
+	    }
+	}
+    }
+
 }

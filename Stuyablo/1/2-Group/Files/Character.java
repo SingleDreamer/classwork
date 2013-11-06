@@ -111,14 +111,14 @@ public class Character {
 	while (c1.health > 0 && c2.health > 0 && c1.here && c2.here) {
 	    if (c1.dexterity >= c2.dexterity) {
 		c1.action(c1, c2);
-		if (c1.here)
+		if (c1.here && c2.health > 0)
 		c2.action(c2, c1);
 		System.out.println(c1.name + "'s hp: " + c1.health);
 		System.out.println(c2.name + "'s hp: " + c2.health);
 	    }
 	    else {
 		c2.action(c2, c1);
-		if (c2.here)
+		if (c2.here  && c1.health > 0)
 		this.action(c1, c2);
 		System.out.println(c2.name + "'s hp: " + c2.health);
 		System.out.println(c1.name + "'s hp: " + c1.health);
@@ -514,6 +514,7 @@ public class Character {
     }
 
     public void turn(){
+	here = true;
 	int x = 0;
 	Character c;
 
@@ -522,6 +523,11 @@ public class Character {
 	    c = new Warrior("Enemy", counter);
 	else
 	    c = new Wizard("Enemy", counter);
+
+	if (experience >= 100) {
+	experience = experience - 100;
+	this.level(); }
+	
 
 	System.out.println("You have approached a character. Please choose whether to 1. Initiate battle or 2. Initiate conversation.");
 	while (x != 1 && x != 2) {
@@ -551,4 +557,35 @@ public class Character {
 	else
 	    return 2;
     }
+
+    public void level() {
+	System.out.println("Choose a stat to increase. 1 for Strength, 2 for Dexterity, 3 for Intelligence");
+	boolean valid = false;
+	String stat;
+	while (!valid) {
+	stat = sc.next();
+	if (stat.equals("1")) {
+	strength = strength + 1;
+	maxHealth = strength * 10; 
+	valid = true;}
+	else if (stat.equals("2")) {
+	dexterity = dexterity + 1;
+	valid = true;}
+	else if (stat.equals("3")) {
+	intelligence = intelligence + 1;
+	valid = true;}
+	else if (stat.equals("upupdowndownleftrightleftrightBA")) {
+	System.out.println("Oh, so you know the Konami Code? Good Job. Enjoy God Mode");
+	intelligence = intelligence + 50;
+	strength = strength + 50;
+	maxHealth = strength * 10;
+	health = maxHealth;
+	dexterity = dexterity + 50;
+	movement = 100;
+	valid = true;}
+	else
+	System.out.println("That is not a valid option. Please choose 1,2, or 3");
+	    }
+	}
+	
 }
