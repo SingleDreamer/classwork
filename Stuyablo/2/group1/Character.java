@@ -10,12 +10,22 @@ public class Character {
     protected int points;
     protected int exp=0,lvl=1;
     protected int x,y;
+
+    public String getName()
+    {return name;}
 	   
     public void attack(Character other) {
         /* do the attack:
 	   print out the attempt and the result and update
 	   all relavent variables
         */
+    }
+    
+    public void takeDamage(int amount)
+    {
+	    health -= amount;
+	    if(health < 0)
+		    health = 0;
     }
 
     // returns true if you succesfully flee, false otherwise
@@ -62,6 +72,7 @@ public class Character {
 	name = sc.nextLine();
 	System.out.println("Hello " + name);
 	setStat();
+	health = maxHealth = strength;
     }
 
     //SETCLASS IS DEFINITELY NOT THE RIGHT WAY TO DO THIS
@@ -91,8 +102,8 @@ public class Character {
         points = points - add;
 
         System.out.println("You still have " + points + " skill points available");
-	add = sc.nextInt();
 	System.out.print("Dexterity = 8 + :");
+	add = sc.nextInt();
 	if (add > points) {
 	    add = points;
 	    System.out.printf("Only able to add %d points\n",add);
@@ -101,12 +112,36 @@ public class Character {
 	dexterity = dexterity + add;
 	points = points - add;
 	
-	System.out.printf("Remaining %d points put into intelligence",points);
+	System.out.printf("%d points put into dexterity\n",add);
+	System.out.printf("Remaining %d points put into intelligence\n",points);
 	intelligence += points;
     }
 
     public int getHealth() {
 	return health;
+    }
+
+    public boolean alive()
+    {
+	    return health > 0;
+    }
+
+    public int aliveState(Character other)
+    {
+	    if(alive())
+	    {
+		if(other.alive())
+			return 5;
+		else
+			return 3;
+	    }
+	    else
+	    {
+		if(other.alive())
+			return 2;
+	    	else
+			return 4;
+	    }
     }
 
     public String getCharclass() {
