@@ -11,4 +11,15 @@ public class Ogre extends Character{
 	strength = health;
 	dexterity = 8 - r.nextInt(4);
     }
+    
+    public void attack(Character other) {
+	    	    
+	    if(hit() == true){
+		System.out.println("Hit!");
+		other.takeDamage(this.strength/2);
+	    }
+	    else{
+	        System.out.println("Just barely missed him!");
+	    }
+    }
 }

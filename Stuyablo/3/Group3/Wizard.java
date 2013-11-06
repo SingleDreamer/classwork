@@ -17,13 +17,6 @@ public class Wizard extends Character {
 	experience = 0;
     }
 
-    public int DieRoll(){
-	for (int i=0; i<3; i++){
-	    dieRoll = dieRoll + generator.nextInt(5) +1;
-	}
-	return dieRoll;
-    }
-
     public void attack(Character other){
 	int dice = DieRoll();
 	if (attackRange < distance) {

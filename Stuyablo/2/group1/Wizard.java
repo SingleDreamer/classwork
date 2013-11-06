@@ -4,17 +4,13 @@ import java.util.*;
 public class Wizard extends Character{
     protected int mana;
 
-    public Wizard(String Name)
-    {
+    public Wizard(String Name) {
 	super();
 	name = Name;
 	mana = intelligence;
     }
 
-    /* You have to provide other needed get/set methods */
-
-
-    public void attack(Character other) {
+    public void basic(Character other) {
 	    if(hit()==true)
 	    {
 		    System.out.println("You hit the " + other.getName() + " for " + 2 + " damage!");
@@ -68,44 +64,23 @@ public class Wizard extends Character{
 
     }
 
-
-   
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
     public void attack(Character c) {
-	Scanner sc = new Scanner(System.in);	
+	Scanner s = new Scanner(System.in);	
 	System.out.println("You can:\n  1:Whack it with your staff\n  2:Throw a fireball\n  3: Cast 'heal'\n  4:  Flee");
-	switch(s.nextInt())
+	switch(s.nextInt()){
 			case 1:
-				attack(other);
-				return aliveState(other);
+				basic(c);
+				
 			case 2:
-				throwFireball(other);
-				return aliveState(other);
+				throwFireball(c);
+				
 			case 3:
-				return aliveState(other);
+				heal();
 			case 4:
-				if(flee(other))
-					return 1;
+				flee();
 				
 			default:
 				System.out.println("Invalid command, try again");
-		}
 	}
     }
-
 }
