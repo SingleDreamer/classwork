@@ -5,12 +5,14 @@ public class Character {
     protected int health, maxhealth; 
     protected int dexterity, strength, intelligence;
     //determined through npc and pc constructors
-    protected int experience;
-    protected int gold;
+    protected int experience = 0;
+    protected int gold = 0;
     protected double x,y,distance;
+    //determined at start of battle
     protected String name;
+    //constructors
     protected String charClass;
- 
+    
     public int getHealth() {
 	return health;
     }
@@ -23,18 +25,20 @@ public class Character {
     public int getInt() {
 	return intelligence;
     }
+    public int getExp(){
+	return experience;
+    }
 
     public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
+	//nothing so far
     }
 
     // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
+    /*
+      public boolean flee(Character other) {
 	return false;
     }
+    */
 
 
     /*
