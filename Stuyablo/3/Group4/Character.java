@@ -102,7 +102,7 @@ public void attack(Character other) {
     // returns true if you succesfully flee, false otherwise
 public boolean flee(Character other) {
 	int[] a = other.getStat();
-	if (distance < 7 || distance > -7)
+	if (distance < 4 || distance > -4)
 		return false;
 	if (dexterity < a[0])
 		return false;
@@ -170,7 +170,7 @@ public void level(int exp) {
 	experience = experience + exp;
 	if (experience > experienceneeded) {
 		level = level + 1;
-		System.out.println("You leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3.Intelligence");
+		System.out.println("You leveled up to level " + level + "! \nWhere would you like to spend your ability point? \n1. Dexterity \n2. Strength \n3. Intelligence");
 		
 	
 	Scanner s = new Scanner(System.in);
