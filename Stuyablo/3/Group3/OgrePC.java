@@ -25,32 +25,23 @@ public int getDistance(){
 	return distance;
 }
 
-//Stimulates the rolling of a 3 6-sided dice
-public int DieRoll(){
-	for (int i=0; i<3; i++){
-		dieRoll = dieRoll + generator.nextInt(5) + 1;
-	}
-	return dieRoll;
-}
-
-
-
 public void attack(Character other){
-		DieRoll();
-		Random rnd = new Random();
-		rnd.nextInt(strength);
-		
-		//If Ogre roles less than its strength, it hits the attack!
-		if (dieRoll <= rnd) {
-			System.out.println ("You successfully attacked!");
-			other.health = other.health - 1;
-			experience = experience + 1;
-		}
-		//If Ogre roles more than its strength, it !
-		else {
-			System.out.println ("You missed!");
-		}
+        int dice = DieRoll();
+                if (attackRange < distance) {
+                        distance = distance - 1;
+                        }
+                else {
+                        
+                        if (dice <= dexterity) {
+                                System.out.println ("You successfully attacked!");
+                                experience = experience + 1;
+                                other.health = other.health - 1;
+                                }
+                
+                        else {
+                                System.out.println ("you missed!");
+                        }
+                }
 }
-
 
 }
