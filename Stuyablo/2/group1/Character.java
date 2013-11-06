@@ -6,7 +6,7 @@ public class Character {
     protected String name;
     protected String charclass="none";
     protected int health,maxHealth;
-    protected int dexterity,strength,intelligence;
+    protected int dex,str,intelligence;
     protected int points;
     protected int exp=0,lvl=1;
     protected int x,y;
@@ -53,6 +53,7 @@ public class Character {
         return 0;
     }
 
+    /*
     public String getStatus() {
       String attrib1=String.format("Str: %d Dex: %d Int: %d", strength, dexterity, intelligence);
       String attrib2=String.format("Exp: %d Health: %d of %d", exp,health,maxHealth);
@@ -60,6 +61,7 @@ public class Character {
       String whole=String.format("%s\n%s\n%s\n%s\n", name,attrib1,attrib2,locale);
       return whole;
     }
+    */
 
 
     public String toString() {
@@ -76,6 +78,23 @@ public class Character {
 	health = maxHealth = strength;
     }
 
+<<<<<<< HEAD
+    public void setChar() {
+	Scanner sc = new Scanner(System.in);
+	System.out.print("What would you like to be? Warrior? Blah?");
+	if (sc.nextLine().equals("Warrior")) {
+	    Warrior w = new Warrior();
+	    System.out.println("Woo, You're a warrior");
+	}
+	else if (sc.nextLine().equals("Blah")) {
+	    System.out.println("Woo, you're a blah");
+	}
+	else {
+	    System.out.println("Silly you, ponies aren't a choice");
+	    setChar();
+	}
+    }
+=======
     //SETCLASS IS DEFINITELY NOT THE RIGHT WAY TO DO THIS
     //
     //public void setWarrior() {
@@ -87,6 +106,7 @@ public class Character {
     //    System.out.println("Dexterity: " + dexterity);
     //    setStat();
     //}
+>>>>>>> 62a3cda57438aa9c13ea33ff7b8bca6a52b810cd
 
     public void setStat() {
 	points = 8;
@@ -99,7 +119,7 @@ public class Character {
 	    add = points;
 	    System.out.printf("Only able to add %d points\n",add);
 	}
-        strength = strength + add;
+        str = str + add;
         points = points - add;
 
         System.out.println("You still have " + points + " skill points available");
@@ -110,7 +130,7 @@ public class Character {
 	    System.out.printf("Only able to add %d points\n",add);
 	}
 
-	dexterity = dexterity + add;
+	dex = dex + add;
 	points = points - add;
 	
 	System.out.printf("%d points put into dexterity\n",add);
