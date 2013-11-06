@@ -32,13 +32,6 @@ public class Character {
     public void attack(Character other) {
 	//nothing so far
     }
-
-    // returns true if you succesfully flee, false otherwise
-    /*
-      public boolean flee(Character other) {
-	return false;
-    }
-    */
     
     
     public void encounter(NPC other) {
@@ -53,19 +46,58 @@ public class Character {
 	}
 
         while (health > 0 && other.health > 0){
+	    System.out.println("Your coordinates are x: " + this.x + " y: " + this.y);
+	    System.out.println("The enemy's coordinates are x: " + other.x + " y: " + other.y);
 	    if (dexterity >= other.dexterity) {
-		turn(other);
-		other.turn(this);
+		PCturn(other);
+		other.NPCturn(this);
 	    }
 	    else {
-		other.turn(this);
-		turn(other);
+		other.NPCturn(this);
+		PCturn(other);
 	    }
 	}	
 		    
     }
 
+    public boolean adjacentCheck(Character other){
+	boolean o = false;
+	if (x == other.x && ((y + 1 == other.y) || (y - 1 == other.y)))
+	    o = true;
+	if (y == other.y && ((x + 1 == other.x) || (x - 1 == other.x)))
+	    o = true;
+	return o;
+    }
+    
+    public void NPCturn(Character other){
+	int move = 2;
+	while (move > 0 && !adjacentCheck(other)){ // while there are still moves and pc isn't next to npc
+	    Random r = new Random();
+	    int z = r.nextInt(2);
+	    if (z == 0 && (x != other.x)){
+		if (other.x > x)
+		    x = x + 1;
+		else
+		    x = x - 1;
+	    }
+	    if (z == 1 && (y != other.y)){
+		if (other.y > y)
+		    y = y + 1;
+		else
+		    y = y - 1;
+	    }
+	}
 
+	if (adjacentCheck(other)){
+		attack(other);
+	    }
+    }
+
+    public void PCturn(Character other){
+	int move = 2;
+	
+	
+    }
 
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
@@ -77,7 +109,6 @@ public class Character {
 				   name,attrib1,attrib2,locale);
 	return whole;
     }
-
 
     public String toString() {
 	return name;

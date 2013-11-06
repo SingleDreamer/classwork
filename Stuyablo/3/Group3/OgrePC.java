@@ -25,35 +25,24 @@ public int getDistance(){
 	return distance;
 }
 
-//Stimulates the rolling of a 3 6-sided dice
-public int DieRoll(){
-	for (int i=0; i<3; i++){
-		dieRoll = dieRoll + generator.nextInt(5) + 1;
-	}
-	return dieRoll;
-}
-
-
-
 public void attack(Character other){
-	int dice = DieRoll();
-	
-		if (attackRange < distance) {
-			distance = distance - 1;
-			}
-		else {
-			
-			if (dice <= dexterity) {
-				System.out.println ("You successfully attacked!");
-				experience = experience + 1;
-				other.health = other.health - 1;
-				}
-		
-			else {
-					System.out.println ("you missed!");
-			}
-		}
+        int dice = DieRoll();
+                if (attackRange < distance) {
+                        distance = distance - 1;
+                        }
+                else {
+                        
+                        if (dice <= dexterity) {
+                                System.out.println ("You successfully attacked!");
+                                experience = experience + 1;
+                                other.health = other.health - 1;
+                                }
+                
+                        else {
+                                System.out.println ("you missed!");
+                        }
+                }
+                
+	}	
 }
 
-
-}

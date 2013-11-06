@@ -47,14 +47,20 @@ public class Rogue extends PC {
 	    if (dexterity > roll()) {
 		System.out.println(name + " stabs the " + other.name+"!");
 		other.health = other.health - strength;
-	    Thread.sleep(1000);
+	    try {Thread.sleep(200);
+	    } catch (Exception e){
+		//
+	    }
 	    System.out.println(name + " slaps the " + other.name+"!");
 	    other.health = other.health-1;
 	    System.out.println(name + " deals 1 damage!");
 	}
 	else if (weapon ==2) {
 	    System.out.println("Knife!");
-	    Thread.sleep(1000);
+	    try {Thread.sleep(200);
+	    } catch (Exception e){
+		//
+	    }
 	    if (dexterity > roll()) {
 		System.out.println(name + " stabs the " + other.name+"!");
 		other.health = other.health-strength;
