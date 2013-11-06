@@ -155,7 +155,6 @@ public class Character {
             if (x) {
                 delay (1000); 
 		say ("Your enemy says:");
-                say ("Your enemy says:");
                 say ("Sure");
                 say ("you walk off into the sunset with your enemy");
             }        
@@ -166,28 +165,17 @@ public class Character {
                 intimidate(other);
                 dexterity = dexterity + (y.nextInt(3) - 2);
 		this.attack(other);
-                say ("Your enemy says:");
-                say ("no way you freak!");
-		intimidate(other);
-		dexterity = dexterity + (y.nextInt(3) - 2);
-                this.attack(other);
             }
 
         }
         if (answer == 2) {
             if (x) {
                 delay (1000); 
-		say ("Your enemy says:");
                 say ("Your enemy says:");
                 say ("sh*t");
                 other.flee(this);
             }
             else {
-                delay (1000);
-                dexterity = dexterity + (y.nextInt(5) - 2);
-                intimidate(other);
-		say ("Your enemy says:");		
-		say ("bullsh*t"); 
                 delay (1000); 
 		dexterity = dexterity + (y.nextInt(5) - 2);
 		intimidate(other);
@@ -199,17 +187,12 @@ public class Character {
         if (answer == 3) {
             if (x) {
                 delay (1000); 
-		say ("Your enemy says:");
                 say ("Your enemy says:");
                 say ("...you're a riot, kid. and an idiot");
                 say("your enemy has left");
             }
             else {
                 delay (1000);
-		say ("Your enemy says:");
-                say ("are you serious?");
-                dexterity = dexterity + (y.nextInt(4) - 2);
-                intimidate(other);
                 say ("Your enemy says:");
                 say ("are you serious?");
 		dexterity = dexterity + (y.nextInt(4) - 2);
@@ -217,7 +200,7 @@ public class Character {
                 this.attack(other);
             }
         }
-        else {
+        if (((answer != 1) && (answer != 2)) && (answer != 3)) {
         	say ("that is not a valid input, please choose one of the given responses");
         	delay (2000);
         	this.talk(other); 
@@ -384,7 +367,7 @@ public class Character {
             else 
                 return 3;
         }
-        else {
+        if (((answer != 1) && (answer != 2)) && (answer != 3))  {
         	say ("that is not a valid input, please try again");
         	this.encounter(other);
         }
