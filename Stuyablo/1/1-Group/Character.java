@@ -152,6 +152,7 @@ public class Character {
             if (x) {
                 delay (1000); 
                 say ("Sure");
+                say ("you walk off into the sunset with your enemy")
             }        
             else {
                 delay (1000);
@@ -170,7 +171,6 @@ public class Character {
             }
             else {
                 delay (1000); 
-                say ("bullsh*it"); 
 		dexterity = dexterity + (r.nextInt(5) - 2);
 		intimidate(other);
                 say ("bullsh*t"); 
@@ -181,6 +181,7 @@ public class Character {
             if (x) {
                 delay (1000); 
                 say ("...you're a riot, kid. and an idiot");
+                say("your enemy has left")
             }
             else {
                 delay (1000);
