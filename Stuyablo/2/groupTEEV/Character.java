@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Character {
     protected int health = 100, maxhealth=100;
-    protected int dexterity=10 , strength =10 , intelligence= 10;
+    protected int dexterity=8 , strength =8 , intelligence= 8;
     protected int experience = 0, level = 1;
     protected int gold = 100;
     protected String name;
@@ -45,8 +45,6 @@ public class Character {
     public int encounter(Character other) {
 	return 0;
     }
-
-
 
     public String getStatus() {
 	String cclass = "Character Class: " + charClass;
@@ -111,7 +109,7 @@ public class Character {
 
     public void setStat(){
 	System.out.print ("\n" + "Here are three stat points for you to add.");
-	int points = 3;
+	int points = 8;
 	points = setStrength (points);
 	System.out.print ("\n" + "There are " + points + " points left");
         if (points > 0){
