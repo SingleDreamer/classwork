@@ -48,6 +48,7 @@ public class WallOfMeat extends Character{
 				return 3;
 			else
 				return 4;
+		}
 		else
 			return 5;
 	}
