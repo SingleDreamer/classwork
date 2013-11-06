@@ -13,7 +13,7 @@ public class Driver {
 	System.out.print("Whatst isst thoust's namest: ");
 	String nameInput = sc.nextLine();
 	h.pause();
-	System.out.println("\nWelcome bold adventure " + nameInput);
+	System.out.println("\nWelcome bold adventurer " + nameInput);
 	w.setName(nameInput);
 	int bonusAttributes = 8;
 	System.out.print("You have 8 bonus attributes!\nWhat would you like to invest them in?\nType S for Str, D for Dex and I for Int:\n");

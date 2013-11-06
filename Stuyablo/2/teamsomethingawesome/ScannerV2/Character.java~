@@ -27,12 +27,6 @@ public class Character {
     public void setHealth(int n) { 
 	health=n; 
     }
-    public void setExp(int n) {
-        experience= experience + n;
-    }
-    public void setGold(int n) {
-        gold= gold+n;
-    }
 
     public void loseHealth(Character other, int i){//Richard added
 	if (i > other.getHealth()){//make it so that i will print appropriately
@@ -119,7 +113,7 @@ public class Character {
 
       and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
     */
-    
+    /*
     public int encounter(Ogre other) {
 	System.out.println("You are now facing an ogre! Its stats are: " + other.getStatus());
 	
@@ -133,6 +127,7 @@ public class Character {
 	    return 1;
 	}
     }
+    */
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
 				     strength, dexterity, intelligence);
