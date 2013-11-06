@@ -215,8 +215,8 @@ public class Character {
 
     public boolean flee(Character other){
 	if (this.getDexterity() > other.getDexterity()){
-	    System.out.println("You have run away. Your dexterity will be upgraded due to this success");
 	    this.setDexterity(this.getDexterity()+1);
+	    System.out.println("You fled successfully, and gained dexterity.");
 	    return true;
 	    // you are capable of running away, should cut out of current interaction
 	    // leave your interaction with the current enemy
@@ -225,6 +225,7 @@ public class Character {
 	else {
 	    System.out.println("Your enemy has outwilled you. No running away!. He has also inflicted 1 damage upon you.");
 	    this.setHealth(this.getHealth()-1);
+	    this.encounter(other);
 	    return false;
 	}
     }
@@ -339,8 +340,9 @@ public class Character {
             
 	if (x.nextInt(100)>50 && other.flee(this)){ //randomizes if enemy tries to flee
 	    System.out.println("Enemy fled.");}
-        else if (response==1 && this.flee(other)){
-	    System.out.println("You fled.");}
+        else if (response==1) {
+	    this.flee(other);
+	}
 	else if (response == 2){
 	    System.out.println("Speak your mind: ");
 	    Scanner sc1 = new Scanner(System.in);
@@ -362,14 +364,14 @@ public class Character {
 		else{
 		    System.out.println("You triumphed.");
 		    Random a = new Random();
-		    if (other.getStrength()>0){
+		    if (other.getStrength()>this.getStrength()){
 			this.setStrength(this.getStrength() + ((other.getStrength()/10)+1));
 		    }
-		    if (other.getDexterity()>0)
+		    if (other.getDexterity()>this.getDexterity())
 		    {
 			this.setDexterity(this.getDexterity()+((other.getDexterity()/10)+1));
 		    }
-		    if (other.getDefense()>0){
+		    if (other.getDefense()>this.getDefense()){
 			this.setDefense(this.getDefense()+((other.getDefense()/10)+1));
 		    }
 		    this.setHealth(this.getHealth()+2);
