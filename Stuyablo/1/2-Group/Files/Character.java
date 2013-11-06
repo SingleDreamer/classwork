@@ -14,6 +14,7 @@ public class Character {
     protected int skills;
     protected boolean pc;
     protected int movement;
+    protected boolean here;
 
     private Scanner sc = new Scanner(System.in);
     private Random r = new Random();
@@ -32,6 +33,7 @@ public class Character {
 	skills = 0;
 	pc = playable;
 	movement = 10;
+	here = true;
     }
 
     public Character(String name, int limit) {
@@ -106,24 +108,32 @@ public class Character {
     }
 
     public void battle(Character c2, Character c1) {
-	while (c1.health > 0 && c2.health > 0) {
+	while (c1.health > 0 && c2.health > 0 && c1.here && c2.here) {
 	    if (c1.dexterity >= c2.dexterity) {
 		c1.action(c1, c2);
+		if (c1.here)
 		c2.action(c2, c1);
 		System.out.println(c1.name + "'s hp: " + c1.health);
 		System.out.println(c2.name + "'s hp: " + c2.health);
 	    }
 	    else {
 		c2.action(c2, c1);
+		if (c2.here)
 		this.action(c1, c2);
 		System.out.println(c2.name + "'s hp: " + c2.health);
 		System.out.println(c1.name + "'s hp: " + c1.health);
 	    }
 	}
-	if (c1.health <= 0)
-	    System.out.println(c1.name + " has died!");
-	else
-	    System.out.println(c2.name + " has died!");
+	if (c1.health <= 0) {
+	    c2.experience = c2.experience + (int)(50 * ((c1.dexterity + c1.strength + c1.intelligence)/(c2.dexterity + c2.strength + c2.intelligence)));	
+	    System.out.println(c1.name + " has died!"); }
+	else if (!c1.here)
+	    System.out.println(c1.name + " ran away!");
+	else if (!c2.here)
+	    System.out.println(c2.name + " ran away!");
+	else {
+	    c1.experience = c1.experience + (int)(50 * ((c2.dexterity + c2.strength + c2.intelligence)/(c1.dexterity + c1.strength + c1.intelligence)));
+	    System.out.println(c2.name + " has died!"); }
     }	
 
     //flee called in battle
@@ -133,8 +143,7 @@ public class Character {
 	}
 	return false;
     }
-
-    public String talk(Character c){
+        public String talk(Character c){
 	System.out.println("Choices: 1. Say something nice 2. Say something evil 3. Say nothing");
 	int choice = sc.nextInt();
 	try {
@@ -287,7 +296,7 @@ public class Character {
 	    switch(command) {
 	    case 1:
 		if (c1.pc) {
-		    System.out.println("Choose an attack: ");
+		    System.out.println("Choose an attack. Enter 1, 2, or 3: ");
 		    c2.health = c2.health - c1.attack(sc.nextInt(),c2);
 		    try {
 			Thread.sleep(2000); // how many milliseconds to pause
@@ -343,12 +352,15 @@ public class Character {
 
 	    case 3:
 		if(flee(c2)){
+		    c2.experience = c2.experience + (int)(50 * ((c1.dexterity + c1.strength + c1.intelligence)/(c2.dexterity + c2.strength + c2.intelligence))*((c1.health/(2*c1.maxHealth))));
 		    System.out.println(c1 + " was able to flee!");
-		    turn();
+		    here = false;
+		    turn = false;
 		}
 		else{
 		    System.out.println(c1 + " was unable to flee!");
-		}
+		    turn = false;
+			}
 		break;
 	    }
 	}

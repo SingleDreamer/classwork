@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-/* WHAT STILL VERY URGENTLY NEEDS TO BE ADDED IS A METHOD DEFINING THE ENCOUNTER AS A WHOLE, WITH ATTACK, FLEE AND TALK AS OPTIONS, AND THE SUBCLASS CODES */
+
 public class Character {
     protected int health, maxhealth; // health will regenerate over time
     protected int defense; // effects ability to parry blows
@@ -8,7 +8,7 @@ public class Character {
     protected int strength; // effects strength of hits
     protected int charm; // effects who goes attempts to hit first in a battle
     protected String name;
-    protected String charType; // Moran, Zhang, or a Wizard
+    protected String charType; 
 
     protected void init(String n, String c, int s, int dex, int def, int ch){
 	name = n;
@@ -22,11 +22,44 @@ public class Character {
     }
     
     public Character(){
+	System.out.println("Mr. Moran begins strong, but quite slow due to his low dexterity. This makes it harder to run away from opponents. He also has the lowest possible charm, meaning you will probably go last");
+        
+        try {
+            Thread.sleep(2000); // pauses for 2 seconds
+        }
+        catch (Exception a){
+            // intentionally empty...nothing happens
+        }
+
+        System.out.println("A wizard can easily runaway, and its high maximum health means that health can reach (and starts at) a high level. However, low defense makes it harder to defend blows of strong opponents");
+
+        try {
+            Thread.sleep(2000); // pauses for 2 seconds
+        }
+        catch (Exception a){
+            // intentionally empty...nothing happens
+        }
+
+        System.out.println("Ms. Zhang has very weak dexterity, but her defenses are top notch. \n Now you have 8 points. You can either make certain attributes amazing, or balance them out to create a more well rounded character. She has a high charm, increasing the chances of going first in an attack bout");
+
+        try {
+            Thread.sleep(2000); // pauses for 2 seconds
+        }
+        catch (Exception a){
+            // intentionally empty...nothing happens
+        }
+	System.out.println("Warriors have high strength and good defense, but low dexterity. As for students... you'll have to guess the stats.");
+
 	Scanner sc = new Scanner (System.in);
-	System.out.println("Enter your name:");
+	System.out.println("Enter your name: ");
 	name = sc.next();
-	System.out.println("Choose your class. 1-Moran, 2-Wizard, 3-Zhang, 4- Warrior, Any other number- Student");
+	System.out.println("Choose your class. 1-Moran, 2-Wizard, 3-Zhang, 4- Warrior, Any other number- Student ");
 	int cl = sc.nextInt();
+	int s = 0;
+	int dex = 0;
+	int def = 0;
+	int mh = 0;
+	int ch = 0;
 	if (cl == 1){
 	    charType="Moran";
 	    s = 12;
@@ -67,52 +100,9 @@ public class Character {
 	    mh = s;
 	    ch = 2;
 	}
-    }
-    public void setStats(){
+
 	Scanner scanner = new Scanner (System.in);
-	System.out.println("You may now choose certain apsects of your atributes");
-	try {
-	    Thread.sleep(2000); // pauses for 2 seconds
-	}
-	catch (Exception a){
-	    // intentionally empty...nothing happens
-	}
-
-	System.out.println("\n Mr. Moran begins strong, but quite slow due to his low dexterity. This makes it harder to run away from opponents. He also has the lowest possible charm, meaning you will probably go last");
 	
-	try {
-	    Thread.sleep(2000); // pauses for 2 seconds
-	}
-	catch (Exception a){
-	    // intentionally empty...nothing happens
-	}
-
-	System.out.println("\n A wizard can easily runaway, and its high maximum health means that health can reach (and starts at) a high level. However, low defense makes it harder to defend blows of strong opponents");
-
-	try {
-	    Thread.sleep(2000); // pauses for 2 seconds
-	}
-	catch (Exception a){
-	    // intentionally empty...nothing happens
-	}
-
-	System.out.println("\n Ms. Zhang has very weak dexterity, but her defenses are top notch. \n Now you have 8 points. You can either make certain attributes amazing, or balance them out to create a more well rounded character. She has a high charm, increasing the chances of going first in an attack bout");
-
-	try {
-	    Thread.sleep(3000); // pauses for 3 seconds
-	}
-	catch (Exception a){
-	    // intentionally empty...nothing happens
-	}
-	System.out.println("Warriors have high strength and good defense, but dexterity is low. Their charm is above Moran's, though.");
-	try {
-            Thread.sleep(3000); // pauses for 3 seconds
-        }
-        catch (Exception a){
-            // intentionally empty...nothing happens
-        }
-	System.out.println("Guess the stats of students!");
-
 	int i = 8;
 
 	String inputs = "";
@@ -159,16 +149,19 @@ public class Character {
 		 }
 
 		 if (k==2){
-		     def += 2;
+		     def += 1;
 		 }
 		 if (k == 3){
 		     ch += 1;
 		 }
+
 	     }
-	     
+	     else {
+		 System.out.println("You can't do that.");
+	     }
 	      i = i - 1;
 	}
-	init(name, charType, s, dex, def, ch);
+	init (name, charType, s, dex, def, ch);
     }
 
     public int getHealthPer(){
@@ -228,37 +221,35 @@ public class Character {
     }
 
     public void attack(Character other){
-	int damage = (this.getStrength() - other.getDefense());
-	while ((this.getHealth() > 0) && (other.getHealth() > 0)){
+	int damage = (this.getStrength()/4 - other.getDefense()/4);
 	    Random r = new Random();
-	    int x = (this.getDexterity() + r.nextInt(3));
-	    int y = (other.getDexterity() + r.nextInt(3));
-	    if (x > y){
 		int luck = (r.nextInt(6) + r.nextInt(6) + r.nextInt(6)); //3 6-sided die
  // can potentially give random bonuses
-		if (luck == 0){ 
-		    damage = this.getStrength()*4 - other.getDefense();
+		if (luck > dexterity){
+		    System.out.println("You missed.");
+		if (luck == dexterity -1){ 
+		    damage = this.getStrength() - other.getDefense()/4;
 		    if (damage > 0){
 			    other.setHealth(other.getHealth()-damage);
-			    System.out.println("You hit with a four times bonus, dealing " + damage + " damage to your oponent.");
+			    System.out.println("You hit with a four times bonus, dealing " + damage + " damage to your opponent.");
 			}
 		    else {
 			System.out.println("You hit but did not deal enough power to damage your opponent");
 			    }
 		}
 
-		if (luck == 1){ // potential random bonus
-		    damage = this.getStrength()*2 - other.getDefense();
+		if (luck == dexterity - 2){ // potential random bonus
+		    damage = this.getStrength()*2 - other.getDefense()/4;
 		    if (damage > 0){
 			    other.setHealth(other.getHealth()-damage);
-			    System.out.println("You hit with a two times bonus, dealing " + damage + " damage to your oponent.");
+			    System.out.println("You hit with a eight times bonus, dealing " + damage + " damage to your opponent.");
 			}
 		    else {
 			System.out.println("You hit but did not deal enough power to damage your opponent");
 			    }
 		}
 
-		if (luck == 3) {
+		if (luck == dexterity - 3) {
 		    System.out.println("You missed your attack, and ended up accidently curing a disease your opponent had");
 		    other.setHealth(other.getHealth()+1);
 		}
@@ -274,36 +265,36 @@ public class Character {
 		}
 	    }
 	}
-    }
-    public int encounter(Character other) {
+ 
+
+     public void Battle(Character other){
+	int r = 20;
+        while (r>0 && this.getHealth()>0 && other.getHealth()>0){
+	    this.attack(other);
+	    if (other.getHealth()>0){
+		    other.attack(this);}
+	    r +=1;
+		}
+     }
+    public void encounter(Character other) {
 	System.out.println("Enter 1 to flee, any other number to fight");
             Scanner sc = new Scanner(System.in);
 	int response = sc.nextInt();
 	Random x = new Random();
             
 	if (x.nextInt(100)>50 && other.flee(this)){ //randomizes if enemy tries to flee
-	    return 0;}
+	    System.out.println("Enemy fled.");}
         else if (response==1 && this.flee(other)){
-	    return 1;}
+	    System.out.println("You fled.");}
         else{
-	    this.attack(other);
-	    if (other.getHealth()>0){
-		other.attack(this);
+	    this.Battle(other);
 		if (this.getHealth()<=0){
-		    return 2;}
+		    System.out.println("You died.");}
 		else{
-		    return 5;}
+		    System.out.println("You triumphed.");}
 	    }
-	    else if (other.getHealth()<=0 && this.getHealth()<=0){
-		return 4;
-	    } 
-	    else{
-		return 3;}
-	}
-    }
-
-
-    public String getStatus() {
+    }   
+     public String getStatus() {
         String attrib1=String.format("Str: %d Dex: %d Def: %d Chr: %d",
                                      strength, dexterity, defense, charm);
         String attrib2=String.format("Health: %d of %d",
