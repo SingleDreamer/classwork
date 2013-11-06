@@ -13,10 +13,19 @@ public class Player extends Character {
 	    basicattack(c);
 	}
 	else if (attack == 2){
-	    specialattack1(c);
+	    if (cooldown > 0){
+		System.out.println("You do not have the energy for that");
+		attack(Nonplayer c);
+	    }
+	    else
+		specialattack1(c);
 	}
 	else if (attack == 3){
-	    specialattack2(c);
+	    if (cooldown > 0){
+		System.out.println("You do not have the energy for that");
+	    }
+	    else
+		specialattack2(c);
 	}
 	else {
 	    System.out.print ("That is not an attack. ");
@@ -152,32 +161,5 @@ public class Player extends Character {
 	return (sum <= dexterity);
     }
 	
-    public void action(){
-	Scanner s = new Scanner (System.in);
-	System.out.print("what would you like to do? \n 1: Heal yourself or 2: Fight enemies? or 3: Check Status");
-        int ans = s.nextInt();
-	if (ans == 1){
-	    if (health < maxhealth){
-		int amt = maxhealth - health;
-		gold = gold - (maxhealth - health);
-		health = maxhealth;
-		System.out.println("Your health is now max. Used " + amt + " gold.");
-	    }
-	    else {
-		System.out.println("Your health is maxed already!");
-	    }
-	}
-	else if (ans == 2){
-	    encounter();
-	}
-	else if (ans == 3){
-	    System.out.println(getStatus());
-	    action();
-	}
-	else {
-	    System.out.println("Silly player. That's not a command.");
-	    action();
-	}
-    }
 
 }
