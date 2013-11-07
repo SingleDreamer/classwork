@@ -37,10 +37,7 @@ public class Theif extends Character{
      
         //Swords at the ready!
         else if (answer == 2){
-            int a=(dice1[new Random().nextInt(dice1.length)]);
-            int b=(dice1[new Random().nextInt(dice1.length)]);
-            int c=(dice1[new Random().nextInt(dice1.length)]);
-            if ((a+b+c)<this.dexterity) {
+            if (roll<this.dexterity) {
                 System.out.println(this.name + " stabbed " + other.name + " with a dagger!");
                 return super.attack(other);
             }

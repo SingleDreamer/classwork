@@ -35,7 +35,11 @@ public class Character {
         health=50;
         maxhealth=50;
         intelligence=intell+8;
+	x = r.nextInt(11);
+	y = r.nextInt(11);
     }
+    
+
 
     public void chooseClass(){
         Scanner sc=new Scanner(System.in);
