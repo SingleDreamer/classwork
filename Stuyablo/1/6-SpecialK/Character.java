@@ -200,6 +200,9 @@ public class Character {
     public String getName(){
 	return name;
     }
+    public int getCharm(){
+	return charm;
+    }
 
     public int getWins(){
 	return wins;
@@ -224,7 +227,8 @@ public class Character {
     }
 
     public boolean flee(Character other){
-	if (this.getDexterity() > other.getDexterity()){
+	Random rand = new Random();
+	if (rand.nextInt(10)>2 && this.getDexterity() > other.getDexterity()){
 	    this.setDexterity(this.getDexterity()+1);
 	    return true;
 	    // you are capable of running away, should cut out of current interaction
@@ -358,29 +362,60 @@ public class Character {
 		}
 		else{
 		    System.out.println("You triumphed.");
+		    this.setWins(this.getWins()+1);
 		    Random a = new Random();
 		    if (other.getStrength()>0){
-			this.setStrength(this.getStrength() + ((other.getStrength()/10)+1));
+			this.setStrength(this.getStrength() + ((other.getStrength()/20)+1));
 		    }
 		    if (other.getDexterity()>0)
 		    {
-			this.setDexterity(this.getDexterity()+((other.getDexterity()/10)+1));
+			this.setDexterity(this.getDexterity()+((other.getDexterity()/20)+1));
 		    }
 		    if (other.getDefense()>0){
-			this.setDefense(this.getDefense()+((other.getDefense()/10)+1));
+			this.setDefense(this.getDefense()+((other.getDefense()/20)+1));
 		    }
 		    this.setHealth(this.getHealth()+2);
 		    if (this.getHealth()>this.getMaxHealth()){
 			this.setHealth(this.getMaxHealth());
 		    }
-		    System.out.println(this.getStatus() + this.getWins());
+		    System.out.println(this.getStatus());
 		}
 	}
 	else if (response == 2){
 	    System.out.println("Speak your mind: ");
 	    Scanner sc1 = new Scanner(System.in);
-	   
-	    if (sc1.equals("")){
+	    String resp = sc1.nextLine();
+	    Random chrm = new Random();
+	    if (!(resp.equals("")) && this.getCharm() > other.getCharm() && chrm.nextInt(10)>5){
+		System.out.println("Agh, I've been beguiled.. I will get you for this!");
+		System.out.println("(the enemy has lost a little health)");
+		other.setHealth(other.getHealth() - chrm.nextInt(3)+1);
+		this.Battle(other);
+                if (this.getHealth()<=0){
+                    System.out.println("You died.");
+                }
+                else{
+                    System.out.println("You triumphed.");
+                    Random a = new Random();
+		    this.setWins(this.getWins()+1);
+                    if (other.getStrength()>0){
+                        this.setStrength(this.getStrength() + ((other.getStrength()/20)+1));
+                    }
+                    if (other.getDexterity()>0)
+			{
+			    this.setDexterity(this.getDexterity()+((other.getDexterity()/20)+1));
+			}
+                    if (other.getDefense()>0){
+                        this.setDefense(this.getDefense()+((other.getDefense()/20)+1));
+                    }
+                    this.setHealth(this.getHealth()+2);
+                    if (this.getHealth()>this.getMaxHealth()){
+                        this.setHealth(this.getMaxHealth());
+                    }
+                    System.out.println(this.getStatus());
+		}
+	    }
+	    else if (resp.equals("")){
 		System.out.println("What are your thoughts!");
 	    }
 	    else{
@@ -413,13 +448,13 @@ public class Character {
 		    if (this.getHealth()>this.getMaxHealth()){
 			this.setHealth(this.getMaxHealth());
 		    }
-		    System.out.println(this.getStatus() + this.getWins());
+		    System.out.println(this.getStatus());
 		}
 	    }
     }   
 
      public String getStatus() {
-        String attrib1=String.format("Str: %d Dex: %d Def: %d Chr: %d",
+        String attrib1=String.format("Str: %d Dex: %d Def: %d Chr: %d Wins: %d",
                                      strength, dexterity, defense, charm, wins);
         String attrib2=String.format("Health: %d of %d",
                                      health,maxhealth);
