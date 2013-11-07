@@ -20,6 +20,10 @@ Gold- allows the player to pay to refill their health (1 piece = 1 health point)
 charClass - for players: wizard or warrior
         for nonplayers: Ogre or Mr. Moran
 
+The user will be offered the chance to choose their character at the beginning of the game.
+It will create the respective player class (Warrior or Wizard)
+Every player starts off with a base of 8 for strength, dexterity, and intelligence.
+They are also given 8 points to distribute among these there attributes.
 
 NOTE: Player classes include Warrior and Wizard
 	Nonplayer classes include Ogre and Mr.Moran 
@@ -46,8 +50,8 @@ hit() - rolls three dice, and returns a boolean of if the sum of the three dice 
 
 Player Specific Methods 
 =======================
-action() - allows the player to choose whether they want to refill their health using gold, fight an enemy, 
-	or check their status
+action() - allows the player to choose whether they want to refill their health using gold, fight an 
+	enemy, or check their status
 
 getStatus() - Displays the currents stats: (strength, dexterity, intelligence, current health, max health, 
 	gold, and experience) of the player.
@@ -58,8 +62,8 @@ levelUp() - goes to the next level, adds gold, gives the player a greater max he
 	health, gives them 3 points to distribute among their strength, intelligence, and dexterity (the 
 	set methods of these three stats allow the player to pick where the points are distributed)
 
-encounter() - the player encounters either a Mr. Moran or an ogre (by random choice) and they are given the 
-	option to either fight or run away
+encounter() - the player encounters either a Mr. Moran or an ogre (by random choice) and they are given 
+	the option to either fight or run away
 
 flee() - allows the player to run away, losing 20 experience
 
