@@ -4,13 +4,20 @@ import java.util.*;
 public class Thief extends Character{
     Scanner sc1 = new Scanner (System.in);
     public Thief (){
-	setDexterity(12);
-	setIntelligence(8);
-	setStrength(6);
+	Random r = new Random();
+	int extrapts = 8;
+	int str = r.nextInt(extrapts+1);
+	extrapts = extrapts - str;
+	int dex = r.nextInt(extrapts+1);
+	extrapts = extrapts - dex;
+	int intel = r.nextInt (extrapts + 1);
+	setDexterity(12+dex);
+	setIntelligence(8+intel);
+	setStrength(4+str);
 	setName("Dovah the Sly");
 	setCharClass("Thief");
-	setMaxHealth(6);
-	setHealth(6);
+	setMaxHealth(strength);
+	setHealth(strength);
     }
 
     public String toString(){
@@ -23,6 +30,10 @@ public class Thief extends Character{
 	}else{
 	    return false;
 	}
+    }
+
+    public void Startup(){
+	System.out.println("Created " + this + "(Thief).\nStatus:\n" + getStatus());
     }
 
     public void attack (Character other){
@@ -70,8 +81,8 @@ public class Thief extends Character{
         else{
             System.out.println("In that case, it looks likes you're going to attempt an attack.");
             this.attack(other);
-              if (other.health > 0)
-                    other.attack(this);
+	    // if (other.health > 0)
+	    //      other.attack(this);
         }
         if (this.health == 0 && other.health == 0) {
             System.out.println(this + " and " + other + " died.");
