@@ -11,6 +11,7 @@ public class BossMoranNPC extends Character {
 	dexterity = 10+n.nextInt(5);
 	defense = 14+n.nextInt(5);
 	maxhealth = strength;
+	health = maxhealth;
 	charm = 0;
     }
 }
