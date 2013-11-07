@@ -13,11 +13,9 @@ public class Ogre extends Character{
         int[] dice1={1,2,3,4,5,6};
         int[] dice2={1,2,3,4,5,6};
         int[] dice3={1,2,3,4,5,6};
-        //will add complicated x and y coor stuff later
-        /*attacks include hitting with:
-          hammer(close range)
-          sword(med range)
-          arrow(far range)*/
+       	xchange = this.x-other.x;
+	ychange = this.y-other.y;
+	double d = Math.sqrt(xchange*xchange + ychange*ychange);
 
         System.out.println("Choose your attack:");
         System.out.println("Press 1 to use your club");
