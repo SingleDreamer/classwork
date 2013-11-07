@@ -74,14 +74,13 @@ public class Character {
 	    System.out.println("Attack succeeded.");
 	    if (other.health <= damage) {
 		other.health = 0;
-		this.experience += other.experience;
+                this.experience += other.experience;
 		System.out.println(other + " defeated.  " + this + "'s experience increased by " + other.experience + " points.");
-	    }
+            }	
 	    else
 		other.setHealth(other.health - damage);
 	    System.out.println(other + "'s health has decreased to " + other.getHealth() + ".");
-	    this.experience += 1;
-	    System.out.println(this + "'s experience increased by 1 point.");
+
 	}
     }
 
@@ -96,7 +95,7 @@ public class Character {
 
 
     public int encounter(Character other) {
-	if (0.5  > Math.random()) {
+	if (0.8  < Math.random()) {
 	    System.out.println(this + " tried to flee.");
 	    boolean fleesuccess = other.flee(other);
 	    if (fleesuccess == true) {
@@ -113,15 +112,18 @@ public class Character {
 	}
 	else {
 	    this.attack(other);
-	    if (other.health > 0)
-		other.attack(this);
+	    //if (other.health > 0)
+	    //	other.attack(this);
 	}
+	/*
 	if (this.health == 0 && other.health == 0) {
 	    System.out.println(this + " and " + other + " died.");
 	    System.out.println();
 	    return 4;
 	}
-	else if (this.health == 0) {
+	*/
+	//else
+	if (this.health == 0) {
 	    System.out.println(this + " died.");
 	    System.out.println();
 	    return 2;

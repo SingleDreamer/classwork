@@ -11,6 +11,7 @@ public class GoblinMage extends Character {
 	dexterity = 8 + rand1;
 	strength = 8 + leftover;
 	health = strength;
+	maxhealth = strength;
 	intelligence = 13;
 
 	experience = 50;
