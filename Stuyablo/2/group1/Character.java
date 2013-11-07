@@ -13,16 +13,23 @@ public class Character {
 
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
+	System.out.print("Welcome to StuyabloII. \nEnter your name: ");
+	name = sc.nextLine();
+	System.out.println("Hello " + name);
+	System.out.println("-------------------------------");
+
 	System.out.println("What would you like to be?");
-	System.out.println("(1)Warrior or (2)Wizard");
+	System.out.println("(1) Warrior or (2) Wizard");
 	int num = sc.nextInt();
 	if (num == 1) {
 	    System.out.println("Woo, You're a warrior");
 	    Warrior w = new Warrior(name);
+	    charclass = "Warrior";
 	}
 	else if (num == 2) {
 	    System.out.println("Woo, you're a Wizard");
 	    Wizard w = new Wizard(name);
+	    charclass = "Wizard";
 	}
 	else {
 	    System.out.println("Silly you, ponies aren't a choice");
@@ -35,33 +42,33 @@ public class Character {
 	Scanner sc = new Scanner(System.in);
 
 	System.out.println("You have " + points + " skill points available.");
-	System.out.print("Strength = 8 + ");
+	System.out.print("Strength = " + this.strength + "+ ");
 	int add = sc.nextInt();
 	if (add > points){
 	    add = points;
 	    System.out.printf("Only able to add %d points\n",add);
 	}
-        strength = strength + add;
-	health = strength;
+        this.strength = this.strength + add;
+	this.health = this.strength;
         points = points - add;
 
 	System.out.println("-------------------------------");
 
         System.out.println("You still have " + points + " skill points available");
-	System.out.print("Dexterity = 8 + ");
+	System.out.print("Dexterity = " + this.dexterity + "+ ");
 	add = sc.nextInt();
 	if (add > points) {
 	    add = points;
 	    System.out.printf("Only able to add %d points\n",add);
 	}
 
-	dexterity = dexterity + add;
+	this.dexterity = this.dexterity + add;
 	points = points - add;
 	
 	System.out.println("-------------------------------");
 
 	System.out.printf("Remaining %d points put into intelligence\n",points);
-	intelligence += points;
+	this.intelligence += points;
 
 	System.out.println("-------------------------------");
     }
@@ -74,18 +81,21 @@ public class Character {
 
 	Scanner sc = new Scanner(System.in);
 	System.out.println("Hey you, what does your heart desire?");
-	System.out.println("(1)Fight or (2) Heal or (3) Quit");
+	System.out.println("(1) Fight or (2) Heal or (3) Get Status (4) Quit");
 	int ans = sc.nextInt();
 
 	if (ans == 1) {
-	    encounter();
-	    turn();
+	    if (encounter())
+		turn();
 	}
 	else if (ans == 2) {
 	    heal();
 	    turn();
 	}
 	else if (ans == 3) {
+	    getStatus(); 
+	}
+	else if (ans == 4) {
 	    System.out.println("You are a disgrace.");
 	    return false;
 	}
@@ -96,7 +106,7 @@ public class Character {
 	return true;
     }
 
-    public void encounter() {
+    public boolean encounter() {
 	Character enemy = new Character();
 	Random r = new Random();
 	if (r.nextDouble() > 0.5){
@@ -125,7 +135,15 @@ public class Character {
 	    System.out.println("Enemy Health: " + enemy.getHealth());
 	    System.out.println("-------------------------------");
 	}
-	System.out.println("Someone died...");
+	if (this.alive()) {
+	    System.out.println("You have successfully defeated the " + enemy + ".");
+	    this.reward(enemy.getExp());
+	}
+	else {
+	    System.out.println("What a shame, you have died.");
+	    return false;
+	}
+	return true;
     }
 
     public void heal() {
@@ -150,6 +168,14 @@ public class Character {
 	System.out.println("As your reward, you have three skill points to add.");
 	setStat(3);
 	health = maxHealth = strength;
+    }
+
+    public int getExp() {
+	return exp;
+    }
+
+    public void reward(int n) {
+	exp = exp + n;
     }
 
     public void attack(Character other) {
@@ -182,15 +208,16 @@ public class Character {
 	return (sum <= dexterity);
     }
 
-    /*
-    public String getStatus() {
-      String attrib1=String.format("Str: %d Dex: %d Int: %d", strength, dexterity, intelligence);
-      String attrib2=String.format("Exp: %d Health: %d of %d", exp,health,maxHealth);
-      String locale = String.format("x: %5.2f y: %5.2f",x,y);
-      String whole=String.format("%s\n%s\n%s\n%s\n", name,attrib1,attrib2,locale);
-      return whole;
+
+    public void getStatus() {
+	System.out.println("Name: " + this.name);
+	System.out.println("Class: " + this.charclass);
+	System.out.println("Health: " + this.health);
+	System.out.println("Strength: " + this.strength);
+	System.out.println("Dexterity: " + this.dexterity);
+	System.out.println("Intelligence: " + this.intelligence);
     }
-    */
+
 
 
     public String toString() {

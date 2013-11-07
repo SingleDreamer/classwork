@@ -56,8 +56,13 @@ public class Elf extends Character {
 		System.out.println("Do you wan to upgrade your weapon? Enter 1 for yes, 2 for no");
 		int choose = sc.nextInt();
 		if (choose==1){
-		    weapon = weapons[strength-7];
-		    System.out.println("You traded your basic dagger for the "+ weapon);
+		    if (strength < 17){
+			weapon = weapons[strength-9];
+		    }
+		    else {
+			weapon = "master sword";
+		    }
+		    System.out.println("You traded your old weapon for the "+ weapon);
 		}
 		else {
 		    System.out.println("Fine. Keep your lame " + weapon);
