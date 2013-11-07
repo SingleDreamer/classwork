@@ -52,13 +52,21 @@ public class Ogre extends Character{
 	    System.out.println();
     }
 	else {
-	    System.out.println("The "+ name + " has hit you with a tree");
 	    int damage= (int)(strength/4 + (Math.random() * 3))-1;
+	    System.out.println("Attack succeeded.");
+	    if (other.health <= damage) {
+		other.health = 0;
+		this.experience += other.experience;
+		System.out.println(other + " defeated.  " + this + "'s experience increased by " + other.experience + " points.");
+		System.out.println();
+	    }
+	    else {
+	    System.out.println("The "+ name + " has hit you with a tree");
 	    other.health=other.health-damage;
+	    }
 	}
-
-    }}
-
+    }
+}
 
 
 

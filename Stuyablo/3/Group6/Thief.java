@@ -36,25 +36,28 @@ public class Thief extends Character{
 	System.out.println("Created " + this + "(Thief).\nStatus:\n" + getStatus());
     }
 
-    public void attack (Character other){
+    public void attack(Character other) {
 	System.out.println(this + " tried to attack " + other + ".");
 	boolean hitsuccess = this.roll();
 	if (hitsuccess == false) {
 	    System.out.println("Attack failed.");
+	    System.out.println();
 	}
 	if (hitsuccess == true) {
-	    int damage = strength * (2 / 3); // damage is approximately two third that of strength
+	    int damage = strength * 2 / 3; // damage is approximately 2/3 that of strength
 	    System.out.println("Attack succeeded.");
 	    if (other.health <= damage) {
 		other.health = 0;
 		this.experience += other.experience;
 		System.out.println(other + " defeated.  " + this + "'s experience increased by " + other.experience + " points.");
+		System.out.println();
 	    }
 	    else
 		other.setHealth(other.health - damage);
-	    System.out.println(other + "'s health has decreased to " + other.getHealth() + ".");
+	    System.out.println(other + "'s health has decreased to " + other.getHealth());
 	    this.experience += 1;
 	    System.out.println(this + "'s experience increased by 1 point.");
+	    System.out.println();	    
 	}
     }
 
@@ -81,25 +84,22 @@ public class Thief extends Character{
         else{
             System.out.println("In that case, it looks likes you're going to attempt an attack.");
             this.attack(other);
-	    // if (other.health > 0)
-	    //      other.attack(this);
         }
+	/*
         if (this.health == 0 && other.health == 0) {
             System.out.println(this + " and " + other + " died.");
             System.out.println();
             return 4;
         }
-        else if (this.health == 0) {
+	*/
+        if (this.health == 0) {
             System.out.println(this + " died.");
             System.out.println();
             return 2;
         }
         else if (other.health == 0) {
-            System.out.println(other + " died.");
             //this.gold += other.gold; //potential incorporation of gold
             //other.gold = 0;
-            this.experience += 5;
-            System.out.println(this + "'s experience increased by 5.");
             System.out.println();
             return 3;
         }

@@ -101,8 +101,6 @@ public class Warrior extends Character {
 	else{
 	    System.out.println("In that case, it looks likes you're going to attempt an attack.");
 	    this.attack(other);
-	    // if (other.health > 0)
-	    //	other.attack(this);
 	}
 	/*
 	if (this.health == 0 && other.health == 0) {
@@ -111,18 +109,14 @@ public class Warrior extends Character {
 	    return 4;
 	}
 	*/
-	//else
 	if (this.health == 0) {
 	    System.out.println(this + " died.");
 	    System.out.println();
 	    return 2;
 	}
 	else if (other.health == 0) {
-	    System.out.println(other + " died.");
 	    //this.gold += other.gold; //potential incorporation of gold
 	    //other.gold = 0;
-	    this.experience += 5;
-	    System.out.println(this + "'s experience increased by 5.");
 	    System.out.println();
 	    return 3;
 	}
