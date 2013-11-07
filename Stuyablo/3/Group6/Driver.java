@@ -9,7 +9,16 @@ public class Driver {
 	Ogre c = new Ogre();
 	Thief t = new Thief();
 	GoblinMage m = new GoblinMage();
-
+       
+	c.setAttributes();
+	System.out.println(c.health+""); 
+      	System.out.println(c.maxhealth+"");
+	System.out.println(c.strength+"");
+	System.out.println(c.getStatus());
+	/*
+	c.setAttributes();
+	w.Startup();
+	System.out.println(w.name + " faces " + c.name + "\n" + "Status:\n" + c.getStatus());
 	for (int i = 1, j = 0; w.getHealth() > 0 && c.getHealth() > 0 && j==0; i++) {
 	    System.out.println("Round " + i);
 	    int e1 = w.encounter(c);
@@ -28,7 +37,7 @@ public class Driver {
 	    System.out.println(c.getStatus());
 	    System.out.println("------------------------");
 	}
-	/*
+       
 	for (int i = 1, j = 0; m.getHealth() > 0 && c.getHealth() > 0 && j==0; i++) {
 	    System.out.println("Round " + i);
 	    int e1 = m.encounter(c);
@@ -67,11 +76,6 @@ public class Driver {
 	    System.out.println("------------------------");
 	}
 	*/
-	/*Would like to say that I, Rushil Kumar was supposed to finish this up and did 
-          not do so properly. If any points are to be deducted from the errors in this, 
-          please do so from my grade and not my group members. They put in their work
-          but I feel I did not do my part. Also, 3 scenarios are given. Two of them are commented 
-          out while the other one is not.
-	 */
+
     }
 }

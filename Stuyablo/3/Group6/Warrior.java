@@ -36,10 +36,13 @@ public class Warrior extends Character {
 	intelligence = 4 + i;
 	name = n;
 	charClass = "PC";
-	System.out.println("Created " + this + ".\nStatus:\n" + getStatus());
     }
 
     // add and edit encounter method so that the player has the option to try to flee or to attack (using Scanner)
+
+    public void Startup(){
+	System.out.println("Created " + this + ".\nStatus:\n" + getStatus());
+    }
 
     public void attack(Character other) {
 	System.out.println(this + " tried to attack " + other + ".");
@@ -49,7 +52,7 @@ public class Warrior extends Character {
 	    System.out.println();
 	}
 	if (hitsuccess == true) {
-	    int damage = strength * 2 / 3; // damage is 2/3 that of strength
+	    int damage = strength * 2 / 3; // damage is approximately 2/3 that of strength
 	    System.out.println("Attack succeeded.");
 	    if (other.health <= damage) {
 		other.health = 0;
@@ -98,15 +101,18 @@ public class Warrior extends Character {
 	else{
 	    System.out.println("In that case, it looks likes you're going to attempt an attack.");
 	    this.attack(other);
-	      if (other.health > 0)
-	    	other.attack(this);
+	    // if (other.health > 0)
+	    //	other.attack(this);
 	}
+	/*
 	if (this.health == 0 && other.health == 0) {
 	    System.out.println(this + " and " + other + " died.");
 	    System.out.println();
 	    return 4;
 	}
-	else if (this.health == 0) {
+	*/
+	//else
+	if (this.health == 0) {
 	    System.out.println(this + " died.");
 	    System.out.println();
 	    return 2;
