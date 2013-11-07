@@ -16,8 +16,6 @@ public class Ogre extends Character{
 	dexterity=6+(r.nextInt(addpoints));
 	addpoints=addpoints-(r.nextInt(addpoints));
 	strength=14+(r.nextInt(addpoints));
-	health=strength;
-	maxhealth=strength;
 	addpoints=addpoints-(r.nextInt(addpoints));
 	intelligence=4+(r.nextInt(addpoints));
 	addpoints=addpoints-(r.nextInt(addpoints));
@@ -36,7 +34,8 @@ public class Ogre extends Character{
           
       	name="Ogre";
 	setCharClass("NPC");
-
+	health=strength;
+	maxhealth=strength;
 }
 
     public void die (Character other){

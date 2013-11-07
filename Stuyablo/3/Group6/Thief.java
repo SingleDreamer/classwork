@@ -64,7 +64,7 @@ public class Thief extends Character{
         boolean b = scan1.nextBoolean();
         if (b) {
             System.out.println(this + " tried to flee.");
-            boolean fleesuccess = other.flee(other);
+            boolean fleesuccess = this.flee(other);
             if (fleesuccess == true) {
                 this.experience += 1;
                 this.gold += 1;

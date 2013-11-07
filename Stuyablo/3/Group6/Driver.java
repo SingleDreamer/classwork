@@ -9,13 +9,13 @@ public class Driver {
 	Ogre c = new Ogre();
 	Thief t = new Thief();
 	GoblinMage m = new GoblinMage();
-       
+	/*
 	c.setAttributes();
 	System.out.println(c.health+""); 
       	System.out.println(c.maxhealth+"");
 	System.out.println(c.strength+"");
 	System.out.println(c.getStatus());
-	/*
+	*/
 	c.setAttributes();
 	w.Startup();
 	System.out.println(w.name + " faces " + c.name + "\n" + "Status:\n" + c.getStatus());
@@ -37,7 +37,7 @@ public class Driver {
 	    System.out.println(c.getStatus());
 	    System.out.println("------------------------");
 	}
-       
+	/*
 	for (int i = 1, j = 0; m.getHealth() > 0 && c.getHealth() > 0 && j==0; i++) {
 	    System.out.println("Round " + i);
 	    int e1 = m.encounter(c);

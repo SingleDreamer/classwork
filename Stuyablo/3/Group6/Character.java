@@ -97,7 +97,7 @@ public class Character {
     public int encounter(Character other) {
 	if (0.8  < Math.random()) {
 	    System.out.println(this + " tried to flee.");
-	    boolean fleesuccess = other.flee(other);
+	    boolean fleesuccess = this.flee(other);
 	    if (fleesuccess == true) {
 		this.experience += 1;
 		System.out.println("Fleed successfully.");
