@@ -19,43 +19,28 @@ public class Driver {
         //don't know if this will work. Did'nt test yet:
         
         String a=c.getCharClass();
-       // String b=c2.getCharClass();
+        String b=c2.getCharClass();
 
         if (a.equals("Warrior")){
-            Warrior war = new Warrior(name);
-            c=war;
+            c = new Warrior(name);
         }
-		
-     /* 	if (b.equals("Warrior")){
-         	Warrior war2 = new Warrior("Bob");
+/*
+      	if (b.equals("Warrior")){
+         	Warrior war2 = new Warrior(name);
          	c2=war2;
+}
 
-          }
-		  */
-        else if (a.equals("Wizard")){
+        if (a.equals("Wizard")){
             Wizard wiz = new Wizard(name);
             c=wiz;
         }
-		
-		/*
-
+		*/
+/*
     	if (b.equals("Wizard")){
     	    Wizard wiz2 = new Wizard(name);
     	    c2=wiz2;
         }
-		
-		*/
-		
-		else if (a.equals("Theif")){
-			Theif th=new Theif(name);
-			c=th;
-		}
-		
-		else {
-			Ogre og=new Ogre(name);
-			c=og;
-		}
-       
+ */      
         //up to here
 
     

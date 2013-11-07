@@ -1,11 +1,11 @@
 import java.io.*;
 import java.util.*;
 
-public class Ogre extends Character {
+public class Slime extends Character {
 
-public Ogre(int level) {
-	charClass = "Ogre";
-	name = "Some Ogre";
+public Slime(int level) {
+	charClass = "Slime";
+	name = "Some Slime";
 	Scanner s = new Scanner(System.in);
 	Random r = new Random();
 	x = r.nextInt(8);
@@ -30,20 +30,21 @@ public void level(int exp) {
 	experience = experience + exp;
 	if (experience > experienceneeded) {
 		level = level + 1;
-		
+	
 	Random r = new Random();
-	int i = r.nextInt(2); //ogre does not need intelligence (sorry)
+	int i = r.nextInt(2);
 	if (i == 1) {
 		dexterity = dexterity + 1;
 		experienceneeded = experienceneeded + 5 * (level - 1);
-	}
-	if (i == 2) {
-		strength = strength + 1;
-		experienceneeded = experienceneeded + 5 * (level - 1);
-	}
-	else {
-		intelligence = intelligence + 1;
-		experienceneeded = experienceneeded + 5 * (level - 1); /*Increases exp needed to level up by 5 per level, so its 10, 15, 25, 40, 60 Consider that you get 10 exp + enemies health per each kill.*/
+	} else {
+		if (i == 2) {
+			strength = strength + 1;
+			experienceneeded = experienceneeded + 5 * (level - 1);
+		}
+		else {
+			intelligence = intelligence + 1;
+			experienceneeded = experienceneeded + 5 * (level - 1); /*Increases exp needed to level up by 5 per level, so its 10, 15, 25, 40, 60 Consider that you get 10 exp + enemies health per each kill.*/
+		}
 	}
 	maxhealth = strength;
 	health = maxhealth; //health regeneration
@@ -53,14 +54,14 @@ public void level(int exp) {
 } 
 public boolean flee(Character other) {
 	int[] a = other.getStat();
-	if (health < 12) {
+	if (health < 8) {
 		health = health + 10;
 		System.out.println(name + " ran away! \n\n");
 		System.out.println("----------------------------------------------------------------");
 		return true;
 		
 	}
-	if (distance < 11 || distance > -11)
+	if (distance < 13 || distance > -13)
 		return false;
 	if (dexterity < a[0])
 		return false;
@@ -89,17 +90,17 @@ public void attack(Character other) {
 	Random r = new Random();
 	int roll = r.nextInt(16) + 3;
 	if (health == 0) {
-		System.out.println("Ogre died.");
+		System.out.println("Slime died.");
 	}
 	else {
 		if (dexterity >= roll) {
 		
-		other.damage(strength + 3);
-		System.out.println("Ogre dealt " + (strength+3) + " damage to its enemy!");
+		other.damage((strength/3)); //slimes are weak
+		System.out.println("Slime dealt " + (strength/3) + " damage to its enemy!");
 		System.out.println("----------------------------------------------------------------");
 		}
 		else { 
-		System.out.println("Ogre missed!");
+		System.out.println("Slime missed!");
 		System.out.println("----------------------------------------------------------------");
 	}
 }
@@ -137,3 +138,4 @@ int ystep = s.nextInt();
 		y = y + ystep;
 	}
 */
+

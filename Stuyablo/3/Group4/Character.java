@@ -51,7 +51,11 @@ public double[] getxy() {
 public void distance(Character other) {
 	double[] d = other.getxy();
 	//we will use taxicab distance
-	distance = x - d[0] + y - d[1];
+	double dist = x - d[0] + y - d[1];
+	if (dist < 0)
+	    distance = -1 * dist;
+	else
+	    distance = dist;
 }
 
 public void damage(int str) {  
@@ -86,9 +90,9 @@ public void attack(Character other) {
 	}
 	else {
 	if (dexterity >= roll) {
-		other.damage(strength);
-		System.out.println(name + " has dealt " + strength + " damage to the enemy!");
-		System.out.println("----------------------------------------------------------------");
+	    other.damage(strength);
+	    System.out.println(name + " has dealt " + strength + " damage to the enemy!");
+	    System.out.println("----------------------------------------------------------------");
 	}
 	else {
 		System.out.println(name + " has missed!");
@@ -182,14 +186,15 @@ public void level(int exp) {
 	if (i == 1) {
 		dexterity = dexterity + 1;
 		experienceneeded = experienceneeded + 5 * (level - 1);
-	}
-	if (i == 2) {
+	} else {
+	    if (i == 2) {
 		strength = strength + 1;
 		experienceneeded = experienceneeded + 5 * (level - 1);
-	}
-	else {
+	    }
+	    else {
 		intelligence = intelligence + 1;
 		experienceneeded = experienceneeded + 5 * (level - 1); /*Increases exp needed to level up by 5 per level, so it¡¯s 10, 15, 25, 40, 60¡¦ Consider that you get 10 exp + enemies health per each kill.*/
+	    }
 	}
 	maxhealth = 4 * strength;
 	health = maxhealth; //health regeneration
@@ -239,4 +244,3 @@ public void level(int exp) {
     }
     
 }
-

@@ -6,10 +6,19 @@ public class Driver {
 	Scanner s = new Scanner(System.in);
 	Random r = new Random();
 	Character c = new Character();
-	c = new Archer();
+	System.out.println("Choose your job: \n1. Archer\n2. Wizard");
+	if (s.nextInt() == 1)
+	    c = new Archer();
+	else
+	    c = new Wizard();
 	while (c.getHealth() > 0) {
-		Ogre o = new Ogre(c.getLevel() + r.nextInt(2) - 1);
-		c.play(o);
+		Ogre og = new Ogre(c.getLevel() + r.nextInt(2) - 1);
+		Slime sl = new Slime(c.getLevel() + r.nextInt(2) - 1);
+		Random ra = new Random();
+		if (ra.nextInt(2)==1)
+		    c.play(og);
+		else
+		    c.play(sl);
 	}
     
 	System.out.println("You finally died at a level of " + c.getLevel() + "!");
