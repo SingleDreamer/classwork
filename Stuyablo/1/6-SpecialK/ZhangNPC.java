@@ -5,7 +5,7 @@ public class ZhangNPC extends Character {
     
     public ZhangNPC(){
 	Random n = new Random();
-	name = "Xie";
+	name = "Jie";
 	charType = "Zhang";
 	strength = 9 + n.nextInt(5);
 	dexterity = 6+n.nextInt(5);
