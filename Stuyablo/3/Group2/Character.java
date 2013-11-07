@@ -126,11 +126,12 @@ public class Character {
 
     public boolean changeStrength(int n) {
         if (strength >= n) {
-            Strength = Strength - n
+            strength = strength - n;
             return true;
 		} else {
-		    Strength = 0;
+		    strength = 0;
 		}
+	return true;
     }
 	
 
