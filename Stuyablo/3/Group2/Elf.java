@@ -101,15 +101,15 @@ public class Elf extends Character {
 	    Thread.currentThread().interrupt();
 	}
 	if (roll()){
-	    if (weapon == weapons[0]|| weapon == weapons[1]){
+	    if (weapon.equals(weapons[0])|| weapon.equals(weapons[1])){
 		System.out.println(name + " deals " +strength/5 + " damage with the " + weapon);
 		return other.changeHP((strength)/5);
 	}
-	    if(weapon == weapons[2] || weapon == weapons[3]){
+	    if(weapon.equals( weapons[2]) || weapon.equals(weapons[3])){
 		System.out.println(name + " deals " + strength/4 + " damage with the " + weapon);
 		return other.changeHP(strength/4);
 	    }
-	    if (weapon == "basic dagger"){
+	    if (weapon.equals("basic dagger")){
 		System.out.println(name +" deals " + strength/6 + " damage with the rusty " + weapon);
 		return other.changeHP(strength/6);
 	    }
