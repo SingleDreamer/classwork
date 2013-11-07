@@ -5,7 +5,7 @@
 
 ## Characters
 
-NOTE: major modifications were made to the character class. Methods that should be shared by most characters such as leveling up and attacking are included in Character.class.
+The basic `Character` class contains methods that are shared by all characters, including `levelup()` and `attack()`. 
 
 Basic stats of all characters: `strength`, `dexterity`, and `intellegence`. 
 
