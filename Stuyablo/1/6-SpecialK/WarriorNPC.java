@@ -14,7 +14,7 @@ public class WarriorNPC extends Character {
 	maxhealth = strength;
 	charm = 0;
 	if (health>maxhealth){
-		this.setHealth(this.getMaxHealth);
+		this.setHealth(this.getMaxHealth());
 	}
     }
 }
