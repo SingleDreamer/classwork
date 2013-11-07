@@ -9,13 +9,16 @@ public class Driver {
 	Ogre c = new Ogre();
 	Thief t = new Thief();
 	GoblinMage m = new GoblinMage();
+
 	/*
-	The driver has been separated into four main blocks of code. 
-	The first three  blocks run PC vs NPC with it being Warrior vs Ogre
-        then Thief vs Ogre and finally Warrior vs GoblinMage. The last block runs an 
-        NPC vs NPC battle for GoblinMage vs Ogre. Uncomment the block you want to run and 
-        uncomment the block you don't want to run.
+	This driver has been separated into four main blocks of code. 
+	The first three  blocks run PC vs. NPC battles.  The first is Warrior vs. Ogre,
+        the next is Thief vs. Ogre, and the last is Warrior vs. GoblinMage.
+	The last block runs an NPC vs NPC battle for GoblinMage vs Ogre.
+	Uncomment the block you want to run, and
+	comment out the block you don't want to run.
 	*/
+
 	/*
 	c.setAttributes();
 	w.Startup();
