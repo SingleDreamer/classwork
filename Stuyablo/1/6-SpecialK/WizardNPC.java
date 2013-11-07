@@ -13,5 +13,8 @@ public class WizardNPC extends Character {
 	maxhealth = strength;
 	health = 10 + n.nextInt(5);
 	charm = 0;
+	if (health>maxhealth){
+		this.setHealth(this.getMaxHealth());
+	}
     }
 }

@@ -13,5 +13,8 @@ public class WarriorNPC extends Character {
 	health = 10 + n.nextInt(5);
 	maxhealth = strength;
 	charm = 0;
+	if (health>maxhealth){
+		this.setHealth(this.getMaxHealth());
+	}
     }
 }
