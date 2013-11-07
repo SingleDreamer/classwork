@@ -6,182 +6,200 @@ public class Character {
     protected int dexterity, strength, intelligence;
     protected int experience;
     protected int gold;
-    protected double x,y,distance;
+    protected double x,y;
     protected String name;
     protected String charClass;
  
-    public int getHealth() {
-	return health;
+    public double getHealth() {
+        return health;
     }
     public int getDex() {
-	return dexterity;
+        return dexterity;
     }
     public int getStr() {
-	return strength;
+        return strength;
     }
     public int getIntel() {
-	return intelligence;
+        return intelligence;
     }
     public int getEXP() {
-	return experience;
+        return experience;
     }
-    public double getDistance() {
-	return distance;
+    public double getDistance(Character other) {
+        double distance;
+        double differX, differY;
+        differX = this.x - other.x;
+        differY = this.y - other.y;
+        distance = Math.sqrt( (differX*differX) + (differY*differY) );
+        return distance;
     }
-    /* THIS IS THE RANDOMIZED CONSTRUCTOR, COPY PASTE INTO THE SPECIFIC CLASS FILES AND TWEAK
-    public Character(String name) {
-    	Random r = new Random();
-    	int str, dex, intel;
-		this.name = name;
-		str = r.nextInt(9);
-		dex = r.nextInt(9 - str);
-		intel = 8 - str - dex;
-		dexterity = 8 + dex;
-		strength = 8 + str;
-		intelligence = 8 + intel;
-		maxhealth = strength;
-		health = maxhealth;
-    }
-    */
-    public void attack(Character other) {
+
+	public Character(String name, int baseStr, int baseDex, int baseInt, boolean playable) {
 		Random r = new Random();
-		//the dice rolls
-		int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
-		if (x+y+z <= dexterity) {
-		    //needs damage calculator!
-		    int dmg = damageDone(other);
-		    other.loseHealth(dmg);
-		    System.out.println("\n" + name + " did " + dmg + " damage to " + other + "!");
-		}
-		else {
-		    System.out.println("\n" + name + " missed!");
-		}
+		this.name = name;
+        if (playable) {
+            distributeStats(baseStr, baseDex, baseInt);
+        }
+        else {
+    		int eStr = r.nextInt(9);
+    		int eDex = r.nextInt(9 - eStr);
+    		int eInt = 8 - eStr - eDex;
+    		this.dexterity = baseDex + eDex;
+    		this.strength = baseStr + eStr;
+    		this.intelligence = baseInt + eInt;
+        }
+    	this.maxhealth = this.strength * 5;
+    	this.health = this.maxhealth;
+	}
+
+    public void distributeStats(int baseStr, int baseDex, int baseInt) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(name + ", choose your stats:");
+        System.out.println("\nStrength affects health and the damage done by melee characters.");
+        System.out.println("Dexterity affects accuracy.");
+        System.out.println("Intelligence affects the chance of fleeing and the damage done by magic users.");
+        System.out.println("\nWarriors start off with 10 strength, 6 dexterity, and 8 intelligence.");
+        System.out.println("Wizards start off with 6 strength, 8 dexterity, and 10 intelligence.");
+        System.out.println("Thieves start off with 8 strength, 10 dexterity, and 6 intelligence.");
+        System.out.println("\nYou have 8 more points to allocate.");
+        System.out.println("\nHow many points do you want to add to strength?");
+        System.out.print(">");
+        int str = sc.nextInt();
+        System.out.println("\nHow many points do you want to add to dexterity?");
+        System.out.print(">");
+        int dex = sc.nextInt();
+        System.out.println("\nHow many points do you want to add to intelligence?");
+        System.out.print(">");
+        int intel = sc.nextInt();
+        this.name = name;
+        strength = baseStr + str;
+        dexterity = baseDex + dex;
+        intelligence = baseInt + intel;
+        System.out.println(String.format("\nStr: %d Dex: %d Int: %d\n\n",
+                                    strength, dexterity, intelligence));
+        if (dexterity + strength + intelligence > 32) {
+            System.out.println("You have added too many points, please try again.\n\n");
+            distributeStats(baseStr, baseDex, baseInt);
+        }
+    }
+
+
+    public void attack(Character other) {
+        Random r = new Random();
+        //the dice rolls
+        int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
+        System.out.println("\n" + this + " attacked!");
+        pause();
+        if (x+y+z <= dexterity) {
+            //needs damage calculator!
+            int dmg = this.strength * 2;
+            other.loseHealth(dmg);
+            System.out.println("\n" + name + " did " + dmg + " damage to " + other + "!");
+        }
+        else {
+            System.out.println("\n" + name + " missed!");
+        }
     }
     
-    public int damageDone(Character other){
-    	return this.strength;
+    public int damageDone(Character other, int multiplier){
+        return this.strength * multiplier;
     }
     
     // returns true if you succesfully flee, false otherwise
     public boolean flee(Character other) {
-		Random r = new Random();
-		boolean flee = false;
-		int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
-		int chance = this.intelligence - other.intelligence;
-		if (chance <= 0) {
-			//gives the character at least 1/18 chance of fleeing
-			chance = 0;
-		}
-		flee = x+y+z <= chance + 3;
-		return flee;
+        Random r = new Random();
+        boolean flee = false;
+        int x = r.nextInt(6) + 1, y = r.nextInt(6) + 1, z = r.nextInt(6) + 1;
+        int chance = this.intelligence - other.intelligence;
+        if (chance <= 0) {
+                //gives the character at least 1/18 chance of fleeing
+                chance = 0;
+        }
+        flee = x+y+z <= chance + 3;
+        if (flee) {
+            health = 0;
+        }
+        return flee;
     }
     
     public void loseHealth(int hp) {
-    	health = health - hp;
+        health = health - hp;
     } 
     
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead
-    */
-
     public int encounter(Character other) {
-	Scanner sc = new Scanner(System.in);
-	if (other.flee(this)) {
-	    return 0;
-	}
-	else {
-		System.out.println("\n" + other + " tried to flee, but failed.");
-	}
-	pause();
-	System.out.println("\n" + this + "\n1 - Attack \n2 - Flee");
-	System.out.print("Enter your choice: ");
-	String option = sc.nextLine();
-	pause();
-	if (option.equals("2")) {
-	    if (this.flee(other)){
-		    return 1;
-		}
-		else {
-			System.out.println("\n" + this + " tried to flee, but failed."); 
-		}
-	}
-	else if (option.equals("1")){
-	    this.attack(other);
-	    pause();
-	    if (other.health>0) {
-			other.attack(this);
-			if (this.health<=0) {
-			    return 2;
-			}	
-	    }
-	    else {
-			return 3;
-	    }
-	    return 5;
-	}
-	return 5;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\n" + this + "\n1 - Attack \n2 - Flee");
+        System.out.print("Enter your choice: ");
+        int option = sc.nextInt();
+        pause();
+        if (option == 2) {
+            if (this.flee(other)) {
+                return 1;
+            }
+            else {
+                System.out.println("\n" + this + " tried to flee, but failed."); 
+                return 5;
+            }
+        }
+        else {
+            this.attack(other);
+            if (other.health > 0) {
+                return 5;
+            }
+            else {
+                return 3;
+            } 
+        }
     }
-	
-    //actually runs game, calls on encounter multiple times
-    public void game(Character other) {
-		int options = 5, turn = 1;
-		while (options == 5) {
-			pause();
-			pause();
-			System.out.println("\n~~~\nTurn: "+ turn+ "\n" + this + "'s health: " + this.getHealth());
-			System.out.println(other + "'s health: " + other.getHealth());
-		    options = encounter(other);
-		    turn = turn + 1;
-		}
-		if (options == 0) {
-		    System.out.println("\n" + other + " fled!");
-		}
-		else if (options == 1) {
-		    System.out.println("\n" + this + " fled!");
-		}
-		else if (options == 2) {
-		    System.out.println("\n" + this + " died!");
-		}
-		else if (options == 3) {
-		    System.out.println("\n" + other + " died!");
-		}
-    }
-	    
-	    
-	    
+
     public String getStatus() {
-	String attrib1=String.format("Str: %d Dex: %d Int: %d",
-				     strength, dexterity, intelligence);
-	String attrib2=String.format("Exp: %d Health: %d of %d",
-				     experience,health,maxhealth);
-	String locale = String.format("x: %5.2f y: %5.2f",x,y);
-	String whole=String.format("%s\n%s\n%s\n%s\n",
-				   name,attrib1,attrib2,locale);
-	return whole;
+        String attrib1=String.format("Str: %d Dex: %d Int: %d",
+                                     strength, dexterity, intelligence);
+        //String attrib2=String.format("Exp: %d Health: %d of %d",
+        //                             experience,health,maxhealth);
+        //String locale = String.format("x: %5.2f y: %5.2f",x,y);
+        String whole=String.format("%s\n%s\n",
+                                   name,attrib1);
+        return whole;
     }
-		   
+                   
     public String toString() {
-	return name;
+        return name;
     }
 
     public void pause() {
-    	try {
-            Thread.sleep(500); // pause for that many milliseconds
+            try {
+            Thread.sleep(750); // pause for that many milliseconds
         } 
         catch (Exception e) {
                 // do nothing here - it should never get run 
         }
+    }
+
+    public Character createNew() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nEnter a name: ");
+        String name = sc.nextLine();
+        System.out.println("\nChoose your class:\n\nWarrior\nWizard\nThief");
+        System.out.print(">");
+        String pClass = sc.nextLine();
+        Character c1 = new Character(name,8,8,8,false);
+        if (pClass.equals("Warrior")) {
+                System.out.println("\nYou are now a warrior!\n");
+                c1 = new Warrior(name);
+        }
+        else if (pClass.equals("Wizard")){
+                System.out.println("\nYou are now a wizard!\n");
+                c1 = new Wizard(name);
+        }
+        else if (pClass.equals("Thief")){
+                System.out.println("\nYou are now a thief!\n");
+                c1 = new Thief(name);
+        }
+        else {
+                System.out.println("\nInvalid class, defaulting to Warrior.\n");
+                c1 = new Warrior(name);
+        }
+        return c1;
     }
 }

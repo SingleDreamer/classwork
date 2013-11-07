@@ -6,49 +6,79 @@ public class Character {
     protected int dexterity, strength, intelligence;
     protected int experience;
     protected int gold;
-    protected double x,y,distance;
+    protected double x,y;
     protected String name;
     protected String charClass;
- 
+    protected int distance;
+    protected boolean isHere;
+    protected int dieRoll;
+    protected int attackRange;
+
+Random generator = new Random();
+
+	public void setDistance() {
+		distance = generator.nextInt(10) + 1;
+	}
+
+	public int getDistance() {
+		return distance;
+	}
+
     public int getHealth() {
-	return health;
-    }
+		return health;
+	  }
+
+	public int getStrength() {
+		return strength;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public int getDexterity() {
+		return dexterity;
+	}
 
     /* You have to provide other needed get/set methods */
 
 
-    public void attack(Character other) {
-	/* do the attack:
-	   print out the attempt and the result and update
-	   all relavent variables
-	*/
+    public int DieRoll(){
+        for (int i=0; i<3; i++){
+	    dieRoll = dieRoll + generator.nextInt(5) + 1;
+        }
+        return dieRoll;
     }
 
-    // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
+    public void flee(){
+	DieRoll();
+	if (dieRoll >= dexterity) {
+	    System.out.println("You have fled");
+	    isHere = false;
+	}
+	else
+	    System.out.println("You tried to flee but weren't fast enough!");
     }
 
-
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
-    public int encounter(Character other) {
-	return 0;
-    }
-
+public void attack(Character other){
+        int dice = DieRoll();
+                //If the distance is greater than the attack range, move closer by one
+                if (attackRange < distance) {
+                        distance = distance - 1;
+                        }
+                else {
+                        //If roles less than its strength, it hits the attack!
+                        if (dieRoll <= strength) {
+                                System.out.println ("You successfully attacked!");
+                                experience = experience + 1;
+                                other.health = other.health - 1;
+                                }
+                        //If roles more than its strength, it misses the attack!
+                        else {
+                                System.out.println ("The attack was missed!");
+                        }
+                }
+	}
 
 
     public String getStatus() {
@@ -63,8 +93,45 @@ public class Character {
     }
 
 
+    public boolean isAlive(){
+	if (health > 0)
+	    return true;
+	return false;
+    }
+
+    public void playerEncounter(Character other){
+	Scanner sc = new Scanner(System.in);
+	System.out.println("What would you like to do?(a for attack, f for flee)");
+	String action = sc.nextLine();
+	if (action.equals("a")) {
+	    attack(other);
+	    System.out.println("The enemy now has" + " " + other.getHealth() + " " + "health");}
+	else if (action.equals("f"))
+	    flee();
+	else
+	    System.out.println("That is not a valid choice. Skip turn.");
+    }
+
+
+    public void startEncounter(Character other){
+	isHere = true;
+	System.out.println("You have encountered an enemy");
+	while (isAlive() && other.isAlive() && isHere){
+	    playerEncounter(other);
+	    other.attack(this);
+	    System.out.println("Your current health is" + " " + health);
+	}
+	if (!other.isAlive())
+	    System.out.println("You win!");
+	if (!isHere)
+	    System.out.println("You ran from battle.");
+	else
+	    System.out.println("You died");
+	    System.out.println("GAME OVER");
+    }
+
     public String toString() {
 	return name;
     }
-    
+
 }

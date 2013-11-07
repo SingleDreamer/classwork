@@ -9,5 +9,13 @@ public class Driver {
 	System.out.println(c1.getStats());
 	System.out.println(p1.getStats());
 	e.encounter(p1,c1);
+	System.out.println(c1.getStats());
+	System.out.println(p1.getStats());
+	e.encounter(p1,c1);
+	System.out.println(c1.getStats());
+	System.out.println(p1.getStats());
+	e.encounter(p1,c1);
+	System.out.println(c1.getStats());
+	System.out.println(p1.getStats());
     }
 }

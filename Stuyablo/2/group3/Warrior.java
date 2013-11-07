@@ -1,19 +1,21 @@
 import java.util.*;
 
 public class Warrior extends Character {
-    String name = new String();
-    Scanner sc = new Scanner ( System.in );
-    int playerHealth = 50 , gameOver = 0;
 
-    public Warrior ( String n ) {
-	name = n;
-	strength = 12;
-	dexterity = 10;
-	iq = 10;
+    public Warrior (String n) {
+        super(n);
+        super.playerInit();
+        super.charClass = "Warrior";
+        super.weapons[0] = 4; // Warrior can do 4 damage with hand
     }
 
+    public void attack () {
+        int damage = (int) Math.sqrt(str);
+        super.attack(damage);
+    }
+
+/*
     public void attack() {
-	NonPlayer enemy = new NonPlayer();
 	Random r = new Random();
 	int enemyHealth = 50;
 	if ( r.nextInt() > 0 )
@@ -41,4 +43,5 @@ public class Warrior extends Character {
 		gameOver = 1;
 	}
     }
+*/
 }

@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int health, maxhealth;
+    protected int health, maxHealth;
     protected int dexterity, maxDex, strength, maxStr, intelligence, maxInt;
     protected int experience;
     protected int gold;
@@ -10,14 +10,33 @@ public class Character {
     protected String name;
     protected String charClass;
  
-    public String multStr(String str, int times){
-	for(int i = 0; i < times; i++) {
-	    System.out.print(str);
-	}
+    public String toString() {
+	return name;
     }
 
+    public void wait(int millsecs) { //our dramatic pausing functionality.
+	try {
+	    Thread.sleep(millsecs); 
+		}
+	catch (Exception e){/*do nothing*/}
+    }
+    
 
-    /* You have to provide other needed get/set methods */
+    public String multStr(String str, int times){
+	String ans;
+	ans = "";
+	for (int i = 0; i < times; i++) {
+	    ans = ans + str;
+	}
+	return ans;
+    }
+
+    public void greet() {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("What is your name, warrior?");
+	String name = sc.nextLine();
+	this.name = name;
+    }
     //Get Methods
     public int getHP() {
 	return health;
@@ -36,50 +55,69 @@ public class Character {
     }
 
     //Set Methods
-     public int settHP(x) {
-	this.health = x;
-    }
-    public int getDex(x) {
+
+    public void setDex(int x) {
 	this.dexterity=x;
     }
-    public int getStrx(x) {
+    public void setStr(int x) {
 	this.strength =x;
     }
-    public int getInt(x) {
+    public void setInt(int x) {
 	this.intelligence=x;
     }
-    public int getExpx(x) {
+    public void setExp(int x) {
 	this.experience=x;
     }
+    public void setHP(int x) {
+	this.health = x;
+    }
+   
 
+    public void getStatus() {
+	System.out.println(this + "'s Stats:");
+
+	System.out.print("Health: "+ this.getHP()); 
+	// multStr("*",Math.round((this.getHP()/this.maxHealth)*100.0));  
+	System.out.println("(" + (((this.getHP()*1.0)/(this.maxHealth*1.0))*100.0) + "%)");
+
+	System.out.print("Strength: "+ this.getStr());
+        //System.out.print(multStr("x",Math.round((this.getStr()/this.maxStr)*100)));
+	System.out.println("(" + (((this.getStr()*1.0)/(this.maxStr*1.0))*100.0) + "%)");
+
+	System.out.print("Dexterity: "+ this.getDex());
+        //System.out.println(multStr("x",Math.round((this.getDex()/this.maxDex)*100))); 
+	System.out.println("(" + (((this.getDex()*1.0)/(this.maxDex*1.0))*100) + "%)");
+	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
 
     public void attack(Character other) {
-        /* do the attack:
-           print out the attempt and the result and update
-           all relavent variables
-        */
+        Random r = new Random();
 
-	random dice1 = new Random() * 6;
-	random dice2 = new Random() * 6;
-	random dice3 = new Random() * 6;
+	int dice1 = r.nextInt(6);
+	int dice2 = r.nextInt(6);
+	int dice3 = r.nextInt(6);
 
-	if (dice1 + dice2 + dice3 > this.getDex) {
-	    this.attack(other)
-		}
-    }
-
-    // returns true if you succesfully flee, false otherwise
-    public boolean flee(Character other) {
-	int ans;
-	double r = Math.random();
-	if (r > .5) {
-	    ans = true}
+	if (dice1 + dice2 + dice3 > this.getDex()) {
+	    System.out.println(this + " successfully strikes a blow on " + other + "!\n");
+	    int damage = 1; //This may be changed later as we get into weapons and such.
+	    other.health = other.getHP() - damage;
+	}
 	else {
-	    ans = false}
-	return ans;
+	    System.out.println(this + " missed!!\n");
+	}
     }
 
+    public boolean flee(Character other) {
+        Random r = new Random();
+	if (r.nextDouble() < .1) {
+	    return true;
+	}
+	else {
+	    return false;
+	}
+    }
 
+	
     /*
       this routine will decide first ask if other tries to flee. If
       so, and if it's succesful it should adjust experience and or
@@ -92,56 +130,81 @@ public class Character {
       this.attack(other);
       if (other.health>0) 
       other.attack(this);
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-    */
-
+      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead. */
 
     public int encounter(Character other) {
 	Scanner sc = new Scanner(System.in);
-	if (other.flee(this)) { //this is your player, other is NPC
+	System.out.println("Beware, " + name + ", this forest is filled with monsters!");
+	wait(400);
+	System.out.println("You have encountered an " + other);
+	wait(800);
+	this.getStatus();
+	wait(800);
+	other.getStatus();
+	wait(800);
+	if (other.flee(this)) { 
+	    System.out.println(other + " has escaped!");
 	    return 0;
 	}
-
-	System.out.println("YOUR STATS:");
-
-	//Player Stats
-	System.out.println("Health": player.getHealth); //Health
-	System.out.print(multstr('▓',((player.getHP/player.maxHP)*100)));  //Health Bar
-	System.out.println("(" + ((player.getHP/player.maxHP)*100) + "%)");
-	System.out.println("Health": player.getStr); //Strength
-	System.out.print(multstr('▓',((player.getStr/player.maxStr)*100)));  //Strength Bar
-	System.out.println("(" + ((player.getStr/player.maxStr)*100) + "%)");
-	System.out.println("Health": player.getDex); //Dexterity
-	System.out.print(multstr('▓',((player.getDex/player.maxDex)*100)));  //Health Bar
-	System.out.println("(" + ((player.getDex/player.maxDex)*100) + "%)");
-
-
-
-	System.out.println("Choose your Move!"); //move chooser
-	System.out.println("a - attack \nr - run");
+	
+	System.out.println("Do you want to try to escape?");
+	System.out.println("y - yes \nn - no");
 	String choice = sc.nextLine();
-	if (choice.equals("2")) {
-	    if (this.flee(other)){
+	if (choice.equals("y")) {
+	    if (this.flee(other)) {
+		System.out.println("You have escaped safely...this time");
+		return 1;
+	    }
+	    else {
+		System.out.println("Uh oh! " + other + " sees you! You can't get away!");
+		wait(300);
+		    }
+	}
+        return battle(other);
+    }
+
+    public int battle(Character other) {
+	
+	System.out.println("What do you want to do?");
+	System.out.println("a - attack \nf - flee");
+
+	Scanner sc = new Scanner(System.in);
+	String move = sc.nextLine();
+	
+	if (move.equals("f")) {
+	    if (this.flee(other)) {
+		System.out.println("You have successfully fleed!");
 		return 1;
 	    }
 	}
 
-
-	else if (choice.equals("1")){
+	if (move.equals("a")) {
 	    this.attack(other);
-
-	    if (other.health>0) {
+	    wait(1500);
+	    if (other.health > 0) {
 		other.attack(this);
-		if (this.health<=0) {
-		    return 2;
-		}	
+		wait(1500);
+	    }
+	}
+	
+	System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_\n\n\n");
+	this.getStatus();
+	other.getStatus();
 
-	    }
-	    else {
-		return 3;
-	    }
-		    return 5;
+	if (other.health == 0) {
+	    System.out.println(other + " has died! \n You Win!! \n \n \n");
+	    return 3;
+	}
+	else if (this.health == 0) {
+	    System.out.println("You have died!");
+	    return 2;
+	}
+	else if ((this.health == 0) && (other.health == 0)) {
+	    System.out.println("Both you and " + other + " have died"); 
+	    return 4;
+	}
+	else {
+	    return battle(other);
 	}
     }
-    
 }

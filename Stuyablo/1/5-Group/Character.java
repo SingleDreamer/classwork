@@ -2,21 +2,23 @@ import java.io.*;
 import java.util.*;
 
 public class Character {
-    protected int hp, maxhp, xp, str, dex, intl, def;
+    protected int hp, maxhp, xp, lvl, str, dex, intl, def;
+    protected int x, y;
     protected String name;
     private Random r = new Random();
 
-    protected void init(String name, int s) {
+    protected void init(String name) {
 	this.name = name;
-	this.hp = s;
+	this.hp = maxhp;
+	this.lvl = 1;
     }
 
     public Character () {
-	init("No Name", str);
+	init("No Name");
     }
     
     public Character (String name) {
-	init(name, str);
+	init(name);
     }
 
     public String attack () {

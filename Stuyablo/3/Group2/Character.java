@@ -10,6 +10,10 @@ public class Character {
 	return level;
     }
 
+   public int getEp() {
+	return ep;
+    }
+
     public int getDexterity() {
 	return dexterity;
     }
@@ -73,7 +77,7 @@ public class Character {
     }
 
     public String getStats() {
-	return name+"'s Stats:\nLevel:"+level+"\nHealth:"+hp+"\nMana:"+mp+"\nExperience:"+ep+"\nDexterity:"+dexterity+"\nStrength:"+strength+"\nIntellegence:"+intellegence+"\n";
+	return "\n" + name+"'s Stats:\nLevel:"+level+"\nHealth:"+hp+"\nMana:"+mp+"\nExperience:"+ep+"\nDexterity:"+dexterity+"\nStrength:"+strength+"\nIntellegence:"+intellegence+"\n";
     }
     public boolean roll(){
 	Random r1 = new Random();
@@ -115,6 +119,21 @@ public class Character {
 	else 
 	    return die();
     }
+
+    public void changeEP(int n) {
+	ep = ep + n;
+    }
+
+    public boolean changeStrength(int n) {
+        if (strength >= n) {
+            Strength = Strength - n
+            return true;
+		} else {
+		    Strength = 0;
+		}
+    }
+	
+
     public boolean attack(Character other) {
 	try {
 	    Thread.sleep(1000);
@@ -131,5 +150,52 @@ public class Character {
 	}
     }
 
-    
+    public void levelup() {
+	int stats = dexterity + intellegence + strength;
+	boolean lv = false;
+	if (stats <=36 && ep >= 125) {
+	    ep -= 125;
+	    lv = true;
+	}
+	else if (stats <=40 && ep >= 250) {
+	    ep -= 250;
+	    lv = true;
+	}
+	else if (stats <=45 && ep >= 1000) {
+	    ep -= 1000;
+	    lv = true;
+	}
+	else if (stats <=50 && ep >= 3000) {
+	    ep -= 3000;
+	    lv = true;
+	}
+	else if (stats <=55 && ep >= 5000) {
+	    ep -= 5000;
+	    lv = true;
+	}
+	if (lv == true) {
+	    Scanner sc = new Scanner(System.in);
+	    level +=1;
+	    System.out.println("You have reached level " + level +". Congratulations!");
+	    System.out.println("Select a stat to increase: 1 for strength, 2 for dexterity, 3 for intellegence.");
+	    int stat = sc.nextInt();
+	    if (stat == 1) {
+		strength += 1;
+	        System.out.println("Added 1 point to strength.");
+	    }
+	    if (stat == 2) {
+		dexterity += 1;
+		System.out.println("Added 1 point to dexterity.");
+	    }
+	    if (stat == 3) {
+		intellegence += 1;
+		System.out.println("Added 1 point to intellegence.");
+	    }
+	    if (stat != 1 && stat !=2 && stat != 3) {
+		intellegence +=1;
+		System.out.println("You obviously need more intellegence. Added 1 to intellegence.");
+	    }
+	    
+	}
+    }
 }
