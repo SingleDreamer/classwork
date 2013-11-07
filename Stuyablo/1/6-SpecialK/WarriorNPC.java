@@ -10,6 +10,7 @@ public class WarriorNPC extends Character {
 	strength = 11 + n.nextInt(5);
 	dexterity = 6+n.nextInt(5);
 	defense = 9+n.nextInt(5);
+	health = 10 + n.nextInt(5);
 	maxhealth = strength;
 	charm = 0;
     }

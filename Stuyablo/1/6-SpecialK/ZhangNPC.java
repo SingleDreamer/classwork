@@ -11,6 +11,7 @@ public class ZhangNPC extends Character {
 	dexterity = 6+n.nextInt(5);
 	defense = 11+n.nextInt(5);
 	maxhealth = strength;
+	health = 10 + n.nextInt(5);
 	charm = 0;
     }
 }
