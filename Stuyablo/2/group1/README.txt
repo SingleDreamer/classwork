@@ -62,6 +62,8 @@ reward() - takes exp output from battle and either add/subtract the amount
 specialAttack(int) - each class has 2 special skills they can call
 		     similar to basic attack but need to wait certain number of turns before using them again
 
+heal() - increase current health by 10% of max health
+
 
 Game Methods:
 _____________
