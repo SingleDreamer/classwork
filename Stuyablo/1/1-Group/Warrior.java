@@ -39,7 +39,7 @@ public class Warrior extends Character{
 	}
 =======
 	*/
-    public int attack (Character other){
+    public void attack (Character other){
         int roll = roll();
 	double xchange,ychange;
 	xchange = this.x-other.x;
