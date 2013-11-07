@@ -5,6 +5,8 @@
 
 ## Characters
 
+The basic `Character` class contains methods that are shared by all characters, including `levelup()`, `attack()`, and `roll()`. Some are overrided by the more specific classes that extend `Character`.  
+
 Basic stats of all characters: `strength`, `dexterity`, and `intellegence`. 
 
 **The Elf**: The elf is a player character. As the elf you can choose to upgrade your weapon from the default "basic dagger" to something better. 

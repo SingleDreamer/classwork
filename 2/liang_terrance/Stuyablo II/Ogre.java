@@ -1,14 +1,13 @@
 import java.util.*;
 import java.io.*;
 
-public class Nonplayer extends Character {
+public class Ogre extends Character{
+    public Ogre (){
+	name = "Ogre";
+	charClass = "Ogre";
+    }
     Random s = new Random();
     private int cooldown;
-
-    public Nonplayer (String n){
-	charClass = n;
-	name = n;
-    }
 
     public void setStrength(){
 	strength = 8+level;
@@ -40,10 +39,7 @@ public class Nonplayer extends Character {
 	Random r = new Random();
 	int damage = 0;
 	String aname = "Basic Attack";
-        if (charClass == "Ogre")
-            damage = strength - 4 + r.nextInt(3);
-        else
-            damage = intelligence + 2 + r.nextInt(3);
+	damage = strength - 4 + r.nextInt(3);
         if (cooldown > 0)
             cooldown = cooldown - 1;	
 	if (hit()){
@@ -58,14 +54,8 @@ public class Nonplayer extends Character {
 	int damage = 0;
 	String aname = "";
         if (cooldown == 0){
-            if (charClass == "Ogre"){
-                damage = strength + 8;
-		aname = "Club Whack";
-            }
-            else {
-                damage = intelligence + 13;
-		aname = "Call Parent";
-            }
+	    damage = strength + 8;
+	    aname = "Club Whack";
             cooldown = 3;
         }
 	if (hit()){
@@ -80,14 +70,8 @@ public class Nonplayer extends Character {
 	String aname = "";
 	int damage = 0;
         if (cooldown == 0){
-            if (charClass == "Ogre"){
-                damage = strength + 20;
-		aname = "Slime Ball at Head";
-            }
-            else {
-                damage = intelligence + 25;
-		aname = "Confiscate Phone";
-            }
+	    damage = strength + 20;
+	    aname = "Slime Ball at Head";
             cooldown = 5;
         }
 	if (hit()){
@@ -99,14 +83,5 @@ public class Nonplayer extends Character {
         }
     }
 
-    public boolean hit(){
-        Random r = new Random();
-        int dice1, dice2, dice3;
-        dice1 = r.nextInt(6)+ 1;
-        dice2 = r.nextInt(6)+ 1;
-        dice3 = r.nextInt(6)+ 1;
-        int sum = dice1 + dice2 + dice3;
-        return (sum <= dexterity);
-    }
 
 }
