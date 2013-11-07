@@ -10,8 +10,9 @@ public class Ogre extends Character{
 	health = maxHealth - r.nextInt(4);
 	strength = health;
 	dexterity = 8 - r.nextInt(4);
+	exp = 25;
     }
-    
+  
     public void attack(Character other) {
 	    	    
 	    if(hit() == true){

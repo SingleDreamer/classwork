@@ -35,7 +35,7 @@ public class Character {
 	Scanner sc = new Scanner(System.in);
 
 	System.out.println("You have " + points + " skill points available.");
-	System.out.print("Strength = 8 + ");
+	System.out.print("Strength = " + strength + "+ ");
 	int add = sc.nextInt();
 	if (add > points){
 	    add = points;
@@ -48,7 +48,7 @@ public class Character {
 	System.out.println("-------------------------------");
 
         System.out.println("You still have " + points + " skill points available");
-	System.out.print("Dexterity = 8 + ");
+	System.out.print("Dexterity = " + dexterity + "+ ");
 	add = sc.nextInt();
 	if (add > points) {
 	    add = points;
@@ -78,8 +78,8 @@ public class Character {
 	int ans = sc.nextInt();
 
 	if (ans == 1) {
-	    encounter();
-	    turn();
+	    if (encounter())
+		turn();
 	}
 	else if (ans == 2) {
 	    heal();
@@ -96,7 +96,7 @@ public class Character {
 	return true;
     }
 
-    public void encounter() {
+    public boolean encounter() {
 	Character enemy = new Character();
 	Random r = new Random();
 	if (r.nextDouble() > 0.5){
@@ -125,7 +125,15 @@ public class Character {
 	    System.out.println("Enemy Health: " + enemy.getHealth());
 	    System.out.println("-------------------------------");
 	}
-	System.out.println("Someone died...");
+	if (this.alive()) {
+	    System.out.println("You have successfully defeated the " + enemy + ".");
+	    this.reward(enemy.getExp());
+	}
+	else {
+	    System.out.println("What a shame, you have died.");
+	    return false;
+	}
+	return true;
     }
 
     public void heal() {
@@ -150,6 +158,14 @@ public class Character {
 	System.out.println("As your reward, you have three skill points to add.");
 	setStat(3);
 	health = maxHealth = strength;
+    }
+
+    public int getExp() {
+	return exp;
+    }
+
+    public void reward(int n) {
+	exp = exp + n;
     }
 
     public void attack(Character other) {
