@@ -1,15 +1,16 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-public class Player extends Character {
+public class Wizard extends Character{
     private int level;
     private int cooldown;
 
-    public Player (){
-        Scanner n = new Scanner (System.in);
+    public Wizard(){
+       Scanner n = new Scanner (System.in);
 	System.out.print("Enter your name: ");
 	name = n.nextLine();
 	System.out.print("Welcome to StuyabloII, " + name + "\n");
+	charClass = "Wizard";
     }
 
     public void action(){
@@ -52,55 +53,17 @@ public class Player extends Character {
 	}
     }
 
-    public void encounter(){
-	Random r = new Random();
-	String ans;
-	Scanner s = new Scanner (System.in);
-	if (r.nextInt(3)== 2){
-	    System.out.println("You have encountered Mr. Moran! Fight like a hero or flee like a coward? Input 'Fight' or 'Flight'\n");
-	    ans = s.nextLine();
-	    if (ans.equals("Fight")){
-		Nonplayer enemy = new Nonplayer("Mr.Moran");
-		enemy.setStrength();
-		enemy.setDexterity();
-		enemy.setIntelligence();
-	        battle (enemy);
-	    }
-	    else if (ans.equals("Flight")){
-		flee();
-		action();
-	    }
-	    else{
-		System.out.println("Invalid response, the enemy has run away.\n");
-	    }
-	}
-	else {
-	    System.out.println("You have encountered an ogre! Fight like a hero or flee like a coward? Input 'Fight' or 'Flight'\n");
-	    ans = s.nextLine();
-	    if (ans.equals("Fight")){
-		Nonplayer enemy = new Nonplayer("Ogre");
-		enemy.setStrength();
-		enemy.setDexterity();
-		enemy.setIntelligence();
-	        battle (enemy);
-	    }
-	    else if (ans.equals("Flight")){
-		flee();
-		action();
-	    }
-	    else{
-		System.out.println("Invalid response, the enemy has run away.\n");
-		action();
-	    }
-	}
-    }
-
-    public void battle(Nonplayer other) {
+    public void battle(Character other) {
         if (health > 0){
             this.attack(other);
         }
         if (other.getHealth() > 0){
-            other.attack(this);
+	    if (other.getChar().equals("Mr.Moran")){
+		((MrMoran)other).attack(this);
+	    }
+	    else {
+		((Ogre)other).attack(this);
+	    };
         }
         int otherHealth = other.getHealth();
         if (otherHealth < 0){
@@ -125,6 +88,49 @@ public class Player extends Character {
                 action();
             }
         }
+    }
+
+    public void encounter(){
+	Random r = new Random();
+	String ans;
+	Scanner s = new Scanner (System.in);
+	if (r.nextInt(3)== 2){
+	    System.out.println("You have encountered Mr. Moran! Fight like a hero or flee like a coward? Input 'Fight' or 'Flight'\n");
+	    ans = s.nextLine();
+	    if (ans.equals("Fight")){
+		MrMoran enemy = new MrMoran();
+		enemy.setStrength();
+		enemy.setDexterity();
+		enemy.setIntelligence();
+	        battle (enemy);
+	    }
+	    else if (ans.equals("Flight")){
+		flee();
+		action();
+	    }
+	    else{
+		System.out.println("Invalid response, the enemy has run away.\n");
+	    }
+	}
+	else {
+	    System.out.println("You have encountered an ogre! Fight like a hero or flee like a coward? Input 'Fight' or 'Flight'\n");
+	    ans = s.nextLine();
+	    if (ans.equals("Fight")){
+		Ogre enemy = new Ogre();
+		enemy.setStrength();
+		enemy.setDexterity();
+		enemy.setIntelligence();
+	        battle (enemy);
+	    }
+	    else if (ans.equals("Flight")){
+		flee();
+		action();
+	    }
+	    else{
+		System.out.println("Invalid response, the enemy has run away.\n");
+		action();
+	    }
+	}
     }
 
     public void flee(){
@@ -173,10 +179,7 @@ public class Player extends Character {
 	Random r = new Random();
 	int damage = 0;
 	String aname = "Basic Attack";
-	if (charClass.equals("Warrior"))
-	    damage = strength - 2 + r.nextInt(5);
-	else 
-	    damage = intelligence - 2 + r.nextInt(5);
+	damage = intelligence - 2 + r.nextInt(5);
 	if (cooldown > 0)
 	    cooldown = cooldown - 1;
 	if (hit()){
@@ -192,14 +195,8 @@ public class Player extends Character {
 	int damage = 0;
 	String aname = "";
 	if (cooldown == 0){
-	    if (charClass.equals("Warrior")){
-		damage = strength + 10;
-		aname = "Sword Spin";
-	    }
-	    else {
-		damage = intelligence + 10;
-		aname = "Fire Blast";
-	    }
+	    damage = intelligence + 10;
+	    aname = "Fire Blast";
 	    cooldown = 1;
 	}
 	if (hit()){
@@ -208,21 +205,14 @@ public class Player extends Character {
 	}
 	else {
 	    System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
-	}
+	}	
     }
-
     public void specialattack2(Character c){
 	int damage = 0;
 	String aname = "";
 	if (cooldown == 0){
-	    if (charClass.equals("Warrior")){
-		damage = strength + 25;
-		aname = "Sword Lunge";
-	    }
-	    else {
-		damage = intelligence + 25;
-		aname = "Electric Strike";
-	    }
+	    damage = intelligence + 25;
+	    aname = "Electric Strike";
 	    cooldown = 3;
 	}
 	if (hit()){
@@ -233,7 +223,7 @@ public class Player extends Character {
 	    System.out.println ("Oooh! What a shame! " + name+ " has used " + aname + ", but missed!\n");
 	}
     }
-
+    
     public boolean hit(){
 	Random r = new Random();
         int dice1, dice2, dice3;
