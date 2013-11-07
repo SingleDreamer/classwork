@@ -9,6 +9,14 @@ public class Character {
     protected String name;
     protected String charClass = "undecided";
  
+    public Character(String n){
+	name = n;
+	//Starting game
+    }
+
+    public Character(){
+    }
+
     public int getHealth() {
 	return health;
     }
@@ -19,6 +27,10 @@ public class Character {
 
     public String toString() {
 	return name;
+    }
+
+    public String getChar(){
+	return charClass;
     }
 
     public String getStatus() {
@@ -34,18 +46,20 @@ public class Character {
 	return whole;
     }
 
-    public void setClass(){
+    public Character setClass(){
+	Character p;
         Scanner s = new Scanner (System.in);
-	System.out.print ("Are you a Wizard or a Warrior? Please type 'Wizard' or 'Warrior'");
+	System.out.print ("Are you a Wizard or a Warrior? Please type 'Wizard' or 'Warrior' ");
 	String c = s.nextLine();
 	if (c.equals("Wizard"))
-	    charClass = "Wizard";
+	    p = new Wizard ();
 	else if (c.equals("Warrior"))
-	    charClass = "Warrior";
+	    p = new Warrior ();
 	else {
 	    System.out.print ("Silly player. That's not a choice. \n");
-	    setClass();
+	    p = setClass();
 	}
+	return p;
     }
 
     public int  setStrength(int points){
@@ -103,8 +117,8 @@ public class Character {
 
 
     public void setStat(){
-	System.out.print ("\n" + "Here are four stat points for you to add.");
-	int points = 4;
+	System.out.print ("\n" + "Here are eight stat points for you to add.");
+	int points = 8;
 	points = setStrength (points);
 	System.out.print ("\n" + "There are " + points + " points left");
         if (points > 0){
@@ -118,5 +132,19 @@ public class Character {
 	if (points > 0){
 	    System.out.print ("\n" + "Due to failure to use all your points, they are now gone. -poof-" + "\n");
 	}
+    }
+
+
+    public boolean hit(){
+	Random r = new Random();
+        int dice1, dice2, dice3;
+	dice1 = r.nextInt(6)+ 1;
+	dice2 = r.nextInt(6)+ 1;
+	dice3 = r.nextInt(6)+ 1;
+	int sum = dice1 + dice2 + dice3;
+	return (sum <= dexterity);
+    }
+
+    public void action(){
     }
 }
