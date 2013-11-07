@@ -3,37 +3,66 @@ import java.io.*;
 
 public class Driver {
     public static void main(String[] args) {
-	Character n = new Character();
-	System.out.println(n.getStatus());
-	Random e = new Random();
-	while (n.getHealth()>0){
+	System.out.println("Mr. Moran begins strong, but quite slow due to his low dexterity. This makes it harder to run away from opponents. He also has the lowest possible charm, meaning you will probably go last");
+        
+        try {
+            Thread.sleep(2000); // pauses for 2 seconds
+        }
+        catch (Exception a){
+            // intentionally empty...nothing happens
+        }
+
+        System.out.println("A wizard can easily runaway, and its high maximum health means that health can reach (and starts at) a high level. However, low defense makes it harder to defend blows of strong opponents");
+
+        try {
+            Thread.sleep(2000); // pauses for 2 seconds
+        }
+        catch (Exception a){
+            // intentionally empty...nothing happens
+        }
+
+        System.out.println("Ms. Zhang has very weak dexterity, but her defenses are top notch. She has a high charm, increasing the chances of going first in an attack bout");
+
+        try {
+            Thread.sleep(2000); // pauses for 2 seconds
+        }
+        catch (Exception a){
+            // intentionally empty...nothing happens
+        }
+	System.out.println("Warriors have high strength and good defense, but low dexterity. As for students... you'll have to guess the stats.");
+	PC n = new PC();
+	System.out.println (n.getStatus());
+
+
+	
+	while ( n.getHealth()> 0 ){
 	    System.out.println("What would you like to do next?...(a)fight the nearest enemy or (b)talk to the nearest NPC? or (c)See your stats? or (d)Quit the game :(");
 	    Scanner a = new Scanner(System.in);
 	    String choice = a.nextLine();
 	    if (choice.equalsIgnoreCase("a")){
 		Random s = new Random();
 		int x=s.nextInt(4);
-		if (x == 1){ 
-		    Character p = new Character("Moron", "Moran", 11 + e.nextInt(5), 8 + e.nextInt(5), 10 + e.nextInt(5), e.nextInt(1));
+		if (x == 1){
+		    MoranNPC p = new MoranNPC();
 		    n.encounter(p);
 		}
 
 		else if (x==2){
-		    Character p = new Character("Gandolf", "Wizard", 10 + e.nextInt(5), 11 + e.nextInt(5), 6 + e.nextInt(5), e.nextInt(2));
+		    WizardNPC p = new WizardNPC();
 		    n.encounter(p);
 		}
 
 		else if (x==3){
-		    Character p = new Character("Warren", "Warrior", 11 + e.nextInt(5), 6 + e.nextInt(5), 9 + e.nextInt(5), e.nextInt(2));
+		    WarriorNPC p = new WarriorNPC();
 		    n.encounter(p);
 		}
 
 		else if (x==0){
-		     Character p = new Character("Xie", "Zhang", 9 + e.nextInt(5), 6 + e.nextInt(5), 11 + e.nextInt(5), e.nextInt(3));
+		    ZhangNPC p = new ZhangNPC();
 		     n.encounter(p);
 		}
 		else{
-		     Character p = new Character("Boss Moron", "Boss Moran", 15 + e.nextInt(5), 10 + e.nextInt(5), 14 + e.nextInt(5), e.nextInt(5));
+		     BossMoranNPC p = new BossMoranNPC();
 		     n.encounter(p);
 		}
 	    }
