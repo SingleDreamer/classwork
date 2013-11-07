@@ -40,6 +40,8 @@ setStat() - allows player in allocate the skill points available to certain attr
 
 getHealth() - returns health
 
+getExp() - returns exp
+
 getCharclass() - returns type of character
 
 alive() - tells whether the player's health is above 0
@@ -64,4 +66,6 @@ specialAttack(int) - each class has 2 special skills they can call
 Game Methods:
 _____________
 
-ecounter() - randomly create an NPC for the player to battle & give choice of fight/flee
+turn() - gives you three choices: 1. Fight (randomly create an NPC for the player to battle/flee from)
+				  2. Heal (heal by a certain amount)
+				  3. Quit (be a loser and stop playing)
