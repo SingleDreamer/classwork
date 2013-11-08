@@ -4,7 +4,7 @@ import java.util.*;
 
 public class arrayPractice {
     
-    public String arrayPrints(){
+    public int arrayPrints(){
 	//name arrays:
 	int[] a;
 	String[] b;
@@ -18,8 +18,8 @@ public class arrayPractice {
 	a[2] = 100;
 	a[1] = 50;
 	a[0] = 25; //arrays start at index zero
-	a[5] = 400;
+	a[4] = 400;
 
-	System.out.println(Arrays.toString(a[2]));
+	return a[2];
     }
 }
