@@ -49,7 +49,15 @@ public boolean no23(int[] nums) {
   return true;
 }
 
-
+/* Given an array of ints, return a new array length 2 containing
+the first and last elements from the orginal array. The original
+array will be length 1 or more */
+public int[] makeEnds(int[] nums) {
+	int[] endPoints = new int[2];
+	endPoints[0] = nums[0];
+	endPoints[1] = nums[nums.length - 1];
+	return endPoints;
+}
 
 
 
