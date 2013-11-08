@@ -104,12 +104,12 @@ public class Character {
 	System.out.println("-------------------------------");
 
 	if (ans.equals("1")) {
-	    if (encounter())
-		turn();
+	    encounter();
+		//turn();
 	}
 	else if (ans.equals("2")) {
 	    current.heal();
-	    turn();
+	    //turn();
 	}
 	else if (ans.equals("3")) {
 	    current.getStatus(); 
@@ -120,7 +120,7 @@ public class Character {
 	}
 	else {
 	    System.out.println("Silly " + name + " that's not a choice.");
-	    turn();
+	    //turn();
 	}
 	return true;
     }
@@ -159,6 +159,7 @@ public class Character {
 	    System.out.println("You have successfully defeated the " + enemy + ".");
 	    System.out.println("-------------------------------");
 	    current.reward(enemy.getExp());
+	    exp = current.exp;
 	}
 	else {
 	    System.out.println("What a shame, you have died.");
@@ -237,7 +238,9 @@ public class Character {
 	System.out.println("Strength: " + strength);
 	System.out.println("Dexterity: " + dexterity);
 	System.out.println("Intelligence: " + intelligence);
-	System.out.println("Experience: " + exp);
+	
+	//not working
+	//System.out.println("Experience: " + exp);
     }
 
 
