@@ -33,18 +33,23 @@ public class Driver {
             }
             else System.out.println ("Misspelled character type");
         }
+
         // DEV Mode
         if (args.length != 0) {
             player.health = Integer.MAX_VALUE;
         }
 
-        npc = new Character[r.nextInt(6) + 5];
+        npc = new Character[r.nextInt(6) + 40];
         for (int i=1; i<npc.length; i++) {
             npc[i] = new Ogre("Ogre " + i, player);
         }
         npc[0] = new Moran("BOSS MR.MORAN", player);
 
         while (player.health > 0) {
+
+            System.out.println(String.format("\nWhat would you line to do? (Attack nearest enemy(a), move(m), status(s), or distribue %d skills(d) ): ", player.skills));
+            String choice = sc.nextLine();
+
             int[] xArray = new int [ npc.length - 1 ];
             int[] yArray = new int [ npc.length - 1 ];
             for ( int j = 0 ; j < npc.length - 1; j++ ) {
@@ -76,53 +81,49 @@ public class Driver {
                 map = map + "\n";
             }
             System.out.println ( "Your coordinates: " + player.xcor + ", " + player.ycor );
-            //System.out.println ( map );
             int row = player.gridRange - player.ycor;
             int column = player.gridRange + 1 + player.xcor;
             String map1 = map.substring ( 0 , row * (player.gridRange * 2 + 2) + column - 1 );
             String map2 = map.substring ( row * (player.gridRange * 2 + 2) + column );
             System.out.println ( map1 + "Y" + map2 );
 
-            if (player.exp >= (50 + Math.pow(2, player.level))) {
-                player.level = player.level + 1;
-                player.exp = 0;
-                player.skills += 2;
-                System.out.println ( "Congratulations! You have leveled up to level " + player.level );
-            }
-
-            System.out.println(String.format("What would you line to do? (Attack nearest enemy(a), explore(e), get info(i), or distribue %d skills(d) ): ", player.skills));
-            String choice = sc.nextLine();
-
-            if (choice.equalsIgnoreCase("e")) {
-                System.out.println("Which direction would you like to go? (up, down, left, right)");
-                String dir = sc.nextLine();
-                //System.out.println ( player.xcor + ", " + player.ycor );
-                if (dir.equalsIgnoreCase("up")) {
-                    if ( player.ycor < player.gridRange )
-                        player.ycor = player.ycor + 1;
-                    else
-                        System.out.println ( "Out of bounds" );
+            if (choice.equalsIgnoreCase("m")) {
+                boolean badChoice = true;
+                System.out.println("Which direction would you like to go? ((u)p, (d)own, (l)eft, (r)ight)");
+                while (badChoice) {
+                    badChoice = false;
+                    String dir = sc.nextLine();
+                    if (dir.equalsIgnoreCase("u")) {
+                        if ( player.ycor < player.gridRange )
+                            player.ycor = player.ycor + 1;
+                        else
+                            System.out.println ( "Out of bounds" );
+                    }
+                    else if (dir.equalsIgnoreCase("d")) {
+                        if ( player.ycor > (-1 * player.gridRange ))
+                            player.ycor = player.ycor - 1;
+                        else
+                            System.out.println ( "Out of bounds" );
+                    }
+                    else if (dir.equalsIgnoreCase("l")) {
+                        if ( player.xcor > (-1 * player.gridRange ))
+                            player.xcor = player.xcor - 1;
+                        else
+                            System.out.println ( "Out of bounds" );
+                    }
+                    else if (dir.equalsIgnoreCase("r")) {
+                        if ( player.xcor < player.gridRange )
+                            player.xcor = player.xcor + 1;
+                        else
+                            System.out.println ( "Out of bounds" );
+                    }
+                    else {
+                        badChoice = true;
+                        System.out.println ( "Misspelled direction" );
+                    }
                 }
-                else if (dir.equalsIgnoreCase("down")) {
-                    if ( player.ycor > (-1 * player.gridRange ))
-                        player.ycor = player.ycor - 1;
-                    else
-                        System.out.println ( "Out of bounds" );
-                }
-                else if (dir.equalsIgnoreCase("left")) {
-                    if ( player.xcor > (-1 * player.gridRange ))
-                        player.xcor = player.xcor - 1;
-                    else
-                        System.out.println ( "Out of bounds" );
-                }
-                else if (dir.equalsIgnoreCase("right")) {
-                    if ( player.xcor < player.gridRange )
-                        player.xcor = player.xcor + 1;
-                    else
-                        System.out.println ( "Out of bounds" );
-                }
-                else
-                    System.out.println ( "Misspelled direction" );
+                if (Math.random() < 1/3)
+                    player.health++;
             }
 
             else if (choice.equalsIgnoreCase("a")) {
@@ -134,9 +135,44 @@ public class Driver {
                     npc[0] = new Moran("BOSS: MR.MORAN", player);
                 }
                 if (player.encounter(npc)) {
-                    while (player.getEnemy().health > 0) {
+                    int healthLeft = player.health;
+                    battle: // Label for battle loop, used in nested loops to break out of this one
+                    while (player.getEnemy().health > 0 && player.health > 0) {
                         player.attack();
-                        player.getEnemy().attack();
+                        if (player.getEnemy().health > 0) {
+                            player.getEnemy().attack();
+                            if (player.health <= 0) {
+                                player.die(player.getEnemy());
+                                break battle;
+                            }
+                            else if (player.health < 8 && player.health != healthLeft) {
+                                boolean badChoice = true;
+                                System.out.println("You're almost about to die with your " + player.health + " health remaining! But your enemy has " + player.getEnemy().health + " health remaining!\nWould you like to continue attacking(a) or would you rather flee for your life(f)?");
+                                while (badChoice) {
+                                    badChoice = false;
+                                    choice = sc.nextLine();
+                                    if (choice.equalsIgnoreCase("a"))
+                                        healthLeft = player.health;
+                                    else if (choice.equalsIgnoreCase("f")) {
+                                        if (player.flee()) {
+                                            player.setEnemy(null);
+                                            System.out.println("\nYou have succesfully ran away from the battle! Move around to get more life :)");
+                                            break battle;
+                                        }
+                                        else
+                                            System.out.println("You tried to run away, but " + player.getEnemy() + " has caught up to you!");
+                                    }
+                                    else {
+                                        badChoice = true;
+                                        System.out.println("Not sure if you want to continue attacking(a) or flee(f): ");
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            player.getEnemy().die(player);
+                            break battle;
+                        }
                     }
                     Character[] tempNpc = new Character[npc.length - 1];
                     int offset = 0;
@@ -149,10 +185,9 @@ public class Driver {
                        }
                     }
                     npc = tempNpc;
-                    player.getEnemy().die(player);
                 }
             }
-            else if (choice.equalsIgnoreCase("i")) {
+            else if (choice.equalsIgnoreCase("s")) {
                 System.out.println(String.format("Class: %s\nLevel: %d\nExperience: %d/%d\nHealth: %d\nStrength: %d\nDexterity: %d\nIntelligence %d\n", player.charClass, player.level, player.exp, (int) (50 + Math.pow(2, player.level)), player.health, player.str, player.dex, player.iq));
             }
 
@@ -187,6 +222,13 @@ public class Driver {
 
             else
                 System.out.println ( "Please enter a valid command" );
+
+            if (player.exp >= (50 + Math.pow(2, player.level))) {
+                player.level = player.level + 1;
+                player.exp = 0;
+                player.skills += 2;
+                System.out.println ( "Congratulations! You have leveled up to level " + player.level );
+            }
         }
         System.out.println(String.format("\nOH NOES! YOU HAVE DIED! :(\nYour legacy as a level %d %s will stay in our hearts. <3", player.level, player.charClass));
     }

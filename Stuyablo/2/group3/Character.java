@@ -20,7 +20,8 @@ public class Character {
 
     public Character(String n) {
         name = n;
-        str = dex = iq = health = 8;
+        charClass = "";
+        str = dex = iq = health = 1000000;
         exp = 0;
         skills = 8;
     }
@@ -86,20 +87,20 @@ public class Character {
             damage *= 3;
             damage -= currentEnemy.armors[currentArmor];
             currentEnemy.health -= damage;
-            System.out.println(String.format("%s successfully hit %s for %d damage!", this, currentEnemy, damage));
+            System.out.println(String.format("Massive Critical Hit! %s successfully hit %s for %d damage!", this, currentEnemy, damage));
         }
         else if (dice == 4) {
             damage *= 2;
             damage -= currentEnemy.armors[currentArmor];
             currentEnemy.health -= damage;
-            System.out.println(String.format("%s successfully hit %s for %d damage!", this, currentEnemy, damage));
+            System.out.println(String.format("Critical Hit! %s successfully hit %s for %d damage!", this, currentEnemy, damage));
         }
         else if (dice == 5) {
             damage -= currentEnemy.armors[currentArmor];
             currentEnemy.health -= damage;
             System.out.println(String.format("%s successfully hit %s for %d damage!", this, currentEnemy, damage));
         }
-        else if (dice == 18 && (getClass().toString().equals("Warrior") || getClass().toString().equals("Thief") || getClass().toString().equals("Wizard"))) {
+        else if (dice == 18 && (charClass.equals("Warrior") || charClass.equals("Thief") || charClass.equals("Wizard")) && currentWeapon != 0) {
             int[] tempWeapons = new int[weapons.length - 1];
             int offset = 0;
             for (int i=0; i < tempWeapons.length; i++) {
@@ -155,7 +156,7 @@ public class Character {
             tempArmors[playerArmorsL] = r.nextInt((int) (player.level + 2));
             player.armors = tempArmors;
         }
-        player.currentEnemy = null;
+//        player.currentEnemy = null;
         int expGain = r.nextInt(10) + 10;
         player.exp += expGain;
         System.out.println(String.format("%s has slain %s. %s has gained %d exp!", player, this, player, expGain));
