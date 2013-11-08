@@ -92,6 +92,9 @@ public class Character {
     }
   
     public boolean turn() {
+	if (current.health <= 0)
+	    return false;
+
 	if (exp > 100) {
 	    levelUp();
 	    turn();
@@ -227,7 +230,7 @@ public class Character {
 	d2 = r.nextInt(6) + 1;
 	d3 = r.nextInt(6) + 1;
 	sum = d1 + d2 + d3;
-	return (sum >= dexterity);
+	return (sum <= dexterity);
     }
 
 
@@ -238,9 +241,8 @@ public class Character {
 	System.out.println("Strength: " + strength);
 	System.out.println("Dexterity: " + dexterity);
 	System.out.println("Intelligence: " + intelligence);
-	
-	//not working
-	//System.out.println("Experience: " + exp);
+	System.out.println("Experience: " + exp);
+	System.out.println("-------------------------------");
     }
 
 

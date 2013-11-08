@@ -11,6 +11,7 @@ public class Undead extends Character{
         strength = maxHealth;
         dexterity = 8 - r.nextInt(5);
 	intelligence = 8 + r.nextInt(5);
+	exp = 15;
     }
     public void attack(Character other) {
 	    	    
