@@ -37,6 +37,7 @@ public class Driver {
         // DEV Mode
         if (args.length != 0) {
             player.health = Integer.MAX_VALUE;
+            System.out.println("DEV MODE ENABLED: RUNNING GAME WITH LOTS OF LIFE"
         }
 
         npc = new Character[r.nextInt(6) + 40];

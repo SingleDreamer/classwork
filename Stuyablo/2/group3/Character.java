@@ -21,7 +21,7 @@ public class Character {
     public Character(String n) {
         name = n;
         charClass = "";
-        str = dex = iq = health = 1000000;
+        str = dex = iq = health = 8;
         exp = 0;
         skills = 8;
     }
@@ -38,7 +38,7 @@ public class Character {
 
         // Code used for balancing strength of player and nonplayers
         level = player.level;
-        skills += level * 2;
+        skills += (int) (level * 1.5);
         int strGain = r.nextInt(skills);
         int dexGain = r.nextInt(skills - strGain);
         int iqGain = skills - strGain - dexGain;
