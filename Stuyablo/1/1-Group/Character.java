@@ -35,7 +35,11 @@ public class Character {
         health=50;
         maxhealth=50;
         intelligence=intell+8;
+	x = r.nextInt(11);
+	y = r.nextInt(11);
     }
+    
+
 
     public void chooseClass(){
         Scanner sc=new Scanner(System.in);
@@ -240,7 +244,7 @@ public class Character {
 	
 	public int attack (Character other){
 		while (this.health>0 && other.health>0){
-			if (dexterity<=roll()){
+			if (roll<=this.dexterity){
 				other.takedamage(this.strength);
 				say (other + " has lost " + strength + " health points and has " + other.getHealth() + " health points left. ");
 				try{
@@ -251,7 +255,7 @@ public class Character {
 				}
 			}
 			
-			if (dexterity > roll()){
+			if (roll>this.dexterity){
 				say(this + "'s attack missed!");
 				try{
 					Thread.sleep(2000);
@@ -261,7 +265,7 @@ public class Character {
 				}
 			}
 			
-			if (other.dexterity<=other.roll()){
+			if (other.dexterity>=other.roll()){
 				this.takedamage(other.strength);
 				say (this + " has lost " + other.strength + " health points and has " + this.getHealth() + " health points left. ");
 				try{

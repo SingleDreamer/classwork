@@ -1,15 +1,15 @@
 import java.io.*;
 import java.util.*;
 
-public class ZhangNPC extends Character {
+public class WizardNPC extends Character {
     
-    public ZhangNPC(){
+    public WizardNPC(){
 	Random n = new Random();
-	name = "Jie";
-	charType = "Zhang";
-	strength = 9 + n.nextInt(5);
-	dexterity = 6+n.nextInt(5);
-	defense = 11+n.nextInt(5);
+	name = "Gandolf";
+	charType = "Wizard";
+	strength = 10 + n.nextInt(5);
+	dexterity = 11+n.nextInt(5);
+	defense = 6+n.nextInt(5);
 	maxhealth = strength;
 	health = 10 + n.nextInt(5);
 	charm = 0;
