@@ -10,6 +10,7 @@ public class Character {
     protected int points;
     protected int exp=0,lvl=1;
     protected int x,y;
+    protected Character current;
 
     public void setChar() {
 	Scanner sc = new Scanner(System.in);
@@ -20,17 +21,33 @@ public class Character {
 
 	System.out.println("What would you like to be?");
 	System.out.println("(1) Warrior or (2) Wizard");
-	int num = sc.nextInt();
-	if (num == 1) {
+	String num = sc.nextLine();
+	System.out.println("-------------------------------");
+
+	if (num.equals("1")) {
 	    System.out.println("Woo, You're a warrior");
 	    Warrior w = new Warrior(name);
+	    current = w;
 	    charclass = "Warrior";
-	}
-	else if (num == 2) {
+	    /* this.health = w.health;
+	    this.maxHealth = w.maxHealth;
+	    this.strength = w.strength;
+	    this.dexterity = w.dexterity;
+	    this.intelligence = w.intelligence;
+	    */
+	    }
+	else if (num.equals("2")) {
 	    System.out.println("Woo, you're a Wizard");
 	    Wizard w = new Wizard(name);
+	    current = w;
 	    charclass = "Wizard";
-	}
+	    /*this.health = w.health;
+	    this.maxHealth = w.maxHealth;
+	    this.strength = w.strength;
+	    this.dexterity = w.dexterity;
+	    this.intelligence = w.intelligence;
+	    */
+	    }
 	else {
 	    System.out.println("Silly you, ponies aren't a choice");
 	    setChar();
@@ -49,6 +66,7 @@ public class Character {
 	    System.out.printf("Only able to add %d points\n",add);
 	}
         this.strength = this.strength + add;
+	this.maxHealth = this.strength * 2;
 	this.health = this.strength;
         points = points - add;
 
@@ -82,20 +100,21 @@ public class Character {
 	Scanner sc = new Scanner(System.in);
 	System.out.println("Hey you, what does your heart desire?");
 	System.out.println("(1) Fight or (2) Heal or (3) Get Status (4) Quit");
-	int ans = sc.nextInt();
+	String ans = sc.nextLine();
+	System.out.println("-------------------------------");
 
-	if (ans == 1) {
+	if (ans.equals("1")) {
 	    if (encounter())
 		turn();
 	}
-	else if (ans == 2) {
-	    heal();
+	else if (ans.equals("2")) {
+	    current.heal();
 	    turn();
 	}
-	else if (ans == 3) {
-	    getStatus(); 
+	else if (ans.equals("3")) {
+	    current.getStatus(); 
 	}
-	else if (ans == 4) {
+	else if (ans.equals("4")) {
 	    System.out.println("You are a disgrace.");
 	    return false;
 	}
@@ -116,28 +135,30 @@ public class Character {
 	    enemy = new Undead();
 	}
 	
-	while ((this.alive()) && (enemy.alive())){
+	while ((current.alive()) && (enemy.alive())){
 	    System.out.println("It's "+ enemy +"! \n What will you do?: ");	    
 	    System.out.print("(1)Fight or (2)Flee\n");
 	    Scanner sc = new Scanner(System.in);
 	    String input = sc.nextLine();
+	    System.out.println("-------------------------------");
 	    if (input.equals("1")){
-		this.attack(enemy);
-		enemy.attack(this);
+		current.attack(enemy);
+		enemy.attack(current);
 		}
 	    else if (input.equals("2")){
-		this.flee();
+		current.flee();
 	    }
 	    else {
 		System.out.println("Invalid choice");
 	    }
-	    System.out.println("Your Health: " + this.getHealth());
+	    System.out.println("Your Health: " + current.getHealth());
 	    System.out.println("Enemy Health: " + enemy.getHealth());
 	    System.out.println("-------------------------------");
 	}
-	if (this.alive()) {
+	if (current.alive()) {
 	    System.out.println("You have successfully defeated the " + enemy + ".");
-	    this.reward(enemy.getExp());
+	    System.out.println("-------------------------------");
+	    current.reward(enemy.getExp());
 	}
 	else {
 	    System.out.println("What a shame, you have died.");
@@ -149,7 +170,7 @@ public class Character {
     public void heal() {
 	if (health == maxHealth) {
 	    System.out.println("You don't need a rest...");
-	    turn();
+	    // turn();
 	}
 	else {
 	    int add = (int)(maxHealth * .1);
@@ -205,17 +226,18 @@ public class Character {
 	d2 = r.nextInt(6) + 1;
 	d3 = r.nextInt(6) + 1;
 	sum = d1 + d2 + d3;
-	return (sum <= dexterity);
+	return (sum >= dexterity);
     }
 
 
     public void getStatus() {
-	System.out.println("Name: " + this.name);
+	System.out.println("Name: " + name);
 	System.out.println("Class: " + this.charclass);
-	System.out.println("Health: " + this.health);
-	System.out.println("Strength: " + this.strength);
-	System.out.println("Dexterity: " + this.dexterity);
-	System.out.println("Intelligence: " + this.intelligence);
+	System.out.println("Health: " + health);
+	System.out.println("Strength: " + strength);
+	System.out.println("Dexterity: " + dexterity);
+	System.out.println("Intelligence: " + intelligence);
+	System.out.println("Experience: " + exp);
     }
 
 
