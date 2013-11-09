@@ -18,7 +18,7 @@ public class Stuyablo {
 	    name = (scanner.nextLine()).trim();
 	    if (!(name.equals(""))) {input = true;}
 	}
-	System.out.println("" + name + "\n");
+	System.out.println(player.setBoldText + "Your name is " + name + "!" + "\n" + player.setPlainText); //Makes it bold
 	//Class
 	System.out.print("Select a class (0 - Random, 1 - Warrior, 2 - Wizard, 3 - Thief): ");
 	input = false;
@@ -48,7 +48,47 @@ public class Stuyablo {
 
 	while (player.getHealth()>0) { 
 	    int z = random.nextInt (3);
-	    player.setHealth (player.maxhealth);
+	    if (player.getExperience () % 100 == 0 && ! (player.getExperience() == 0) ) {
+
+		boolean input4 = false;
+		String attributer = "";
+		System.out.println ("\n" + "Congratulations " + player.getCharacterClass() + "." + " You have leveled up!");
+		player.delay ();
+		System.out.println ("You now have 1 Attribute Point to Spend on whatever you want!");
+		player.delay ();
+		System.out.println ("Current Stats:");
+		System.out.println ("Strength: " + player.getStrength ());
+		System.out.println ("Intelligence: " + player.getIntelligence ());
+		System.out.println ("Dexterity: " + player.getDexterity ());
+		System.out.println ("Select an Attribute to raise (0 - Random, 1 - Strength, 2 - Intelligence, 3 - Dexterity): ");
+
+		while (!input4) {
+
+		    attributer = scanner.nextLine().trim();
+		    	if ((attributer.equals("0")) || (attributer.equals("1")) || (attributer.equals("2")) || (attributer.equals("3"))) {input4 = true;} //is there a more efficient method to do this line?
+	    }
+
+	    if (attributer.equals("0")) {
+		if (random.nextInt (3) == 0) {player.strength = player.strength + 1; attributer = "Strength"; }
+		else {
+		    if (random.nextInt (2) == 1) {player.intelligence= player.intelligence + 1; attributer = "Intelligence"; }
+		    else {player.dexterity = player.dexterity + 1; attributer = "Dexterity"; }
+		}
+	    }
+	    
+	    
+	    if (attributer.equals("1")) {player.strength = player.strength + 1; attributer = "Strength";}
+	    if (attributer.equals("2")) {player.intelligence = player.intelligence + 1; attributer = "Intelligence";}
+	    if (attributer.equals("3")) {player.dexterity = player.dexterity + 1; attributer = "Dexterity";}
+	    
+	    System.out.println ("\n" + player.setBoldText + "You have raised your " + attributer + "!" + player.setPlainText);
+	    player.level = player.level + 1;
+	    }
+
+	    
+	    
+	    player.maxhealth = player.strength; //accounts for increases in strength;
+	    player.health = player.maxhealth;
 
 
 	    if (z== 0) {
@@ -68,7 +108,7 @@ public class Stuyablo {
 		
 	    }
 
-	    	System.out.println (player.setBoldText + "You have been challenged by " + opponent.getName() +  player.setPlainText );
+	    	System.out.println ("\n" + player.setBoldText + "You have been challenged by " + opponent.getName() +  player.setPlainText );
 	player.delay();
 
 	System.out.println ("\n" + player);
@@ -79,8 +119,8 @@ public class Stuyablo {
 	    
 	}
 	
-	System.out.println (player);
-	System.out.println ("You have killed " + player.getOpponentsDefeated() + " opponents!");
+	System.out.println ("\n" + player);
+	System.out.println ("\n" + "You have killed " + player.getOpponentsDefeated() + " opponents!");
 	
 	
 	System.out.println("\nProgram terminated.");
