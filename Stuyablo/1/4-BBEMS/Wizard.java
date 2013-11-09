@@ -8,7 +8,7 @@ public class Wizard extends Character {
 
 
     public Wizard () {
-	super("New character", "Wizard");
+	super.setCharacterClass ("Wizard");
 	spelldamage = 0;
 	boostcount = 0;
     }
@@ -18,6 +18,8 @@ public class Wizard extends Character {
 	boostcount = 0;
 	spelldamage = 0;
     }
+
+    /* Sorry man, I'm not sure how to deal with this at the moment. 
 
     public void attack (Character other){
 	if (freezecount == 0) {
@@ -89,7 +91,10 @@ public class Wizard extends Character {
 	    boostcount = boostcount - 1;
 	}
     }
+
+    */
 }
+
 
 
 

@@ -6,24 +6,27 @@ public class Character {
     protected String name, characterClass;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
     // Constructors
-    // This constructor is barebones and doesn't do jack. Someone just put it here to method overload the inherent version. I've one-lined it to clean it.
+
     public Character() {
 	int freezecount = 0;
-	if (random.nextInt (3) < 2) {
-	    health = maxhealth = strength;strength = random.nextInt (10);
-	    intelligence = random.nextInt (10);
+	if (random.nextInt (5) < 4) {
+	    strength = random.nextInt (20);
+	    health = maxhealth = strength;
+	    intelligence = random.nextInt (20);
 	    dexterity = random.nextInt (10);
 	    experience = 0;level = 1;name = "ANGRY ENEMY";characterClass = "No class";
 	} else {
-	    health = maxhealth = strength;strength = random.nextInt (15);
-	    intelligence = random.nextInt (15);
-	    dexterity = random.nextInt (15);
+	    strength = random.nextInt (20) + 10;
+	    health = maxhealth = strength + 10;
+	    intelligence = random.nextInt (20) + 10;
+	    dexterity = random.nextInt (9) + 10;
 	    experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
 	}
     }
     // Important constructor - includes scanner functions to prompt for configuration
     public Character (String name, String characterClass) {
 	int freezecount = 0;
+	this.opponentsDefeated = -1;
 	this.characterClass = characterClass;
 	System.out.println ("You are a " + getCharacterClass() + "\n");
 	this.name = name;
@@ -55,14 +58,14 @@ public class Character {
 	    }
 	    if (attributer.equals("0")) {
 		strength = random.nextInt (9) + strength;
-		intelligence = random.nextInt (17 - strength) + intelligence;
-		dexterity = ( (24 - strength) - intelligence ) + dexterity;
-		n = 1; //You're subtracting 1 at the end so it will set n to 0.
+		intelligence = random.nextInt ( (32 - strength - intelligence - dexterity)) + intelligence;
+		dexterity = ( (32 - strength - dexterity - intelligence ) ) + dexterity;
+		n = 0; //stops the while loop at the end
 	    }
 	    if (attributer.equals("1")) {strength = strength + 1;}
 	    if (attributer.equals("2")) {intelligence = intelligence + 1;}
 	    if (attributer.equals("3")) {dexterity = dexterity + 1;}
-	    n = n -1;
+	    n = n - 1;
 	    attributer = "";
 	    input2 = false;
 	}
@@ -91,10 +94,16 @@ public class Character {
     public void setAttributes(int strength,int intelligence,int dexterity) {this.strength = strength;this.intelligence = intelligence;this.dexterity = dexterity;}    
     public void setOpponentsDefeated (int n) {this.opponentsDefeated = n;}
     public String toString() {
-	return name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
-	    "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity;
+	 return setGreenBackground + name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
+	    "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity + setPlainText;
     }
     public static void delay() {try {Thread.sleep (waittime);} catch (Exception e) {}} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+
+    public final String setPlainText = "\033[0;0m"; //Removes all Font Changes
+    public final String setBoldText = "\033[0;1m"; //Makes Font Bold
+    public final String setMagenta = "\033[0;35m"; //Makes Font Magenta Colored
+    public final String setCyan = "\033[0;36m"; //Makes Font Cyan Colored
+    public final String setGreenBackground = "\033[0;42m"; //Sets Background to Green
 	
     /* public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
 	//Assume attribute1 is vitality, attribute2 is strength, attribute3 is magic and attribute4 is attribute4
@@ -107,6 +116,24 @@ public class Character {
     */
 
     public void attack(Character other){
+
+
+	System.out.println ("Type 'Attack' to strike and defend your honor!");
+	boolean input3 = false;
+	String attackSignal = "";
+	Scanner scanner3 = new Scanner (System.in);
+	while (!input3) {
+	    attackSignal = scanner3.nextLine ().trim ();
+	    if (attackSignal.equals ("Attack") || attackSignal.equals ("attack") )  {
+
+		    input3 = true;
+
+		}
+
+		}
+
+	    
+	
 	int damage = 0;
 	int otherDamage = 0;
 	String firstHit = "";
@@ -125,7 +152,7 @@ public class Character {
 	    otherDamage = other.getStrength() - random.nextInt (10);
 	}
 
-	if (this.getDexterity() == other.getDexterity()){ // in case the dexterity's of the two characters are equal we randomly increase one by 1 so we can determine who will hit first
+	if (this.getDexterity() == other.getDexterity()){ // in case the dexterity's of the two characters are equal we randomly increase one by 1 so we can determine who will hit first. Ben: Smart addition.
 	  int prob = random.nextInt(2);
 	  if (prob == 1){
 	      this.setDexterity(this.getDexterity() + 1);
@@ -146,24 +173,24 @@ public class Character {
 		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled by this character
 		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled by this character
 		int sum = one + two + three; // this represents the sum of the results of the three die
-		if (sum <= this.getDexterity() && this.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		if (sum <= this.getDexterity() /* && this.freezecount == 0 */){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    other.setHealth(other.getHealth() - damage); 
-		    System.out.println(this.getName() + "hit" + other.getName());
+		    System.out.println(setBoldText + this.getName() + " hit " + other.getName() + "!" + setPlainText);
 		}
 		else{ 
-		    System.out.println(this.getName() + "missed the hit");
+		    System.out.println(setBoldText + this.getName() + " missed the hit!" + setPlainText);
 		}
 		//now it is other character's chance to hit
 		int four = random.nextInt(6) + 1; // this represents the number of the first dice that is rolled by other character
 		int five = random.nextInt(6) + 1; // this represents the number of the second dice that is rolled by other character
 		int six = random.nextInt(6) + 1; // this represents the number of the third dice that is rolled by other character
-		int sum2 = four + five + six; // this represents the sum of the three di
-		if (sum2 <= other.getDexterity()&& other.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		int sum2 = four + five + six; // this represents the sum of the three dice
+		if (sum2 <= other.getDexterity() /*&& other.freezecount == 0*/){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    this.setHealth(this.getHealth() - otherDamage); 
-		    System.out.println(other.getName() + "hit" + this.getName());
+		    System.out.println(setBoldText + other.getName() + " hit " + this.getName() + "!" + setPlainText);
 		}
 		else{ 
-		    System.out.println(other.getName() + "missed the hit");
+		    System.out.println(setBoldText + other.getName() + " missed the hit!" + setPlainText);
 		}
 	    }
 	    else{ // if other character has the higher dexterity he hits first
@@ -171,50 +198,61 @@ public class Character {
 		int two = random.nextInt(6) + 1; //this represents the number of the second dice that is rolled by other character
 		int three = random.nextInt(6) + 1; //this represents the number of the third dice that is rolled by other character
 		int sum = one + two + three; // this represents the sum of the results of the three di
-		if (sum <= other.getDexterity() && other.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		if (sum <= other.getDexterity() /* && other.freezecount == 0*/){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    this.setHealth(this.getHealth() - otherDamage); 
-		    System.out.println(other.getName() + "hit" + this.getName());
+		    System.out.println(setBoldText + other.getName() + " hit " + this.getName() + "!" + setPlainText);
 		}
 		else{ 
-		    System.out.println(other.getName() + "missed the hit");
+		    System.out.println(setBoldText + other.getName() + " missed the hit!" + setPlainText);
 		}
 		//now it is this character's chance to hit
 		int four = random.nextInt(6) + 1; // this represents the number of the first dice that is rolled by this character
 		int five = random.nextInt(6) + 1; // this represents the number of the second dice that is rolled by this character
 		int six = random.nextInt(6) + 1; // this represents the number of the third dice that is rolled by this character
 		int sum2 = four + five + six; // this represents the sum of the three di
-		if (sum2 <= this.getDexterity()&& other.freezecount == 0){ //the character needs to roll an amount equivalent or less than the dexterity to hit
+		if (sum2 <= this.getDexterity() /*&& other.freezecount == 0*/){ //the character needs to roll an amount equivalent or less than the dexterity to hit
 		    other.setHealth(other.getHealth() - damage); 
-		    System.out.println(this.getName() + "hit" + other.getName());
+		    System.out.println(setBoldText + this.getName() + " hit " + other.getName() +"!" + setPlainText);
 		}
 		else{ 
-		    System.out.println(this.getName() + "missed the hit");
+		    System.out.println(setBoldText + this.getName() + " missed the hit!" + setPlainText);
 		}
 	    }
+
+	    delay ();
+
 	    //Ben's idea
 	    //after every hit we show the stats for both Character's even though the only one as of now that is changing every so often if health
-	    System.out.println(this.getName());
+	    System.out.println ("\n");
+	    System.out.println(setMagenta + this.getName() + setPlainText +"'s" + " Current Stats:");
 	    System.out.println("Health: " + this.getHealth());
 	    System.out.println("Strength: " + this.getStrength());
 	    System.out.println("Intelligence: " + this.getIntelligence());
 	    System.out.println("Dexterity: " + this.getDexterity());
 	    System.out.println("Experience: " + this.getExperience());
-	    System.out.println(other.getName());
+
+	    delay();//Pause for them to read
+
+	    System.out.println ("\n");
+	    System.out.println(setCyan + other.getName() + setPlainText +"'s" + " Current Stats:");
 	    System.out.println("Health: " + other.getHealth());
 	    System.out.println("Strength: " + other.getStrength());
 	    System.out.println("Intelligence: " + other.getIntelligence());
 	    System.out.println("Dexterity: " + other.getDexterity());
 	    System.out.println("Experience: " + other.getExperience());
-	    if (this.freezecount > 0) {
-		freezecount = freezecount - 1;
-	    }
+
+	    delay(); //Pause for them to read
+	   
+	    /*if (this.freezecount > 0) {
+	      freezecount = freezecount - 1;
+	      }*/
 	}
-	if (this.getHealth() == 0){
-	    System.out.println(this.getName() + "has been defeated by" + other.getName()); // maybe you guys would rather have the winner's name first as opposed to the loser's name first
+	if (this.getHealth() <= 0){
+	    System.out.println(setBoldText + this.getName() + " has been defeated by " + other.getName() + "!" + setPlainText); // maybe you guys would rather have the winner's name first as opposed to the loser's name first
 	    other.setExperience(other.getExperience() + 50); // the experience points are subject to change
 	}
 	else{
-	    System.out.println(other.getName() + "has been defeated by" + this.getName());
+	    System.out.println(setBoldText + other.getName() + " has been defeated by " + this.getName() + "!" + setPlainText);
 	    this.setExperience(this.getExperience() + 50); 
 	}
     }
