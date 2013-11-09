@@ -82,14 +82,16 @@ public class Mage extends Character {
 	public boolean Cast(String spell, Character other) {
 		if (spell.equals("Bolt")) {
 			return Bolt(other);
+			//where is the function titled "Bolt" ?
 		}
 		if (spell.equals("Frost")) {
 			return Frost(other);
 		}
 	}
 	
-	public boolean Bolt(Character other) { //cost: 2, dmg: 4
-		if (this.getEffSt() <= 2) {
+	public boolean specialAttack(Character other) { //cost: 2, dmg: 4
+		System.out.println("Used special attack 'Bolt'"
+                if (this.getEffSt() <= 2) {
 			System.out.println("Spell failed! Insufficient cost");
 			return false;
 		}

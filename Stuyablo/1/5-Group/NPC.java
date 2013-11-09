@@ -8,6 +8,8 @@ public class NPC extends Character{
     public NPC (String name, double Pstr, double Pdex, double Pintl, double Pdef, int lvl){
 	this.name = name;
 	str = 8;
+	maxhp = str;
+	hp = maxhp;
 	dex = 8;
 	intl = 8;
 	def = 8;
@@ -15,6 +17,8 @@ public class NPC extends Character{
 	for (int i = 0; i < (7+lvl); i++){
 	    if (r.nextDouble()<Pstr){
 		str = str + 1;
+		maxhp = maxhp + 1;
+		hp = maxhp;
 	    }
 	    else if (r.nextDouble()<Pdex){
 		dex = dex + 1;
@@ -65,10 +69,10 @@ public class NPC extends Character{
 	else if (type.equals("melee")){
 	    x = str - other.def;
 	}
-	
 	if (x < 0){
 	    x = 0;
 	}
 	other.hp = other.hp - x;
+	System.out.print(name + " attacked!\nDid " + x + " damage!");
     }
 }

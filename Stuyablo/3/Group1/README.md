@@ -1,6 +1,6 @@
 APCS Stuyablo
 Period 3 Group 1
-Sungwoo, Barak, Lawrence, Jason
+Sungwoo, Barak, Lawrence, Jason, Alex
 
 #Characters
 - Characters have 3 basic attributes: Strength, Dexterity, Intelligence

@@ -22,6 +22,8 @@ public class Warrior extends Character {
         	dex = dexterity + 2;
         	mult = 2;
         }
+        System.out.println("\n" + this + " attacked!");
+        pause();
         if (x+y+z <= dex) {
             int dmg = damageDone(other, mult);
             other.loseHealth(dmg);

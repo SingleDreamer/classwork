@@ -10,11 +10,17 @@ public class Encounter {
 	}
         while (true) {
 	    playmore =  p1.encounter(p2);
-	    if (!playmore)
+	    if (!playmore) {
+		p1.changeEP(p2.getEp());
+		p1.levelup();
 		return playmore;
+	    }
 	    playmore = p2.encounter(p1);
-	    if (!playmore)
+	    if (!playmore) {
+		p2.changeEP(p1.getEp());
+		p2.levelup();
 		return playmore;
+	    }
 	    System.out.println(p1 + "'s health: " + p1.getHp());
 	    System.out.println(p2 + "'s health: " + p2.getHp());
 	}
