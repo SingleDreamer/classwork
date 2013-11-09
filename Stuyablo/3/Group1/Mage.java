@@ -119,7 +119,7 @@ public class Mage extends Character {
 		}
 		else {
 			int roll = roll(3, 6);
-			System.out.println("Bolt: cost 1 Strength");
+			System.out.println("Frost: cost 1 Strength");
 			this.getEffSt() = this.getEffSt() - 1;
 			
 			System.out.println(this.getName() + " rolled " + roll);
