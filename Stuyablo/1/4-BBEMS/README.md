@@ -20,7 +20,7 @@ There will be three playable characters - they are:
 
 ### Character Attributes
 
-* Strength: Warrior and Thief Attack Modifier
+* Strength: Warrior and Thief Attack Modifier. Also determines Health.
 * Intelligence: Wizard Attack Modifier
 * Dexterity: Hit Rate Chance, as well as who moves first in battle.
 
@@ -36,14 +36,15 @@ You will then be able to assign 8 extra attribute points to your attributes at t
 
 Experience: You gain 50 Experience Points from each enemy you kill.
 
-Leveling Up: You level up each 100 Experience Points. Every time you level up you get another 1 Attribute Points to spend.
+Leveling Up: You level up each 100 Experience Points. Every time you level up you get 1 Attribute Points to spend.
 
-Fighting: You encounter an enemy. It tells you your stats and your opponents stats including health. You type A to attack. It tells you the results of the battle as well both characters current health and asks you to type A to attack again. Repeat until 1 party has 0 health.
+Fighting: You encounter an enemy. It tells you your stats and your opponents stats including health. You type Attack to attack. It tells you the results of the skirmish as well as both characters current health and asks you to type Attack to attack again. Repeat until 1 party has 0 health.
+
+If you continue to survive, you will keep encountering new opponents until you die. The game tells you how many enemies you have killed at the end, sort of like a high score.
 
 Maximum Health = Strength/Intelligence;
 
-During battle turns, you roll 3 dice. If the value of the 3 dice is less that your dexterity, it's a hit. For each extra coordinates you are away (starting at 1away), you have to roll less than your dexterity minus that number minus one.
-
+During battle turns, you roll 3 dice. If the value of the 3 dice is less that your dexterity, it's a hit. 
 
 
 
