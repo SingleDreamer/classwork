@@ -244,7 +244,7 @@ public class Character {
 	
 	public int attack (Character other){
 		while (this.health>0 && other.health>0){
-			if (roll<=this.dexterity){
+		    if (roll()<=this.dexterity){
 				other.takedamage(this.strength);
 				say (other + " has lost " + strength + " health points and has " + other.getHealth() + " health points left. ");
 				try{
@@ -255,7 +255,7 @@ public class Character {
 				}
 			}
 			
-			if (roll>this.dexterity){
+		    if (roll()>this.dexterity){
 				say(this + "'s attack missed!");
 				try{
 					Thread.sleep(2000);

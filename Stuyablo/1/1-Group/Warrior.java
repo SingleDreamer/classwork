@@ -7,38 +7,7 @@ public class Warrior extends Character{
         super(name);
 		setAttributes();
     }
-<<<<<<< HEAD
 
-   
-	/*
-    public void attack (Character other){
-        int roll = roll();
-	double xchange,ychange;
-	xchange = this.x-other.x;
-	ychange = this.y-other.y;
-	double d = Math.sqrt(xchange*xchange + ychange*ychange);
-
-	System.out.println("Choose your attack:");
-	System.out.println("Press 1 to use your hammer");
-	System.out.println("Press 2 to use your sword");
-	System.out.println("Press 3 to use your bow and arrow");
-
-	Scanner sc=new Scanner(System.in);
-	int answer=sc.nextInt();
-
-	//Hammer time
-	if (answer == 1) {
-	    if (roll<this.dexterity && d<2) { 
-		System.out.println(this.name + " whacked " + other.name +" with a hammer!");
-		other.health = other.health - 1;
-		other.dexterity = other.dexterity - 1;
-	    }
-	    else {
-		System.out.println(this.name + "'s attack failed!");
-	    }
-	}
-=======
-	*/
     public int attack (Character other){
         int roll = roll();
 	double xchange,ychange;
@@ -62,7 +31,7 @@ public class Warrior extends Character{
 		return super.attack(other);
 		}
 		else { 
-		    System.out.println(this.other + " is too far away! You missed and this.other now knows your fighting strategies");
+		    System.out.println(this.name + " is too far away! You missed and " + this.name + " knows your fighting strategies");
 		    other.intelligence = other.intelligence + 2;
 		    other.dexterity = other.dexterity + 1;
 		    this.dexterity = this.dexterity - 1;
@@ -94,7 +63,7 @@ public class Warrior extends Character{
 
 	//*pew pew*
 	else if (answer == 3){
-	    if ((a+b+c)<this.dexterity) {
+	    if (roll<this.dexterity) {
 		if (d<3) { 
 		    System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
 		    this.dexterity = this.dexterity + 1;
@@ -112,5 +81,6 @@ public class Warrior extends Character{
 	else {
 	    System.out.println(this.name + "you, made a typo!");
 	}
+	return 5;
     }
 }
