@@ -24,7 +24,7 @@ There will be three playable characters - they are:
 * Intelligence: Wizard Attack Modifier
 * Dexterity: Hit Rate Chance, as well as who moves first in battle.
 
-Each character starts off with a base attribute spread of 2, broken down as such:
+Each character starts off with a base attribute spread of 24, broken down as such:
 
 * Warriors (12 Strength, 4 Intelligence, 8 Dexterity)
 * Wizards (4 Strength, 12 Intelligence, 8 Dexterity)
