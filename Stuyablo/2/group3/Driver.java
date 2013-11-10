@@ -37,10 +37,10 @@ public class Driver {
         // DEV Mode
         if (args.length != 0) {
             player.health = Integer.MAX_VALUE;
-            System.out.println("DEV MODE ENABLED: RUNNING GAME WITH LOTS OF LIFE"
+            System.out.println("DEV MODE ENABLED: RUNNING GAME WITH LOTS OF LIFE");
         }
 
-        npc = new Character[r.nextInt(6) + 40];
+        npc = new Character[r.nextInt(6) + 10];
         for (int i=1; i<npc.length; i++) {
             npc[i] = new Ogre("Ogre " + i, player);
         }
@@ -168,6 +168,11 @@ public class Driver {
                                         System.out.println("Not sure if you want to continue attacking(a) or flee(f): ");
                                     }
                                 }
+                            }
+                            try {
+                                Thread.sleep(50);
+                            }
+                            catch (Exception e) {
                             }
                         }
                         else {
