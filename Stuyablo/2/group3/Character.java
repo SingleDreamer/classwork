@@ -38,13 +38,11 @@ public class Character {
 
         // Code used for balancing strength of player and nonplayers
         level = player.level;
-        skills += (int) (level * 1.5);
+        skills += (int) (level * 2);
         int strGain = r.nextInt(skills);
-        int dexGain = r.nextInt(skills - strGain);
-        int iqGain = skills - strGain - dexGain;
+        int dexGain = skills - strGain;
         str += strGain;
         dex += dexGain;
-        iq += iqGain;
 
         armors = new int[] {r.nextInt(3)};
         setEnemy(player);
@@ -100,7 +98,7 @@ public class Character {
             currentEnemy.health -= damage;
             System.out.println(String.format("%s successfully hit %s for %d damage!", this, currentEnemy, damage));
         }
-        else if (dice == 18 && (charClass.equals("Warrior") || charClass.equals("Thief") || charClass.equals("Wizard")) && currentWeapon != 0) {
+        else if (dice == 18 && (charClass.equals("Warrior") || charClass.equals("Rogue") || charClass.equals("Wizard")) && currentWeapon != 0) {
             int[] tempWeapons = new int[weapons.length - 1];
             int offset = 0;
             for (int i=0; i < tempWeapons.length; i++) {
@@ -128,7 +126,7 @@ public class Character {
 
     protected boolean flee() {
         double roll = Math.random();
-        if ((charClass == "Thief" && roll < .25) || (charClass == "Warrior" && roll < .1) || (charClass == "Wizard" && roll < .2)) {
+        if ((charClass == "Rogue" && roll < .35) || (charClass == "Warrior" && roll < .25) || (charClass == "Wizard" && roll < .3)) {
             currentEnemy = null;
             return true;
         }

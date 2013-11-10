@@ -13,7 +13,7 @@ public class Moran extends Character {
     }
 
     public void attack () {
-        int damage = (int) Math.sqrt(str / 1.75);
+        int damage = (int) Math.sqrt(str / 1.5);
         super.attack(damage);
     }
 
