@@ -12,7 +12,7 @@ public class Teacher extends Character {
 	name = nm;
 	dexterity = 8;
 	strength = 4;
-	intellegence = 4;
+	intelligence = 4;
 	level = lv;
 	ep = 30 + 20*lv;
 	for (int i = 3 + lv; i > 0; i--) {
@@ -23,7 +23,7 @@ public class Teacher extends Character {
 	    else if (number == 1)
 		strength++;
 	    else
-		intellegence++;
+		intelligence++;
 		}
 	hp = strength;
 	mp = strength;		

@@ -7,7 +7,7 @@
 
 The basic `Character` class contains methods that are shared by all characters, including `levelup()`, `attack()`, and `roll()`. Some are overrided by the more specific classes that extend `Character`.  
 
-Basic stats of all characters: `strength`, `dexterity`, and `intellegence`. 
+Basic stats of all characters: `strength`, `dexterity`, and `intelligence`. 
 
 **The Elf**: The elf is a player character. As the elf you can choose to upgrade your weapon from the default "basic dagger" to something better. 
 
@@ -50,7 +50,7 @@ If successful, the student will heal himself for a random value from 0-4 HP, wit
 
 Studying allows a student to sacrifice 2HP to gain 4INT at the start of an encounter. 
 
-Damage dealt is given by `(strength/2)-(intellegence/4)`.
+Damage dealt is given by `(strength/2)-(intelligence/4)`.
 This makes the choice to increase intelligence a much more difficult one that depends on the player's playstyle. 
 
 **Homework**: Homework is a non-player character (NPC). 
@@ -105,7 +105,7 @@ Certain characters have unique spells, pre-encounter abilities, and varying crit
 
 ## Leveling 
 
-Leveling is based on the sum of all stats: `dexterity`, `intellegence`, and `strength`. The sum is dubbed 
+Leveling is based on the sum of all stats: `dexterity`, `intelligence`, and `strength`. The sum is dubbed 
 internally as `stats`. 
 
 After an encounter, the victorious character will gain the experience 
@@ -128,4 +128,4 @@ Experience points necessary for leveling up are based on `stats`.
 
 `ep` required will be subtracted from the player's total `ep` (thus, players will have some leftover `ep`). 
 `level` will be increased by one. 
-This will grant a single stat point, taking the player through stat increase flow and allowing them to add the point to their choice of `strength`, `dexterity`, and `intellegence`. 
+This will grant a single stat point, taking the player through stat increase flow and allowing them to add the point to their choice of `strength`, `dexterity`, and `intelligence`. 

@@ -29,13 +29,13 @@ public class Player extends Character {
         points = 8;
         dexterity = 8;
         strength = 8;
-        intellegence = 8;
+        intelligence = 8;
         level = 1;
         ep = 0;
         System.out.println("You have 8 points to add to the following stats: Strength, Dexterity, Intellegence");
         strength = strength + addStat("strength");
         dexterity = dexterity + addStat("dexterity");
-        intellegence = intellegence + addStat("intellegence");
+        intelligence = intelligence + addStat("intelligence");
         hp = strength;
         mp = strength;
     }
