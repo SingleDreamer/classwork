@@ -71,7 +71,9 @@ Overwhelm is a modified NPC attack; it deals `strength / 6` damage and lowers th
 Grow causes the Homework to shed 1 HP prior to doubling it. 
 This could cause the Homework character to accidentally kill itself. However, usually this can result in dangerous growth that will result in a loss for the player. Homework must be quickly put down before it  builds up exponentially and becomes impossible to stop.
 
-
+**The Teacher**:
+The Teacher serves as a standard "trash mob". The teacher is quite weak, and attacks the player every turn until it dies.
+It has 50 base experience at level 1, and 20 extra experience for every additional level.
 ## Combat
 
 At the start of a round of an encounter, a player is given options, which they can select using numbers. Player actions are not randomly generated. 
