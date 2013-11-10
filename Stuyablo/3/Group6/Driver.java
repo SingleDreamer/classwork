@@ -16,7 +16,7 @@ public class Driver {
         the next is Thief vs. Ogre, and the last is Warrior vs. GoblinMage.
 	The last block runs an NPC vs NPC battle for GoblinMage vs Ogre.
 	Uncomment the block you want to run, and
-	comment out the block you don't want to run.
+	comment out the blocks you don't want to run.
 	*/
 
 	
