@@ -100,7 +100,7 @@ public class Character {
             currentEnemy.health -= damage;
             System.out.println(String.format("%s successfully hit %s for %d damage!", this, currentEnemy, damage));
         }
-        else if (dice == 18 && (charClass.equals("Warrior") || charClass.equals("Thief") || charClass.equals("Wizard")) && currentWeapon != 0) {
+        else if (dice == 18 && (charClass.equals("Warrior") || charClass.equals("Rogue") || charClass.equals("Wizard")) && currentWeapon != 0) {
             int[] tempWeapons = new int[weapons.length - 1];
             int offset = 0;
             for (int i=0; i < tempWeapons.length; i++) {
@@ -128,7 +128,7 @@ public class Character {
 
     protected boolean flee() {
         double roll = Math.random();
-        if ((charClass == "Thief" && roll < .25) || (charClass == "Warrior" && roll < .1) || (charClass == "Wizard" && roll < .2)) {
+        if ((charClass == "Rogue" && roll < .25) || (charClass == "Warrior" && roll < .1) || (charClass == "Wizard" && roll < .2)) {
             currentEnemy = null;
             return true;
         }

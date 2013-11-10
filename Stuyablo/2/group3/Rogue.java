@@ -1,12 +1,12 @@
 import java.util.*;
 
-public class Thief extends Character {
+public class Rogue extends Character {
 
-    public Thief(String n) {
+    public Rogue(String n) {
         super(n);
         playerInit();
-        charClass = "Thief";
-        weapons[0] = 3; // Thief can do 3 damage with hand
+        charClass = "Rogue";
+        weapons[0] = 3; // Rogue can do 3 damage with hand
     }
 
     public void attack() {
