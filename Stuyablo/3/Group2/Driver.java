@@ -18,19 +18,20 @@ public class Driver {
 	else
 	    len=999999999;
 	for (;len>0;len--) {
-	System.out.println(c1.getStats());
-	System.out.println(p1.getStats());
-	try {
-	    Thread.sleep(1000);
-	} catch(InterruptedException ex) {
-	    Thread.currentThread().interrupt();
-	}
-	e.encounter(p1,c1);
-	try {
-	    Thread.sleep(1000);
-	} catch(InterruptedException ex) {
-	    Thread.currentThread().interrupt();
-	}
+	    c1 = new Npc("Evil Bob", p1.getLevel());
+	    System.out.println(c1.getStats());
+	    System.out.println(p1.getStats());
+	    try {
+		Thread.sleep(1000);
+	    } catch(InterruptedException ex) {
+		Thread.currentThread().interrupt();
+	    }
+	    e.encounter(p1,c1);
+	    try {
+		Thread.sleep(1000);
+	    } catch(InterruptedException ex) {
+		Thread.currentThread().interrupt();
+	    }
 	}
     }
 }
