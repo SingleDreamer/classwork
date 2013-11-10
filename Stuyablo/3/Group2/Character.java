@@ -196,6 +196,11 @@ public class Character {
 		intellegence +=1;
 		System.out.println("You obviously need more intellegence. Added 1 to intellegence.");
 	    }
+	    try {
+		Thread.sleep(1000);
+	    } catch(InterruptedException ex) {
+		Thread.currentThread().interrupt();
+	    }
 	    
 	}
     }

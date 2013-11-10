@@ -71,6 +71,7 @@ public class Player extends Character {
         if (dexterity > other.getDexterity()) {
             System.out.println("You got away safely!");
             firstencounter = true;
+	    ep -= other.getEp();
             return false;
         }
         System.out.println("You cannot escape!");
