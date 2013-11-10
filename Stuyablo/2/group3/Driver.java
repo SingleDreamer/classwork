@@ -31,7 +31,8 @@ public class Driver {
                 player = new Rogue ( name );
                 x = 1;
             }
-            else System.out.println ("Misspelled character type");
+            else
+                System.out.println ("Misspelled character type");
         }
 
         // DEV Mode
@@ -40,7 +41,7 @@ public class Driver {
             System.out.println("DEV MODE ENABLED: RUNNING GAME WITH LOTS OF LIFE");
         }
 
-        npc = new Character[r.nextInt(6) + 10];
+        npc = new Character[r.nextInt(26) + 15];
         for (int i=1; i<npc.length; i++) {
             npc[i] = new Ogre("Ogre " + i, player);
         }
@@ -137,6 +138,7 @@ public class Driver {
                 }
                 if (player.encounter(npc)) {
                     int healthLeft = player.health;
+                    boolean fleeSuccess = true;
                     battle: // Label for battle loop, used in nested loops to break out of this one
                     while (player.getEnemy().health > 0 && player.health > 0) {
                         player.attack();
@@ -146,7 +148,7 @@ public class Driver {
                                 player.die(player.getEnemy());
                                 break battle;
                             }
-                            else if (player.health < 8 && player.health != healthLeft) {
+                            else if ((player.health < 8 && player.health != healthLeft) || !fleeSuccess) {
                                 boolean badChoice = true;
                                 System.out.println("You're almost about to die with your " + player.health + " health remaining! But your enemy has " + player.getEnemy().health + " health remaining!\nWould you like to continue attacking(a) or would you rather flee for your life(f)?");
                                 while (badChoice) {
@@ -157,11 +159,13 @@ public class Driver {
                                     else if (choice.equalsIgnoreCase("f")) {
                                         if (player.flee()) {
                                             player.setEnemy(null);
-                                            System.out.println("\nYou have succesfully ran away from the battle! Move around to get more life :)");
+                                            System.out.println("\nYou have succesfully ran away from the battle! Move around to get more life :)\nTip: Increase your dexterity if you are missing a lot.");
                                             break battle;
                                         }
-                                        else
-                                            System.out.println("You tried to run away, but " + player.getEnemy() + " has caught up to you!");
+                                        else {
+                                            fleeSuccess = false;
+                                            System.out.println("\nYou tried to run away, but " + player.getEnemy() + " has caught up to you!");
+                                        }
                                     }
                                     else {
                                         badChoice = true;
@@ -193,6 +197,7 @@ public class Driver {
                     npc = tempNpc;
                 }
             }
+
             else if (choice.equalsIgnoreCase("s")) {
                 System.out.println(String.format("Class: %s\nLevel: %d\nExperience: %d/%d\nHealth: %d\nStrength: %d\nDexterity: %d\nIntelligence %d\n", player.charClass, player.level, player.exp, (int) (50 + Math.pow(2, player.level)), player.health, player.str, player.dex, player.iq));
             }
@@ -201,6 +206,10 @@ public class Driver {
                 int add;
                 System.out.println(String.format("You have %d skill points to distribute amongst your strength, dexterity, and intelligence.", player.skills));
                 System.out.println(String.format("How much would you like to add to your %d strength? %d skill points remaining.", player.str, player.skills));
+                while (!(sc.hasNextInt())) {
+                    System.out.println("Please input a number!");
+                    sc = new Scanner(System.in);
+                }
                 add = sc.nextInt();
                 while (add > player.skills) {
                     System.out.println(String.format("You don't have %d skill points to spend! Choose again.", add));
@@ -209,6 +218,10 @@ public class Driver {
                 player.skills -= add;
                 player.str += add;
                 System.out.println(String.format("How much would you like to add to your %d dexterity? %d skill points remaining.", player.dex, player.skills));
+                while (!(sc.hasNextInt())) {
+                    System.out.println("Please input a number!");
+                    sc = new Scanner(System.in);
+                }
                 add = sc.nextInt();
                 while (add > player.skills) {
                     System.out.println(String.format("You don't have %d skill points to spend! Choose again", add));
@@ -217,6 +230,10 @@ public class Driver {
                 player.skills -= add;
                 player.dex += add;
                 System.out.println(String.format("How much would you like to add to your %d intelligence? %d skill points remaining.", player.iq, player.skills));
+                while (!(sc.hasNextInt())) {
+                    System.out.println("Please input a number!");
+                    sc = new Scanner(System.in);
+                }
                 add = sc.nextInt();
                 while (add > player.skills) {
                     System.out.println(String.format("You don't have %d skill points to spend! Choose again", add));
@@ -237,6 +254,7 @@ public class Driver {
                 player.iq++;
                 player.skills += 2;
                 System.out.println ( "Congratulations! You have leveled up to level " + player.level );
+                player.health = player.str;
             }
         }
         System.out.println(String.format("\nOH NOES! YOU HAVE DIED! :(\nYour legacy as a level %d %s will stay in our hearts. <3", player.level, player.charClass));
