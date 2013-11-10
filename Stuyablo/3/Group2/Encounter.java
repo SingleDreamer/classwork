@@ -5,9 +5,6 @@ public class Encounter {
     
     public boolean encounter (Character p1, Character p2) {
 	boolean playmore = true;
-	if (p2.getDexterity() > p1.getDexterity()) {
-	    return encounter (p2, p1);
-	}
         while (true) {
 	    playmore =  p1.encounter(p2);
 	    if (!playmore) {
