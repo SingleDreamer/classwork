@@ -1,4 +1,4 @@
-mport java.util.*;
+import java.util.*;
 import java.io.*;
 import java.math.*;
 
@@ -97,7 +97,7 @@ public class Student extends Character {
             return atk;
         }
         if (whatdo == 3) {
-            healing = heal();
+            boolean healing = heal();
             firstencounter = false;
             return true;
         }
@@ -125,7 +125,7 @@ public class Student extends Character {
         firstencounter = true;
         return false;
     }
-}
+
 
     public boolean attack(Character other) {
         try {
@@ -133,8 +133,9 @@ public class Student extends Character {
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
+        int changeAmount;
         if (((strength/2) - (intellegence/4)) > 0) {
-            changeAmount = intellgence/4;
+            changeAmount = intellegence/4;
         } else {
             changeAmount = 0; // avoid subtracting negative number later
         }
@@ -149,3 +150,4 @@ public class Student extends Character {
             return true;
         }
     }
+}
