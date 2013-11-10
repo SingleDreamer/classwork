@@ -191,17 +191,18 @@ public class Character {
 	this.getStatus();
 	other.getStatus();
 
-	if (other.health == 0) {
+	if ((this.health == 0) && (other.health == 0)) {
+
+	    System.out.println("Both you and " + other + " have died"); 
+	    return 4;
+	}
+	else if (other.health == 0) {
 	    System.out.println(other + " has died! \n You Win!! \n \n \n");
 	    return 3;
 	}
 	else if (this.health == 0) {
 	    System.out.println("You have died!");
 	    return 2;
-	}
-	else if ((this.health == 0) && (other.health == 0)) {
-	    System.out.println("Both you and " + other + " have died"); 
-	    return 4;
 	}
 	else {
 	    return battle(other);

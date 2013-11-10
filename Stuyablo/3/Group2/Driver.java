@@ -4,7 +4,26 @@ import java.io.*;
 public class Driver {
     public static void main(String args[]) {
 	Scanner sc = new Scanner(System.in);
-	Elf p1 = new Elf();
+	Random randGen = new Random();
+	System.out.println("Would you like to be an (1) Elf or a (2) Student?");
+	int classChoice = sc.nextInt();
+	Character p1;
+	if (classChoice == 1) {
+		p1 = new Elf();
+	} else if (classChoice == 2) {
+		p1 = new Student();
+	} else {
+		int randChoice = randGen.nextInt(2);
+		if (randChoice == 0) {
+			p1 = new Elf();
+			System.out.println("You have failed to choose correctly.");
+			System.out.println("You have randomly been assigned the Elf type.");
+		} else {
+			p1 = new Student();
+			System.out.println("You have failed to choose correctly.");
+			System.out.println("You have randomly been assigned the Student type.");
+		}
+	}
 	Character c1 = new Teacher("Evil Bob", p1.getLevel());
 	Homework h1 = new Homework("English Teacher", p1.getLevel());
 	Encounter e = new Encounter();
