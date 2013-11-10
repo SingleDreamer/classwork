@@ -6,6 +6,7 @@ public class Driver {
 	Scanner sc = new Scanner(System.in);
 	Elf p1 = new Elf();
 	Character c1 = new Npc("Evil Bob", p1.getLevel());
+	Homework h1 = new Homework("Evil Homework", p1.getLevel());
 	Encounter e = new Encounter();
 	System.out.println("How long do you want the game to be? 1: short 2:medium 3:long 4:never ending!");
 	int len = sc.nextInt();
@@ -18,19 +19,39 @@ public class Driver {
 	else
 	    len=999999999;
 	for (;len>0;len--) {
+	    Random r = new Random();
+	    int nextgoon = r.nextInt(3);
+	    h1 = new Homework("Evil Homework", p1.getLevel());
 	    c1 = new Npc("Evil Bob", p1.getLevel());
-	    System.out.println(c1.getStats());
-	    System.out.println(p1.getStats());
-	    try {
-		Thread.sleep(1000);
-	    } catch(InterruptedException ex) {
-		Thread.currentThread().interrupt();
+	    if (nextgoon != 2) {
+		System.out.println(c1.getStats());
+		System.out.println(p1.getStats());
+		try {
+		    Thread.sleep(1000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+		e.encounter(p1,c1);
+		try {
+		    Thread.sleep(1000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 	    }
-	    e.encounter(p1,c1);
-	    try {
-		Thread.sleep(1000);
-	    } catch(InterruptedException ex) {
-		Thread.currentThread().interrupt();
+	    else {
+		System.out.println(h1.getStats());
+		System.out.println(p1.getStats());
+		try {
+		    Thread.sleep(1000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+		e.encounter(p1,h1);
+		try {
+		    Thread.sleep(1000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 	    }
 	}
     }
