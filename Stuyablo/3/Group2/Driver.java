@@ -5,8 +5,8 @@ public class Driver {
     public static void main(String args[]) {
 	Scanner sc = new Scanner(System.in);
 	Elf p1 = new Elf();
-	Character c1 = new Npc("Evil Bob", p1.getLevel());
-	Homework h1 = new Homework("Evil Homework", p1.getLevel());
+	Character c1 = new Teacher("Evil Bob", p1.getLevel());
+	Homework h1 = new Homework("English Teacher", p1.getLevel());
 	Encounter e = new Encounter();
 	System.out.println("How long do you want the game to be? 1: short 2:medium 3:long 4:never ending!");
 	int len = sc.nextInt();
@@ -22,7 +22,7 @@ public class Driver {
 	    Random r = new Random();
 	    int nextgoon = r.nextInt(3);
 	    h1 = new Homework("Evil Homework", p1.getLevel());
-	    c1 = new Npc("Evil Bob", p1.getLevel());
+	    c1 = new Teacher("English Teacher", p1.getLevel());
 	    if (nextgoon != 2) {
 		System.out.println(c1.getStats());
 		System.out.println(p1.getStats());

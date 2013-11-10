@@ -193,7 +193,7 @@ public void level(int exp) {
 	    }
 	    else {
 		intelligence = intelligence + 1;
-		experienceneeded = experienceneeded + 5 * (level - 1); /*Increases exp needed to level up by 5 per level, so it¡¯s 10, 15, 25, 40, 60¡¦ Consider that you get 10 exp + enemies health per each kill.*/
+		experienceneeded = experienceneeded + 5 * (level - 1); /*Increases exp needed to level up by 5 per level, so it's 10, 15, 25, 40, 60 Consider that you get 10 exp + enemies health per each kill.*/
 	    }
 	}
 	maxhealth = 4 * strength;
