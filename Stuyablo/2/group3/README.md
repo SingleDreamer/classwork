@@ -1,15 +1,19 @@
-John Safy, Abrar Ahmed, Hall Zhang, Danny Qiu, Kelly Chen, Ivan Lin
+Stuyablo
+========
+> John Safy, Abrar Ahmed, Hall Zhang, Danny Qiu, Kelly Chen, Ivan Lin
 
-We will have 3 attributes, Strength, Dexterity, and Intelligence. Each will start at 8, and users will have 8 points to distribute as they please at character creation. There will be 3 classes, the warrior, the rogue, and the mage, who will predominantly use their respective attributes above. There will be no cap on attributes, and on level up the user will gain 1 point in each stat and receive 2 additional points to add to whichever attribute they choose. Enemies will also start at 8 points per attribute and have 2n points randomly distributed upon creation (n being the level of the character).
+#### Layout
+This game takes place on a 2 dimensional plane with an x,y coordinate representing the location of the player and all enemies. Players are given a list of things they can do each turn, such as moving, going into combat with an enemy, getting their status or distributing skill points.
 
-> To hit an opponent, you have to roll your dexterity or less on three six sided dice.
->
-> For distance weapons, the in the real game you subtracted 1 from your dexterity for the purposes of the roll per grid space travelled. You would make the adjustment based on the distance between the two characters.
->
-> Damage is based on the weapon you use and the weapons you can use are based on strength
->
-> Health should start at the same value as strength and work down to 0.
->
-> -stuycs-apcs-z.github.io/assignments.html "Homework 16b - Stuyablo rules"
+#### Stats
+Players start with 8 points on each attribute listed below. In addition, the player will receive 8 skill points to distribute amongst the three attributes. On level up, each attribute will increase by 1 and the player will receive 2 skill points to add to whichever attribute they like. Also, health will be regenerated on level up.
 
-Combat is turn based, and takes place on a 1 dimensional plane with a distance int representing meters between the player and the opponent; when distance = 0, the 2 occupy the same square, and are duelling. Players can use a turn to move back one meter. Attacks are respectively, swing, shoot bow, and shoot fireball, with the final two being ranged. Players can also flee, which will check the players dexterity vs. the dexterity of the enemy. Other functions may include inventory usage, such as drinking potions, stealing, and use of other miscellaneous spells, such as a healing spell.
+- **Strength** - Used by warriors to deal more damage and by all classes to represent *max health*
+- **Dexterity** - Used by rogues to deal more damage and by all classes to represent *hit chance*
+- **Intelligence** - Used by wizards to deal more damage
+
+#### Combat
+When getting into combat, the player and the enemy will continue attacking until the player or the enemy dies, with the player having special attacks that occur randomly. Hit chance is dependent on a 3 dice roll, but most of the time, hit chance is based on the player's dexterity compared to that of the enemy. When the player starts running out of life, an option is given to continue fighting or flee. Fleeing is based on the class that the user has selected with rogues having the highest chance, followed by wizards and warriors. 
+
+#### Enemies
+There are two kinds of enemies: Ogres and Mr. Moran. Ogres are weaker and don't deal as much damage. Enemies also start out with 8 points on each attribute and 2n points will be randomly distributed amongst the three attributes (n representing the level of the player).

@@ -17,7 +17,7 @@ public class Driver {
         int x = 0;
 
         while ( x == 0 ) {
-            System.out.print("Which type of character do you want to be? (Warrior, Wizard, or Thief): ");
+            System.out.print("Which type of character do you want to be? (Warrior, Wizard, or Rogue): ");
             type = sc.nextLine();
             if ( type.equalsIgnoreCase ( "Warrior" ) ) {
                 player = new Warrior ( name );
@@ -27,8 +27,8 @@ public class Driver {
                 player = new Wizard ( name );
                 x = 1;
             }
-            else if ( type.equalsIgnoreCase ( "Thief" ) ) {
-                player = new Thief ( name );
+            else if ( type.equalsIgnoreCase ( "Rogue" ) ) {
+                player = new Rogue ( name );
                 x = 1;
             }
             else System.out.println ("Misspelled character type");
@@ -232,6 +232,9 @@ public class Driver {
             if (player.exp >= (50 + Math.pow(2, player.level))) {
                 player.level = player.level + 1;
                 player.exp = 0;
+                player.str++;
+                player.dex++;
+                player.iq++;
                 player.skills += 2;
                 System.out.println ( "Congratulations! You have leveled up to level " + player.level );
             }
