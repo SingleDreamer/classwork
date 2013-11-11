@@ -173,7 +173,7 @@ public class Character {
 	
 	if (move.equals("f")) {
 	    if (this.flee(other)) {
-		System.out.println("You have successfully fleed!");
+		System.out.println("You successfully fled from the battle!");
 		return 1;
 	    }
 	}
