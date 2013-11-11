@@ -318,7 +318,7 @@ public class Character {
                         this.encounter(other);
                         return true;
                 }
-                System.out.println(this + " could not flee successfully and must fight!");
+                System.out.println("" + this + " could not flee successfully and must fight!");
                 this.attack(other);
                 return false;
         }
@@ -330,7 +330,7 @@ public class Character {
                 say ("his status is: \n"+ other.getStatus2());
                 delay(2000);
                 say ("type 1 if you wish to talk");
-
+	}
 	
 	public int attack (Character other){
 		while (this.health>0 && other.health>0){
@@ -377,7 +377,7 @@ public class Character {
 		}
 		if (other.health<=0){
 			other.die();
-			System.out.println("Congratulations! You defeated you opponent");
+			System.out.println("Congratulations! You defeated your opponent");
 			System.out.println("You earned 100 gold and "+ other.maxhealth + " experience points!");
 			this.gold=gold + 100;
 			this.experience=experience + other.maxhealth;
@@ -397,6 +397,7 @@ public class Character {
 			return 3;
 		}
 	}
+
 	
 	public boolean flee (Character other){
 		Random x = new Random();
