@@ -51,8 +51,8 @@ public class Character {
 	}
 	else {
 	    System.out.println(name + " missed.");
-    }
-    
+	}
+    }    
     
     public void encounter(NPC other) {
         Random r = new Random();
