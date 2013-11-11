@@ -60,9 +60,10 @@ public class Driver {
             }
             String map = new String();
             containsI p = new containsI();
+	    System.out.println( Arrays.toString ( xArray ) + "\n" + Arrays.toString ( yArray ) + "\n" + p.count ( yArray , 9 ) );
             for ( int i = 0 ; i < xArray.length ; i++ )
                 System.out.println ( npc[i] + ": " + xArray[i] + ", " + yArray [ i ] );
-
+	    /*
             for ( int k = player.gridRange ; k >= (-1 * player.gridRange) ; k-- ) {
                 if ( p.containsInt ( yArray, k ) ) {
                     int index = p.findInt ( yArray ,k );
@@ -81,7 +82,12 @@ public class Driver {
                     }
                 }
                 map = map + "\n";
-            }
+		}*/
+
+	    for ( int k = player.gridRange ; k >= ( -1 * player.gridRange ) ; k-- ) {
+		map = map + p.mapRow ( xArray , yArray , k , player.gridRange );
+	    }
+	    
             System.out.println ( "Your coordinates: " + player.xcor + ", " + player.ycor );
             int row = player.gridRange - player.ycor;
             int column = player.gridRange + 1 + player.xcor;

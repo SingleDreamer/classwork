@@ -73,7 +73,6 @@ public class Character {
             }
             else {
                 System.out.println("That is not a valid key.\n");
-                //doesn't work b/c goes straight to the encounter
             }
         }
         System.out.println("----------------------");
@@ -110,7 +109,7 @@ public class Character {
     /* You have to provide other needed get/set methods */
 
     public void delay (int x) {
-            try {
+	try {
             Thread.sleep(x);
         }
         catch(Exception e){
@@ -206,7 +205,7 @@ public class Character {
             }
         }
         if (((answer != 1) && (answer != 2)) && (answer != 3)) {
-                say ("that is not a valid input, please choose one of the given responses");
+                say ("That is not a valid input! Please choose one of the given responses.");
                 delay (2000);
                 this.talk(other); 
         }
@@ -222,12 +221,11 @@ public class Character {
     }
         
     public void takedamage(int k){
-                 if (health > k){
-                        health = health-k;
-                }
+	if (health > k)
+	    health = health-k;
         else 
-                        health = 0;
-                        }
+	    health = 0;
+    }                   
                         
     public void say(String s){
         System.out.println(s);
@@ -242,72 +240,69 @@ public class Character {
         say( name + " has died");
     }
 
-        
-        public int attack (Character other){
-                while (this.health>0 && other.health>0){
-                    if (roll()<=this.dexterity){
-                                other.takedamage(this.strength);
-                                say (other + " has lost " + strength + " health points and has " + other.getHealth() + " health points left. ");
-                                try{
-                                        Thread.sleep(2000);
-                                }
-                                catch (Exception e){
-                                        
-                                }
-                        }
+    //attack keeps going even after one character is dead; only stops when both have 0 health; also need to regenerate health       
+    public int attack (Character other){
+	while (this.health>0 && other.health>0){
+	    if (roll()<=this.dexterity){
+		other.takedamage(this.strength);
+		say (other + " has lost " + strength + " health points and has " + other.getHealth() + " health points left. ");
+		try{
+		    Thread.sleep(2000);
+		}
+		catch (Exception e){
+		}
+	    }
                         
-                    if (roll()>this.dexterity){
-                                say(this + "'s attack missed!");
-                                try{
-                                        Thread.sleep(2000);
-                                }
-                                catch (Exception e){
-                                        
-                                }
-                        }
-                        
-                        if (other.dexterity>=other.roll()){
-                                this.takedamage(other.strength);
-                                say (this + " has lost " + other.strength + " health points and has " + this.getHealth() + " health points left. ");
-                                try{
-                                        Thread.sleep(2000);
-                                }
-                                catch (Exception e){        
-                                }
-                        }
-                        
-                        if (other.dexterity > other.roll()){
-                                say(other + "'s attack missed!");
-                                try{
-                                        Thread.sleep(2000);
-                                }
-                                catch (Exception e){
-                                        
-                                }
-                        }
-                }
-                if (other.health<=0){
-                        other.die();
-                        System.out.println("Congratulations! You defeated you opponent");
-                        System.out.println("You earned 100 gold and "+ other.maxhealth + " experience points!");
-                        this.gold=gold + 100;
-                        this.experience=experience + other.maxhealth;
-                        
-                        try{
-                                Thread.sleep(2000);
-                        }
-                        catch(Exception e){
-                        }
-                        System.out.println("Another enemy approaches...");
-                        this.encounter(other);
-                        return 2;
-                }
-                else{
-                        this.die();
-                        System.out.println("GAME OVER");
-                        return 3;
-                }
-        }
+	    if (roll()>this.dexterity){
+		say(this + "'s attack missed!");
+		try{
+		    Thread.sleep(2000);
+		}
+		catch (Exception e){
+		}
+	    }
+	    if (other.dexterity>=other.roll()){
+		this.takedamage(other.strength);
+		say (this + " has lost " + other.strength + " health points and has " + this.getHealth() + " health points left. ");
+		try{
+		    Thread.sleep(2000);
+		}
+		catch (Exception e){
+
+		}
+	    }
+	    if (other.dexterity > other.roll()){
+		say(other + "'s attack missed!");
+		try{
+		    Thread.sleep(2000);
+		}
+		catch (Exception e) {
+
+		}
+	    }
+	}
+	if (other.health<=0){
+	    other.die();
+	    System.out.println("Congratulations! You defeated your opponent");
+	    System.out.println("You earned 100 gold and "+ other.maxhealth + " experience points!");
+	    this.gold=gold + 100;
+	    this.experience=experience + other.maxhealth;
+	    try{
+		Thread.sleep(2000);
+	    }
+	    catch (Exception e){
+
+	    }
+	    System.out.println("Another enemy approaches...");
+	    this.encounter(other);
+	    return 2;
+	}
+	else {
+	    this.die();
+	    System.out.println("GAME OVER");
+	    return 3;
+	}
+    }
         
         public boolean flee (Character other){
                 Random x = new Random();
@@ -323,15 +318,9 @@ public class Character {
                 return false;
         }
         
-        public int encounter(Character other){
-                Scanner sc = new Scanner (System.in);
-                say ("you have encountered " + other);
-                delay(2000);
-                say ("his status is: \n"+ other.getStatus2());
-                delay(2000);
-                say ("type 1 if you wish to talk");
-	}
-	
+    //attack is defined twice and I'm pretty sure it's the same both times but just in case it isn't I'm commenting this out
+
+    /*	
 	public int attack (Character other){
 		while (this.health>0 && other.health>0){
 		    if (roll()<=this.dexterity){
@@ -411,7 +400,8 @@ public class Character {
 		System.out.println(this + " could not flee successfully and must fight!");
 		this.attack(other);
 		return false;
-	}
+	} 
+*/
 	
 	public int encounter(Character other){
 		Scanner sc = new Scanner (System.in);
