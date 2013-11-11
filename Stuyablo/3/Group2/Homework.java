@@ -4,7 +4,7 @@ import java.math.*;
 
 public class Homework extends Character {
 
-    private randGen = new Random();
+    private Random randGen = new Random();
 
     public void changeEP(int n) {
         ep = ep;
@@ -14,7 +14,7 @@ public class Homework extends Character {
         name = nm;
         dexterity = 8;
         strength = 4;
-        intellegence = 4;
+        intelligence = 4;
         level = lv;
         ep = 30 + 20*lv;
         for (int i = 3 + lv; i > 0; i--) {
@@ -25,7 +25,7 @@ public class Homework extends Character {
             else if (number == 1)
                 strength++;
             else
-                intellegence++;
+                intelligence++;
                 }
         hp = strength;
         mp = strength;                
@@ -76,7 +76,7 @@ public class Homework extends Character {
         }
         if (roll()) {
                 int amount = randGen.nextInt(3);
-                return other.changeStrength(amount);
+                other.changeStrength(amount);
                 System.out.println("Homework overwhelms " + other + ", lowering their Strength by " + amount + ".");
                 System.out.println(name + " deals " + strength/6 + " damage!");
                 return other.changeHP(strength / 6);

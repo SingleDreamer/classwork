@@ -13,11 +13,11 @@ public class Moran extends Character {
     }
 
     public void attack () {
-        int damage = (int) Math.sqrt(str / 1.75);
+        int damage = (int) Math.sqrt(str / 1.5);
         super.attack(damage);
     }
 
-    public void die(Character player) {
+    /*public void die(Character player) {
         int playerWeaponsL = player.weapons.length;
         int playerArmorsL = player.armors.length;
         if (loot) {
@@ -40,5 +40,5 @@ public class Moran extends Character {
         int expGain = r.nextInt(10) + 10;
         player.exp += expGain;
         System.out.println(String.format("%s has slain %s. %s has gained %d exp!", player, this, player, expGain));
-    }
+    }*/
 }

@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Wizard extends Character{
     protected int mana;
+    protected Random r = new Random();
 
     public Wizard(String Name) {
 	name = Name;
@@ -16,9 +17,11 @@ public class Wizard extends Character{
     }
 
     public void basic(Character other) {
+	System.out.println("-------------------------------");
 	if(hit()==true) {
-	    System.out.println("You hit the " + other + " for " + 2 + " damage!");
-	    other.takeDamage(2);
+	    int tempStrength = strength - r.nextInt(5);
+	    System.out.println("You hit the " + other + " for " + tempStrength + " damage!");
+	    other.takeDamage(tempStrength);
 	}
 	else {
 	    System.out.println("You swing at the " + other + " but miss!");
@@ -26,11 +29,13 @@ public class Wizard extends Character{
     }
     
     public void throwFireball(Character other) {
+	System.out.println("-------------------------------");
 	if(mana >= 2) {
 	    mana -= 2;
 	    if(hit()==true) {
-		System.out.println("You cast an orb of flame at the " + other + " for " + 6 + " damage!");
-		other.takeDamage(6);
+		int tempStrength = strength + r.nextInt(2);
+		System.out.println("You cast an orb of flame at the " + other + " for " + tempStrength + " damage!");
+		other.takeDamage(tempStrength);
 	    }
 	    else {
 		System.out.println("Your fireball sputters out before you can throw it.");
@@ -41,7 +46,8 @@ public class Wizard extends Character{
 	    System.out.println("You don't have enough mana");
     }
 
-    public void heal() {
+    public void wHeal() {
+	System.out.println("-------------------------------");
 	if(mana >= 1) {
 	    mana -= 1;
 	    if(hit()==true) {
@@ -58,7 +64,7 @@ public class Wizard extends Character{
     }
 
     public void attack(Character c) {
-	Scanner s = new Scanner(System.in);	
+	/*Scanner s = new Scanner(System.in);	
 	System.out.println("You can:\n  1:Whack it with your staff\n  2:Throw a fireball\n  3: Cast 'heal'\n  4:  Flee");
 	switch(s.nextInt()){
 			case 1:
@@ -74,6 +80,18 @@ public class Wizard extends Character{
 				
 			default:
 				System.out.println("Invalid command, try again");
-	}
+	*/
+	Scanner sc = new Scanner(System.in);  
+	System.out.println("\nYou can:\n  1: Whack it with your staff\n  2: Throw a fireball\n  3: Cast 'heal'");
+	String input = sc.nextLine();
+	if (input.equals("1"))
+	    basic(c);
+	else if (input.equals("2"))
+	    throwFireball(c);
+	else if (input.equals("3"))
+	    wHeal();
+	else
+	    System.out.println("Invalid command, try again");
+    
     }
 }

@@ -82,5 +82,61 @@ public class Warrior extends Character{
             System.out.println(this.name + "you, made a typo!");
         }
         return 5;
+		if (d<3) { 
+        	System.out.println(this.name + " whacked " + other.name +" with a hammer!");
+		return super.attack(other);
+		}
+		else { 
+		    System.out.println(this.name + " is too far away! You missed and " + this.name + " knows your fighting strategies");
+		    other.intelligence = other.intelligence + 2;
+		    other.dexterity = other.dexterity + 1;
+		    this.dexterity = this.dexterity - 1;
+		}
+	    }
+	}
+		     
+	//Swords at the ready!
+	else if (answer == 2){
+	    if (roll<this.dexterity) {
+		if (d<2) {
+		   System.out.println(other.name + " has been stabbed in the heart");
+		   other.health = other.health - 3;
+		}
+		else if (d<5) { 
+		    System.out.println(other.name + " has been stabbed in the arm");
+		    other.health = other.health - 2;
+		}
+		else {
+		    System.out.println(other.name + " has been slashed. He's angry and his adrenaline is pumping!");
+		    other.health = other.health - 2;
+		    other.strength = other.strength + 1;
+		}
+	    }
+	    else {
+	       System.out.println(this.name + "'s attack failed!");
+	    }
+	}
+
+	//*pew pew*
+	else if (answer == 3){
+	    if (roll<this.dexterity) {
+		if (d<3) { 
+		    System.out.println(this.name + " shot " + other.name + " with a bow and arrow!");
+		    this.dexterity = this.dexterity + 1;
+		    other.health = other.health - 1;
+		}
+		else {
+		    System.out.println(this.name + " missed!");
+		    this.dexterity = this.dexterity - 1;
+		}     
+	    }
+	    else { 
+		System.out.println(this.name + "'s attack failed!");
+	    }
+	}
+	else {
+	    System.out.println(this.name + "you, made a typo!");
+	}
+	return 5;
     }
 }

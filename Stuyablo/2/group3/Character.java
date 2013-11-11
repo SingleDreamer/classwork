@@ -20,6 +20,7 @@ public class Character {
 
     public Character(String n) {
         name = n;
+        charClass = "";
         str = dex = iq = health = 8;
         exp = 0;
         skills = 8;
@@ -37,13 +38,11 @@ public class Character {
 
         // Code used for balancing strength of player and nonplayers
         level = player.level;
-        skills += level * 2;
+        skills += (int) (level * 2);
         int strGain = r.nextInt(skills);
-        int dexGain = r.nextInt(skills - strGain);
-        int iqGain = skills - strGain - dexGain;
+        int dexGain = skills - strGain;
         str += strGain;
         dex += dexGain;
-        iq += iqGain;
 
         armors = new int[] {r.nextInt(3)};
         setEnemy(player);
@@ -86,20 +85,20 @@ public class Character {
             damage *= 3;
             damage -= currentEnemy.armors[currentArmor];
             currentEnemy.health -= damage;
-            System.out.println(String.format("%s successfully hit %s for %d damage!", this, currentEnemy, damage));
+            System.out.println(String.format("Massive Critical Hit! %s successfully hit %s for %d damage!", this, currentEnemy, damage));
         }
         else if (dice == 4) {
             damage *= 2;
             damage -= currentEnemy.armors[currentArmor];
             currentEnemy.health -= damage;
-            System.out.println(String.format("%s successfully hit %s for %d damage!", this, currentEnemy, damage));
+            System.out.println(String.format("Critical Hit! %s successfully hit %s for %d damage!", this, currentEnemy, damage));
         }
         else if (dice == 5) {
             damage -= currentEnemy.armors[currentArmor];
             currentEnemy.health -= damage;
             System.out.println(String.format("%s successfully hit %s for %d damage!", this, currentEnemy, damage));
         }
-        else if (dice == 18 && (getClass().toString().equals("Warrior") || getClass().toString().equals("Thief") || getClass().toString().equals("Wizard"))) {
+        else if (dice == 18 && (charClass.equals("Warrior") || charClass.equals("Rogue") || charClass.equals("Wizard")) && currentWeapon != 0) {
             int[] tempWeapons = new int[weapons.length - 1];
             int offset = 0;
             for (int i=0; i < tempWeapons.length; i++) {
@@ -127,7 +126,7 @@ public class Character {
 
     protected boolean flee() {
         double roll = Math.random();
-        if ((charClass == "Thief" && roll < .25) || (charClass == "Warrior" && roll < .1) || (charClass == "Wizard" && roll < .2)) {
+        if ((charClass == "Rogue" && roll < .35) || (charClass == "Warrior" && roll < .25) || (charClass == "Wizard" && roll < .3)) {
             currentEnemy = null;
             return true;
         }
@@ -155,7 +154,7 @@ public class Character {
             tempArmors[playerArmorsL] = r.nextInt((int) (player.level + 2));
             player.armors = tempArmors;
         }
-        player.currentEnemy = null;
+//        player.currentEnemy = null;
         int expGain = r.nextInt(10) + 10;
         player.exp += expGain;
         System.out.println(String.format("%s has slain %s. %s has gained %d exp!", player, this, player, expGain));

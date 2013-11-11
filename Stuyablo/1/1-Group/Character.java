@@ -241,6 +241,7 @@ public class Character {
     public void die(){
         say( name + " has died");
     }
+
         
         public int attack (Character other){
                 while (this.health>0 && other.health>0){
@@ -329,6 +330,95 @@ public class Character {
                 say ("his status is: \n"+ other.getStatus2());
                 delay(2000);
                 say ("type 1 if you wish to talk");
+
+	
+	public int attack (Character other){
+		while (this.health>0 && other.health>0){
+		    if (roll()<=this.dexterity){
+				other.takedamage(this.strength);
+				say (other + " has lost " + strength + " health points and has " + other.getHealth() + " health points left. ");
+				try{
+					Thread.sleep(2000);
+				}
+				catch (Exception e){
+					
+				}
+			}
+			
+		    if (roll()>this.dexterity){
+				say(this + "'s attack missed!");
+				try{
+					Thread.sleep(2000);
+				}
+				catch (Exception e){
+					
+				}
+			}
+			
+			if (other.dexterity>=other.roll()){
+				this.takedamage(other.strength);
+				say (this + " has lost " + other.strength + " health points and has " + this.getHealth() + " health points left. ");
+				try{
+					Thread.sleep(2000);
+				}
+				catch (Exception e){	
+				}
+			}
+			
+			if (other.dexterity > other.roll()){
+				say(other + "'s attack missed!");
+				try{
+					Thread.sleep(2000);
+				}
+				catch (Exception e){
+					
+				}
+			}
+		}
+		if (other.health<=0){
+			other.die();
+			System.out.println("Congratulations! You defeated you opponent");
+			System.out.println("You earned 100 gold and "+ other.maxhealth + " experience points!");
+			this.gold=gold + 100;
+			this.experience=experience + other.maxhealth;
+			
+			try{
+				Thread.sleep(2000);
+			}
+			catch(Exception e){
+			}
+			System.out.println("Another enemy approaches...");
+			this.encounter(other);
+			return 2;
+		}
+		else{
+			this.die();
+			System.out.println("GAME OVER");
+			return 3;
+		}
+	}
+	
+	public boolean flee (Character other){
+		Random x = new Random();
+		if (x.nextInt(intelligence) >= intelligence/2){
+			System.out.println(this + " has fled.");
+			delay(2000);
+			System.out.println("It's not over yet!");
+			this.encounter(other);
+			return true;
+		}
+		System.out.println(this + " could not flee successfully and must fight!");
+		this.attack(other);
+		return false;
+	}
+	
+	public int encounter(Character other){
+		Scanner sc = new Scanner (System.in);
+		say ("you have encountered " + other);
+		delay(2000);
+		say ("his status is: \n"+ other.getStatus2());
+		delay(2000);
+		say ("type 1 if you wish to talk");
         delay(2000);
         say("type 2 if you wish to attempt to flee");
         delay(2000);
