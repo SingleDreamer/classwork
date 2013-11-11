@@ -73,7 +73,6 @@ public class Character {
             }
             else {
                 System.out.println("That is not a valid key.\n");
-                //doesn't work b/c goes straight to the encounter
             }
         }
         System.out.println("----------------------");
@@ -110,7 +109,7 @@ public class Character {
     /* You have to provide other needed get/set methods */
 
     public void delay (int x) {
-            try {
+	try {
             Thread.sleep(x);
         }
         catch(Exception e){
@@ -206,7 +205,7 @@ public class Character {
             }
         }
         if (((answer != 1) && (answer != 2)) && (answer != 3)) {
-                say ("that is not a valid input, please choose one of the given responses");
+                say ("That is not a valid input! Please choose one of the given responses.");
                 delay (2000);
                 this.talk(other); 
         }
@@ -222,12 +221,11 @@ public class Character {
     }
         
     public void takedamage(int k){
-                 if (health > k){
-                        health = health-k;
-                }
+	if (health > k)
+	    health = health-k;
         else 
-                        health = 0;
-                        }
+	    health = 0;
+    }                   
                         
     public void say(String s){
         System.out.println(s);
@@ -242,7 +240,7 @@ public class Character {
         say( name + " has died");
     }
 
-       
+    //attack keeps going even after one character is dead; only stops when both have 0 health; also need to regenerate health       
     public int attack (Character other){
 	while (this.health>0 && other.health>0){
 	    if (roll()<=this.dexterity){
@@ -285,7 +283,7 @@ public class Character {
 	}
 	if (other.health<=0){
 	    other.die();
-	    System.out.println("Congratulations! You defeated you opponent");
+	    System.out.println("Congratulations! You defeated your opponent");
 	    System.out.println("You earned 100 gold and "+ other.maxhealth + " experience points!");
 	    this.gold=gold + 100;
 	    this.experience=experience + other.maxhealth;
@@ -299,7 +297,7 @@ public class Character {
 	    this.encounter(other);
 	    return 2;
 	}
-	else{
+	else {
 	    this.die();
 	    System.out.println("GAME OVER");
 	    return 3;
