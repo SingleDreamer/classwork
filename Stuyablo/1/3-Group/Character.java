@@ -45,7 +45,7 @@ public class Character {
     public void attack(Character other) {
 	int dmg = 0;
         if (this.dexterity > roll()){
-	    dmg = this.strength - other.def;
+	    dmg = this.strength;
 	    other.health=other.health - dmg;
 	    System.out.println(this.name + " has inflicted " + dmg+ " damage to" + other.name);
 	}
