@@ -1,55 +1,46 @@
 import java.util.*;
 import java.io.*;
 
-public class Gnome extends Character{
-
-    public Gnome(String name){
-	this.name = name;
-	health = 8;
-	dexterity = 12;
-	strength = 4;
+public class Gnome extends Character {
+  
+    public Gnome(String nameGno){
+	Random r = new Random();
+	int strengthAdd = r.nextInt(3);
+	int dexAdd = 4 - strengthAdd;
+	strength = 4 + strengthAdd;
+	dexterity = 4 + dexAdd;
+	maxhealth = strength;
+	health = maxhealth;
 	experience = 0;
-	
-	
+	name = nameGno;
+	level = 1;
+	expBase = 50;
     }
-    
-    public boolean flee(){
-        return super.flee();
-    }
-    
-    public int encounter(Character other){
-	if (other.flee() == true){
-	    experience = experience + 1;
-	    System.out.println(other.name + " has fled");
-	    return 0;
-	} 
 
-	if (this.flee() == true){
-	    System.out.println(this.name + " has fled");
-	    return 1;
-	} 
-
-	this.attack(other);
-	System.out.println("You have attacked " + other.name);
-
-	if (other.health> 0){
-	    other.attack(this);
-	    System.out.println("You have been attacked by " + other.name);
-	    if (this.health < 0){
-		System.out.println("You have died");
-		return 2;
+    public void attack(Character other) {
+	int dice = roll();
+	int attackDmg =(int) (strength / 3);
+	if (dexterity <= dice){
+	    try {
+		Thread.sleep(1500);
+	    } catch(InterruptedException ex) {
+		Thread.currentThread().interrupt();
 	    }
-	} else if (other.health < 0 && this.health < 0){
-	    System.out.println("You and your opponent have died");
-	    return 4;
-	} else {
-	    System.out.println(other.name + "has died");
-	    experience = experience + 2;
-	    return 3;
+	    System.out.println(name + " successfully slapped " + other + " with his beard!");
+	    if (attackDmg > other.health)
+		other.health = 0;
+	    else
+		other.health = other.health - attackDmg;
 	}
-	return 5;
+	else {
+	    try {
+		Thread.sleep(1500);
+	    } catch(InterruptedException ex) {
+		Thread.currentThread().interrupt();
+	    }
+	
+	    System.out.println(name + " failed to slap " + other);
+    	}
     }
-
+	   
 }
-
-//Written by Claire

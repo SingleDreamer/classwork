@@ -8,7 +8,7 @@ public class Player extends Character{
 	health = 8;
 	dexterity = 8;
 	strength = 8;
-	experience = 0	
+	experience = 0;	
     }
     
     public boolean flee(){
@@ -61,7 +61,7 @@ public class Player extends Character{
 
 }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //Written by Rebecca
-=======
->>>>>>> 7b32cf060ad09ac5aab6eef9c9a6f4add098b39d
+//=======
+//>>>>>>> 7b32cf060ad09ac5aab6eef9c9a6f4add098b39d
