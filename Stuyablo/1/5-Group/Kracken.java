@@ -16,10 +16,15 @@ public class Kracken extends NPC {
     }
 
     public void tentaSmack(playerCharacter other){
-	int x = 3 + rand.nextInt(6) + rand.nextInt(6) + rand.nextInt(6);
+	int x = rand.nextInt(str)/2 + rand.nextInt(str)/2;
 	x = x - other.def;
-	other.hp = other.hp -x;
-	System.out.print(name + "just used tentaSmack" + "\n" + other.name + "'s health is now " + other.hp + ".");
+	if (x > 0){
+	    other.hp = other.hp - x;
+	    System.out.print(name + "just used tentaSmack" + "\n");
+	}
+	else {
+	    System.out.print(name + "missed!\n");
+	}
     }
 
     public void glare (playerCharacter other) {

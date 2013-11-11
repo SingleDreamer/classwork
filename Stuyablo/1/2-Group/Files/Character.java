@@ -519,10 +519,12 @@ public class Character {
 	Character c;
 
 	double enemyType = Math.random();
-	if (enemyType < .5)
+	if (enemyType <= 1 && enemyType > .6)
 	    c = new Warrior("Enemy", counter);
-	else
+	else if (enemyType <= .6 && enemyType > .2)
 	    c = new Wizard("Enemy", counter);
+	else
+	    c = new Troll("The Troll",(int)(counter * 1.5));
 
 	if (experience >= 100) {
 	experience = experience - 100;

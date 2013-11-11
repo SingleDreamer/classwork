@@ -1,10 +1,11 @@
 public class Driver {
     public static void main(String[] args) {
-	Player c = new Player();
-	c.setClass();
-	System.out.print("\n" + c.getStatus());
-	c.setStat();
-        System.out.print("\n" + c.getStatus());
-	c.action();
+	Character c = new Character("Starter");
+        Character a;
+	a = c.setClass();
+	System.out.print("\n" + a.getStatus());
+	a.setStat();
+        System.out.print("\n" + a.getStatus());
+	a.action();
     }
 }

@@ -12,12 +12,10 @@ public class Ogre extends Character{
 	experience=50;
 	gold=100;
 	addpoints= 9;       
-	maxhealth=20;
 	addpoints=addpoints-(r.nextInt(addpoints));
 	dexterity=6+(r.nextInt(addpoints));
 	addpoints=addpoints-(r.nextInt(addpoints));
 	strength=14+(r.nextInt(addpoints));
-	health=strength;
 	addpoints=addpoints-(r.nextInt(addpoints));
 	intelligence=4+(r.nextInt(addpoints));
 	addpoints=addpoints-(r.nextInt(addpoints));
@@ -36,7 +34,8 @@ public class Ogre extends Character{
           
       	name="Ogre";
 	setCharClass("NPC");
-
+	health=strength;
+	maxhealth=strength;
 }
 
     public void die (Character other){
@@ -50,15 +49,24 @@ public class Ogre extends Character{
 	System.out.println("The " + name+ " tried attacking you!");
 	if (roll() == false){
 	    System.out.println("The " + name+" tried to attack you and failed!!!");
+	    System.out.println();
     }
 	else {
-	    System.out.println("The "+ name + "has hit you with a tree");
 	    int damage= (int)(strength/4 + (Math.random() * 3))-1;
+	    System.out.println("Attack succeeded.");
+	    if (other.health <= damage) {
+		other.health = 0;
+		this.experience += other.experience;
+		System.out.println(other + " defeated.  " + this + "'s experience increased by " + other.experience + " points.");
+		System.out.println();
+	    }
+	    else {
+	    System.out.println("The "+ name + " has hit you with a tree");
 	    other.health=other.health-damage;
+	    }
 	}
-
-    }}
-
+    }
+}
 
 
 

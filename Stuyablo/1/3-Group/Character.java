@@ -12,6 +12,7 @@ public class Character {
     protected String name;
     //constructors
     protected String charClass;
+    Random rand = new Random();
     
     public int getHealth() {
 	return health;
@@ -29,39 +30,94 @@ public class Character {
 	return experience;
     }
 
+    public int roll() {
+	int i =0 ;
+	int total = 0;
+	int a = 0;
+	while (i<3){
+	    a=rand.nextInt(6)+1;
+	    total=total + a;
+	    i++;
+	}
+	return total;
+    }
+
     public void attack(Character other) {
-	//nothing so far
+	int dmg = 0;
+        if (this.dexterity > roll()){
+	    dmg = this.strength - other.def;
+	    other.health=other.health - dmg;
+	    System.out.println(this.name + " has inflicted " + dmg+ " damage to" + other.name);
+	}
+	else {
+	    System.out.println(name + " missed.");
+    }
+    
+    
+    public void encounter(NPC other) {
+        Random r = new Random();
+	x = r.nextInt(8);
+	y = r.nextInt(8);
+	other.x = r.nextInt(8);
+	other.y = r.nextInt(8);
+	while ((other.x == x) && (other.y == y)){
+	    other.x = r.nextInt(8);
+	    other.y = r.nextInt(8);
+	}
+
+        while (health > 0 && other.health > 0){
+	    System.out.println("Your coordinates are x: " + this.x + " y: " + this.y);
+	    System.out.println("The enemy's coordinates are x: " + other.x + " y: " + other.y);
+	    if (dexterity >= other.dexterity) {
+		PCturn(other);
+		other.NPCturn(this);
+	    }
+	    else {
+		other.NPCturn(this);
+		PCturn(other);
+	    }
+	}	
+		    
     }
 
-    // returns true if you succesfully flee, false otherwise
-    /*
-      public boolean flee(Character other) {
-	return false;
+    public boolean adjacentCheck(Character other){
+	boolean o = false;
+	if (x == other.x && ((y + 1 == other.y) || (y - 1 == other.y)))
+	    o = true;
+	if (y == other.y && ((x + 1 == other.x) || (x - 1 == other.x)))
+	    o = true;
+	return o;
     }
-    */
+    
+    public void NPCturn(Character other){
+	int move = 2;
+	while (move > 0 && !adjacentCheck(other)){ // while there are still moves and pc isn't next to npc
+	    Random r = new Random();
+	    int z = r.nextInt(2);
+	    if (z == 0 && (x != other.x)){
+		if (other.x > x)
+		    x = x + 1;
+		else
+		    x = x - 1;
+	    }
+	    if (z == 1 && (y != other.y)){
+		if (other.y > y)
+		    y = y + 1;
+		else
+		    y = y - 1;
+	    }
+	}
 
-
-    /*
-      this routine will decide first ask if other tries to flee. If
-      so, and if it's succesful it should adjust experience and or
-      gold as needed and return a 0.
-
-      Then, it should decide if this character tries to flee. 
-      If so and it's succesful, return a 1;
-      
-      Otherwise, call attack on both sides:
-      this.attack(other);
-      if (other.health>0) 
-        other.attack(this);
-
-      and then return 2 if this is dead, 3 if other is dead, 4 if both dead, 5 if none dead.
-
-    */
-    public int encounter(Character other) {
-	return 0;
+	if (adjacentCheck(other)){
+		attack(other);
+	    }
     }
 
-
+    public void PCturn(Character other){
+	int move = 2;
+	
+	
+    }
 
     public String getStatus() {
 	String attrib1=String.format("Str: %d Dex: %d Int: %d",
@@ -73,7 +129,6 @@ public class Character {
 				   name,attrib1,attrib2,locale);
 	return whole;
     }
-
 
     public String toString() {
 	return name;

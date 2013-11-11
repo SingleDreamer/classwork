@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.*;
+
 public class NPC extends Character{
     
     public NPC(){
@@ -11,5 +14,7 @@ public class NPC extends Character{
 	health = 50 + ((strength - 8)*4);
     }
     
+   
+
 }
 

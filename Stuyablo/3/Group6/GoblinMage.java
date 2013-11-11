@@ -11,6 +11,7 @@ public class GoblinMage extends Character {
 	dexterity = 8 + rand1;
 	strength = 8 + leftover;
 	health = strength;
+	maxhealth = strength;
 	intelligence = 13;
 
 	experience = 50;
@@ -32,10 +33,19 @@ public class GoblinMage extends Character {
 	    //miss
 	    System.out.println("The " + name + " stuttered while casting its spell and accidentally summoned a bag of potato chips!");}
 	else {
+	    int damage= (int)(strength/4 + (Math.random() * 3))-1;
+	    System.out.println("Attack succeeded.");
+	    if (other.health <= damage) {
+		other.health = 0;
+		this.experience += other.experience;
+		System.out.println(other + " defeated.  " + this + "'s experience increased by " + other.experience + " points.");
+		System.out.println();
+	    }
+	    else {
 	    //hit
-	    System.out.println("The " + name + "showered you in fireballs!");
-	    int damage = (int)(this.intelligence/4 + (Math.random() * 3)) - 1;
+	    System.out.println("The " + name + " showered you in fireballs!");
 	    other.health = other.health - damage;
+	    }
 	}
     }
 }

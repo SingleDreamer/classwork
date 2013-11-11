@@ -1,30 +1,29 @@
 import java.util.*;
 
 public class Character {
-    private int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
-    protected int health, maxhealth, strength, intelligence, dexterity, experience, level, freezecount, opponentsDefeated;
+    static int waittime = 2000; // This is for Thread.sleep in ms - why did we even implement this? This is a bad idea =/
+    protected int health, maxhealth,intelligence, strength, dexterity, experience, level, opponentsDefeated, freezecount;
     protected String name, characterClass;
     public static Random random = new Random(); //it's not really necessary to make this random number generator private or protected nor to create an instance of the Random class for each character
-    
     // Constructors
     // This constructor is barebones and doesn't do jack. Someone just put it here to method overload the inherent version. I've one-lined it to clean it.
-    int freezecount = 0;
-
     public Character() {
-	
+	int freezecount = 0;
 	if (random.nextInt (3) < 2) {
 	    health = maxhealth = strength;strength = random.nextInt (10);
 	    intelligence = random.nextInt (10);
 	    dexterity = random.nextInt (10);
-	    experience = 0;level = 1;name = "ANGRY ENEMY";characterClass = "No class";}
-	else {health = maxhealth = strength;strength = random.nextInt (15);
+	    experience = 0;level = 1;name = "ANGRY ENEMY";characterClass = "No class";
+	} else {
+	    health = maxhealth = strength;strength = random.nextInt (15);
 	    intelligence = random.nextInt (15);
 	    dexterity = random.nextInt (15);
-	    experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";}
-	
+	    experience = 0;level = 1;name = "SUPER ANGRY ENEMY";characterClass = "No class";
+	}
     }
     // Important constructor - includes scanner functions to prompt for configuration
     public Character (String name, String characterClass) {
+	int freezecount = 0;
 	this.characterClass = characterClass;
 	System.out.println ("You are a " + getCharacterClass() + "\n");
 	this.name = name;
@@ -39,8 +38,7 @@ public class Character {
         System.out.println ("Strength will be your warrior's and theives attack stat, while Intelligence defines your Wizard's prowess in battle." + "\n");
 	delay();
 	System.out.println ("On the other hand, if you want to hit your opponent, then it might be worth investing in Dexterity." + "\n");
-	delay();
-        
+	delay();        
 	int n = 8;
 	String attributer = "";
 	boolean input2 = false;
@@ -50,44 +48,26 @@ public class Character {
 	    System.out.println ("Strength: " + strength);
 	    System.out.println ("Intelligence: " + intelligence);
 	    System.out.println ("Dexterity: " + dexterity);
-	    
 	    System.out.println ("Select an Attribute to raise (0 - Random, 1- Strength, 2 - Intelligence, 3 - Dexterity): ");
-	    
 	    while (!input2) {
 		attributer = (scanner2.nextLine()).trim();
 		if ((attributer.equals("0")) || (attributer.equals("1")) || (attributer.equals("2")) || (attributer.equals("3"))) {input2 = true;} //is there a more efficient method to do this line?
 	    }
-	    
-	    
 	    if (attributer.equals("0")) {
-		
 		strength = random.nextInt (9) + strength;
 		intelligence = random.nextInt (17 - strength) + intelligence;
 		dexterity = ( (24 - strength) - intelligence ) + dexterity;
 		n = 1; //You're subtracting 1 at the end so it will set n to 0.
-		
 	    }
-	    
-	    
-	    if (attributer.equals("1")) {
-		strength = strength + 1;
-	    }
-	    if (attributer.equals("2")) {
-		intelligence = intelligence + 1;
-	    }
-	    if (attributer.equals("3")) {
-		dexterity = dexterity + 1;
-	    }
-	    
+	    if (attributer.equals("1")) {strength = strength + 1;}
+	    if (attributer.equals("2")) {intelligence = intelligence + 1;}
+	    if (attributer.equals("3")) {dexterity = dexterity + 1;}
 	    n = n -1;
 	    attributer = "";
 	    input2 = false;
-	    
 	}
 	health=maxhealth=strength;
     }
-    
-    
     //write them all, just in case
     public int getHealth() {return health;}
     public int getMaxhealth() {return maxhealth;}
@@ -99,7 +79,6 @@ public class Character {
     public String getName() {return name;}
     public String getCharacterClass() {return characterClass;}
     public int getOpponentsDefeated() {return opponentsDefeated;}
-    
     public void setHealth(int health) {this.health = health;;}
     public void setMaxhealth(int maxhealth) {this.maxhealth = maxhealth;}
     public void setStrength(int attribute1) {this.strength = strength;}
@@ -115,12 +94,8 @@ public class Character {
 	return name + ", Level " + level + " " + characterClass + ", " + health + "/" + maxhealth + " HP, " + experience + " EXP, " + 
 	    "Strength: " + strength + ", Intelligence: " + intelligence + ", Dexterity: " + dexterity;
     }
-    
-    public static void delay() {
-	try {Thread.sleep (waittime);} catch (Exception e) {} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
-    }	
-
-    
+    public static void delay() {try {Thread.sleep (waittime);} catch (Exception e) {}} // Why are we using exceptions... We don't even extend them anywhere. In addition, we're only using them to catch any errors the try spits out...
+	
     /* public void attack(Character other) { //just basic attacking, implementing the basic physical attack that every class has, by default
 	//Assume attribute1 is vitality, attribute2 is strength, attribute3 is magic and attribute4 is attribute4
 	int damage = strength; //equation subject to change
@@ -131,13 +106,13 @@ public class Character {
     }
     */
 
-    public void attack(Character other, int damagesource){
+    public void attack(Character other){
 	int damage = 0;
 	int otherDamage = 0;
 	String firstHit = "";
 	// set the damage that is done by this character
 	if (getCharacterClass().equals("Wizard")){
-	    damage = damagesource;
+	    damage = intelligence - random.nextInt(10);
 	}
 	else if ((getCharacterClass().equals("Warrior")) || (getCharacterClass().equals("Thief"))){
 	    damage = strength - random.nextInt (10);
@@ -165,8 +140,6 @@ public class Character {
 	else if (other.getDexterity() > this.getDexterity()){
 	    firstHit = other.getName();
 	}
-	
-	    
 	while (this.getHealth() > 0 && other.getHealth() > 0){ //the hits and battle continue until one character's health reaches zero
 	    if (firstHit.equals(this.getName())){ // if this character has the higher dexterity he hits first
 		int one = random.nextInt(6) + 1; //this represents the number of the first dice that is rolled by this character
@@ -218,7 +191,6 @@ public class Character {
 		    System.out.println(this.getName() + "missed the hit");
 		}
 	    }
-
 	    //Ben's idea
 	    //after every hit we show the stats for both Character's even though the only one as of now that is changing every so often if health
 	    System.out.println(this.getName());
@@ -227,7 +199,6 @@ public class Character {
 	    System.out.println("Intelligence: " + this.getIntelligence());
 	    System.out.println("Dexterity: " + this.getDexterity());
 	    System.out.println("Experience: " + this.getExperience());
-
 	    System.out.println(other.getName());
 	    System.out.println("Health: " + other.getHealth());
 	    System.out.println("Strength: " + other.getStrength());
@@ -236,12 +207,6 @@ public class Character {
 	    System.out.println("Experience: " + other.getExperience());
 	    if (this.freezecount > 0) {
 		freezecount = freezecount - 1;
-	    }
-	    if (this.boostcount == 0) {
-		if (this.characterClass.equals("Wizard")) {
-		    this.intelligence = this.intelligence * 0.4;
-		}
-		boostcount = -1;
 	    }
 	}
 	if (this.getHealth() == 0){
@@ -253,12 +218,10 @@ public class Character {
 	    this.setExperience(this.getExperience() + 50); 
 	}
     }
-
-    
     // I'm not sure how to code the leveling up based on the experience points
-    //Also the code rules mention that characters play with weapons and spells and those determine the damage. I wasn't sure how to deal with weapons and spells so for now I just dealth with strength, dexterity, and inteligence as mentioned above in the comments. 
-    //Also I did not know how to use distance for fighting battles because even if each character has a coordinate for x and a coordinate for y 
-    //well it makes sense they the x and y values have to have a certain distance between them for attack to work and we can easily add that
-    //I just don't know as the character progresses throughout the game how the x and y coordinates are suppose to adjust to his/her position   
-    
+    // Also the code rules mention that characters play with weapons and spells and those determine the damage.
+    // I wasn't sure how to deal with weapons and spells so for now I just dealth with strength, dexterity, and inteligence as mentioned above in the comments. 
+    // Also I did not know how to use distance for fighting battles because even if each character has a coordinate for x and a coordinate for y 
+    // well it makes sense they the x and y values have to have a certain distance between them for attack to work and we can easily add that
+    // I just don't know as the character progresses throughout the game how the x and y coordinates are suppose to adjust to his/her position       
 }
