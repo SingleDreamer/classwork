@@ -38,8 +38,6 @@ public class Warrior extends Character {
 	charClass = "PC";
     }
 
-    // add and edit encounter method so that the player has the option to try to flee or to attack (using Scanner)
-
     public void Startup(){
 	System.out.println("Created " + this + ".\nStatus:\n" + getStatus());
     }
@@ -102,13 +100,11 @@ public class Warrior extends Character {
 	    System.out.println("In that case, it looks likes you're going to attempt an attack.");
 	    this.attack(other);
 	}
-	/*
 	if (this.health == 0 && other.health == 0) {
 	    System.out.println(this + " and " + other + " died.");
 	    System.out.println();
 	    return 4;
 	}
-	*/
 	if (this.health == 0) {
 	    System.out.println(this + " died.");
 	    System.out.println();

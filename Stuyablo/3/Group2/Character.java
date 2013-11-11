@@ -3,7 +3,7 @@ import java.io.*;
 import java.math.*;
 
 public class Character {
-    protected int hp, mp, ep, level, dexterity, strength, intellegence;
+    protected int hp, mp, ep, level, dexterity, strength, intelligence;
     protected String name;
 
     public int getLevel() {
@@ -26,7 +26,7 @@ public class Character {
 	name = "Hans Gruber";
 	dexterity = 8;
 	strength = 8;
-	intellegence = 8;
+	intelligence = 8;
 	level = 1;
 	ep = 0;
 	for (int i = 8; i > 0; i--) {
@@ -37,7 +37,7 @@ public class Character {
 	    else if (number == 1)
 		strength++;
 	    else
-		intellegence++;
+		intelligence++;
 		}
 	hp = strength;
 	mp = strength;
@@ -47,7 +47,7 @@ public class Character {
 	name = nm;
 	dexterity = DX;
 	strength = ST;
-	intellegence = IQ;
+	intelligence = IQ;
 	level = 1;
 	ep = 0;
 	hp = strength;
@@ -59,7 +59,7 @@ public class Character {
 	name = nm;
 	dexterity = 8;
 	strength = 8;
-	intellegence = 8;
+	intelligence = 8;
 	level = 1;
 	ep = 0;
 	for (int i = 8; i > 0; i--) {
@@ -70,14 +70,14 @@ public class Character {
 	    else if (number == 1)
 		strength++;
 	    else
-		intellegence++;
+		intelligence++;
 		}
 	hp = strength;
 	mp = strength;		
     }
 
     public String getStats() {
-	return "\n" + name+"'s Stats:\nLevel:"+level+"\nHealth:"+hp+"\nMana:"+mp+"\nExperience:"+ep+"\nDexterity:"+dexterity+"\nStrength:"+strength+"\nIntellegence:"+intellegence+"\n";
+	return "\n" + name+"'s Stats:\nLevel:"+level+"\nHealth:"+hp+"\nMana:"+mp+"\nExperience:"+ep+"\nDexterity:"+dexterity+"\nStrength:"+strength+"\nIntellegence:"+intelligence+"\n";
     }
     public boolean roll(){
 	Random r1 = new Random();
@@ -152,7 +152,7 @@ public class Character {
     }
 
     public void levelup() {
-	int stats = dexterity + intellegence + strength;
+	int stats = dexterity + intelligence + strength;
 	boolean lv = false;
 	if (stats <=36 && ep >= 125) {
 	    ep -= 125;
@@ -178,7 +178,7 @@ public class Character {
 	    Scanner sc = new Scanner(System.in);
 	    level +=1;
 	    System.out.println("You have reached level " + level +". Congratulations!");
-	    System.out.println("Select a stat to increase: 1 for strength, 2 for dexterity, 3 for intellegence.");
+	    System.out.println("Select a stat to increase: 1 for strength, 2 for dexterity, 3 for intelligence.");
 	    int stat = sc.nextInt();
 	    if (stat == 1) {
 		strength += 1;
@@ -189,12 +189,17 @@ public class Character {
 		System.out.println("Added 1 point to dexterity.");
 	    }
 	    if (stat == 3) {
-		intellegence += 1;
-		System.out.println("Added 1 point to intellegence.");
+		intelligence += 1;
+		System.out.println("Added 1 point to intelligence.");
 	    }
 	    if (stat != 1 && stat !=2 && stat != 3) {
-		intellegence +=1;
-		System.out.println("You obviously need more intellegence. Added 1 to intellegence.");
+		intelligence +=1;
+		System.out.println("You obviously need more intelligence. Added 1 to intelligence.");
+	    }
+	    try {
+		Thread.sleep(1000);
+	    } catch(InterruptedException ex) {
+		Thread.currentThread().interrupt();
 	    }
 	    
 	}

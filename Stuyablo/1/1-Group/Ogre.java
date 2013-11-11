@@ -11,6 +11,7 @@ public class Ogre extends Character{
     
     public int attack (Character other){
         int roll = roll();
+	double xchange,ychange;
        	xchange = this.x-other.x;
 	ychange = this.y-other.y;
 	double d = Math.sqrt(xchange*xchange + ychange*ychange);

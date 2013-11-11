@@ -13,7 +13,7 @@ public class Theif extends Character{
 	int roll = roll();
 	double xchange = this.x - other.x;
 	double ychange = this.y - other.y;
-	double d = Math.sqrt(xchange*xchange + ychange*ychange)
+	double d = Math.sqrt(xchange*xchange + ychange*ychange);
         System.out.println("Choose your attack:");
         System.out.println("Press 1 to use your pistol");
         System.out.println("Press 2 to use your dagger");

@@ -25,9 +25,9 @@ public class Character {
 	return "Generic attack";
     }
 
-    public String toString () {
-	return name;
-    }
+    // public String toString () {
+    // 	return name;
+    // }
     
     public void subHealth (int x) {
 	hp = hp - x;

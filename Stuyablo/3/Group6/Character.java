@@ -8,8 +8,6 @@ public class Character {
     protected double x, y, distance;
     protected String name, charClass;
 
-    // remember to print out players' stats regularly during battle
-
     public Character() {
 	Random r = new Random();
 	int j = 8;
@@ -95,7 +93,7 @@ public class Character {
 
 
     public int encounter(Character other) {
-	if (0.8  < Math.random()) {
+	if (0.8  < Math.random()) { //20% chance the character will try to flee
 	    System.out.println(this + " tried to flee.");
 	    boolean fleesuccess = this.flee(other);
 	    if (fleesuccess == true) {
@@ -112,17 +110,12 @@ public class Character {
 	}
 	else {
 	    this.attack(other);
-	    //if (other.health > 0)
-	    //	other.attack(this);
 	}
-	/*
 	if (this.health == 0 && other.health == 0) {
 	    System.out.println(this + " and " + other + " died.");
 	    System.out.println();
 	    return 4;
 	}
-	*/
-	//else
 	if (this.health == 0) {
 	    System.out.println(this + " died.");
 	    System.out.println();
@@ -139,7 +132,6 @@ public class Character {
 	    return 5;
 	}
     }
-
 
 
     public String getStatus() {
