@@ -5,34 +5,6 @@ public class Warrior extends Character{
 	
     public Warrior(String name) {
 	this.name = name;
-	strength = 8;
-	dexterity = 8;
-	intelligence = 8;
-	experience = 0;
-	level = 1;
-	expBase = 50;
-	System.out.println();
-	System.out.println("Hello Warrior " + name + "!");
-	try {
-	    Thread.sleep(2000);
-	} catch(InterruptedException ex) {
-	    Thread.currentThread().interrupt();
-	}
-	System.out.println("You have 8 points to allot to either strength or dexterity. Please type and number between 0 and 8.");
-	System.out.println("This number will be added to your strength. This number subtracted from 8 will be added to dexterity.");
-	System.out.println();
-	Scanner in = new Scanner(System.in);
-	int addToStrength = in.nextInt();
-	while (addToStrength>8 || addToStrength<0) {
-	    System.out.println("Please enter a value between 0 and 8.");
-	    addToStrength = in.nextInt();
-	}
-	int addToDex = 8-addToStrength;
-	strength = strength + addToStrength;
-	dexterity = dexterity + addToDex;
-	maxhealth = strength;
-	health = maxhealth;
-	System.out.println();
     }
 
     public void attack(Character other) {
