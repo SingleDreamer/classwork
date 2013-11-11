@@ -8,6 +8,25 @@ public class Character {
     protected String name;
     protected String charClass;
 
+    public void CharacterS(){
+	Scanner s = new Scanner(System.in);
+	System.out.println("Hello. Please enter your name to go on this mystical adventure.");
+	name = s.nextLine();
+	System.out.print(name + ", do you prefer being a student or a warrior? Type '1' for student, '2' for warrior.");
+	System.out.println("\n");
+	int player = s.nextInt();
+	if (player == 1){
+	    Student student = new Student(name);
+	}
+	else if (player == 2){
+	    Warrior w = new Warrior(name);
+	}
+	else {
+	    System.out.println("Silly " + name + ", that's not a choice! NOW YOU HAVE TO START OVER >:(");
+	    CharacterS();
+ 	}
+    }
+
     public int getHealth() {
 	return health;
     }
@@ -79,35 +98,35 @@ public class Character {
     */
 
     //Encounter: if other decides to flee, this gets experience, and encounter ends... if this decides to flee, other gets experience and encounter ends... otherwise, fight fight fight!! -A
-    public int encounter(Character c, Character other) {
+    public int encounter(Character other) {
 	if (other.flee() == true){
-	    c.experience ++;
+	    this.experience ++;
 	    System.out.println(other + " has fled.");
 	    return 0;
 	}
-	if (c.flee() == true){
+	if (this.flee() == true){
 	    other.experience ++;
-	    System.out.println(c + " has fled.");
+	    System.out.println(name + " has fled.");
 	    return 1;
 	}
-	c.attack(other);
-	System.out.println(c + "'s current health:" + c.health);
+	this.attack(other);
+	System.out.println(name + "'s current health:" + this.health);
 	System.out.println(other + "'s current health:" + other.health);
 	System.out.println("~~~~~~~~~~~~~~");
 	if (other.health > 0){
-	    other.attack(c);
-	    System.out.println(c + "'s current health:" + c.health);
+	    other.attack(this);
+	    System.out.println(this + "'s current health:" + this.health);
 	    System.out.println(other + "'s current health:" + other.health);
 	    System.out.println("~~~~~~~~~~~~~~~~");
-	    if (c.health == 0) {
-		System.out.println(c + " dies");
+	    if (this.health == 0) {
+		System.out.println(name + " dies");
 		other.experience();
 		return 2;
 	    }
 	}
 	else {
 	    System.out.println(other + " dies");
-	    c.experience();
+	    this.experience();
 	    return 3;
 	}
 	return 5;
