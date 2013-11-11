@@ -21,9 +21,9 @@ public class Driver {
         String a=c.getCharClass();
         String b=c2.getCharClass();
 
-        if (a.equals("Warrior")){
-            c = new Warrior(name);
-        }
+	//        if (a.equals("Warrior")){
+	//  c = new Warrior(name);
+        //}
 /*
       	if (b.equals("Warrior")){
          	Warrior war2 = new Warrior(name);
