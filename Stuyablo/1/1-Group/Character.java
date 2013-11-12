@@ -8,11 +8,13 @@ public class Character {
     protected int experience;
     protected int gold;
     protected double x,y,distance;
+    protected boolean pc;
     protected String name;
     protected String charClass;
 
-    public Character(String n){
+    public Character(String n, boolean check){
         name = n;
+	pc = check;
     }
 
     public void setAttributes(){
@@ -75,6 +77,7 @@ public class Character {
                 System.out.println("That is not a valid key.\n");
             }
         }
+	
         System.out.println("----------------------");
 
     }
@@ -106,6 +109,9 @@ public class Character {
         return charClass;
     }
 
+    public boolean getPC(){
+	return pc;
+    }
     /* You have to provide other needed get/set methods */
 
     public void delay (int x) {
@@ -403,13 +409,13 @@ public class Character {
 	} 
 */
 	
-	public int encounter(Character other){
-		Scanner sc = new Scanner (System.in);
-		say ("you have encountered " + other);
-		delay(2000);
-		say ("his status is: \n"+ other.getStatus2());
-		delay(2000);
-		say ("type 1 if you wish to talk");
+    public int encounter(Character other){
+	Scanner sc = new Scanner (System.in);
+	say ("you have encountered " + other);
+	delay(2000);
+	say ("his status is: \n"+ other.getStatus2());
+	delay(2000);
+	say ("type 1 if you wish to talk");
         delay(2000);
         say("type 2 if you wish to attempt to flee");
         delay(2000);
@@ -417,38 +423,38 @@ public class Character {
         
         int answer = sc.nextInt();
                 
-                if (answer == 1){
-                        this.talk(other);
-                }
-                if (answer == 2){
-                        if (this.flee(other)){
-                                return 1;
-                        }
-                        else 
-                                return 3;
-                }
-                if (answer == 3){
-                        int i = attack(other);
-                        if (i == 0){
-                                return 1;
-                        }
-                        else if (i==1){
-                                return 0;
-                        }
-                        else if (i==2){
-                                return 2;
-                        }
-                        else 
-                                return 3;
-                }
-                if (answer!=1 && answer!=2 && answer!=3){
-                        say ("that is not a valid input. Please try again.");
-                        this.encounter(other);
-                }
-                return 5;
-        }
-
-        public String getStatus() {
+	if (answer == 1){
+	    this.talk(other);
+	}
+	if (answer == 2){
+	    if (this.flee(other)){
+		return 1;
+	    }
+	    else 
+		return 3;
+	}
+	if (answer == 3){
+	    int i = attack(other);
+	    if (i == 0){
+		return 1;
+	    }
+	    else if (i==1){
+		return 0;
+	    }
+	    else if (i==2){
+		return 2;
+	    }
+	    else 
+		return 3;
+	}
+	if (answer!=1 && answer!=2 && answer!=3){
+	    say ("that is not a valid input. Please try again.");
+	    this.encounter(other);
+	}
+	return 5;
+    }
+    
+    public String getStatus() {
         setAttributes();
         chooseClass();
         String attrib1=String.format("Str: %d Dex: %d Int: %d",
@@ -463,7 +469,8 @@ public class Character {
 
     public String getStatus2() {
         setAttributes();
-        randomClass();
+	// randomClass();
+	charClass="Wizard";
         String attrib1=String.format("Str: %d Dex: %d Int: %d",
                                      strength, dexterity, intelligence);
         String attrib2=String.format("Exp: %d Health: %d of %d",

@@ -10,20 +10,21 @@ public class Driver {
         System.out.println("Welcome "+name);
         System.out.println("-------------------------");
 
-        Character c = new Character(name);
-        Character c2 = new Character("Bob");
+        Character c = new Character(name, true);
+        Character c2 = new Character("Bob", false);
 
         System.out.println("Choose your character's class:\n");
         System.out.println(c.getStatus());
-
+	
         //don't know if this will work. Did'nt test yet:
         
         String a=c.getCharClass();
         String b=c2.getCharClass();
 
 	if (a.equals("Wizard")){
-	    c = new Wizard(name);
+	    c = new Wizard(name, true);
 	}
+	c2 = new Wizard("Bob", false);
 	//        if (a.equals("Warrior")){
 	//  c = new Warrior(name);
         //}
