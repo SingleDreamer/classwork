@@ -237,6 +237,10 @@ public class Character {
 		    System.out.println("Invaild Choice");
 		    System.out.println("YOU WILL BE STRUCK BY THUNDER FOR 5 HEALTH POINTS");
 		    this.health = this.health - 5;;
+		    if (this.health<0){
+			System.out.println("Killed by thunder. Good job.");
+			return 2;
+		    }
 		}
 		else {
 		    System.out.println("Killed by thunder. Good job.");
