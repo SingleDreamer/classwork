@@ -4,15 +4,11 @@ import java.util.*;
 public class Warrior extends playerCharacter{
     private Random rand = new Random();
 
-    public Warrior(String n){
-	name = n;
-    }	
-
-    public void turn (String a, Character other) {
-	a = a.toUpperCase();
+    public void turn (Scanner S, Character other) {
 	Random r = new Random();
 	boolean correct = false;
 	while (!correct){
+	    String a = S.next().toUpperCase();
 	    if (a.equals("FLEE")) {
 		if ((r.nextInt(6) + r.nextInt(6) + r.nextInt(6)) < dex-1) {
 		    System.out.println("You have fled from combat");
@@ -55,11 +51,11 @@ public class Warrior extends playerCharacter{
 	    }
 	}
     }
-    public void turn (String a, Kracken other) {
-	a = a.toUpperCase();
+    public void turn (Scanner S, Kracken other) {
 	Random r = new Random();
 	boolean correct = false;
 	while (!correct){
+	    String a = S.next().toUpperCase();
 	    if (a.equals("FLEE")) {
 		if ((r.nextInt(6) + r.nextInt(6) + r.nextInt(6)) < dex-1) {
 		    System.out.println("You have fled from combat");
@@ -110,7 +106,7 @@ public class Warrior extends playerCharacter{
 	    if (dam > 0){
 		c.hp = c.hp - dam;
 		System.out.println ("You did " + dam + " damage!");
-		    }
+	    }
 	    else {
 		System.out.println ("You did no damage");
 	    }
@@ -127,25 +123,37 @@ public class Warrior extends playerCharacter{
 	    System.out.println ("Critical hit! + 1 damage");
 	}
 	else {
-	    System.out.println ("You missed!");
+	    System.out.println ("You flung your sword so hard that it got stuck in the ground, what a dingus!");
 	}
     }
 
     public void tripleStrike (Character c){
-	int z = 3 + rand.nextInt(6) + rand.nextInt(6) + rand.nextInt(6);
+	int z = rand.nextInt(6) + rand.nextInt(6) + rand.nextInt(6);
 	if (z < dex) {
-	    c.subHealth(rand.nextInt(2));
-	    if (rand.nextInt(1) > 0){
+	    if (rand.nextInt(2) > 0){
 		System.out.println ("Hit!");
+		c.subHealth(rand.nextInt(2)+1);
 	    }
-	    c.subHealth(rand.nextInt(2));
-	    if (rand.nextInt(1) > 0){
+	    else {
+		System.out.println("Miss!");
+	    }
+	    if (rand.nextInt(2) > 0){
 		System.out.println ("Hit!");
+		c.subHealth(rand.nextInt(2)+1);
 	    }
-	    c.subHealth(rand.nextInt(2));
-	    if (rand.nextInt(1) > 0){
+	    else {
+		System.out.println("Miss!");
+	    }
+	    if (rand.nextInt(2) > 0){
 		System.out.println ("Hit!");
+		c.subHealth(rand.nextInt(2)+1);
 	    }
-	}   
-}
+	    else {
+		System.out.println("Miss!");
+	    }
+	}
+	else {
+	    System.out.println("You tripped and fell before your first strike, get more dexterity you lump!");
+	}
+    }
 }
