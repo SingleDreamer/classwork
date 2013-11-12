@@ -15,35 +15,40 @@ public class Driver {
 
         System.out.println("Choose your character's class:\n");
         System.out.println(c.getStatus());
-
-        //don't know if this will work. Did'nt test yet:
-        
+        System.out.println("you have encountered " + c2.getStatus2());
         String a=c.getCharClass();
         String b=c2.getCharClass();
 
-	//        if (a.equals("Warrior")){
-	//  c = new Warrior(name);
-        //}
-/*
+      if (a.equals("Warrior")){
+	 c = new  Warrior(name);
+       }
+
       	if (b.equals("Warrior")){
-         	Warrior war2 = new Warrior(name);
-         	c2=war2;
-}
+               c2= new Warrior(name);
+	}
 
         if (a.equals("Wizard")){
-            Wizard wiz = new Wizard(name);
-            c=wiz;
+           c = new Wizard(name);
         }
-		*/
-/*
+        
     	if (b.equals("Wizard")){
-    	    Wizard wiz2 = new Wizard(name);
-    	    c2=wiz2;
+    	   c2 =  new Wizard(name);
         }
- */      
-        //up to here
+          if (a.equals("Ogre")){
+	 c = new  Ogre(name);
+       }
 
-    
+      	if (b.equals("Ogre")){
+               c2= new Ogre(name);
+	}
+
+        if (a.equals("Thief")){
+           c = new Thief(name);
+        }
+        
+    	if (b.equals("Thief")){
+    	   c2 =  new Thief(name);
+        }
         c.encounter(c2);
     }
 }
