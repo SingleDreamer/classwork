@@ -24,9 +24,11 @@ public class Character {
 	System.out.println("Hello. Please enter your name to go on this mystical adventure.");
 	name = s.nextLine();
 	System.out.print(name + ", do you prefer being a student or a warrior? Type '1' for student, '2' for warrior.");
+	System.out.println();
 	int player = s.nextInt();
 	if (player == 1){
 	    Student student = new Student(name);
+	    System.out.println();
 	    System.out.println("Hello Student " + name + "!");
 	    System.out.println("You have 8 points to allot to either strength or dexterity. Please type and number between 0 and 8.");
 	    System.out.println("This number will be added to your strength. This number subtracted from 8 will be added to dexterity.");
@@ -41,6 +43,7 @@ public class Character {
 	}
 	else if (player == 2){
 	    Warrior w = new Warrior(name);
+	    System.out.println();
 	    System.out.println("Hello Warrior " + name + "!");
 	    System.out.println("You have 8 points to allot to either strength or dexterity. Please type and number between 0 and 8.");
 	    System.out.println("This number will be added to your strength. This number subtracted from 8 will be added to dexterity.");
