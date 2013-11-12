@@ -30,6 +30,10 @@ public class Character {
 	return experience;
     }
 
+    public void setHealth(int n) {
+	health = n;
+    }
+
     public int roll() {
 	int i =0 ;
 	int total = 0;

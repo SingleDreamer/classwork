@@ -27,13 +27,7 @@ public class Character {
     }
 
     public void playerInit() {
-<<<<<<< HEAD
-        xcor = 0;
-        ycor = 0;
-<<<<<<< HEAD
-=======
         xcor = ycor = 0;
->>>>>>> 690e4cab8290de0e34b147337d3c35ffea1c8673
         armors = new int[] {1}; // Has mama's rags
         level = 1;
     }
@@ -42,13 +36,6 @@ public class Character {
         xcor = (int) (Math.random() * gridRange * 2 - gridRange);
         ycor = (int) (Math.random() * gridRange * 2 - gridRange);
 
-<<<<<<< HEAD
-    public void npcInit(Character player) {
-        xcor = (int) (Math.random() * gridRange * 2 - gridRange);
-        ycor = (int) (Math.random() * gridRange * 2 - gridRange);
-        this.level = player.level;
->>>>>>> 908970635b48640840f1fa25b1d7bc4e4e544137
-=======
         // Code used for balancing strength of player and nonplayers
         level = player.level;
         skills += (int) (level * 2);
@@ -57,7 +44,6 @@ public class Character {
         str += strGain;
         dex += dexGain;
 
->>>>>>> 690e4cab8290de0e34b147337d3c35ffea1c8673
         armors = new int[] {r.nextInt(3)};
         setEnemy(player);
     }

@@ -40,7 +40,7 @@ public class containsI {
 	    a = newArray;
 	    k = k - 1;
 	}
-	System.out.println ( Arrays.toString ( a ) );
+	// System.out.println ( Arrays.toString ( a ) );
 	return findInt ( newArray , i ) + index + 1;
     }
 

@@ -8,11 +8,13 @@ public class Character {
     protected int experience;
     protected int gold;
     protected double x,y,distance;
+    protected boolean pc;
     protected String name;
     protected String charClass;
 
-    public Character(String n){
+    public Character(String n, boolean check){
         name = n;
+	pc = check;
     }
 
     public void setAttributes(){
@@ -75,6 +77,7 @@ public class Character {
                 System.out.println("That is not a valid key.\n");
             }
         }
+	
         System.out.println("----------------------");
 
     }
@@ -106,6 +109,9 @@ public class Character {
         return charClass;
     }
 
+    public boolean getPC(){
+	return pc;
+    }
     /* You have to provide other needed get/set methods */
 
     public void delay (int x) {
@@ -316,10 +322,106 @@ public class Character {
                 this.attack(other);
                 return false;
         }
+<<<<<<< HEAD
    
 	public int encounter(Character other){
 		Scanner sc = new Scanner (System.in);
 		say ("type 1 if you wish to talk");
+=======
+        
+    //attack is defined twice and I'm pretty sure it's the same both times but just in case it isn't I'm commenting this out
+
+    /*	
+	public int attack (Character other){
+		while (this.health>0 && other.health>0){
+		    if (roll()<=this.dexterity){
+				other.takedamage(this.strength);
+				say (other + " has lost " + strength + " health points and has " + other.getHealth() + " health points left. ");
+				try{
+					Thread.sleep(2000);
+				}
+				catch (Exception e){
+					
+				}
+			}
+			
+		    if (roll()>this.dexterity){
+				say(this + "'s attack missed!");
+				try{
+					Thread.sleep(2000);
+				}
+				catch (Exception e){
+					
+				}
+			}
+			
+			if (other.dexterity>=other.roll()){
+				this.takedamage(other.strength);
+				say (this + " has lost " + other.strength + " health points and has " + this.getHealth() + " health points left. ");
+				try{
+					Thread.sleep(2000);
+				}
+				catch (Exception e){	
+				}
+			}
+			
+			if (other.dexterity > other.roll()){
+				say(other + "'s attack missed!");
+				try{
+					Thread.sleep(2000);
+				}
+				catch (Exception e){
+					
+				}
+			}
+		}
+		if (other.health<=0){
+			other.die();
+			System.out.println("Congratulations! You defeated your opponent");
+			System.out.println("You earned 100 gold and "+ other.maxhealth + " experience points!");
+			this.gold=gold + 100;
+			this.experience=experience + other.maxhealth;
+			
+			try{
+				Thread.sleep(2000);
+			}
+			catch(Exception e){
+			}
+			System.out.println("Another enemy approaches...");
+			this.encounter(other);
+			return 2;
+		}
+		else{
+			this.die();
+			System.out.println("GAME OVER");
+			return 3;
+		}
+	}
+
+	
+	public boolean flee (Character other){
+		Random x = new Random();
+		if (x.nextInt(intelligence) >= intelligence/2){
+			System.out.println(this + " has fled.");
+			delay(2000);
+			System.out.println("It's not over yet!");
+			this.encounter(other);
+			return true;
+		}
+		System.out.println(this + " could not flee successfully and must fight!");
+		this.attack(other);
+		return false;
+	} 
+*/
+	
+    public int encounter(Character other){
+	Scanner sc = new Scanner (System.in);
+	say ("you have encountered " + other);
+	delay(2000);
+	say ("his status is: \n"+ other.getStatus2());
+	delay(2000);
+	say ("type 1 if you wish to talk");
+>>>>>>> 27a16f24c702cff3549407802563ccc8c7908710
         delay(2000);
         say("type 2 if you wish to attempt to flee");
         delay(2000);
@@ -327,6 +429,7 @@ public class Character {
         
         int answer = sc.nextInt();
                 
+<<<<<<< HEAD
                 if (answer == 1){
                         this.talk(other);
                 }
@@ -359,6 +462,40 @@ public class Character {
         }
 
         public String getStatus() {
+=======
+	if (answer == 1){
+	    this.talk(other);
+	}
+	if (answer == 2){
+	    if (this.flee(other)){
+		return 1;
+	    }
+	    else 
+		return 3;
+	}
+	if (answer == 3){
+	    int i = attack(other);
+	    if (i == 0){
+		return 1;
+	    }
+	    else if (i==1){
+		return 0;
+	    }
+	    else if (i==2){
+		return 2;
+	    }
+	    else 
+		return 3;
+	}
+	if (answer!=1 && answer!=2 && answer!=3){
+	    say ("that is not a valid input. Please try again.");
+	    this.encounter(other);
+	}
+	return 5;
+    }
+    
+    public String getStatus() {
+>>>>>>> 27a16f24c702cff3549407802563ccc8c7908710
         setAttributes();
         chooseClass();
         String attrib1=String.format("Str: %d Dex: %d Int: %d",
@@ -373,7 +510,8 @@ public class Character {
 
     public String getStatus2() {
         setAttributes();
-        randomClass();
+	// randomClass();
+	charClass="Wizard";
         String attrib1=String.format("Str: %d Dex: %d Int: %d",
                                      strength, dexterity, intelligence);
         String attrib2=String.format("Exp: %d Health: %d of %d",

@@ -52,6 +52,8 @@ public class NPC extends Character{
 		def = def + 1;
 	    }
 	}
+	maxhp = str;
+	hp = str;
     }
     public NPC (String Name){
 	this.name = name;
@@ -64,15 +66,15 @@ public class NPC extends Character{
     public void attack (playerCharacter other, String type){
 	int x = 0;
 	if (type.equals("magic")){
-	    x = intl - other.def;
+	    x = intl - 2 - other.def;
 	}
 	else if (type.equals("melee")){
-	    x = str - other.def;
+	    x = str - 2 - other.def;
 	}
-	if (x < 0){
-	    x = 0;
+	if (x <= 1){
+	    x = 1;
 	}
 	other.hp = other.hp - x;
-	System.out.print(name + " attacked!\nDid " + x + " damage!");
+	System.out.print(name + " attacked!\n");
     }
 }
