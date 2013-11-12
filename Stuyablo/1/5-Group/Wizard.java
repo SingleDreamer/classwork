@@ -4,6 +4,10 @@ import java.io.*;
 public class Wizard extends playerCharacter {
     private Random rand = new Random();
 
+    public Wizard(String n){
+	name = n;
+    }
+
     public void turn (String a, Character other) {
 	a = a.toUpperCase();
 	Random r = new Random();

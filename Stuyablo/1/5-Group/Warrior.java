@@ -4,6 +4,9 @@ import java.util.*;
 public class Warrior extends playerCharacter{
     private Random rand = new Random();
 
+    public Warrior(String n){
+	name = n;
+    }	
 
     public void turn (String a, Character other) {
 	a = a.toUpperCase();

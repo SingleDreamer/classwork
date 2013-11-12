@@ -97,11 +97,11 @@ public class Driver {
 	String a = s.next();
 	while (n>0){
 	    if (a.toUpperCase().equals("WARRIOR")) {
-		c = new Warrior();
+		c = new Warrior(c.name);
 		n = n-1;
 	    }
 	    else if (a.toUpperCase().equals("WIZARD")){
-		c = new Wizard();
+		c = new Wizard(c.name);
 		n = n-1;
 	    }
 	    else{
