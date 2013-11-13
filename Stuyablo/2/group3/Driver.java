@@ -5,7 +5,7 @@ public class Driver {
 
     public static void main (String[] args) {
 
-        Character[] npc;
+        Character[] npc = null;
         Random r = new Random();
         Scanner sc = new Scanner(System.in);
      
@@ -35,19 +35,21 @@ public class Driver {
                 System.out.println ("Misspelled character type");
         }
 
-        // DEV Mode
+        // GOD Mode
         if (args.length != 0) {
-            player.health = Integer.MAX_VALUE;
-            System.out.println("DEV MODE ENABLED: RUNNING GAME WITH LOTS OF LIFE");
+            player.health = player.str = player.dex = player.iq = Integer.MAX_VALUE / 2;
+            System.out.println("\nGOD MODE ENABLED: RUNNING GAME LIKE YOU'RE GOD");
         }
-
-        npc = new Character[r.nextInt(26) + 15];
-        for (int i=1; i<npc.length; i++) {
-            npc[i] = new Ogre("Ogre " + i, player);
-        }
-        npc[0] = new Moran("BOSS MR.MORAN", player);
 
         while (player.health > 0) {
+
+            if (npc == null || npc.length <= 1) {
+                npc = new Character[r.nextInt(26) + 15];
+                for (int i=1; i<npc.length; i++) {
+                    npc[i] = new Ogre("Ogre " + i, player);
+                }
+                npc[0] = new Moran("BOSS: MR.MORAN", player);
+            }
 
             System.out.println(String.format("\nWhat would you line to do? (Attack nearest enemy(a), move(m), status(s), or distribue %d skills(d) ): ", player.skills));
             String choice = sc.nextLine();
@@ -60,9 +62,10 @@ public class Driver {
             }
             String map = new String();
             containsI p = new containsI();
+            //System.out.println( Arrays.toString ( xArray ) + "\n" + Arrays.toString ( yArray ) + "\n" + p.count ( yArray , 9 ) );
             for ( int i = 0 ; i < xArray.length ; i++ )
                 System.out.println ( npc[i] + ": " + xArray[i] + ", " + yArray [ i ] );
-
+	    /*
             for ( int k = player.gridRange ; k >= (-1 * player.gridRange) ; k-- ) {
                 if ( p.containsInt ( yArray, k ) ) {
                     int index = p.findInt ( yArray ,k );
@@ -81,6 +84,9 @@ public class Driver {
                     }
                 }
                 map = map + "\n";
+		}*/
+            for ( int k = player.gridRange ; k >= ( -1 * player.gridRange ) ; k-- ) {
+                map = map + p.mapRow ( xArray , yArray , k , player.gridRange );
             }
             System.out.println ( "Your coordinates: " + player.xcor + ", " + player.ycor );
             int row = player.gridRange - player.ycor;
@@ -124,18 +130,11 @@ public class Driver {
                         System.out.println ( "Misspelled direction" );
                     }
                 }
-                if (Math.random() < 1/3)
+                if (Math.random() < 1/4.)
                     player.health++;
             }
 
             else if (choice.equalsIgnoreCase("a")) {
-                if (npc.length <= 1) {
-                    npc = new Character[r.nextInt(6) + 5];
-                    for (int i=1; i<npc.length; i++) {
-                        npc[i] = new Ogre("Ogre " + i, player);
-                    }
-                    npc[0] = new Moran("BOSS: MR.MORAN", player);
-                }
                 if (player.encounter(npc)) {
                     int healthLeft = player.health;
                     boolean fleeSuccess = true;

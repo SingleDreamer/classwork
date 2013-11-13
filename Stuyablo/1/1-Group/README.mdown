@@ -13,10 +13,7 @@ ENCOUNTER:
 
 	I)Players will encounter NPCs who will be determined randomly. The player can flee, attack, or talk. 
 	  	- FLEE: If a player chooses to flee, his/her strength will slightly 
-	  decrease, and a new encounter will be generated. Distance will be 
-	  increased. When a certain amount of health has been dealt to the 
-	  player, he/she will automatically try to flee. Fleeing should be based
-	  on a player's intelligence. 
+	  decrease, and a new encounter will be generated. 
 	  
 	  	-ATTACK: Every character will have a basic attack method, as well as 
 	  some specific to its class. (Wizards cast spells, theives steal, 
@@ -36,9 +33,8 @@ COMBAT:
 	and the distance between the two characters. 
 	If the player uses a weapon, his/her dexterity will be subtracted by 1 when the dice are rolled. 
 
-THINGS TO ADD:
 	
-	EXPERIENCE/LEVELING UP:
+EXPERIENCE/LEVELING UP:
 
 	Players will earn 1 point of experience for every point of damage done to a foe, 
 	and 5 points for successfully killing his/her opponent. 
@@ -46,21 +42,8 @@ THINGS TO ADD:
 	(Ex. XP<100, skill point=20XP; XP<200, skill point=40XP, etc). 
 	Players will be able to choose what attribute to spend the skill point on. 
 
-	HEALING:
+HEALING:
 
 	To make things simple, a player will regenerate to his/her full health after he/she has 
 	successfully defeated the opponent. 
 
-	
-THINGS THAT DO NOT WORK:
-
-	OGRE, THIEF, WIZARD SUBCLASS
-
-	WIZARD SUBCLASS
-	
-	The attack method gives an error after making a choice
-	
-		The error is:
-			"Exception in thread "main" java.lang.IllegalArgumentException: n must be positive"
-			
-	

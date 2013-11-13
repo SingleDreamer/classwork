@@ -1,9 +1,9 @@
 import java.io.*;
 import java.util.*;
 
-public class Theif extends Character{
+public class Thief extends Character{
     
-    public Theif(String name){
+    public Thief(String name){
         super(name);
     }
 

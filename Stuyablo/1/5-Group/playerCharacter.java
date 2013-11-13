@@ -12,69 +12,40 @@ public class playerCharacter extends Character {
 	def = 8;
     }
  
-    public void turn (String a, Kracken other) {
-	/*
-	Scanner s = new Scanner(System.in);
-	Random r = new Random();
-	Warrior w = new Warrior();
-	Wizard wi = new Wizard();
-
-	if (a.equals("Flee")) {
-	    if ((r.nextInt(6) + r.nextInt(6) + r.nextInt(6)) > 12) {
-		System.out.println("You have fled from combat");
-	    }
-	}
-	else if (a.equals("Attack")) {
-	    if (role.equals("Warrior")) {
-	        
-	        System.out.println("1. Basic Attack ");
-		System.out.println("2. Triple Strike ");
-		System.out.println("3. Critical Hit ");
-	        System.out.println("What do you want to do? ");
-		int t = s.nextInt();
-		
-		if (t==1) {
-		    w.basicAttack(other);
-		}
-		else if (t==2) {
-		    w.tripleStrike(other);
-		}
-		else if (t==3) {
-		    w.critHit(other);
-		}
-		else {
-		    System.out.println("");
-		}
-	    }
-
-	    if (role.equals("Wizard")) {
-
-	        System.out.println("1. Basic Attack ");
-		System.out.println("2. Fireball ");
-		System.out.println("3. Lightning Strike ");
-	        System.out.println("What do you want to do? ");
-		int t = s.nextInt();
-		
-		if (t==1) {
-		    wi.basicAttack(other);
-		}
-		else if (t==2) {
-		    wi.Fireball(other);
-		}
-		else if (t==3) {
-		    wi.Lightning(other);
-		}
-		else {
-		    System.out.println("");
-		}
-
-	    }
-	}
-	else {
-	    System.out.print("");
-	}
-	*/
-	System.out.println("you don't understand inheritance");
+    public void turn (Scanner a, Kracken c) {
+    // 	a = a.toUpperCase();
+    // 	Random r = new Random();
+    // 	boolean correct = false;
+    // 	while (!correct){
+    // 	    if (a.equals("FLEE")) {
+    // 		if ((r.nextInt(6) + r.nextInt(6) + r.nextInt(6)) < dex-1) {
+    // 		    System.out.println("You have fled from combat");
+    // 		    x = x-1;
+    // 		}
+    // 		else {
+    // 		    System.out.println("You failed to flee");
+    // 		}
+    // 		correct = true;
+    // 	    }
+    // 	    else if (a.equals("ATTACK")) {
+    // 		int x = r.nextInt(6) + r.nextInt(6) + r.nextInt(6);
+    // 		int dam = str + 1 - c.def;
+    // 		if (x < dex) {
+    // 		    if (dam > 0){
+    // 			c.hp = c.hp - dam;
+    // 			System.out.println ("You did " + dam + " damage!");
+    // 		    }
+    // 		    else {
+    // 			System.out.println ("You did no damage");
+    // 		    }
+    // 		}
+    // 		else {
+    // 		    System.out.println("You missed!");
+    // 		}
+    // 		correct = true;
+    // 	    }
+    // 	}
+    // }
     }
 
     public String getStr() {
