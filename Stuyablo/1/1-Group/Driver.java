@@ -15,41 +15,19 @@ public class Driver {
 
         System.out.println("Choose your character's class:\n");
         System.out.println(c.getStatus());
-<<<<<<< HEAD
-        System.out.println("you have encountered " + c2.getStatus2());
+        System.out.println("you have encountered " + c2.getStatus2());    
         String a=c.getCharClass();
         String b=c2.getCharClass();
-
-      if (a.equals("Warrior")){
-	 c = new  Warrior(name);
-       }
-
-=======
-	
-        //don't know if this will work. Did'nt test yet:
-        
-        String a=c.getCharClass();
-        String b=c2.getCharClass();
-
-	if (a.equals("Wizard")){
-	    c = new Wizard(name, true);
-	}
-	c2 = new Wizard("Bob", false);
-	//        if (a.equals("Warrior")){
-	//  c = new Warrior(name);
-        //}
-/*
->>>>>>> 27a16f24c702cff3549407802563ccc8c7908710
       	if (b.equals("Warrior")){
                c2= new Warrior(name);
 	}
 
         if (a.equals("Wizard")){
-           c = new Wizard(name);
+	    c = new Wizard(name);
         }
         
     	if (b.equals("Wizard")){
-    	   c2 =  new Wizard(name);
+	    c2 =  new Wizard(name);
         }
           if (a.equals("Ogre")){
 	 c = new  Ogre(name);
