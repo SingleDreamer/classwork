@@ -34,7 +34,7 @@ public class Elf extends Character {
 	intelligence = 9;
 	level = 1;
 	ep = 0;
-	System.out.println("You have 8 points to add to the following stats: Strength, Dexterity, Intellegence");
+	System.out.println("You have 8 points to add to the following stats: Strength, Dexterity, Intelligence");
 	strength = strength + addStat("strength");
 	dexterity = dexterity + addStat("dexterity");
 	intelligence = intelligence + addStat("intelligence");
@@ -53,7 +53,7 @@ public class Elf extends Character {
 		Thread.currentThread().interrupt();
 	    }
 	    if (strength> 8){
-		System.out.println("Do you wan to upgrade your weapon? Enter 1 for yes, 2 for no");
+		System.out.println("Do you want to upgrade your weapon? Enter (1) for yes, (2) for no");
 		int choose = sc.nextInt();
 		if (choose==1){
 		    if (strength < 17){

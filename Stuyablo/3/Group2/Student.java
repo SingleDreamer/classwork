@@ -34,7 +34,7 @@ public class Student extends Character {
         intelligence = 8;
         level = 1;
         ep = 0;
-        System.out.println("You have 8 points to add to the following stats: Strength, Dexterity, Intellegence");
+        System.out.println("You have 8 points to add to the following stats: Strength, Dexterity, Intelligence");
         strength = strength + addStat("strength");
         dexterity = dexterity + addStat("dexterity");
         intelligence = intelligence + addStat("intelligence");

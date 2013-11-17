@@ -75,6 +75,10 @@ public class NPC extends Character{
 	    x = 1;
 	}
 	other.hp = other.hp - x;
+<<<<<<< HEAD
 	System.out.println (name +" did " + x + " damage!");
+=======
+	System.out.print(name + " attacked!\n");
+>>>>>>> a31b21e1cbf730244275ee7b4f67176aa95e73e1
     }
 }
