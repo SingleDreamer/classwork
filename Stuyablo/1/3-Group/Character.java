@@ -30,6 +30,10 @@ public class Character {
 	return experience;
     }
 
+    public void setHealth(int n) {
+	health = n;
+    }
+
     public int roll() {
 	int i =0 ;
 	int total = 0;
@@ -45,14 +49,14 @@ public class Character {
     public void attack(Character other) {
 	int dmg = 0;
         if (this.dexterity > roll()){
-	    dmg = this.strength - other.def;
+	    dmg = this.strength;
 	    other.health=other.health - dmg;
 	    System.out.println(this.name + " has inflicted " + dmg+ " damage to" + other.name);
 	}
 	else {
 	    System.out.println(name + " missed.");
-    }
-    
+	}
+    }    
     
     public void encounter(NPC other) {
         Random r = new Random();

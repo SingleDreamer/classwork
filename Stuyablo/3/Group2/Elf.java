@@ -31,13 +31,13 @@ public class Elf extends Character {
 	points = 8;
 	dexterity = 9;
 	strength = 8;
-	intellegence = 9;
+	intelligence = 9;
 	level = 1;
 	ep = 0;
-	System.out.println("You have 8 points to add to the following stats: Strength, Dexterity, Intellegence");
+	System.out.println("You have 8 points to add to the following stats: Strength, Dexterity, Intelligence");
 	strength = strength + addStat("strength");
 	dexterity = dexterity + addStat("dexterity");
-	intellegence = intellegence + addStat("intellegence");
+	intelligence = intelligence + addStat("intelligence");
 	hp = strength;
 	mp = strength;
     }
@@ -53,11 +53,16 @@ public class Elf extends Character {
 		Thread.currentThread().interrupt();
 	    }
 	    if (strength> 8){
-		System.out.println("Do you wan to upgrade your weapon? Enter 1 for yes, 2 for no");
+		System.out.println("Do you want to upgrade your weapon? Enter (1) for yes, (2) for no");
 		int choose = sc.nextInt();
 		if (choose==1){
-		    weapon = weapons[strength-7];
-		    System.out.println("You traded your basic dagger for the "+ weapon);
+		    if (strength < 17){
+			weapon = weapons[strength-9];
+		    }
+		    else {
+			weapon = "master sword";
+		    }
+		    System.out.println("You traded your old weapon for the "+ weapon);
 		}
 		else {
 		    System.out.println("Fine. Keep your lame " + weapon);
@@ -101,15 +106,15 @@ public class Elf extends Character {
 	    Thread.currentThread().interrupt();
 	}
 	if (roll()){
-	    if (weapon == weapons[0]|| weapon == weapons[1]){
+	    if (weapon.equals(weapons[0])|| weapon.equals(weapons[1])){
 		System.out.println(name + " deals " +strength/5 + " damage with the " + weapon);
 		return other.changeHP((strength)/5);
 	}
-	    if(weapon == weapons[2] || weapon == weapons[3]){
+	    if(weapon.equals( weapons[2]) || weapon.equals(weapons[3])){
 		System.out.println(name + " deals " + strength/4 + " damage with the " + weapon);
 		return other.changeHP(strength/4);
 	    }
-	    if (weapon == "basic dagger"){
+	    if (weapon.equals("basic dagger")){
 		System.out.println(name +" deals " + strength/6 + " damage with the rusty " + weapon);
 		return other.changeHP(strength/6);
 	    }

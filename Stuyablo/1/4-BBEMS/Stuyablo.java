@@ -3,12 +3,13 @@ import java.util.*;
 public class Stuyablo {
     public static void main(String[] args) {
 	printLogo(); // Prints Sean Yip's logo
-	System.out.print("Press Enter or enter any character(s) to begin: ");
+	System.out.print("Press Enter to begin: ");
 	Scanner scanner = (new Scanner(System.in)).useDelimiter(" ");
 	while (!(scanner.hasNext())) {} //waits for input	    
 	System.out.println("Press Ctrl + C to quit at any time.");
 	scanner = new Scanner(System.in); //intentional, to clear any input from the previous scanner instance
-	Character player = new Character ();
+	Character player = new Character (); //base player
+	Character opponent = new Character (); //base opponent
 	//Name
 	System.out.print("Enter name: ");
 	boolean input = false; //method to check input here is slightly different when actually looking for a specific input, rather than simply any input at all. Is there a more efficient method to do this?
@@ -17,7 +18,7 @@ public class Stuyablo {
 	    name = (scanner.nextLine()).trim();
 	    if (!(name.equals(""))) {input = true;}
 	}
-	System.out.println("" + name + "\n");
+	System.out.println(player.setBoldText + "Your name is " + name + "!" + "\n" + player.setPlainText); //Makes it bold
 	//Class
 	System.out.print("Select a class (0 - Random, 1 - Warrior, 2 - Wizard, 3 - Thief): ");
 	input = false;
@@ -41,33 +42,85 @@ public class Stuyablo {
 	    _class = "Thief";
 	    player = new Thief (name);
 	}
-	int z = random.nextInt (3);
-	while (!(player.getHealth()==0)) { 
-	    System.out.println(player);
+	
+	System.out.println(player);
+	player.delay ();
+
+	while (player.getHealth()>0) { 
+	    int z = random.nextInt (3);
+	    if (player.getExperience () % 100 == 0 && ! (player.getExperience() == 0) ) {
+
+		boolean input4 = false;
+		String attributer = "";
+		System.out.println ("\n" + "Congratulations " + player.getCharacterClass() + "." + " You have leveled up!");
+		player.delay ();
+		System.out.println ("You now have 1 Attribute Point to Spend on whatever you want!");
+		player.delay ();
+		System.out.println ("Current Stats:");
+		System.out.println ("Strength: " + player.getStrength ());
+		System.out.println ("Intelligence: " + player.getIntelligence ());
+		System.out.println ("Dexterity: " + player.getDexterity ());
+		System.out.println ("Select an Attribute to raise (0 - Random, 1 - Strength, 2 - Intelligence, 3 - Dexterity): ");
+
+		while (!input4) {
+
+		    attributer = scanner.nextLine().trim();
+		    	if ((attributer.equals("0")) || (attributer.equals("1")) || (attributer.equals("2")) || (attributer.equals("3"))) {input4 = true;} //is there a more efficient method to do this line?
+	    }
+
+	    if (attributer.equals("0")) {
+		if (random.nextInt (3) == 0) {player.strength = player.strength + 1; attributer = "Strength"; }
+		else {
+		    if (random.nextInt (2) == 1) {player.intelligence= player.intelligence + 1; attributer = "Intelligence"; }
+		    else {player.dexterity = player.dexterity + 1; attributer = "Dexterity"; }
+		}
+	    }
+	    
+	    
+	    if (attributer.equals("1")) {player.strength = player.strength + 1; attributer = "Strength";}
+	    if (attributer.equals("2")) {player.intelligence = player.intelligence + 1; attributer = "Intelligence";}
+	    if (attributer.equals("3")) {player.dexterity = player.dexterity + 1; attributer = "Dexterity";}
+	    
+	    System.out.println ("\n" + player.setBoldText + "You have raised your " + attributer + "!" + player.setPlainText);
+	    player.level = player.level + 1;
+	    }
+
+	    
+	    
+	    player.maxhealth = player.strength; //accounts for increases in strength;
+	    player.health = player.maxhealth;
+
+
 	    if (z== 0) {
-		Wizard opponent = new Wizard();
-		player.attack(opponent);
-		player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
+		 opponent = new Wizard();
+	        
 	    }
 	    
 	    if (z== 1) {
-		Warrior opponent = new Warrior();
-		player.attack(opponent);
-		player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
+		 opponent = new Warrior();
+        
 		
 	    }
 	    
 	    if (z == 2) {
-		Thief opponent = new Thief();
-		player.attack(opponent);
-		player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
+		 opponent = new Thief();
+	        
 		
 	    }
+
+	    	System.out.println ("\n" + player.setBoldText + "You have been challenged by " + opponent.getName() +  player.setPlainText );
+	player.delay();
+
+	System.out.println ("\n" + player);
+	System.out.println ("\n" + opponent);
+
+	    	player.attack(opponent);
+		player.setOpponentsDefeated(player.getOpponentsDefeated() + 1);
 	    
 	}
 	
-	System.out.println (player);
-	System.out.println ("You have killed" + player.getOpponentsDefeated() + "opponents!");
+	System.out.println ("\n" + player);
+	System.out.println ("\n" + "You have killed " + player.getOpponentsDefeated() + " opponents!");
 	
 	
 	System.out.println("\nProgram terminated.");

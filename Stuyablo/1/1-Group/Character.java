@@ -19,6 +19,7 @@ public class Character {
         int dex;
         int stren;
         int intell;
+	int gold = 100;
         Random r=new Random();
         try{
             dex=r.nextInt(8)+1;
@@ -35,7 +36,11 @@ public class Character {
         health=50;
         maxhealth=50;
         intelligence=intell+8;
+        x = r.nextInt(11);
+        y = r.nextInt(11);
     }
+    
+
 
     public void chooseClass(){
         Scanner sc=new Scanner(System.in);
@@ -43,12 +48,12 @@ public class Character {
         answerChoice=false;
         while (!answerChoice){
 
-	    System.out.println("Press 1 to be a WARRIOR");
-	    System.out.println("Press 2 to be a WIZARD");
-	    System.out.println("Press 3 to be an OGRE ");
-	    System.out.println("Press 4 to be a THIEF");
+            System.out.println("Press 1 to be a WARRIOR");
+            System.out.println("Press 2 to be a WIZARD");
+            System.out.println("Press 3 to be an OGRE ");
+            System.out.println("Press 4 to be a THIEF");
 
-	    int answer=sc.nextInt();
+            int answer=sc.nextInt();
 
 
             if (answer == 1){
@@ -69,7 +74,6 @@ public class Character {
             }
             else {
                 System.out.println("That is not a valid key.\n");
-                //doesn't work b/c goes straight to the encounter
             }
         }
         System.out.println("----------------------");
@@ -106,7 +110,7 @@ public class Character {
     /* You have to provide other needed get/set methods */
 
     public void delay (int x) {
-            try {
+	try {
             Thread.sleep(x);
         }
         catch(Exception e){
@@ -116,6 +120,7 @@ public class Character {
     public void intimidate(Character other){
         Random r = new Random();
         if (intelligence >= other.intelligence){
+	    say (this + " has intimidated " + other);
             int intdif = intelligence - other.intelligence;
             other.strength = other.strength - (r.nextInt(intdif) + 1);
             if (intdif >= 3)
@@ -123,6 +128,7 @@ public class Character {
         }
         else {
             int intdif = other.intelligence - intelligence;
+	     say (other + " has intimidated " + this);
             strength = strength - (r.nextInt(intdif) + 1);
             if (intdif >= 3)
                 health = health - 2;
@@ -130,12 +136,12 @@ public class Character {
     }
 
     public void talk(Character other){
-    	
-	Scanner sc = new Scanner(System.in);
-	Random y = new Random(); 
-	
-	say ("you have chosen to talk!");
-	delay (2000);
+            
+        Scanner sc = new Scanner(System.in);
+        Random y = new Random(); 
+        
+        say ("you have chosen to talk!");
+        delay (2000);
         say ("type the number corresponding to your choice");
         say ("--------------------------------------------------");
         delay (2000); 
@@ -155,17 +161,17 @@ public class Character {
 
             if (x) {
                 delay (1000); 
-		say ("Your enemy says:");
+                say ("Your enemy says:");
                 say ("Sure");
                 say ("you walk off into the sunset with your enemy");
             }        
             else {
                 delay (1000);
-		say ("Your enemy says:");
+                say ("Your enemy says:");
                 say ("no way you freak!");
                 intimidate(other);
                 dexterity = dexterity + (y.nextInt(3) - 2);
-		this.attack(other);
+                this.attack(other);
             }
 
         }
@@ -178,9 +184,9 @@ public class Character {
             }
             else {
                 delay (1000); 
-		dexterity = dexterity + (y.nextInt(5) - 2);
-		intimidate(other);
-		say ("Your enemy says:");
+                dexterity = dexterity + (y.nextInt(5) - 2);
+                intimidate(other);
+                say ("Your enemy says:");
                 say ("bullsh*t"); 
                 this.attack(other);
             }
@@ -196,15 +202,15 @@ public class Character {
                 delay (1000);
                 say ("Your enemy says:");
                 say ("are you serious?");
-		dexterity = dexterity + (y.nextInt(4) - 2);
-		intimidate(other);
+                dexterity = dexterity + (y.nextInt(4) - 2);
+                intimidate(other);
                 this.attack(other);
             }
         }
         if (((answer != 1) && (answer != 2)) && (answer != 3)) {
-        	say ("that is not a valid input, please choose one of the given responses");
-        	delay (2000);
-        	this.talk(other); 
+                say ("That is not a valid input! Please choose one of the given responses.");
+                delay (2000);
+                this.talk(other); 
         }
     }
 
@@ -216,15 +222,14 @@ public class Character {
         int dice3 =  x.nextInt(6) + 1;
         return dice1+dice2+dice3;
     }
-	
+        
     public void takedamage(int k){
-	 	if (health > k){
-			health = health-k;
-		}
+	if (health > k)
+	    health = health-k;
         else 
-			health = 0;
-			}
-			
+	    health = 0;
+    }                   
+                        
     public void say(String s){
         System.out.println(s);
     }
@@ -237,165 +242,107 @@ public class Character {
     public void die(){
         say( name + " has died");
     }
+
+    public int attack (Character other){
+	while (this.health>0 && other.health>0){
+	    if (roll()<=this.dexterity){
+		other.takedamage(this.strength);
+		say (this + " has hit " + other);
+		delay(2000);
+		say (other + " has lost " + strength + " health points and has " + other.getHealth() + " health points left. ");
+		delay(2000);
+	    }
+                        
+	    if (roll()>this.dexterity){
+		say(this + "'s attack missed!");
+		delay(2000);
+	    }
+	    if (other.dexterity>=other.roll()){
+		this.takedamage(other.strength);
+		say( other + " has hit " + this); 
+		say (this + " has lost " + other.strength + " health points and has " + this.getHealth() + " health points left. ");
+		delay(2000);
 	
-	public int attack (Character other){
-		int huh=0;
-		while (this.health>0 && other.health>0){
-		if (huh==0){
-			if (dexterity<=roll()){
-				other.takedamage(this.strength);
-				say (other + " has lost " + strength + " health points and has " + other.getHealth() + " health points left. ");
-				try{
-					Thread.sleep(2000);
-				}
-				catch (Exception e){
-					
-				}
-			}
-			
-			else{
-				say(this + "'s attack missed!");
-				try{
-					Thread.sleep(2000);
-				}
-				catch (Exception e){
-					
-				}
-			}
-			huh=1;
-			}
-			
-			if (huh==1){
-			if (other.dexterity<=other.roll()){
-				this.takedamage(other.strength);
-				say (this + " has lost " + other.strength + " health points and has " + this.getHealth() + " health points left. ");
-				try{
-					Thread.sleep(2000);
-				}
-				catch (Exception e){	
-				}
-			}
-			
-			else{
-				say(other + "'s attack missed!");
-				try{
-					Thread.sleep(2000);
-				}
-				catch (Exception e){
-					
-				}
-			}
-			huh=0;
-		}
+	    }
+	    if (other.dexterity > other.roll()){
+		say(other + "'s attack missed!");
+	        delay(2000);
+	    }
 	}
-		
-		if (other.health<=0){
-			other.die();
-			System.out.println("Congratulations! You defeated you opponent");
-			System.out.println("You earned 100 gold and "+ other.maxhealth + " experience points!");
-			this.gold=gold + 100;
-			this.experience=experience + other.maxhealth;
-			this.health=this.maxhealth;
-			
-			try{
-				Thread.sleep(2000);
-			}
-			catch(Exception e){
-			}
-			System.out.println("Another enemy approaches...");
-			this.encounter(other);
-			return 2;
-		}
-		else{
-			this.die();
-			System.out.println("GAME OVER");
-			return 3;
-		}
+	if (other.health<=0){
+	    other.die();
+	    System.out.println("Congratulations! You defeated your opponent");
+	    System.out.println("You earned 100 gold and "+ other.maxhealth + " experience points!");
+	    this.takegold(other);
+	    this.experience=experience + other.maxhealth;
+	    delay(2000);
+	    say("Another enemy approaches...");
+	    this.encounter(other);
+	    return 2;
 	}
-	
-	public boolean flee (Character other){
-		Random x = new Random();
-		if (x.nextInt(intelligence) >= intelligence/2){
-			System.out.println(this + " has fled.");
-			try{
-					Thread.sleep(2000);
-				}
-			catch (Exception e){
-					
-				}
-			System.out.println("It's not over yet!");
-			this.encounter(other);
-			return true;
-		}
-		System.out.println(this + " could not flee successfully and must fight!");
-		this.attack(other);
-		return false;
+	else {
+	    this.die();
+	    System.out.println("GAME OVER");
+	    return 3;
 	}
-	
+    }
+        
+        public boolean flee (Character other){
+                Random x = new Random();
+                if (x.nextInt(intelligence) >= intelligence/2){
+                        System.out.println(this + " has fled.");
+                        delay(2000);
+                        System.out.println("It's not over yet!");
+                        this.encounter(other);
+                        return true;
+                }
+                System.out.println("" + this + " could not flee successfully and must fight!");
+                this.attack(other);
+                return false;
+        }
+   
 	public int encounter(Character other){
 		Scanner sc = new Scanner (System.in);
-		say ("you have encountered " + other);
-		try{
-			Thread.sleep(2000);
-			}
-		catch (Exception e){	
-			}
-		say ("his status is "+ other.getStatus2());
-		try{
-			Thread.sleep(2000);
-			}
-		catch (Exception e){	
-			}
 		say ("type 1 if you wish to talk");
-        try {
-            Thread.sleep(2000);
-        }
-        catch(Exception e){
-        
-        } 
+        delay(2000);
         say("type 2 if you wish to attempt to flee");
-        try {
-            Thread.sleep(2000);
-        }
-        catch(Exception e){
-        
-        } 
+        delay(2000);
         say("type 3 if you wish to fight");
         
         int answer = sc.nextInt();
-		
-		if (answer == 1){
-			this.talk(other);
-		}
-		if (answer == 2){
-			if (this.flee(other)){
-				return 1;
-			}
-			else 
-				return 3;
-		}
-		if (answer == 3){
-			int i = attack(other);
-			if (i == 0){
-				return 1;
-			}
-			else if (i==1){
-				return 0;
-			}
-			else if (i==2){
-				return 2;
-			}
-			else 
-				return 3;
-		}
-		if (answer!=1 && answer!=2 && answer!=3){
-			say ("that is not a valid input. Please try again.");
-			this.encounter(other);
-		}
-		return 5;
-	}
+                
+                if (answer == 1){
+                        this.talk(other);
+                }
+                if (answer == 2){
+                        if (this.flee(other)){
+                                return 1;
+                        }
+                        else 
+                                return 3;
+                }
+                if (answer == 3){
+                        int i = this.attack(other);
+                        if (i == 0){
+                                return 1;
+                        }
+                        else if (i==1){
+                                return 0;
+                        }
+                        else if (i==2){
+                                return 2;
+                        }
+                        else 
+                                return 3;
+                }
+                if (answer!=1 && answer!=2 && answer!=3){
+                        say ("that is not a valid input. Please try again.");
+                        this.encounter(other);
+                }
+                return 5;
+        }
 
-	public String getStatus() {
+        public String getStatus() {
         setAttributes();
         chooseClass();
         String attrib1=String.format("Str: %d Dex: %d Int: %d",
@@ -425,4 +372,4 @@ public class Character {
     public String toString() {
         return name;
     }
-}	
+}        

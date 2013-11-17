@@ -10,55 +10,40 @@ public class Driver {
         System.out.println("Welcome "+name);
         System.out.println("-------------------------");
 
-        Character c = new Character(name);
-        Character c2 = new Character("Bob");
+        Character c = new Character(name, true);
+        Character c2 = new Character("Bob", false);
 
         System.out.println("Choose your character's class:\n");
         System.out.println(c.getStatus());
-
-        //don't know if this will work. Did'nt test yet:
-        
+        System.out.println("you have encountered " + c2.getStatus2());    
         String a=c.getCharClass();
-       // String b=c2.getCharClass();
+        String b=c2.getCharClass();
+      	if (b.equals("Warrior")){
+               c2= new Warrior(name);
+	}
 
-        if (a.equals("Warrior")){
-            Warrior war = new Warrior(name);
-            c=war;
+        if (a.equals("Wizard")){
+	    c = new Wizard(name);
         }
-		
-     /* 	if (b.equals("Warrior")){
-         	Warrior war2 = new Warrior("Bob");
-         	c2=war2;
-
-          }
-		  */
-        else if (a.equals("Wizard")){
-            Wizard wiz = new Wizard(name);
-            c=wiz;
-        }
-		
-		/*
-
+        
     	if (b.equals("Wizard")){
-    	    Wizard wiz2 = new Wizard(name);
-    	    c2=wiz2;
+	    c2 =  new Wizard(name);
         }
-		
-		*/
-		
-		else if (a.equals("Theif")){
-			Theif th=new Theif(name);
-			c=th;
-		}
-		
-		else {
-			Ogre og=new Ogre(name);
-			c=og;
-		}
-       
-        //up to here
+          if (a.equals("Ogre")){
+	 c = new  Ogre(name);
+       }
 
-    
+      	if (b.equals("Ogre")){
+               c2= new Ogre(name);
+	}
+
+        if (a.equals("Thief")){
+           c = new Thief(name);
+        }
+        
+    	if (b.equals("Thief")){
+    	   c2 =  new Thief(name);
+        }
         c.encounter(c2);
     }
 }

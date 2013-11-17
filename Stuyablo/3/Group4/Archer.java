@@ -58,14 +58,15 @@ public class Archer extends Character {
 		if (i == 1) {
 			dexterity = dexterity + 1;
 			experienceneeded = experienceneeded + 5 * (level - 1);
-		}
-		if (i == 2) {
+		} else {
+		    if (i == 2) {
 			strength = strength + 1;
 			experienceneeded = experienceneeded + 5 * (level - 1);
-		}
-		else {
+		    }
+		    else {
 			intelligence = intelligence + 1;
 			experienceneeded = experienceneeded + 5 * (level - 1); /*Increases exp needed to level up by 5 per level, so its 10, 15, 25, 40, 60 Consider that you get 10 exp + enemies health per each kill.*/
+		    }
 		}
 		maxhealth = 8 * strength;
 		health = maxhealth; //health regeneration
@@ -107,8 +108,8 @@ public class Archer extends Character {
 		}
 		else {
 		if (dexterity >= roll) {
-			other.damage(dexterity);
-			System.out.println(name + " has dealt " + dexterity + " damage to its enemy!");
+			other.damage(dexterity-2);
+			System.out.println(name + " has dealt " + (dexterity-2) + " damage to its enemy!");
 			System.out.println("----------------------------------------------------------------");
 		}
 		else {

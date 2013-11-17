@@ -1,4 +1,4 @@
-mport java.util.*;
+import java.util.*;
 import java.io.*;
 import java.math.*;
 
@@ -31,13 +31,13 @@ public class Student extends Character {
         points = 8;
         dexterity = 8;
         strength = 8;
-        intellegence = 8;
+        intelligence = 8;
         level = 1;
         ep = 0;
-        System.out.println("You have 8 points to add to the following stats: Strength, Dexterity, Intellegence");
+        System.out.println("You have 8 points to add to the following stats: Strength, Dexterity, Intelligence");
         strength = strength + addStat("strength");
         dexterity = dexterity + addStat("dexterity");
-        intellegence = intellegence + addStat("intellegence");
+        intelligence = intelligence + addStat("intelligence");
         hp = strength;
         mp = strength;
         randGen = new Random();
@@ -49,7 +49,7 @@ public class Student extends Character {
             System.out.println("Attempt to heal self begins: 2 MP consumed.");
             System.out.println("You concentrate, exerting mental energy in addition to your mana as you struggle to recall Living Environment Regents material.");
             int attempt = randGen.nextInt(15);
-            if (attempt < intellegence) { // Chance of success increases with greater INT; an INT of 15 grants a 100% success rate
+            if (attempt < intelligence) { // Chance of success increases with greater INT; an INT of 15 grants a 100% success rate
                 System.out.println("Success!");
                 int amount = randGen.nextInt(5); // How much to heal for? 
                 hp = hp + amount;
@@ -79,7 +79,7 @@ public class Student extends Character {
             int response = sc.nextInt();
             if (response == 1) {
                 this.changeHP(2);
-                intellegence = intellegence + 4;
+                intelligence = intelligence + 4;
                 System.out.println("Your passion for studying consumes you.");
                 System.out.println("You lose 2HP.");
                 System.out.println("INT increased by 4.");
@@ -97,7 +97,7 @@ public class Student extends Character {
             return atk;
         }
         if (whatdo == 3) {
-            healing = heal();
+            boolean healing = heal();
             firstencounter = false;
             return true;
         }
@@ -125,7 +125,7 @@ public class Student extends Character {
         firstencounter = true;
         return false;
     }
-}
+
 
     public boolean attack(Character other) {
         try {
@@ -133,8 +133,9 @@ public class Student extends Character {
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        if (((strength/2) - (intellegence/4)) > 0) {
-            changeAmount = intellgence/4;
+        int changeAmount;
+        if (((strength/2) - (intelligence/4)) > 0) {
+            changeAmount = intelligence/4;
         } else {
             changeAmount = 0; // avoid subtracting negative number later
         }
@@ -149,3 +150,4 @@ public class Student extends Character {
             return true;
         }
     }
+}

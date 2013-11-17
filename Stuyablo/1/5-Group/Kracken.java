@@ -11,8 +11,8 @@ public class Kracken extends NPC {
     }
 
     public Kracken (String name, int lvl){
-	super(name, 0.5, 0.55, 0.6, 1.0);
-	this.intim = 8;
+	super(name, 0.4, 0.5, 0.6, 1.0);
+	this.intim = 12;
     }
 
     public void tentaSmack(playerCharacter other){
@@ -20,18 +20,21 @@ public class Kracken extends NPC {
 	x = x - other.def;
 	if (x > 0){
 	    other.hp = other.hp - x;
-	    System.out.print(name + "just used tentaSmack" + "\n");
+	    System.out.print(name + " used tentaSmack" + "\n");
 	}
 	else {
-	    System.out.print(name + "missed!\n");
+	    System.out.print(name + " missed!\n");
 	}
     }
 
     public void glare (playerCharacter other) {
 	int x = intim;
-	x = x - other.dex;
+	x = x - (other.str + other.intl + other.dex + other.def) / 4;
+	if (x <= 1){
+	    x = 1;
+	}
 	other.dex = other.dex - x;
-	System.out.print(name + "just used glare." +  other.name + "'s dex is now " + other.dex + ".");
+	System.out.print(name + " just used glare\n" +  other.name + "'s dex is now " + other.dex + "\n");
     }
 
     public void turn(playerCharacter other){

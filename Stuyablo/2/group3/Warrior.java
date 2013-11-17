@@ -2,15 +2,40 @@ import java.util.*;
 
 public class Warrior extends Character {
 
-    public Warrior (String n) {
+    Random r = new Random();
+
+    public Warrior(String n) {
         super(n);
-        super.playerInit();
-        super.charClass = "Warrior";
-        super.weapons[0] = 4; // Warrior can do 4 damage with hand
+        playerInit();
+        charClass = "Warrior";
+        weapons[0] = 4; // Warrior can do 4 damage with hand
     }
 
-    public void attack () {
+    public void attack() {
+        if (r.nextInt(6) != 5)
+            basicAttack();
+        else {
+            if (health > str / 3)
+                strongAttack();
+            else
+                berserkAttack();
+        }
+    }
+
+    public void basicAttack() {
         int damage = (int) Math.sqrt(str);
+        super.attack(damage);
+    }
+
+    public void strongAttack() {
+        int damage = (int) Math.sqrt(str * 1.5);
+        System.out.println(this + " used a strong attack on " + currentEnemy + "!");
+        super.attack(damage);
+    }
+
+    public void berserkAttack() {
+        int damage = (int) Math.sqrt(str * 2);
+        System.out.println(this + " goes berserk and hits " + currentEnemy + "!");
         super.attack(damage);
     }
 

@@ -30,9 +30,9 @@ public void level(int exp) {
 	experience = experience + exp;
 	if (experience > experienceneeded) {
 		level = level + 1;
-	
-	Scanner s = new Scanner(System.in);
-	int i = s.nextInt();
+		
+	Random r = new Random();
+	int i = r.nextInt(2); //ogre does not need intelligence (sorry)
 	if (i == 1) {
 		dexterity = dexterity + 1;
 		experienceneeded = experienceneeded + 5 * (level - 1);
@@ -137,4 +137,3 @@ int ystep = s.nextInt();
 		y = y + ystep;
 	}
 */
-

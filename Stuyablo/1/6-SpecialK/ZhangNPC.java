@@ -5,12 +5,16 @@ public class ZhangNPC extends Character {
     
     public ZhangNPC(){
 	Random n = new Random();
+	name = "Jie";
 	charType = "Zhang";
-	name = "Enemy";
-	strength = 11+n.nextInt(3);
-	dexterity = 8+n.nextInt(2);
-	defense = 13+n.nextInt(4);
+	strength = 9 + n.nextInt(5);
+	dexterity = 6+n.nextInt(5);
+	defense = 11+n.nextInt(5);
 	maxhealth = strength;
-	charm = 2;
+	health = 10 + n.nextInt(5);
+	charm = 0;
+	if (health>maxhealth){
+		this.setHealth(this.getMaxHealth());
+	}
     }
 }
