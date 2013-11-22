@@ -11,5 +11,10 @@ public class Driver{
 	A.remove(0);
 	long t = System.currentTimeMillis()-start;
 	System.out.println(t);
+	//end - remove and add - nothing ms
+	//start - remove and add - 22/23 ms
+	for (int i = 0; i < A.size(); i++){
+	    
+	}
     }
 }
