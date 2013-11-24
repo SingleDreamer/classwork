@@ -27,7 +27,7 @@ public class Driver {
 	Character c1 = new Teacher("Evil Bob", p1.getLevel());
 	Homework h1 = new Homework("English Teacher", p1.getLevel());
 	Encounter e = new Encounter();
-	System.out.println("How long do you want the game to be? 1: short 2:medium 3:long 4:never ending!");
+	System.out.println("How long do you want the game to be? (1) Short (2) Medium (3) Long (4) Never-ending");
 	int len = sc.nextInt();
 	if (len == 1) 
 	    len=5;
