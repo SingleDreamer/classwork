@@ -40,23 +40,23 @@ public class Character {
 	while (!a){
 	    String stat = S.next();
 	    String result;
-	    if (stat == "str") {
+	    if (stat.equals("str")) {
 		str = str + 1;
 		hp = hp + 1;
 		result  = "Leveled up str and hp. str and hp = " + str;
 		a = true;
 	    }
-	    else if (stat == "dex") {
+	    else if (stat.equals("dex")) {
 		dex = dex + 1;
 		result  = "Leveled up dex. dex= " + dex;
 		a = true;
 	    }
-	    else if (stat == "intl"){
+	    else if (stat.equals("intl")){
 		intl = intl+ 1;
 		result  = "Leveled up intl. intl = " + intl;
 		a = true;
 	    }
-	    else if (stat == "def") {
+	    else if (stat.equals("def")) {
 		def = def + 1;
 		result  = "Leveled up def. def = " + def;
 		a = true;

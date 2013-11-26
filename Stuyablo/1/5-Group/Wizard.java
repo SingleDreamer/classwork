@@ -103,6 +103,7 @@ public class Wizard extends playerCharacter {
 	if (x < dex) {
 	    if (dam > 0){
 		c.hp = c.hp - dam;
+		System.out.println ("You did " + dam + " damage!");
 	    }
 	    else {
 		System.out.println ("You did no damage");
@@ -121,7 +122,7 @@ public class Wizard extends playerCharacter {
 	    if (rand.nextInt(5)>0) {
 		x = (intl - (((c.def+1)/2) + rand.nextInt(c.def/2)));//intelligence minus a number from half the guy's defense to all of it
 		c.hp = c.hp - x;
-		System.out.println("Successful fireball!");
+		System.out.println("Successful fireball! " + x + " damage!");
 	    }
 	    else {
 		str = str - 1;
@@ -144,7 +145,8 @@ public class Wizard extends playerCharacter {
 	if (x <= dex && str > 0) {
 	    if (rand.nextInt(2)>0) {
 		x = (intl + (rand.nextInt(intl/2)) - (((c.def+1)/2) + rand.nextInt(c.def/2)));
-		System.out.println("SUCCESSFUL LIGHTNING STRIKE");
+		c.hp = c.hp - x;
+		System.out.println("SUCCESSFUL LIGHTNING STRIKE "+x+" damage!");
 	    }
 	    else {
 		str = str - 1;
