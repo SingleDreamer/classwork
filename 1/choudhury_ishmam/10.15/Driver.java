@@ -4,7 +4,7 @@ import java.util.*;
 public class Driver {
 		
 	public static void main (String[] args) {
-	
+		Reverse("hello");
 	/*
 	int i = 9;
 	for (int i = 0 ; i < 10 ; i++) {
@@ -26,13 +26,19 @@ public class Driver {
 	}
 	*/
 	
-	//printing a string backwards
+
 	
-	//given a string x = "hello" ; returns "olleh" then prints
+	// I have no clue why -- 
+	// I'm pretty sure that I'm doing this right, but 
+	// I'm getting no output, and tried changing things
 	
-	x = "hello";
 	
-	//for each character, append last charac to the end of the new string
-	// string = string + nextChar
+	//public String table (int n, int m) {
+	/*	
+		NO IDEA. I was thinking with a 
+	}
 	
 }
+
+
+
