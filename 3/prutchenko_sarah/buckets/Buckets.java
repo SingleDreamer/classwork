@@ -4,9 +4,9 @@ import java.io.*;
 public class Buckets{
 	ArrayList[] buckets= new ArrayList[10];
     Random r = new Random();
-    public void makeRandom(){
+    public Buckets(){
 	for (int i=0; i<10; i++){
-	    buckets[i].set(r.nextInt(10000));
+	    buckets[i] = r.nextInt(10000);
 	}
     }
 
