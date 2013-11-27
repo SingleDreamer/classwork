@@ -1,0 +1,22 @@
+public class Revfill{
+    public int[] Revfill(int n){
+	
+	int[] returnArray = new int[n];
+	
+	int indexNumber = n;
+	
+	for(int x = 0;
+	    x = 0;
+	    x--){
+	    
+	    returnArray[x] = indexNumber;
+	    indexNumber--;
+	    
+	}
+	
+	return returnArray;
+    }}
+	    
+	    
+	    
+	
