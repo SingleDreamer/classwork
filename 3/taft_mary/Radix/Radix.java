@@ -8,14 +8,14 @@ public class Radix {
     private int arrayLength, numDigits;
     private int currentDigit = 0;
 
-    public Radix(int l, int d) {
-	arrayLength = l;
-	numDigits = d;
-	IDs = new int[l];
+    public Radix(int l, int digits) {
+	numDigits = digits;
 	for(int i=0; i<buckets.length; i++)
 	    buckets[i] = new ArrayList<Integer>();
+	IDs = new int[l];
+	arrayLength = l;
 	Random r = new Random();
-	int power = (int)(Math.pow(10,d));
+	int power = (int)(Math.pow(10,digits));
 	for(int i=0; i<l; i++)
 	    IDs[i] = r.nextInt(power);
     }
@@ -26,17 +26,17 @@ public class Radix {
 		int sortDigit = (IDs[i]/(int)(Math.pow(10,currentDigit)))%10;
 		buckets[sortDigit].add(IDs[i]);
 	    }
-	    int index = 0;		
+	    int index = 0;
+	    //gahhhhhhhhAHH	    for(int k=0; k<IDs.length; k++)
+		
 	    for(int i=0; i<buckets.length; i++) {
 		for(int j=0; j<buckets[i].size(); j++) {
 		    IDs[index] = (Integer)(buckets[i].get(j));
 		    index++;
-		}
-		buckets[i].clear();
+			}
 	    }
 	    currentDigit++;
 	}
-	currentDigit = 0;
     }
 
     public String toString() {
