@@ -7,8 +7,7 @@ public class RadixSort{
 	
 	int ArrayListLength = 20;
 	ArrayList newArrayList = new ArrayList();
-	
-
+       
 	for (int RandomCounter = 0;
 	     ArrayListLength != RandomCounter;
 	     RandomCounter++){
@@ -22,26 +21,46 @@ public class RadixSort{
 	return newArrayList;
     }
     
-    public static ArrayList RadixSort(ArrayList sortMe){
-	
-	int sortMeIndex = 0;
+    public static ArrayList[] RadixSort(ArrayList sortMe){
+
 	ArrayList[] placeNumList = new ArrayList[10];
 	
+	//makes Array ArrayLists
+	
+	for (int modTimes = 0;
+	     modTimes != sortMe.size();
+	     modTimes++){
+	    
+	    int modNumber = 10; // modulo number
+	   
 	for (int runThrough = 0;
 	     runThrough > 11;
 	     runThrough++){
 	    
 	    placeNumList[runThrough] = new ArrayList();
 	}
-    
-	for (int placenumber = 10;
-	     placenumber != 10000;
-	     placenumber++){
+
+	for (int sizeCounter = sortMe.size();
+	     sizeCounter == 0;
+	     sizeCounter--){
 	    
-	    int sortMeUnit = sortMe.get(sortMeIndex);
-	    
+	    int workingNumber =(int)sortMe.get(sizeCounter);
+	    placeNumList[workingNumber % modNumber / 10].add(sortMe.get(sizeCounter));
+	}
+	
+	modNumber = modNumber *10;
 	    
 	}
+	
+	for (int printVar = 0;
+	     printVar ==  placeNumList.length;
+	     printVar++){
+	    
+	    System.out.println(placeNumList[printVar]);
+
+	}
+	
+	return placeNumList;
 	
     }
 	     
