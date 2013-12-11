@@ -348,7 +348,7 @@ public class WordSearch {
 	for (int j=0; j<board.length; j++){
 	    for (int i=0; i<board[j].length; i++){
 		if (board[j][i].equals("-")){
-		
+	       
 		}
 	    }
 	}
