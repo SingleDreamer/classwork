@@ -7,7 +7,7 @@ public class WordSearch {
     private Random rand;
     private ArrayList<String> wordList;
 
-    public ArrayList readWords(String filename) {
+    private void readWords(String filename) {
         wordList = new ArrayList<String>();
         try {
          Scanner sc = new Scanner(new File(filename));
@@ -21,9 +21,7 @@ public class WordSearch {
          System.out.println(e);
          System.exit(0);
         }
-	return wordList;
     }
-
 
     public WordSearch(int rows, int cols) {
         rand = new Random();
