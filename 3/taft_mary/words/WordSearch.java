@@ -1,141 +1,111 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class WordSearch {
+
     private char[][] board;
     private Random rand = new Random();
-    private int rows=20, cols=20;
+    private int rows, cols;
     private ArrayList<String> dictionary, wordsinpuzzle;
-    
+    private char defaultchar;
+
+    public WordSearch(int rows, int cols, char c) {
+	loadWords("wordlist");
+	this.rows = rows;
+	this.cols = cols;
+	board = new char[rows][cols];
+	defaultchar = c;
+	for (int i=0; i<rows; i++) {
+	    for (int j=0; j<cols; j++)
+		board[i][j] = defaultchar;
+	}
+    }
+
+    public WordSearch() {
+	this(15,15,'-');
+    }
+
     private void loadWords(String filename) {
 	dictionary = new ArrayList<String>();
-
 	try {
 	    Scanner sc = new Scanner(new File(filename));
-	    while (sc.hasNext()) {
-		String s = sc.next();
-		dictionary.add(s);
-	    }
+	    while (sc.hasNext())
+	        dictionary.add(sc.next());
 	} catch (FileNotFoundException e) {
-	    System.out.println("Can't open wordlist - exiting");
+	    System.out.println("File not found.");
 	    System.exit(0);
 	}
     }
 
-    public WordSearch(int rows, int cols) {
-	loadWords("wordlist");
-	board = new char[rows][cols];
-	for (int i=0;i<rows;i++) {
-	    for (int j=0;j<cols;j++) {
-		board[i][j]='-';
-	    }
-	}
-	this.rows = rows;
-	this.cols = cols;
-    }
-    
-    public WordSearch() {
-	this(20,20);
-	makeWordSearch();
-    }
-
     public boolean addWord(int row, int col, int deltaR, int deltaC, String word) {
-	int r,c;
-
-	if (deltaR<-1||deltaR>1||deltaC<-1||deltaC>1||
-	    (deltaR==0&&deltaC==0))
+	if(deltaR<-1||deltaR>1||deltaC<-1||deltaC>1||(deltaR==0&&deltaC==0))
 	    return false;
-
-	r = row;
-	c=col;
-	for (int i=0;i<word.length();i++) {
+	int r=row, c=col;
+	for (int i=0; i<word.length(); i++, r+=deltaR, c+=deltaC) { //check the word is good to go
 	    try {
-		if (board[r][c]!='-' && board[r][c]!=word.charAt(i))
+		if ((board[r][c]!=defaultchar)&&(board[r][c]!=word.charAt(i)))
 		    return false;
-
 	    } catch (ArrayIndexOutOfBoundsException e) {
-		System.out.println("Got ArrayIndex thing: "+e);
 		return false;
 	    }
-	    r = r + deltaR;
-	    c = c + deltaC;
 	}
-
 	r=row;
 	c=col;
-	for (int i=0;i<word.length();i++) {
-	    board[r][c]=word.charAt(i);
-	    r = r + deltaR;
-	    c = c + deltaC;
-	}
-
+	for (int i=0; i<word.length(); i++, r+=deltaR, c+=deltaC) //then put it in
+	    board[r][c] = word.charAt(i);
 	return true;
     }
 
-    public boolean addWordRand(String w) {
-	int r = rand.nextInt(board.length);
-	int c = rand.nextInt(board[0].length);
-	int deltaR = rand.nextInt(3)-1;
-	int deltaC = rand.nextInt(3)-1;
-	System.out.println(r+" "+c+" "+deltaR+" "+deltaC);
-	return addWord(r,c,deltaR,deltaC,w);
+    public boolean addWordRandomly(String word) {
+	int r = rand.nextInt(board.length),
+	    c = rand.nextInt(board[0].length),
+	    deltaR = rand.nextInt(3)-1,
+	    deltaC = rand.nextInt(3)-1;
+	return addWord(r,c,deltaR,deltaC,word);
     }
 
-    public void fillWords() {
-	ArrayList<String> wordstoattempt = null;
-	int reasonablenumberofwords = rows*cols/4;
+    public void fillWithWords() {
+	int reasonablenumberofwords = rows*cols/5;
+	wordsinpuzzle = new ArrayList<String>();
 	while(reasonablenumberofwords>0) {
 	    String s = dictionary.get(rand.nextInt(dictionary.size()));
-	    if (!wordstoattempt.contains(s))
-		wordstoattempt.add(s);
+	    while(wordsinpuzzle.contains(s))  //check for duplicates
+		s = dictionary.get(rand.nextInt(dictionary.size()));
+	    boolean b = false;
+	    int tryagain = 3; //try entering the word a few times before giving up
+	    while (!b && tryagain>0) {
+		b = addWordRandomly(s);
+		if(b) {
+		    wordsinpuzzle.add(s);
+		    tryagain = 3;
+		}
+		tryagain--;
+	    }	    
 	    reasonablenumberofwords--;
 	}
-	for(int i = wordstoattempt.size(); i>0; i--) {
-	    boolean previousattempt = true;
-	    int tryagain = 3;
-	    String s = wordstoattempt.get(i);
-	    while (!previousattempt && tryagain > 0) {//if adding the word failed and you have more tries...
-	        previousattempt = addWordRand(s);
-		if (previousattempt)
-		    wordsinpuzzle.add(s);
-		tryagain--;
-	    }
-        }
     }
 
     public void fillSpaces() {
 	for (int r=0;r<board.length;r++) {
 	    for (int c=0;c<board[0].length;c++) {
-		if (board[r][c]=='-') {
-		    board[r][c]=(char)('A'+rand.nextInt('Z'-'A'+1));
-		}
+		if (board[r][c]=='-')
+		    board[r][c]=(char)('a'+rand.nextInt('z'-'a'+1));
 	    }
 	}
-    }
-
-    public void makeWordSearch() {
-	fillWords();
-	fillSpaces();
-	System.out.println(toString());
-	System.out.println();
-	System.out.println("Find: ");
-	String s="";
-	for(int i=0;i<wordsinpuzzle.size();i++)
-	    s+=wordsinpuzzle.get(i)+"\n";
-	System.out.println(s);
     }
 
     public String toString() {
-	String s="";
-	
+	String s = "";
 	for (int i=0;i<board.length;i++) {
 	    for (int j=0;j<board[i].length;j++) {
-		s=s+board[i][j];
+		s+=board[i][j];
 	    }
-	    s=s+"\n";
+	    s+="\n";
 	}
+	s+="\n\nWords to find:\n";
+	for (int i=0;i<wordsinpuzzle.size();i++)
+	    s+=wordsinpuzzle.get(i)+"\n";
 	return s;
     }
 
-	
 }

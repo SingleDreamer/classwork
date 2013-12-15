@@ -12,12 +12,11 @@ public class Driver {
 	al.add("four");
 	al.add("five");
 	al.add("six");
-	System.out.println("ArrayList: (iterator): "+al);
+	System.out.println("ArrayList (Iterator): "+al);
 	Iterator<String> it = al.iterator();
-	while (it.hasNext()){
-	    s=it.next();
-	    System.out.println("ArrayList (iterator): "+s);
-	}
+	while (it.hasNext())
+	    System.out.println(it.next());
+
 	System.out.println();
 	
 	myList ml = new myList();
@@ -25,9 +24,10 @@ public class Driver {
 	ml.add(50);
 	ml.add(15);
 	ml.add(8);
-	System.out.println(ml);
+	System.out.println("myList (myListIterator): "+ml);
 	Iterator<Integer> mlit = ml.iterator();
-	// here we should be able to do the while , hasNext, next loop thing
+	while(mlit.hasNext())
+	    System.out.println(mlit.next());
 
 
 

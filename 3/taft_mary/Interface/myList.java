@@ -14,13 +14,15 @@ public class myList implements myMadeUpInterface, Iterable<Integer> {
 	}
 
 	public boolean hasNext() {
-	    return current < list.size()-1;
+	    return current <= list.size();
 	}
+
 	public Integer next() {
 	    int i = list.get(current);
 	    current++;
 	    return i;
 	}
+
 	public void remove() {
 	    list.remove(current);
 	}
@@ -99,7 +101,7 @@ public class myList implements myMadeUpInterface, Iterable<Integer> {
     }
 
     public String toString() {
-	String s = Arrays.toString(data)+" : "+numItems;
+	String s = Arrays.toString(data);
 	return s;
     }
 	
