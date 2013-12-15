@@ -1,28 +1,22 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class Driver{
+/*public class Driver {
+    public static void main(String[] args) {
+        wordSearch w = new wordSearch();
+        
+        System.out.println(w);
+       
+    }
+}*/
+
+public class Driver {
     public static void main(String[] args){
-	WordSearch w = new WordSearch();
+        wordSearch w = new wordSearch(15,40);
+        System.out.println(w);
+	w.fillBlanks();
+	System.out.println(w);
 
-	System.out.println(w);
-	w.addWordH(2,4,"THIS");
-	System.out.println(w);
-	w.addWordH(2,6,"THAT");
-	System.out.println(w);
-	w.addWordV(7,20,"FISH");
-	System.out.println(w);
-	w.addWordHOtherDir(17,9,"SCIENCE");
-	System.out.println(w);
-	w.addWordVOtherDir(4,2,"PANTS");
-	System.out.println(w);
-	w.addWordUpRight(15,5,"NOODLES");
-	System.out.println(w);
-	w.addWordDownLeft(14,4,"YUM");
-	System.out.println(w);
-        w.addWordDownRight(15,15,"SMELLS");
-	System.out.println(w);
-	w.addWordUpLeft(7,16,"TRUCKS");
-	System.out.println(w);
+
     }
 }
