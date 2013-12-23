@@ -1,0 +1,11 @@
+apple
+banana
+cat
+dog
+eggplant
+fish
+goat
+hat
+illness
+joke
+kimchi

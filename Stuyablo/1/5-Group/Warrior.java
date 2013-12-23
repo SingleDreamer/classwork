@@ -100,7 +100,7 @@ public class Warrior extends playerCharacter{
     }
 
     public void basicAttack (Character c){
-	int x = rand.nextInt(6) + rand.nextInt(6) + rand.nextInt(6);
+	int x = rand.nextInt(6) + rand.nextInt(6) + rand.nextInt(6) - 3;
 	int dam = str - c.def;
 	if (x < dex) {
 	    if (dam > 0){
