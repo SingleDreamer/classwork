@@ -5,11 +5,11 @@ public class Card{
     private int Suit;
     private int Number;
     private ArrayList<String> Suits = new ArrayList<String> ();
-    private ArrayList<String> Numbers = new ArrayList<String>();
+    private ArrayList<String> Numbers = new ArrayList<String>();    
 
-    public Card (int s, int n) {
-	Suit = s;
-	Number = n;
+    public Card (int n) {
+	Suit = n/13;
+	Number = n%13;
 	Numbers.add("Ace");
 	Numbers.add("Two");
 	Numbers.add("Three");
