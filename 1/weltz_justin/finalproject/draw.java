@@ -3,6 +3,7 @@ import java.awt.*;
 import java.util.*;
 import java.io.*;
 import java.awt.Color.*;
+import java.awt.Graphics2D.*;
 
 
 public class draw extends JPanel{
@@ -13,11 +14,14 @@ public class draw extends JPanel{
 	repaint();
     }
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g2){
 	for (int i = 0; i < 25; i++){
 	    s[i] = new Shape();
 	}
+	Graphics2D g = (Graphics2D)g2;
 	super.paintComponent(g);
+	BasicStroke stroke = new BasicStroke(6);
+	g.setStroke(stroke);
 	int x = 40;
 	int y = 40;
 	int z = 0;
@@ -27,16 +31,20 @@ public class draw extends JPanel{
 		central.x = x + 40;
 		central.y = y + 40;
 		g.setColor(Color.WHITE);
-		g.drawString((""+(z+1)),x,y-3);
+		g.drawString((""+(z+1)),x,y-6);
 		Color c = s[z].getColor();
+		Color ic = s[z].getInsideColor();
 		g.setColor(c);
 		int points = s[z].getPoints();
 		if (s[z].getFilled()){
 		    if (points == 7){
 		    g.drawOval(x,y,80,80);
+		    g.setColor(ic);
 		    g.fillOval(x,y,80,80);
 		    }    
 		    if (points == 4){
+			g.drawRect(x,y,80,80);
+			g.setColor(ic);
 			g.fillRect(x,y,80,80);
 		    }
 		    if (points == 3){
@@ -44,10 +52,10 @@ public class draw extends JPanel{
 			p.addPoint(x,y+80);
 			p.addPoint(x+40,y);
 			p.addPoint(x+80,y+80);
+			g.drawPolygon(p);
+			g.setColor(ic);
 			g.fillPolygon(p);
-		    }
-			    
-			    
+		    }	    
 		    if (points == 6){
 			Polygon hex = new Polygon();
 			g.setColor(c);
@@ -56,6 +64,7 @@ public class draw extends JPanel{
 					 (int) (y + (45 * Math.sin(m * 2 * Math.PI / 6)) + 40));
 			}
 			g.drawPolygon(hex);
+			g.setColor(ic);
 			g.fillPolygon(hex);
 			
 		    }
@@ -67,6 +76,8 @@ public class draw extends JPanel{
 			penta.addPoint(x+80,y+80);
 			penta.addPoint(x+80,y+40);
 			penta.addPoint(x+40,y);
+			g.drawPolygon(penta);
+			g.setColor(ic);
 			g.fillPolygon(penta);
 		    }
 		}
