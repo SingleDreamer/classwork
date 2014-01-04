@@ -11,7 +11,7 @@ public class Gui {
 	frame.setBackground(Color.RED.darker());
 	String[] questionShapeStrings = { "Shape","Is it a triangle?","Is it a square?","Is it a pentagpn?", "Is it a hexagon?", "Is it a cirlce?"};
 	String[] questionBorderColorStrings = { "Border Color", "Is the border blue?","Is the border green?", "Is the border black?", "Is the border cyan?", "Is the border purple?"};
-	String[] questionInteriorColorStrings = { "Interior Color", "Is the interior blue?","Is the interior green?", "Is the interior black?", "Is the interior cyan?", "Is the interior purple?"};
+	String[] questionInteriorColorStrings = { "Interior Color", "Is there an interior color?","Is the interior blue?","Is the interior green?", "Is the interior black?", "Is the interior cyan?", "Is the interior purple?"};
 	String[] questionPatternStrings = {"Patterns", "Are there dots in the shape?","Is the interior color the same as the border color?", "Is the border a series of dashes?","Is the interior striped?"};   
 	JComboBox questionShape = new JComboBox (questionShapeStrings);
 	JComboBox questionBorderColor = new JComboBox(questionBorderColorStrings);
