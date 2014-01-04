@@ -9,7 +9,7 @@ import java.awt.geom.*;
 
 public class draw extends JPanel{
     private Shape[] s = new Shape[30];
- 
+    private Random r = new Random();
     public void drawing(){
         setBackground(Color.darkGray);
 	setPreferredSize( new Dimension( 630, 800 ) );       
@@ -206,5 +206,8 @@ public class draw extends JPanel{
             x = 40;
             //got the code for the hexagon from Stack Overflow
         }
+    }
+    public Shape getRandomShape(){
+	return s[r.nextInt(30)];
     }
 }
