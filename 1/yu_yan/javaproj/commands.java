@@ -12,8 +12,9 @@ public class commands{
       go to (the) blank (probably door)
     */
     public int numWords = 0;
-    public ArrayList words, verbs;
+    public ArrayList thingUse, verbs, thingOpen, thingUsedOn, words;
     public String verb, prepo1, noun1, prepo2, noun2;
+    public String inMouth = "";
 
     public commands(String s){
 	Scanner sc = new Scanner(s);
@@ -28,6 +29,16 @@ public class commands{
 	verbs.add("look");
 	verbs.add("take");
 	verbs.add("go");
+	
+	thingOpen = new ArrayList();
+	thingOpen.add("box");
+	thingOpen.add("door");
+
+	thingUse = new ArrayList();
+	thingUse.add("hammer");
+
+	thingUsedOn = new ArrayList();
+	thingUsedOn.add("clock");
     }
     
     public boolean verbCheck(String s){
@@ -37,18 +48,50 @@ public class commands{
     public boolean nounCheck(String s, ArrayList i){
 	return i.contains(s);
     }
-    
-    
-    /*
+   
+    public boolean itemInMouth() { 
+	if (inMouth.equals("")) { 
+	    return false;
+	}
+	else {
+	    return true;
+	}
+    }
+   
     public boolean open(String n){
+	if (thingOpen.contains(n)) { 
+	    return true;
+	}
+	else { 
+	    return false;
+	}
     }
+   
+
     public boolean use(String n1, String n2){
+	if (thingUse.contains(n1) && thingUsedOn.contains(n2)) {
+	    return true;
+	}
+	else { 
+	    return false;
+	}
+	
     }
+    /*
     public boolean look(String n){
     }
-    public boolean pickUp(String n){
+    */
+
+    public boolean pickUp(String item){
+	if(itemInMouth()) { 
+	    return false;
+	}
+	else {
+	    inMouth = item;
+	    return true;
+	}
     }
-    public boolean go(String n){
+    /* public boolean go(String n){
     }
     */
 }
