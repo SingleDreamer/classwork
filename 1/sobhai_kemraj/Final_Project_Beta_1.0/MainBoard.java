@@ -10,7 +10,8 @@ public class MainBoard extends Board{
 	}
 	
 	public void move(char player, int row, int col){
-		this.board[row][col]=player;
+		if (this.board[row][col]=null)
+			this.board[row][col]=player;
 	} 
 	
 }	
