@@ -12,35 +12,36 @@ public class commands{
       go to (the) blank (probably door)
     */
     public int numWords = 0;
-    public ArrayList thingUse, verbs, thingOpen, thingUsedOn, words;
-    public String verb, prepo1, noun1, prepo2, noun2;
+    public ArrayList<String> words = new ArrayList<String>();
+    public String verb, noun1, prepo2, noun2;
     public String inMouth = "";
+    public ArrayList<String> thingToOpen = new ArrayList<String>();
+
+    public ArrayList<String> verbs = new ArrayList<String>();
+    public ArrayList<String[]> itemPairs = new ArrayList<String[]>();
 
     public commands(String s){
-	Scanner sc = new Scanner(s);
-	while (sc.hasNext()){
-	    words.add(sc.next());
-	    numWords = numWords+1;
-	}
-
-	verbs = new ArrayList();
 	verbs.add("open");
 	verbs.add("use");
 	verbs.add("look");
 	verbs.add("take");
 	verbs.add("go");
-	
-	thingOpen = new ArrayList();
-	thingOpen.add("box");
-	thingOpen.add("door");
-
-	thingUse = new ArrayList();
-	thingUse.add("hammer");
-
-	thingUsedOn = new ArrayList();
-	thingUsedOn.add("clock");
     }
-    
+    /*
+    public void sortWords(){
+	Scanner sc = new Scanner(s);
+	while (sc.hasNext()){
+	    words.add(sc.next());
+	    numWords = numWords+1;
+	}
+	boolean cont = true;
+	while (cont){
+	    cont = cont && verbCheck(words[0]);
+	    verb = words[0];
+
+	    if 
+    */
+   
     public boolean verbCheck(String s){
 	return verbs.contains(s);
     }
@@ -59,7 +60,7 @@ public class commands{
     }
    
     public boolean open(String n){
-	if (thingOpen.contains(n)) { 
+	if (thingToOpen.contains(n)) { 
 	    return true;
 	}
 	else { 
@@ -69,14 +70,16 @@ public class commands{
    
 
     public boolean use(String n1, String n2){
-	if (thingUse.contains(n1) && thingUsedOn.contains(n2)) {
-	    return true;
+	for (int i=0;i<itemPairs.size();i++) { 
+	    String[] itemList = itemPairs.get(i);
+	    if (itemList[0].equals(n1) && itemList[1].equals(n2)) { 
+		System.out.println(itemList[2]);
+		return true;
+	    }
 	}
-	else { 
-	    return false;
-	}
-	
-    }
+	return false;
+    }	
+
     /*
     public boolean look(String n){
     }
